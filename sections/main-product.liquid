@@ -1,0 +1,90 @@
+<section class="product page-width">
+  <div class="product__grid">
+    <div class="product__media">
+      <div class="product__media-main">
+        {%- if product.selected_or_first_available_variant.featured_image -%}
+          <img
+            id="ProductMainImage"
+            src="{{ product.selected_or_first_available_variant.featured_image | image_url: width: 1200 }}"
+            alt="{{ product.selected_or_first_available_variant.featured_image.alt | escape }}"
+            width="1200"
+            height="{{ 1200 | divided_by: product.selected_or_first_available_variant.featured_image.aspect_ratio | default: 1500 }}"
+          >
+        {%- elsif product.featured_image -%}
+          <img
+            id="ProductMainImage"
+            src="{{ product.featured_image | image_url: width: 1200 }}"
+            alt="{{ product.title | escape }}"
+            width="1200"
+            height="{{ 1200 | divided_by: product.featured_image.aspect_ratio | default: 1500 }}"
+          >
+        {%- endif -%}
+      </div>
+      {%- if product.images.size > 1 -%}
+        <div class="product__thumbnails">
+          {%- for image in product.images -%}
+            <button type="button" class="product__thumbnail" data-thumbnail data-full="{{ image | image_url: width: 1200 }}">
+              <img
+                src="{{ image | image_url: width: 200 }}"
+                alt="{{ image.alt | escape }}"
+                loading="lazy"
+                width="200"
+                height="{{ 200 | divided_by: image.aspect_ratio | default: 250 }}"
+              >
+            </button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="product__info">
+      <h1 class="product__title">{{ product.title }}</h1>
+      {% render 'price', product: product %}
+
+      {%- form 'product', product -%}
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" data-variant-id>
+
+        {%- unless product.has_only_default_selling_plan -%}
+          {%- for option in product.options_with_values -%}
+            <div class="product__option">
+              <label>{{ option.name }}</label>
+              <select name="options[{{ option.name | escape }}]" data-option-index="{{ forloop.index0 }}">
+                {%- for value in option.values -%}
+                  <option value="{{ value | escape }}" {% if value == option.selected_value %}selected{% endif %}>{{ value }}</option>
+                {%- endfor -%}
+              </select>
+            </div>
+          {%- endfor -%}
+        {%- endunless -%}
+
+        <div class="product__quantity">
+          <label for="Quantity">{{ 'products.product.quantity' | t }}</label>
+          <input type="number" id="Quantity" name="quantity" value="1" min="1">
+        </div>
+
+        <button
+          type="submit"
+          class="button button--primary product__add-to-cart"
+          {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}
+        >
+          {%- if product.selected_or_first_available_variant.available -%}
+            {{ 'products.product.add_to_cart' | t }}
+          {%- else -%}
+            {{ 'products.product.sold_out' | t }}
+          {%- endif -%}
+        </button>
+      {%- endform -%}
+
+      {%- if product.description != blank -%}
+        <div class="product__description">{{ product.description }}</div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product information",
+  "settings": []
+}
+{% endschema %}

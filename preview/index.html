@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AADNA</title>
+  <link rel="stylesheet" href="/assets/theme.css">
+  <style>
+    :root{
+      --color-background:#FBF8F4;
+      --color-background-alt:#F2ECE2;
+      --color-text:#2B2620;
+      --color-text-muted:#7A7264;
+      --color-accent:#AD8A54;
+      --color-border:#E6DDCE;
+      --color-button-background:#2B2620;
+      --color-button-text:#FBF8F4;
+      --font-heading: 'Jost', sans-serif;
+      --font-heading-weight: 500;
+      --font-body: 'Assistant', sans-serif;
+      --font-body-weight: 400;
+      --heading-letter-spacing: 1px;
+      --page-width: 1400px;
+      --spacing-sections: 72px;
+      --grid-gap: 12px;
+      --button-radius: 0px;
+    }
+    .preview-badge{
+      position:fixed; bottom:16px; right:16px; background:#2B2620; color:#FBF8F4; font-size:11px;
+      letter-spacing:1px; text-transform:uppercase; padding:8px 14px; z-index:999; opacity:.85;
+    }
+  </style>
+</head>
+<body class="has-hero">
+  <header class="site-header site-header--transparent" data-header-transparent>
+    <div class="page-width site-header__inner">
+      <button type="button" class="site-header__menu-toggle" aria-label="Menu">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+
+      <a href="#" class="site-header__logo" style="width:150px;">
+        <img class="site-header__logo-img" src="/assets/logo-gold.png" alt="AADNA" width="150" height="49">
+      </a>
+
+      <nav class="site-header__nav">
+        <ul>
+          <li class="site-header__nav-item"><a href="#">Home</a></li>
+          <li class="site-header__nav-item"><a href="#">Shop</a></li>
+          <li class="site-header__nav-item"><a href="#">Gift Card</a></li>
+          <li class="site-header__nav-item"><a href="#">Our Story</a></li>
+        </ul>
+      </nav>
+
+      <div class="site-header__icons">
+        <button type="button" class="site-header__icon" aria-label="Search">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.5"/><path d="M20 20l-4.5-4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <a href="#" class="site-header__icon" aria-label="Account">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M4 20c0-3.5 3.5-6 8-6s8 2.5 8 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </a>
+        <button type="button" class="site-header__icon site-header__cart" aria-label="Bag">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 7V6a6 6 0 1 1 12 0v1h3l-1.2 13.2A2 2 0 0 1 17.81 22H6.19a2 2 0 0 1-1.99-1.8L3 7h3Zm2 0h8V6a4 4 0 1 0-8 0v1Z" fill="currentColor"/></svg>
+          <span class="site-header__cart-count">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <header class="site-header site-header--solid" data-header-solid>
+    <div class="page-width site-header__inner">
+      <button type="button" class="site-header__menu-toggle" aria-label="Menu">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+
+      <a href="#" class="site-header__logo" style="width:150px;">
+        <img class="site-header__logo-img site-header__logo-img--scrolled" src="/assets/logo-gold.png" alt="AADNA" width="150" height="49">
+      </a>
+
+      <nav class="site-header__nav">
+        <ul>
+          <li class="site-header__nav-item"><a href="#">Home</a></li>
+          <li class="site-header__nav-item"><a href="#">Shop</a></li>
+          <li class="site-header__nav-item"><a href="#">Gift Card</a></li>
+          <li class="site-header__nav-item"><a href="#">Our Story</a></li>
+        </ul>
+      </nav>
+
+      <div class="site-header__icons">
+        <button type="button" class="site-header__icon" aria-label="Search">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.5"/><path d="M20 20l-4.5-4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <a href="#" class="site-header__icon" aria-label="Account">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M4 20c0-3.5 3.5-6 8-6s8 2.5 8 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </a>
+        <button type="button" class="site-header__icon site-header__cart" aria-label="Bag">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 7V6a6 6 0 1 1 12 0v1h3l-1.2 13.2A2 2 0 0 1 17.81 22H6.19a2 2 0 0 1-1.99-1.8L3 7h3Zm2 0h8V6a4 4 0 1 0-8 0v1Z" fill="currentColor"/></svg>
+          <span class="site-header__cart-count">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero__media">
+        <img src="/assets/hero-image.jpg" alt="Flamboyant handcrafted jewellery" width="1170" height="759" loading="eager">
+      </div>
+      <div class="hero__content">
+        <h1 class="hero__heading">Flamboyant handcrafted jewellery</h1>
+        <a href="#" class="button button--outline-white">Shop the collection</a>
+      </div>
+    </section>
+
+    <section class="craft-statement page-width" style="padding-top:96px;padding-bottom:96px;">
+      <div class="craft-statement__inner">
+        <h2 class="craft-statement__heading">&ldquo;Every piece is shaped by hand and finished with care, made to be worn daily and kept for years.&rdquo;</h2>
+        <a href="#" class="text-link">Read our story</a>
+      </div>
+    </section>
+
+    <section class="featured-collection page-width" style="padding-top:var(--spacing-sections);padding-bottom:var(--spacing-sections);">
+      <div class="product-grid product-grid--large" style="--columns:4;">
+        <div class="product-card">
+          <a href="#" class="product-card__link">
+            <div class="product-card__media">
+              <img src="https://aadna.store/cdn/shop/files/Lunacuff.png" alt="Luna Ear Cuff" width="800" height="1000" loading="lazy">
+              <img class="product-card__media--hover" src="https://aadna.store/cdn/shop/files/Lunacuff2.png" alt="" width="800" height="1000" loading="lazy">
+            </div>
+            <div class="product-card__info"><p class="product-card__title">Luna Ear Cuff</p><div class="price"><span class="price__regular">$32.00</span></div></div>
+          </a>
+        </div>
+        <div class="product-card">
+          <a href="#" class="product-card__link">
+            <div class="product-card__media">
+              <img src="https://aadna.store/cdn/shop/files/celeste1.jpg" alt="Céleste Necklace" width="800" height="1000" loading="lazy">
+              <img class="product-card__media--hover" src="https://aadna.store/cdn/shop/files/celeste3.jpg" alt="" width="800" height="1000" loading="lazy">
+            </div>
+            <div class="product-card__info"><p class="product-card__title">Céleste Necklace</p><div class="price"><span class="price__regular">$45.00</span></div></div>
+          </a>
+        </div>
+        <div class="product-card">
+          <a href="#" class="product-card__link">
+            <div class="product-card__media">
+              <img src="https://aadna.store/cdn/shop/files/heartcurb5.jpg" alt="Heart Curb Chain" width="800" height="1000" loading="lazy">
+              <img class="product-card__media--hover" src="https://aadna.store/cdn/shop/files/heartcurb6.jpg" alt="" width="800" height="1000" loading="lazy">
+            </div>
+            <div class="product-card__info"><p class="product-card__title">Heart Curb Chain</p><div class="price"><span class="price__regular">$38.00</span></div></div>
+          </a>
+        </div>
+        <div class="product-card">
+          <a href="#" class="product-card__link">
+            <div class="product-card__media">
+              <img src="https://aadna.store/cdn/shop/files/zodia6.jpg" alt="Zodiac Necklace" width="800" height="1000" loading="lazy">
+              <img class="product-card__media--hover" src="https://aadna.store/cdn/shop/files/zodia7.jpg" alt="" width="800" height="1000" loading="lazy">
+            </div>
+            <div class="product-card__info"><p class="product-card__title">Zodiac Necklace</p><div class="price"><span class="price__regular">$42.00</span></div></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="two-col-links">
+      <a href="#" class="two-col-links__item">
+        <div class="two-col-links__media"><video src="/assets/collections.mp4" autoplay muted loop playsinline></video></div>
+        <div class="two-col-links__overlay"></div>
+        <h3 class="two-col-links__link">Collections</h3>
+      </a>
+      <a href="#" class="two-col-links__item">
+        <div class="two-col-links__media"><video src="/assets/custom-orders.mp4" autoplay muted loop playsinline></video></div>
+        <div class="two-col-links__overlay"></div>
+        <h3 class="two-col-links__link">Custom Orders</h3>
+      </a>
+    </section>
+
+    <section class="featured-collection page-width" style="padding-top:var(--spacing-sections);padding-bottom:var(--spacing-sections);">
+      <div class="product-grid product-grid--large" style="--columns:4;">
+        <div class="product-card"><a href="#" class="product-card__link"><div class="product-card__media"><img src="https://aadna.store/cdn/shop/files/name3.jpg" alt="Name Necklace" width="800" height="1000" loading="lazy"><img class="product-card__media--hover" src="https://aadna.store/cdn/shop/files/name2a.jpg" alt="" width="800" height="1000" loading="lazy"></div><div class="product-card__info"><p class="product-card__title">Name Necklace</p><div class="price"><span class="price__regular">$40.00</span></div></div></a></div>
+        <div class="product-card"><a href="#" class="product-card__link"><div class="product-card__media"><img src="https://aadna.store/cdn/shop/files/Earringa-05.jpg" alt="Drop Earrings" width="800" height="1000" loading="lazy"><img class="product-card__media--hover" src="https://aadna.store/cdn/shop/files/Earringc-05.jpg" alt="" width="800" height="1000" loading="lazy"></div><div class="product-card__info"><p class="product-card__title">Drop Earrings</p><div class="price"><span class="price__regular">$28.00</span></div></div></a></div>
+        <div class="product-card"><a href="#" class="product-card__link"><div class="product-card__media"><img src="https://aadna.store/cdn/shop/files/Necklacea-04.jpg" alt="Layered Necklace" width="800" height="1000" loading="lazy"><img class="product-card__media--hover" src="https://aadna.store/cdn/shop/files/Necklaceb-02.jpg" alt="" width="800" height="1000" loading="lazy"></div><div class="product-card__info"><p class="product-card__title">Layered Necklace</p><div class="price"><span class="price__regular">$46.00</span></div></div></a></div>
+        <div class="product-card"><a href="#" class="product-card__link"><div class="product-card__media"><img src="https://aadna.store/cdn/shop/files/Teardrop-03.jpg" alt="Teardrop Earrings" width="800" height="1000" loading="lazy"><img class="product-card__media--hover" src="https://aadna.store/cdn/shop/files/Teardrop-04.jpg" alt="" width="800" height="1000" loading="lazy"></div><div class="product-card__info"><p class="product-card__title">Teardrop Earrings</p><div class="price"><span class="price__regular">$30.00</span></div></div></a></div>
+        <div class="product-card"><a href="#" class="product-card__link"><div class="product-card__media"><img src="https://aadna.store/cdn/shop/files/k1.jpg" alt="Chain Bracelet" width="800" height="1000" loading="lazy"><img class="product-card__media--hover" src="https://aadna.store/cdn/shop/files/k2.jpg" alt="" width="800" height="1000" loading="lazy"></div><div class="product-card__info"><p class="product-card__title">Chain Bracelet</p><div class="price"><span class="price__regular">$34.00</span></div></div></a></div>
+        <div class="product-card"><a href="#" class="product-card__link"><div class="product-card__media"><img src="https://aadna.store/cdn/shop/files/CoinIIIcopy.jpg" alt="Coin Necklace" width="800" height="1000" loading="lazy"><img class="product-card__media--hover" src="https://aadna.store/cdn/shop/files/CoinIIIcopy2.jpg" alt="" width="800" height="1000" loading="lazy"></div><div class="product-card__info"><p class="product-card__title">Coin Necklace</p><div class="price"><span class="price__regular">$36.00</span></div></div></a></div>
+        <div class="product-card"><a href="#" class="product-card__link"><div class="product-card__media"><img src="https://aadna.store/cdn/shop/files/Metoyou.jpg" alt="Me To You Bracelet" width="800" height="1000" loading="lazy"><img class="product-card__media--hover" src="https://aadna.store/cdn/shop/files/Metoyoucopy.jpg" alt="" width="800" height="1000" loading="lazy"></div><div class="product-card__info"><p class="product-card__title">Me To You Bracelet</p><div class="price"><span class="price__regular">$29.00</span></div></div></a></div>
+        <div class="product-card"><a href="#" class="product-card__link"><div class="product-card__media"><img src="https://aadna.store/cdn/shop/files/chunkycurbchain2.jpg" alt="Chunky Curb Chain" width="800" height="1000" loading="lazy"><img class="product-card__media--hover" src="https://aadna.store/cdn/shop/files/Springearring2.jpg" alt="" width="800" height="1000" loading="lazy"></div><div class="product-card__info"><p class="product-card__title">Chunky Curb Chain</p><div class="price"><span class="price__regular">$48.00</span></div></div></a></div>
+      </div>
+    </section>
+
+    <section class="collection-list">
+      <div class="collection-list__grid">
+        <div class="collection-list__item">
+          <div class="collection-list__media"><img src="/assets/collection-isla.webp" alt="Isla" width="900" height="900" loading="lazy"></div>
+          <div class="collection-list__overlay"></div>
+          <div class="collection-list__content">
+            <h2 class="collection-list__title">Isla</h2>
+            <a href="#" class="collection-list__cta">Explore collection</a>
+          </div>
+        </div>
+        <div class="collection-list__item">
+          <div class="collection-list__media"><img src="/assets/collection-teardrop.webp" alt="Teardrop" width="1000" height="1000" loading="lazy"></div>
+          <div class="collection-list__overlay"></div>
+          <div class="collection-list__content">
+            <h2 class="collection-list__title">Teardrop</h2>
+            <a href="#" class="collection-list__cta">Explore collection</a>
+          </div>
+        </div>
+        <div class="collection-list__item">
+          <div class="collection-list__media"><img src="/assets/collection-athena.webp" alt="Athena" width="900" height="900" loading="lazy"></div>
+          <div class="collection-list__overlay"></div>
+          <div class="collection-list__content">
+            <h2 class="collection-list__title">Athena</h2>
+            <a href="#" class="collection-list__cta">Explore collection</a>
+          </div>
+        </div>
+        <div class="collection-list__item">
+          <div class="collection-list__media"><img src="/assets/collection-island-love.webp" alt="Island Love" width="900" height="900" loading="lazy"></div>
+          <div class="collection-list__overlay"></div>
+          <div class="collection-list__content">
+            <h2 class="collection-list__title">Island Love</h2>
+            <a href="#" class="collection-list__cta">Explore collection</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="newsletter-banner" style="background-color:#F2ECE2;">
+      <div class="page-width newsletter-banner__inner">
+        <h2>Join the AADNA circle</h2>
+        <p>An invitation to those who value the considered over the ordinary — early access to new arrivals, private previews, and a 10% welcome gift, reserved for our circle.</p>
+        <form class="newsletter-form" onsubmit="return false;">
+          <div class="newsletter-form__row">
+            <input type="email" placeholder="Email address" required>
+            <button type="submit">Count me in</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="full-width-image">
+      <img src="/assets/fashion-week-campaign.png" alt="AADNA campaign" width="2000" height="1125" loading="lazy">
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="page-width site-footer__inner">
+      <div class="site-footer__block site-footer__brand">
+        <img src="/assets/logo-gold.png" alt="AADNA" width="120" height="39" style="height:auto;">
+        <p class="site-footer__tagline">She is a force of nature, she is everything you need.</p>
+        <ul class="social-icons">
+          <li><a href="https://www.instagram.com/aadna.store/" target="_blank" rel="noopener">Instagram</a></li>
+        </ul>
+      </div>
+      <div class="site-footer__block">
+        <p class="site-footer__heading">Support</p>
+        <ul><li><a href="#">Search</a></li><li><a href="#">Sizing</a></li><li><a href="#">Contact</a></li><li><a href="#">Shipping</a></li></ul>
+      </div>
+      <div class="site-footer__block">
+        <p class="site-footer__heading">Company</p>
+        <ul><li><a href="#">Our Story</a></li><li><a href="#">Gift Card</a></li></ul>
+      </div>
+      <div class="site-footer__block site-footer__newsletter">
+        <p class="site-footer__heading">Join the AADNA circle</p>
+        <p class="site-footer__text">An invitation to those who value the considered over the ordinary — early access, private previews, and a 10% welcome gift.</p>
+        <form class="newsletter-form" onsubmit="return false;">
+          <div class="newsletter-form__row">
+            <input type="email" placeholder="Email address" required>
+            <button type="submit">Count me in</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="page-width site-footer__bottom">
+      <p>&copy; 2026 AADNA. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <div class="preview-badge">Static preview — not connected to Shopify</div>
+
+  <script src="/assets/theme.js" defer></script>
+</body>
+</html>

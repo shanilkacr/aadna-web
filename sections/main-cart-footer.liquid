@@ -1,0 +1,16 @@
+{%- if cart.item_count > 0 -%}
+<section class="cart-footer page-width">
+  <div class="cart-footer__subtotal">
+    <span>{{ 'general.cart.subtotal' | t }}</span>
+    <span>{{ cart.total_price | money }}</span>
+  </div>
+  <a href="{{ routes.checkout_url }}" class="button button--primary">{{ 'general.cart.checkout' | t }}</a>
+</section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Cart footer",
+  "settings": []
+}
+{% endschema %}

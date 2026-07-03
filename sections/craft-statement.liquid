@@ -1,0 +1,39 @@
+<section class="craft-statement page-width" style="padding-top:{{ section.settings.spacing }}px;padding-bottom:{{ section.settings.spacing }}px;">
+  <div class="craft-statement__inner">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="craft-statement__heading">&ldquo;{{ section.settings.heading }}&rdquo;</h2>
+    {%- endif -%}
+    {%- if section.settings.button_label != blank -%}
+      <a href="{{ section.settings.button_link }}" class="text-link">{{ section.settings.button_label }}</a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Craft statement",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Statement (H2, quotation marks added automatically)",
+      "default": "Every piece is shaped by hand and finished with care, made to be worn daily and kept for years."
+    },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Read our story" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    {
+      "type": "range",
+      "id": "spacing",
+      "min": 40,
+      "max": 160,
+      "step": 8,
+      "default": 96,
+      "unit": "px",
+      "label": "Vertical spacing"
+    }
+  ],
+  "presets": [
+    { "name": "Craft statement" }
+  ]
+}
+{% endschema %}

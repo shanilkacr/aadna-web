@@ -1,0 +1,64 @@
+<section class="collection-list">
+  <div class="collection-list__grid">
+    {%- for block in section.blocks -%}
+      {%- liquid
+        assign collection = collections[block.settings.collection]
+        assign image_url = block.settings.fallback_image
+      -%}
+      <div class="collection-list__item" {{ block.shopify_attributes }}>
+        <div class="collection-list__media">
+          {%- if block.settings.video_url != blank -%}
+            <video src="{{ block.settings.video_url }}" autoplay muted loop playsinline></video>
+          {%- elsif collection.featured_image -%}
+            <img
+              src="{{ collection.featured_image | image_url: width: 1200 }}"
+              alt="{{ collection.title | escape }}"
+              loading="lazy"
+              width="1200"
+              height="{{ 1200 | divided_by: collection.featured_image.aspect_ratio | default: 1200 }}"
+            >
+          {%- elsif image_url != blank and image_url contains '://' -%}
+            <img src="{{ image_url }}" alt="{{ block.settings.title | escape }}" loading="lazy" width="1200" height="1200">
+          {%- elsif image_url != blank -%}
+            <img src="{{ image_url | asset_url }}" alt="{{ block.settings.title | escape }}" loading="lazy" width="1200" height="1200">
+          {%- endif -%}
+        </div>
+        <div class="collection-list__overlay"></div>
+        <div class="collection-list__content">
+          <h2 class="collection-list__title">{{ block.settings.title | default: collection.title }}</h2>
+          <a href="{{ collection.url | default: '#' }}" class="collection-list__cta">{{ 'collections.general.explore' | t }}</a>
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection list",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "Collection" },
+        { "type": "text", "id": "title", "label": "Title override" },
+        { "type": "text", "id": "fallback_image", "label": "Fallback image (external URL or bundled theme asset filename)" },
+        { "type": "text", "id": "video_url", "label": "Background video URL (.mp4, overrides image when set)" }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "collection", "settings": { "title": "Isla", "fallback_image": "collection-isla.webp" } },
+      { "type": "collection", "settings": { "title": "Teardrop", "fallback_image": "collection-teardrop.webp" } },
+      { "type": "collection", "settings": { "title": "Athena", "fallback_image": "collection-athena.webp" } },
+      { "type": "collection", "settings": { "title": "Island Love", "fallback_image": "collection-island-love.webp" } }
+    ]
+  },
+  "presets": [
+    { "name": "Collection list" }
+  ]
+}
+{% endschema %}

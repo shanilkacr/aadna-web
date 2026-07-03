@@ -1,0 +1,92 @@
+{%- comment -%}
+  Renders the inner header markup. Accepts: variant ('default' | 'transparent' | 'solid')
+  - default: black logo, used on non-hero pages (always solid)
+  - transparent: gold logo, full size, white text, overlays the hero (scrolls away, not fixed)
+  - solid: gold logo at 80% size, dark text, slides in fixed once scrolled
+{%- endcomment -%}
+<div class="page-width site-header__inner">
+  <button type="button" class="site-header__menu-toggle" data-menu-toggle aria-label="{{ 'sections.header.menu' | t }}">
+    {% render 'icon-menu' %}
+  </button>
+
+  <a href="{{ routes.root_url }}" class="site-header__logo" style="width:{{ settings.logo_width }}px;">
+    {%- if variant == 'transparent' or variant == 'solid' -%}
+      {%- if settings.logo_alt -%}
+        <img
+          class="site-header__logo-img{% if variant == 'solid' %} site-header__logo-img--scrolled{% endif %}"
+          src="{{ settings.logo_alt | image_url: width: 400 }}"
+          alt="{{ shop.name }}"
+          width="{{ settings.logo_width }}"
+          height="{{ settings.logo_width | divided_by: settings.logo_alt.aspect_ratio | default: settings.logo_width }}"
+        >
+      {%- else -%}
+        <img
+          class="site-header__logo-img{% if variant == 'solid' %} site-header__logo-img--scrolled{% endif %}"
+          src="{{ 'logo-gold.png' | asset_url }}"
+          alt="{{ shop.name }}"
+          width="{{ settings.logo_width }}"
+          height="{{ settings.logo_width | times: 260 | divided_by: 800 }}"
+        >
+      {%- endif -%}
+    {%- else -%}
+      {%- if settings.logo -%}
+        <img
+          class="site-header__logo-img"
+          src="{{ settings.logo | image_url: width: 400 }}"
+          alt="{{ shop.name }}"
+          width="{{ settings.logo_width }}"
+          height="{{ settings.logo_width | divided_by: settings.logo.aspect_ratio | default: settings.logo_width }}"
+        >
+      {%- else -%}
+        <img
+          class="site-header__logo-img"
+          src="{{ 'logo-black.png' | asset_url }}"
+          alt="{{ shop.name }}"
+          width="{{ settings.logo_width }}"
+          height="{{ settings.logo_width | times: 197 | divided_by: 924 }}"
+        >
+      {%- endif -%}
+    {%- endif -%}
+  </a>
+
+  <nav class="site-header__nav" data-nav>
+    <ul>
+      {%- for link in section.settings.menu.links -%}
+        <li class="site-header__nav-item{% if link.links.size > 0 %} has-dropdown{% endif %}">
+          <a href="{{ link.url }}">{{ link.title }}</a>
+          {%- if link.links.size > 0 -%}
+            <ul class="site-header__dropdown">
+              {%- for childlink in link.links -%}
+                <li><a href="{{ childlink.url }}">{{ childlink.title }}</a></li>
+              {%- endfor -%}
+            </ul>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+  </nav>
+
+  <div class="site-header__icons">
+    <button type="button" class="site-header__icon" data-search-toggle aria-label="{{ 'general.search.submit' | t }}">
+      {% render 'icon-search' %}
+    </button>
+    <a href="{{ routes.account_url }}" class="site-header__icon" aria-label="{{ 'sections.header.account' | t }}">
+      {% render 'icon-account' %}
+    </a>
+    <button type="button" class="site-header__icon site-header__cart" data-cart-toggle aria-label="{{ 'sections.header.cart' | t }}">
+      {% render 'icon-cart' %}
+      {%- if cart.item_count > 0 -%}
+        <span class="site-header__cart-count">{{ cart.item_count }}</span>
+      {%- endif -%}
+    </button>
+  </div>
+</div>
+
+<div class="site-header__search" data-search-panel hidden>
+  <div class="page-width">
+    <form action="{{ routes.search_url }}" method="get" role="search">
+      <input type="search" name="q" placeholder="{{ 'general.search.placeholder' | t }}" value="{{ search.terms }}">
+      <button type="submit">{% render 'icon-search' %}</button>
+    </form>
+  </div>
+</div>

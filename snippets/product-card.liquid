@@ -1,0 +1,39 @@
+{%- comment -%}
+  Renders a product card.
+  Accepts: product (object), fallback_image (string, optional CDN url used when no product is passed)
+{%- endcomment -%}
+<div class="product-card">
+  <a href="{{ product.url | default: '#' }}" class="product-card__link">
+    <div class="product-card__media">
+      {%- if product.featured_image -%}
+        <img
+          src="{{ product.featured_image | image_url: width: 800 }}"
+          alt="{{ product.featured_image.alt | escape }}"
+          loading="lazy"
+          width="800"
+          height="{{ 800 | divided_by: product.featured_image.aspect_ratio }}"
+        >
+      {%- elsif fallback_image -%}
+        <img src="{{ fallback_image }}" alt="{{ product.title | escape }}" loading="lazy" width="800" height="1000">
+      {%- endif -%}
+      {%- if product.images[1] -%}
+        <img
+          class="product-card__media--hover"
+          src="{{ product.images[1] | image_url: width: 800 }}"
+          alt=""
+          loading="lazy"
+          width="800"
+          height="{{ 800 | divided_by: product.images[1].aspect_ratio | default: 1000 }}"
+        >
+      {%- endif -%}
+    </div>
+    <div class="product-card__info">
+      <p class="product-card__title">{{ product.title | default: 'Product title' }}</p>
+      {%- if product != blank -%}
+        {% render 'price', product: product %}
+      {%- else -%}
+        <div class="price"><span class="price__regular">$0.00</span></div>
+      {%- endif -%}
+    </div>
+  </a>
+</div>

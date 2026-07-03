@@ -1,0 +1,26 @@
+{%- if template.name == 'index' -%}
+  <header class="site-header site-header--transparent" data-header-transparent>
+    {% render 'header-content', variant: 'transparent' %}
+  </header>
+  <header class="site-header site-header--solid" data-header-solid>
+    {% render 'header-content', variant: 'solid' %}
+  </header>
+{%- else -%}
+  <header class="site-header" data-header>
+    {% render 'header-content', variant: 'default' %}
+  </header>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,48 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "heading": "Flamboyant handcrafted jewellery",
+        "button_label": "Shop the collection",
+        "button_link": "/collections/all"
+      }
+    },
+    "craft-statement": {
+      "type": "craft-statement",
+      "settings": {
+        "button_label": "Read our story",
+        "button_link": "/pages/our-story"
+      }
+    },
+    "featured-luna": {
+      "type": "featured-collection",
+      "settings": {
+        "products_to_show": 4,
+        "columns": 4,
+        "placeholder_images": "https://aadna.store/cdn/shop/files/Lunacuff2.png"
+      }
+    },
+    "two-column-links": {
+      "type": "two-column-links"
+    },
+    "featured-bestsellers": {
+      "type": "featured-collection",
+      "settings": {
+        "products_to_show": 8,
+        "columns": 4,
+        "placeholder_images": "https://aadna.store/cdn/shop/files/name3.jpg"
+      }
+    },
+    "collection-list": {
+      "type": "collection-list"
+    },
+    "newsletter": {
+      "type": "newsletter"
+    },
+    "full-width-image": {
+      "type": "full-width-image"
+    }
+  },
+  "order": ["hero", "craft-statement", "featured-luna", "two-column-links", "featured-bestsellers", "collection-list", "newsletter", "full-width-image"]
+}

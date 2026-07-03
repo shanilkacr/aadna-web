@@ -1,0 +1,21 @@
+<section class="article page-width">
+  <h1>{{ article.title }}</h1>
+  <p class="article__meta">{{ article.published_at | date: '%B %d, %Y' }}{% if article.author %} &middot; {{ article.author }}{% endif %}</p>
+  {%- if article.image -%}
+    <img
+      src="{{ article.image | image_url: width: 1400 }}"
+      alt="{{ article.title | escape }}"
+      class="article__image"
+      width="1400"
+      height="{{ 1400 | divided_by: article.image.aspect_ratio | default: 788 }}"
+    >
+  {%- endif -%}
+  <div class="article__content">{{ article.content }}</div>
+</section>
+
+{% schema %}
+{
+  "name": "Article",
+  "settings": []
+}
+{% endschema %}

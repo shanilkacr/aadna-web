@@ -1,0 +1,68 @@
+{
+  "general": {
+    "search": {
+      "placeholder": "Search products",
+      "submit": "Search",
+      "no_results": "No results found for \"{{ terms }}\""
+    },
+    "cart": {
+      "title": "Your bag",
+      "empty": "Your bag is empty",
+      "subtotal": "Subtotal",
+      "checkout": "Checkout",
+      "view_cart": "View bag",
+      "continue_shopping": "Continue shopping",
+      "remove": "Remove",
+      "quantity": "Quantity",
+      "update": "Update"
+    },
+    "social": {
+      "follow_us": "Follow us"
+    },
+    "newsletter": {
+      "heading": "Join the AADNA circle",
+      "text": "An invitation to those who value the considered over the ordinary — early access to new arrivals, private previews, and a 10% welcome gift, reserved for our circle.",
+      "placeholder": "Email address",
+      "submit": "Count me in",
+      "success": "Thank you — welcome to the circle."
+    },
+    "password_page": {
+      "opening_soon": "Opening soon",
+      "enter_password": "Enter password"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to bag",
+      "sold_out": "Sold out",
+      "unavailable": "Unavailable",
+      "quantity": "Quantity",
+      "choose_options": "Choose options",
+      "view_details": "View details",
+      "on_sale": "Sale"
+    }
+  },
+  "collections": {
+    "general": {
+      "no_products": "No products found",
+      "shop_all": "Shop all",
+      "view_all": "View all",
+      "explore": "Explore collection"
+    }
+  },
+  "sections": {
+    "header": {
+      "menu": "Menu",
+      "account": "Account",
+      "cart": "Bag"
+    },
+    "footer": {
+      "copyright": "All rights reserved."
+    }
+  },
+  "404": {
+    "title": "Page not found",
+    "subtext": "The page you're looking for doesn't exist.",
+    "link": "Continue shopping"
+  }
+}
