@@ -34,6 +34,9 @@
 {% schema %}
 {
   "name": "Product grid",
+  "enabled_on": {
+    "templates": ["collection"]
+  },
   "settings": [
     { "type": "range", "id": "columns", "min": 2, "max": 5, "step": 1, "default": 4, "label": "Columns (desktop)" }
   ]

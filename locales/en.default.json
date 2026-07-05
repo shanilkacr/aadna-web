@@ -1,9 +1,14 @@
 {
   "general": {
     "search": {
+      "title": "Search",
       "placeholder": "Search products",
       "submit": "Search",
-      "no_results": "No results found for \"{{ terms }}\""
+      "no_results": "No results found for \"{{ terms }}\"",
+      "results_count": {
+        "one": "{{ count }} result",
+        "other": "{{ count }} results"
+      }
     },
     "cart": {
       "title": "Your bag",
@@ -14,7 +19,10 @@
       "continue_shopping": "Continue shopping",
       "remove": "Remove",
       "quantity": "Quantity",
-      "update": "Update"
+      "update": "Update",
+      "close": "Close",
+      "product": "Product",
+      "line_total": "Total"
     },
     "social": {
       "follow_us": "Follow us"
@@ -28,7 +36,8 @@
     },
     "password_page": {
       "opening_soon": "Opening soon",
-      "enter_password": "Enter password"
+      "enter_password": "Enter password",
+      "submit": "Enter"
     }
   },
   "products": {
@@ -64,5 +73,86 @@
     "title": "Page not found",
     "subtext": "The page you're looking for doesn't exist.",
     "link": "Continue shopping"
+  },
+  "customer": {
+    "login": {
+      "title": "Sign in",
+      "email": "Email",
+      "password": "Password",
+      "sign_in": "Sign in",
+      "create_account": "Create account",
+      "forgot_password": "Forgot password?"
+    },
+    "register": {
+      "title": "Create account",
+      "first_name": "First name",
+      "last_name": "Last name",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Create",
+      "sign_in": "Already have an account? Sign in"
+    },
+    "account": {
+      "title": "Account",
+      "welcome": "Welcome, {{ first_name }}",
+      "view_addresses": "View addresses",
+      "log_out": "Log out",
+      "order_history": "Order history",
+      "no_orders": "You haven't placed any orders yet."
+    },
+    "order": {
+      "title": "Order {{ name }}",
+      "product": "Product",
+      "quantity": "Quantity",
+      "total": "Total",
+      "back_to_account": "Back to account"
+    },
+    "addresses": {
+      "title": "Addresses",
+      "edit": "Edit",
+      "delete": "Delete",
+      "add_new": "Add a new address",
+      "company": "Company",
+      "address1": "Address",
+      "address2": "Apartment, suite, etc.",
+      "city": "City",
+      "country": "Country",
+      "province": "Province",
+      "zip": "Postal code",
+      "phone": "Phone",
+      "set_default": "Set as default address",
+      "save": "Save address",
+      "back": "Back to addresses"
+    },
+    "recover_password": {
+      "title": "Reset your password",
+      "subtext": "We will send you an email to reset your password.",
+      "submit": "Submit",
+      "success": "We've sent you an email with a link to update your password."
+    },
+    "activate_account": {
+      "title": "Activate account",
+      "subtext": "Create a password to activate your account.",
+      "password": "Password",
+      "password_confirm": "Confirm password",
+      "submit": "Activate account",
+      "cancel": "Decline invitation"
+    },
+    "reset_password": {
+      "title": "Reset password",
+      "subtext": "Enter a new password for your account.",
+      "password": "Password",
+      "password_confirm": "Confirm password",
+      "submit": "Reset password"
+    }
+  },
+  "gift_cards": {
+    "issued": {
+      "title": "Here's your {{ value }} gift card for {{ shop }}!",
+      "subtext": "Use this code at checkout",
+      "add_to_apple_wallet": "Add to Apple Wallet",
+      "shop_link": "Start shopping",
+      "expired": "This gift card has expired"
+    }
   }
 }

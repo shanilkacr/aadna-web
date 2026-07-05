@@ -1,0 +1,25 @@
+<section class="customer page-width">
+  <h1>{{ 'customer.account.title' | t }}</h1>
+  <p>{{ 'customer.account.welcome' | t: first_name: customer.first_name }}</p>
+
+  <div class="customer__links">
+    <a href="{{ routes.account_addresses_url }}">{{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})</a>
+    <a href="{{ routes.account_logout_url }}">{{ 'customer.account.log_out' | t }}</a>
+  </div>
+
+  <h2>{{ 'customer.account.order_history' | t }}</h2>
+  {%- if customer.orders.size > 0 -%}
+    <ul class="customer__order-list">
+      {%- for order in customer.orders -%}
+        <li>
+          <a href="{{ order.customer_url }}">
+            <span>{{ order.name }}</span>
+            <span>{{ order.created_at | date: '%B %d, %Y' }}</span>
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+  {%- else -%}
+    <p>{{ 'customer.account.no_orders' | t }}</p>
+  {%- endif -%}
+</section>

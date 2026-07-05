@@ -1,0 +1,32 @@
+<section class="customer page-width">
+  <h1>{{ 'customer.order.title' | t: name: order.name }}</h1>
+  <p>{{ order.created_at | date: '%B %d, %Y' }}</p>
+
+  <table class="cart-page__table">
+    <thead>
+      <tr>
+        <th>{{ 'customer.order.product' | t }}</th>
+        <th>{{ 'customer.order.quantity' | t }}</th>
+        <th>{{ 'customer.order.total' | t }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {%- for line_item in order.line_items -%}
+        <tr class="cart-page__row">
+          <td>{{ line_item.title }}</td>
+          <td>{{ line_item.quantity }}</td>
+          <td>{{ line_item.final_line_price | money }}</td>
+        </tr>
+      {%- endfor -%}
+    </tbody>
+  </table>
+
+  <div class="cart-footer__subtotal">
+    <span>{{ 'customer.order.total' | t }}</span>
+    <span>{{ order.total_price | money }}</span>
+  </div>
+
+  <div class="customer__links">
+    <a href="{{ routes.account_url }}">{{ 'customer.order.back_to_account' | t }}</a>
+  </div>
+</section>

@@ -3,8 +3,6 @@
     {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, controls: false, class: 'full-width-image__media' }}
   {%- elsif section.settings.fallback_video != blank -%}
     <video class="full-width-image__media" src="{{ section.settings.fallback_video }}" autoplay muted loop playsinline aria-label="{{ section.settings.alt | escape }}"></video>
-  {%- else -%}
-    <video class="full-width-image__media" src="{{ 'cubic-signet-ring.mp4' | asset_url }}" autoplay muted loop playsinline aria-label="{{ section.settings.alt | default: shop.name | escape }}"></video>
   {%- endif -%}
 </section>
 

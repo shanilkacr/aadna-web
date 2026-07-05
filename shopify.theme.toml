@@ -1,0 +1,9 @@
+# Shopify CLI theme configuration for AADNA
+# https://shopify.dev/docs/storefronts/themes/tools/cli
+
+[theme]
+name = "AADNA"
+
+[build]
+# Automatically update theme-check config when running theme check
+theme_check = true

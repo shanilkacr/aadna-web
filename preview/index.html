@@ -4,7 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>AADNA</title>
-  <link rel="stylesheet" href="/assets/theme.css?v=8">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/theme.css?v=29">
   <style>
     :root{
       --color-background:#FBF8F4;
@@ -24,6 +27,7 @@
       --spacing-sections: 72px;
       --grid-gap: 12px;
       --button-radius: 0px;
+      --header-logo-width: 150px;
     }
     .preview-badge{
       position:fixed; bottom:16px; right:16px; background:#2B2620; color:#FBF8F4; font-size:11px;
@@ -34,9 +38,14 @@
 <body class="has-hero">
   <header class="site-header site-header--transparent" data-header-transparent>
     <div class="page-width site-header__inner">
-      <button type="button" class="site-header__menu-toggle" aria-label="Menu">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-      </button>
+      <div class="site-header__start">
+        <button type="button" class="site-header__menu-toggle" aria-label="Menu">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <button type="button" class="site-header__icon" aria-label="Search">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.5"/><path d="M20 20l-4.5-4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+      </div>
 
       <a href="#" class="site-header__logo" style="width:150px;">
         <img class="site-header__logo-img" src="/assets/logo-gold.png" alt="AADNA" width="150" height="49">
@@ -51,15 +60,12 @@
         </ul>
       </nav>
 
-      <div class="site-header__icons">
-        <button type="button" class="site-header__icon" aria-label="Search">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.5"/><path d="M20 20l-4.5-4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </button>
+      <div class="site-header__end">
         <a href="#" class="site-header__icon" aria-label="Account">
           <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M4 20c0-3.5 3.5-6 8-6s8 2.5 8 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
         </a>
         <button type="button" class="site-header__icon site-header__cart" aria-label="Bag">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 7V6a6 6 0 1 1 12 0v1h3l-1.2 13.2A2 2 0 0 1 17.81 22H6.19a2 2 0 0 1-1.99-1.8L3 7h3Zm2 0h8V6a4 4 0 1 0-8 0v1Z" fill="currentColor"/></svg>
+          <svg class="icon icon-cart" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 8V6.5a4 4 0 1 1 8 0V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 8h14l-1.2 12.2a1.5 1.5 0 0 1-1.49 1.3H7.69a1.5 1.5 0 0 1-1.49-1.3L5 8Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
           <span class="site-header__cart-count">0</span>
         </button>
       </div>
@@ -68,9 +74,14 @@
 
   <header class="site-header site-header--solid" data-header-solid>
     <div class="page-width site-header__inner">
-      <button type="button" class="site-header__menu-toggle" aria-label="Menu">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-      </button>
+      <div class="site-header__start">
+        <button type="button" class="site-header__menu-toggle" aria-label="Menu">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <button type="button" class="site-header__icon" aria-label="Search">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.5"/><path d="M20 20l-4.5-4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+      </div>
 
       <a href="#" class="site-header__logo" style="width:150px;">
         <img class="site-header__logo-img site-header__logo-img--scrolled" src="/assets/logo-gold.png" alt="AADNA" width="150" height="49">
@@ -85,15 +96,12 @@
         </ul>
       </nav>
 
-      <div class="site-header__icons">
-        <button type="button" class="site-header__icon" aria-label="Search">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.5"/><path d="M20 20l-4.5-4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </button>
+      <div class="site-header__end">
         <a href="#" class="site-header__icon" aria-label="Account">
           <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M4 20c0-3.5 3.5-6 8-6s8 2.5 8 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
         </a>
         <button type="button" class="site-header__icon site-header__cart" aria-label="Bag">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 7V6a6 6 0 1 1 12 0v1h3l-1.2 13.2A2 2 0 0 1 17.81 22H6.19a2 2 0 0 1-1.99-1.8L3 7h3Zm2 0h8V6a4 4 0 1 0-8 0v1Z" fill="currentColor"/></svg>
+          <svg class="icon icon-cart" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 8V6.5a4 4 0 1 1 8 0V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 8h14l-1.2 12.2a1.5 1.5 0 0 1-1.49 1.3H7.69a1.5 1.5 0 0 1-1.49-1.3L5 8Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
           <span class="site-header__cart-count">0</span>
         </button>
       </div>
@@ -118,7 +126,7 @@
       </div>
     </section>
 
-    <section class="featured-collection page-width" style="padding-top:var(--spacing-sections);padding-bottom:var(--spacing-sections);">
+    <section class="featured-collection page-width">
       <div class="product-grid product-grid--large" style="--columns:4;">
         <div class="product-card">
           <a href="#" class="product-card__link">
@@ -172,7 +180,7 @@
       </a>
     </section>
 
-    <section class="featured-collection page-width" style="padding-top:var(--spacing-sections);padding-bottom:var(--spacing-sections);">
+    <section class="featured-collection page-width">
       <div class="product-grid product-grid--large" style="--columns:4;">
         <div class="product-card"><a href="#" class="product-card__link"><div class="product-card__media"><img src="https://aadna.store/cdn/shop/files/name3.jpg" alt="Name Necklace" width="800" height="1000" loading="lazy"><img class="product-card__media--hover" src="https://aadna.store/cdn/shop/files/name2a.jpg" alt="" width="800" height="1000" loading="lazy"></div><div class="product-card__info"><p class="product-card__title">Name Necklace</p><div class="price"><span class="price__regular">$40.00</span></div></div></a></div>
         <div class="product-card"><a href="#" class="product-card__link"><div class="product-card__media"><img src="https://aadna.store/cdn/shop/files/Earringa-05.jpg" alt="Drop Earrings" width="800" height="1000" loading="lazy"><img class="product-card__media--hover" src="https://aadna.store/cdn/shop/files/Earringc-05.jpg" alt="" width="800" height="1000" loading="lazy"></div><div class="product-card__info"><p class="product-card__title">Drop Earrings</p><div class="price"><span class="price__regular">$28.00</span></div></div></a></div>

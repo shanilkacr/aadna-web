@@ -1,0 +1,36 @@
+<section class="customer page-width">
+  <h1>{{ 'customer.addresses.title' | t }}</h1>
+
+  {%- paginate customer.addresses by 5 -%}
+    {%- for address in customer.addresses -%}
+      <div style="margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid var(--color-border);">
+        {{ address | format_address }}
+        <div class="customer__links" style="margin-top:12px;">
+          <a href="{{ address.url_to_edit }}">{{ 'customer.addresses.edit' | t }}</a>
+          <form class="address-delete-form" method="post" action="{{ address.url }}">
+            <input type="hidden" name="_method" value="delete">
+            <button type="submit">{{ 'customer.addresses.delete' | t }}</button>
+          </form>
+        </div>
+      </div>
+    {%- endfor -%}
+
+    {%- if paginate.pages > 1 -%}
+      <nav class="pagination">
+        {%- for part in paginate.parts -%}
+          {%- if part.is_link -%}
+            <a href="{{ part.url }}">{{ part.title }}</a>
+          {%- else -%}
+            <span>{{ part.title }}</span>
+          {%- endif -%}
+        {%- endfor -%}
+      </nav>
+    {%- endif -%}
+  {%- endpaginate -%}
+
+  <a href="{{ routes.account_addresses_url }}/new" class="button button--secondary">{{ 'customer.addresses.add_new' | t }}</a>
+
+  <div class="customer__links">
+    <a href="{{ routes.account_url }}">{{ 'customer.order.back_to_account' | t }}</a>
+  </div>
+</section>

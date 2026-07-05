@@ -1,0 +1,39 @@
+{%- comment -%}
+  Renders the shop logo or a text fallback.
+  Accepts: variant ('default' | 'gold'), class (string), width (number)
+{%- endcomment -%}
+{%- liquid
+  assign logo_width = width | default: settings.logo_width
+  assign logo_class = class | default: ''
+  assign use_gold = false
+  if variant == 'gold' or variant == 'transparent' or variant == 'solid'
+    assign use_gold = true
+  endif
+-%}
+{%- if use_gold and settings.logo_alt -%}
+  <img
+    class="{{ logo_class }}"
+    src="{{ settings.logo_alt | image_url: width: 400 }}"
+    alt="{{ shop.name }}"
+    width="{{ logo_width }}"
+    height="{{ logo_width | divided_by: settings.logo_alt.aspect_ratio | default: logo_width }}"
+  >
+{%- elsif use_gold == false and settings.logo -%}
+  <img
+    class="{{ logo_class }}"
+    src="{{ settings.logo | image_url: width: 400 }}"
+    alt="{{ shop.name }}"
+    width="{{ logo_width }}"
+    height="{{ logo_width | divided_by: settings.logo.aspect_ratio | default: logo_width }}"
+  >
+{%- elsif settings.logo -%}
+  <img
+    class="{{ logo_class }}"
+    src="{{ settings.logo | image_url: width: 400 }}"
+    alt="{{ shop.name }}"
+    width="{{ logo_width }}"
+    height="{{ logo_width | divided_by: settings.logo.aspect_ratio | default: logo_width }}"
+  >
+{%- else -%}
+  <span class="site-header__logo-text {{ logo_class }}" style="font-size:calc({{ logo_width }}px * 0.18);">{{ shop.name }}</span>
+{%- endif -%}

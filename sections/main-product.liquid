@@ -44,7 +44,7 @@
       {%- form 'product', product -%}
         <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" data-variant-id>
 
-        {%- unless product.has_only_default_selling_plan -%}
+        {%- unless product.has_only_default_variant -%}
           {%- for option in product.options_with_values -%}
             <div class="product__option">
               <label>{{ option.name }}</label>
@@ -85,6 +85,9 @@
 {% schema %}
 {
   "name": "Product information",
+  "enabled_on": {
+    "templates": ["product"]
+  },
   "settings": []
 }
 {% endschema %}

@@ -14,7 +14,7 @@
         {%- elsif section.settings.fallback_image != blank -%}
           <img src="{{ section.settings.fallback_image }}" alt="{{ section.settings.heading | escape }}" width="1800" height="900" loading="eager">
         {%- else -%}
-          <img src="{{ 'hero-image.jpg' | asset_url }}" alt="{{ section.settings.heading | escape }}" width="1170" height="759" loading="eager">
+          <div class="hero__placeholder" role="img" aria-label="{{ section.settings.heading | escape }}"></div>
         {%- endif -%}
       </picture>
     {%- else -%}
@@ -29,7 +29,7 @@
       {%- elsif section.settings.fallback_image != blank -%}
         <img src="{{ section.settings.fallback_image }}" alt="{{ section.settings.heading | escape }}" width="1800" height="900" loading="eager">
       {%- else -%}
-        <img src="{{ 'hero-image.jpg' | asset_url }}" alt="{{ section.settings.heading | escape }}" width="1170" height="759" loading="eager">
+        <div class="hero__placeholder" role="img" aria-label="{{ section.settings.heading | escape }}"></div>
       {%- endif -%}
     {%- endif -%}
   </div>

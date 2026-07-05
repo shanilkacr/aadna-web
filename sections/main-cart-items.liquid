@@ -9,9 +9,9 @@
       <table class="cart-page__table">
         <thead>
           <tr>
-            <th>Product</th>
+            <th>{{ 'general.cart.product' | t }}</th>
             <th>{{ 'general.cart.quantity' | t }}</th>
-            <th>Total</th>
+            <th>{{ 'general.cart.line_total' | t }}</th>
           </tr>
         </thead>
         <tbody>
@@ -43,6 +43,9 @@
 {% schema %}
 {
   "name": "Cart items",
+  "enabled_on": {
+    "templates": ["cart"]
+  },
   "settings": []
 }
 {% endschema %}
