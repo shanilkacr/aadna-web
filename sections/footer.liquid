@@ -43,12 +43,14 @@
     </div>
   </div>
 
-  <div class="page-width site-footer__bottom">
-    <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. {{ 'sections.footer.copyright' | t }}</p>
-    <div class="site-footer__payment">
-      {%- for type in shop.enabled_payment_types -%}
-        {{ type | payment_type_svg_tag: class: 'payment-icon' }}
-      {%- endfor -%}
+  <div class="site-footer__bottom">
+    <div class="page-width site-footer__bottom-inner">
+      <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. {{ 'sections.footer.copyright' | t }}</p>
+      <div class="site-footer__payment">
+        {%- for type in shop.enabled_payment_types -%}
+          {{ type | payment_type_svg_tag: class: 'payment-icon' }}
+        {%- endfor -%}
+      </div>
     </div>
   </div>
 </footer>

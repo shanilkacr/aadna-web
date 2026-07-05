@@ -1,16 +1,10 @@
 <section class="full-width-image">
-  {%- if section.settings.image != blank -%}
-    <img
-      src="{{ section.settings.image | image_url: width: 2000 }}"
-      alt="{{ section.settings.alt | escape }}"
-      width="2000"
-      height="{{ 2000 | divided_by: section.settings.image.aspect_ratio | default: 1125 }}"
-      loading="lazy"
-    >
-  {%- elsif section.settings.fallback_image != blank -%}
-    <img src="{{ section.settings.fallback_image }}" alt="{{ section.settings.alt | escape }}" width="2000" height="1125" loading="lazy">
+  {%- if section.settings.video != blank -%}
+    {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, controls: false, class: 'full-width-image__media' }}
+  {%- elsif section.settings.fallback_video != blank -%}
+    <video class="full-width-image__media" src="{{ section.settings.fallback_video }}" autoplay muted loop playsinline aria-label="{{ section.settings.alt | escape }}"></video>
   {%- else -%}
-    <img src="{{ 'fashion-week-campaign.png' | asset_url }}" alt="{{ section.settings.alt | default: shop.name | escape }}" width="2000" height="1125" loading="lazy">
+    <video class="full-width-image__media" src="{{ 'cubic-signet-ring.mp4' | asset_url }}" autoplay muted loop playsinline aria-label="{{ section.settings.alt | default: shop.name | escape }}"></video>
   {%- endif -%}
 </section>
 
@@ -18,9 +12,9 @@
 {
   "name": "Full width image",
   "settings": [
-    { "type": "image_picker", "id": "image", "label": "Image" },
-    { "type": "text", "id": "fallback_image", "label": "Fallback image URL (used until an image is selected above)" },
-    { "type": "text", "id": "alt", "label": "Alt text" }
+    { "type": "video", "id": "video", "label": "Video" },
+    { "type": "text", "id": "fallback_video", "label": "Fallback video URL (used until a video is selected above)" },
+    { "type": "text", "id": "alt", "label": "Accessible label", "default": "AADNA campaign" }
   ],
   "default": {
     "settings": {
