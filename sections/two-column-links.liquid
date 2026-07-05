@@ -12,6 +12,8 @@
             height="{{ 1200 | divided_by: block.settings.image.aspect_ratio | default: 1200 }}"
             loading="lazy"
           >
+        {%- elsif block.settings.video_url != blank and block.settings.video_url contains '://' -%}
+          <video src="{{ block.settings.video_url }}" autoplay muted loop playsinline></video>
         {%- elsif block.settings.video_url != blank -%}
           <video src="{{ block.settings.video_url | asset_url }}" autoplay muted loop playsinline></video>
         {%- elsif block.settings.fallback_image != blank -%}
@@ -52,7 +54,7 @@
             "label": "Collections",
             "link": "/collections/all",
             "fallback_image": "https://aadna.store/cdn/shop/files/slideshow2.jpg",
-            "video_url": "collections.mp4"
+            "video_url": "https://cdn.shopify.com/videos/c/vp/8baf2b13b634496fbae77a567ed4e38f/8baf2b13b634496fbae77a567ed4e38f.HD-720p-1.6Mbps-88151309.mp4"
           }
         },
         {
@@ -61,7 +63,7 @@
             "label": "Custom Orders",
             "link": "/pages/custom-orders",
             "fallback_image": "https://aadna.store/cdn/shop/files/slideshow4.jpg",
-            "video_url": "custom-orders.mp4"
+            "video_url": "https://cdn.shopify.com/videos/c/vp/cce518c9f90c47f89709a8a07eb487a7/cce518c9f90c47f89709a8a07eb487a7.HD-720p-1.6Mbps-88151310.mp4"
           }
         }
       ]

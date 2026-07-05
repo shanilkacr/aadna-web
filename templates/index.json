@@ -3,6 +3,7 @@
     "hero": {
       "type": "hero",
       "settings": {
+        "fallback_image": "https://cdn.shopify.com/s/files/1/0832/0781/5457/files/hero-image.jpg?v=1783244237",
         "heading": "Flamboyant handcrafted jewellery",
         "button_label": "Shop the collection",
         "button_link": "/collections/all"
@@ -24,7 +25,26 @@
       }
     },
     "two-column-links": {
-      "type": "two-column-links"
+      "type": "two-column-links",
+      "blocks": {
+        "collections": {
+          "type": "column",
+          "settings": {
+            "label": "Collections",
+            "link": "/collections/all",
+            "video_url": "https://cdn.shopify.com/videos/c/vp/8baf2b13b634496fbae77a567ed4e38f/8baf2b13b634496fbae77a567ed4e38f.HD-720p-1.6Mbps-88151309.mp4"
+          }
+        },
+        "custom-orders": {
+          "type": "column",
+          "settings": {
+            "label": "Custom Orders",
+            "link": "/pages/custom-orders",
+            "video_url": "https://cdn.shopify.com/videos/c/vp/cce518c9f90c47f89709a8a07eb487a7/cce518c9f90c47f89709a8a07eb487a7.HD-720p-1.6Mbps-88151310.mp4"
+          }
+        }
+      },
+      "block_order": ["collections", "custom-orders"]
     },
     "featured-bestsellers": {
       "type": "featured-collection",
@@ -35,14 +55,36 @@
       }
     },
     "collection-list": {
-      "type": "collection-list"
+      "type": "collection-list",
+      "blocks": {
+        "isla": {
+          "type": "collection",
+          "settings": { "title": "Isla", "fallback_image": "https://cdn.shopify.com/s/files/1/0832/0781/5457/files/collection-isla.webp?v=1783244237" }
+        },
+        "teardrop": {
+          "type": "collection",
+          "settings": { "title": "Teardrop", "fallback_image": "https://cdn.shopify.com/s/files/1/0832/0781/5457/files/collection-teardrop.webp?v=1783244237" }
+        },
+        "athena": {
+          "type": "collection",
+          "settings": { "title": "Athena", "fallback_image": "https://cdn.shopify.com/s/files/1/0832/0781/5457/files/collection-athena.webp?v=1783244237" }
+        },
+        "island-love": {
+          "type": "collection",
+          "settings": { "title": "Island Love", "fallback_image": "https://cdn.shopify.com/s/files/1/0832/0781/5457/files/collection-island-love.webp?v=1783244237" }
+        }
+      },
+      "block_order": ["isla", "teardrop", "athena", "island-love"]
     },
     "newsletter": {
       "type": "newsletter"
     },
     "full-width-image": {
       "type": "full-width-image",
-      "settings": {}
+      "settings": {
+        "alt": "AADNA campaign",
+        "fallback_video": "https://cdn.shopify.com/videos/c/vp/9a4339299b084b878307fb69f5bb9f34/9a4339299b084b878307fb69f5bb9f34.HD-1080p-2.5Mbps-88152310.mp4"
+      }
     }
   },
   "order": ["hero", "craft-statement", "featured-luna", "two-column-links", "featured-bestsellers", "collection-list", "newsletter", "full-width-image"]

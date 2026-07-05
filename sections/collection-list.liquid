@@ -17,7 +17,7 @@
               width="1200"
               height="{{ 1200 | divided_by: block.settings.image.aspect_ratio | default: 1200 }}"
             >
-          {%- elsif collection.featured_image -%}
+          {%- elsif block.settings.collection != blank and collection.featured_image -%}
             <img
               src="{{ collection.featured_image | image_url: width: 1200 }}"
               alt="{{ collection.title | escape }}"

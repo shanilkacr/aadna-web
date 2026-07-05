@@ -1,11 +1,20 @@
 <section class="featured-collection page-width">
   <div class="product-grid product-grid--large" style="--columns:{{ section.settings.columns }};">
     {%- liquid
-      assign collection = collections[section.settings.collection]
+      if section.settings.collection != blank
+        assign collection = collections[section.settings.collection]
+      else
+        assign collection = collections.all
+      endif
       assign count = section.settings.products_to_show
+      if collection.handle == 'all'
+        assign products = collection.products | sort: 'created_at' | reverse
+      else
+        assign products = collection.products
+      endif
     -%}
-    {%- if collection != blank -%}
-      {%- for product in collection.products limit: count -%}
+    {%- if collection != blank and products.size > 0 -%}
+      {%- for product in products limit: count -%}
         {% render 'product-card', product: product %}
       {%- endfor -%}
     {%- else -%}
@@ -26,11 +35,11 @@
 {
   "name": "Featured collection",
   "settings": [
-    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "collection", "id": "collection", "label": "Collection", "info": "Leave empty to show all products, newest first." },
     { "type": "text", "id": "placeholder_images", "label": "Fallback image URL (used when no collection is selected)" },
     { "type": "range", "id": "products_to_show", "min": 2, "max": 12, "step": 1, "default": 3, "label": "Products to show" },
     { "type": "range", "id": "columns", "min": 2, "max": 5, "step": 1, "default": 3, "label": "Columns (desktop)" },
-    { "type": "checkbox", "id": "show_view_all", "default": true, "label": "Show \"View all\" button" }
+    { "type": "checkbox", "id": "show_view_all", "default": false, "label": "Show \"View all\" button" }
   ],
   "presets": [
     { "name": "Featured collection" }

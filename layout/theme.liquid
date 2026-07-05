@@ -25,8 +25,8 @@
 
   {{ content_for_header }}
 
-  <link rel="preload" as="font" type="font/woff2" href="{{ 'forum-regular.woff2' | asset_url }}" crossorigin>
-  <link rel="preload" as="font" type="font/woff2" href="{{ 'stack-sans-headline-extralight.woff2' | asset_url }}" crossorigin>
+  {{ 'forum-regular.woff2' | asset_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: 'anonymous' }}
+  {{ 'stack-sans-headline-extralight.woff2' | asset_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: 'anonymous' }}
 
   {{ 'theme.css' | asset_url | stylesheet_tag }}
 
