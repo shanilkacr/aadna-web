@@ -2,8 +2,8 @@
   {%- for block in section.blocks -%}
     <a href="{{ block.settings.link }}" class="two-col-links__item" {{ block.shopify_attributes }}>
       <div class="two-col-links__media">
-        {%- if block.settings.video_url != blank -%}
-          <video src="{{ block.settings.video_url | asset_url }}" autoplay muted loop playsinline></video>
+        {%- if block.settings.video != blank -%}
+          {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, controls: false }}
         {%- elsif block.settings.image != blank -%}
           <img
             src="{{ block.settings.image | image_url: width: 1200 }}"
@@ -12,6 +12,8 @@
             height="{{ 1200 | divided_by: block.settings.image.aspect_ratio | default: 1200 }}"
             loading="lazy"
           >
+        {%- elsif block.settings.video_url != blank -%}
+          <video src="{{ block.settings.video_url | asset_url }}" autoplay muted loop playsinline></video>
         {%- elsif block.settings.fallback_image != blank -%}
           <img src="{{ block.settings.fallback_image }}" alt="{{ block.settings.label | escape }}" width="1200" height="1200" loading="lazy">
         {%- endif -%}
@@ -33,34 +35,37 @@
       "settings": [
         { "type": "text", "id": "label", "label": "Label" },
         { "type": "url", "id": "link", "label": "Link" },
-        { "type": "image_picker", "id": "image", "label": "Background image (placeholder)" },
-        { "type": "text", "id": "fallback_image", "label": "Fallback image URL (used until an image is selected above)" },
-        { "type": "text", "id": "video_url", "label": "Background video filename (theme asset, e.g. collections.mp4, overrides image when set)" }
+        { "type": "video", "id": "video", "label": "Background video (overrides image)" },
+        { "type": "image_picker", "id": "image", "label": "Background image" },
+        { "type": "text", "id": "fallback_image", "label": "Fallback image URL (used until image is set)" },
+        { "type": "text", "id": "video_url", "label": "Legacy video asset filename" }
       ]
     }
   ],
-  "default": {
-    "blocks": [
-      {
-        "type": "column",
-        "settings": {
-          "label": "Collections",
-          "link": "/collections/all",
-          "fallback_image": "https://aadna.store/cdn/shop/files/slideshow2.jpg"
-        }
-      },
-      {
-        "type": "column",
-        "settings": {
-          "label": "Custom Orders",
-          "link": "/pages/custom-orders",
-          "fallback_image": "https://aadna.store/cdn/shop/files/slideshow4.jpg"
-        }
-      }
-    ]
-  },
   "presets": [
-    { "name": "Two column links" }
+    {
+      "name": "Two column links",
+      "blocks": [
+        {
+          "type": "column",
+          "settings": {
+            "label": "Collections",
+            "link": "/collections/all",
+            "fallback_image": "https://aadna.store/cdn/shop/files/slideshow2.jpg",
+            "video_url": "collections.mp4"
+          }
+        },
+        {
+          "type": "column",
+          "settings": {
+            "label": "Custom Orders",
+            "link": "/pages/custom-orders",
+            "fallback_image": "https://aadna.store/cdn/shop/files/slideshow4.jpg",
+            "video_url": "custom-orders.mp4"
+          }
+        }
+      ]
+    }
   ]
 }
 {% endschema %}

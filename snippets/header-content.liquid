@@ -29,15 +29,8 @@
   <nav class="site-header__nav" data-nav>
     <ul>
       {%- for link in section.settings.menu.links -%}
-        <li class="site-header__nav-item{% if link.links.size > 0 %} has-dropdown{% endif %}">
+        <li class="site-header__nav-item">
           <a href="{{ link.url }}">{{ link.title }}</a>
-          {%- if link.links.size > 0 -%}
-            <ul class="site-header__dropdown">
-              {%- for childlink in link.links -%}
-                <li><a href="{{ childlink.url }}">{{ childlink.title }}</a></li>
-              {%- endfor -%}
-            </ul>
-          {%- endif -%}
         </li>
       {%- endfor -%}
     </ul>

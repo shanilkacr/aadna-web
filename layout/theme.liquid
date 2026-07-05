@@ -25,11 +25,10 @@
 
   {{ content_for_header }}
 
-  {{ 'theme.css' | asset_url | stylesheet_tag }}
+  <link rel="preload" as="font" type="font/woff2" href="{{ 'forum-regular.woff2' | asset_url }}" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="{{ 'stack-sans-headline-extralight.woff2' | asset_url }}" crossorigin>
 
-  <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
-  {{ settings.font_heading | font_face: font_display: 'swap' }}
-  {{ settings.font_body | font_face: font_display: 'swap' }}
+  {{ 'theme.css' | asset_url | stylesheet_tag }}
 
   <style>
     :root{
@@ -41,9 +40,9 @@
       --color-border: {{ settings.color_border }};
       --color-button-background: {{ settings.color_button_background }};
       --color-button-text: {{ settings.color_button_text }};
-      --font-heading: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }};
-      --font-heading-weight: {{ settings.font_heading.weight }};
-      --font-heading-style: {{ settings.font_heading.style }};
+      --font-heading: serif;
+      --font-heading-weight: 400;
+      --font-heading-style: normal;
       --font-body: {{ settings.font_body.family }}, {{ settings.font_body.fallback_families }};
       --font-body-weight: {{ settings.font_body.weight }};
       --heading-letter-spacing: {{ settings.heading_letter_spacing }}px;

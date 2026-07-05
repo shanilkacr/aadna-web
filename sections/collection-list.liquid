@@ -7,8 +7,16 @@
       -%}
       <div class="collection-list__item" {{ block.shopify_attributes }}>
         <div class="collection-list__media">
-          {%- if block.settings.video_url != blank -%}
-            <video src="{{ block.settings.video_url }}" autoplay muted loop playsinline></video>
+          {%- if block.settings.video != blank -%}
+            {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, controls: false }}
+          {%- elsif block.settings.image != blank -%}
+            <img
+              src="{{ block.settings.image | image_url: width: 1200 }}"
+              alt="{{ block.settings.title | default: collection.title | escape }}"
+              loading="lazy"
+              width="1200"
+              height="{{ 1200 | divided_by: block.settings.image.aspect_ratio | default: 1200 }}"
+            >
           {%- elsif collection.featured_image -%}
             <img
               src="{{ collection.featured_image | image_url: width: 1200 }}"
@@ -44,21 +52,22 @@
       "settings": [
         { "type": "collection", "id": "collection", "label": "Collection" },
         { "type": "text", "id": "title", "label": "Title override" },
-        { "type": "text", "id": "fallback_image", "label": "Fallback image (external URL or bundled theme asset filename)" },
-        { "type": "text", "id": "video_url", "label": "Background video URL (.mp4, overrides image when set)" }
+        { "type": "image_picker", "id": "image", "label": "Image (overrides collection image)" },
+        { "type": "video", "id": "video", "label": "Video (overrides image)" },
+        { "type": "text", "id": "fallback_image", "label": "Fallback image (only used until image is set)" }
       ]
     }
   ],
-  "default": {
-    "blocks": [
-      { "type": "collection", "settings": { "title": "Isla" } },
-      { "type": "collection", "settings": { "title": "Teardrop" } },
-      { "type": "collection", "settings": { "title": "Athena" } },
-      { "type": "collection", "settings": { "title": "Island Love" } }
-    ]
-  },
   "presets": [
-    { "name": "Collection list" }
+    {
+      "name": "Collection list",
+      "blocks": [
+        { "type": "collection", "settings": { "title": "Isla", "fallback_image": "collection-isla.webp" } },
+        { "type": "collection", "settings": { "title": "Teardrop", "fallback_image": "collection-teardrop.webp" } },
+        { "type": "collection", "settings": { "title": "Athena", "fallback_image": "collection-athena.webp" } },
+        { "type": "collection", "settings": { "title": "Island Love", "fallback_image": "collection-island-love.webp" } }
+      ]
+    }
   ]
 }
 {% endschema %}

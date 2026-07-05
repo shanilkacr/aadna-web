@@ -18,13 +18,13 @@
     width="{{ logo_width }}"
     height="{{ logo_width | divided_by: settings.logo_alt.aspect_ratio | default: logo_width }}"
   >
-{%- elsif use_gold == false and settings.logo -%}
+{%- elsif use_gold -%}
   <img
     class="{{ logo_class }}"
-    src="{{ settings.logo | image_url: width: 400 }}"
+    src="{{ 'logo-gold.png' | asset_url }}"
     alt="{{ shop.name }}"
     width="{{ logo_width }}"
-    height="{{ logo_width | divided_by: settings.logo.aspect_ratio | default: logo_width }}"
+    height="{{ logo_width | times: 260 | divided_by: 800 }}"
   >
 {%- elsif settings.logo -%}
   <img
@@ -35,5 +35,11 @@
     height="{{ logo_width | divided_by: settings.logo.aspect_ratio | default: logo_width }}"
   >
 {%- else -%}
-  <span class="site-header__logo-text {{ logo_class }}" style="font-size:calc({{ logo_width }}px * 0.18);">{{ shop.name }}</span>
+  <img
+    class="{{ logo_class }}"
+    src="{{ 'logo-black.png' | asset_url }}"
+    alt="{{ shop.name }}"
+    width="{{ logo_width }}"
+    height="{{ logo_width | times: 197 | divided_by: 924 }}"
+  >
 {%- endif -%}

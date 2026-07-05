@@ -1,3 +1,6 @@
+{%- liquid
+  assign address = address | default: customer.new_address
+-%}
 <section class="customer page-width">
   <h1>
     {%- if address.id -%}

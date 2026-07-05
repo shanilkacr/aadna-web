@@ -41,7 +41,8 @@
       "type": "newsletter"
     },
     "full-width-image": {
-      "type": "full-width-image"
+      "type": "full-width-image",
+      "settings": {}
     }
   },
   "order": ["hero", "craft-statement", "featured-luna", "two-column-links", "featured-bestsellers", "collection-list", "newsletter", "full-width-image"]
