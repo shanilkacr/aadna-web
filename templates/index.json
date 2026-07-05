@@ -32,11 +32,11 @@
     "featured-luna": {
       "type": "featured-collection",
       "settings": {
-        "collection": "",
+        "collection": "luna",
         "placeholder_images": "https://aadna.store/cdn/shop/files/Lunacuff2.png",
         "products_to_show": 4,
         "columns": 4,
-        "show_view_all": true
+        "show_view_all": false
       }
     },
     "two-column-links": {
@@ -50,11 +50,51 @@
         "placeholder_images": "https://aadna.store/cdn/shop/files/name3.jpg",
         "products_to_show": 8,
         "columns": 4,
-        "show_view_all": true
+        "show_view_all": false
       }
     },
     "collection-list": {
       "type": "collection-list",
+      "blocks": {
+        "collection_VTiFim": {
+          "type": "collection",
+          "settings": {
+            "collection": "gaea",
+            "title": "",
+            "fallback_image": ""
+          }
+        },
+        "collection_DVtBdd": {
+          "type": "collection",
+          "settings": {
+            "collection": "aura",
+            "title": "",
+            "fallback_image": ""
+          }
+        },
+        "collection_YWFipW": {
+          "type": "collection",
+          "settings": {
+            "collection": "aadna-x-tharshana",
+            "title": "",
+            "fallback_image": ""
+          }
+        },
+        "collection_bHTm4H": {
+          "type": "collection",
+          "settings": {
+            "collection": "astrid",
+            "title": "",
+            "fallback_image": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_VTiFim",
+        "collection_DVtBdd",
+        "collection_YWFipW",
+        "collection_bHTm4H"
+      ],
       "settings": {}
     },
     "newsletter": {
