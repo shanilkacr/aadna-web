@@ -1,9 +1,20 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "hero",
       "settings": {
-        "fallback_image": "https://cdn.shopify.com/s/files/1/0832/0781/5457/files/hero-image.jpg?v=1783244237",
+        "image": "shopify://shop_images/hero-image.jpg",
+        "image_mobile": "shopify://shop_images/hero-image.jpg",
+        "fallback_image": "",
         "heading": "Flamboyant handcrafted jewellery",
         "button_label": "Shop the collection",
         "button_link": "/collections/all"
@@ -12,80 +23,131 @@
     "craft-statement": {
       "type": "craft-statement",
       "settings": {
+        "heading": "Every piece is shaped by hand and finished with care, made to be worn daily and kept for years.",
         "button_label": "Read our story",
-        "button_link": "/pages/our-story"
+        "button_link": "/pages/our-story",
+        "spacing": 96
       }
     },
     "featured-luna": {
       "type": "featured-collection",
       "settings": {
+        "collection": "luna",
+        "placeholder_images": "https://aadna.store/cdn/shop/files/Lunacuff2.png",
         "products_to_show": 4,
         "columns": 4,
-        "placeholder_images": "https://aadna.store/cdn/shop/files/Lunacuff2.png"
+        "show_view_all": false
       }
     },
     "two-column-links": {
       "type": "two-column-links",
       "blocks": {
-        "collections": {
-          "type": "column",
-          "settings": {
-            "label": "Collections",
-            "link": "/collections/all",
-            "video_url": "https://cdn.shopify.com/videos/c/vp/8baf2b13b634496fbae77a567ed4e38f/8baf2b13b634496fbae77a567ed4e38f.HD-720p-1.6Mbps-88151309.mp4"
-          }
-        },
-        "custom-orders": {
+        "column_RYzmTV": {
           "type": "column",
           "settings": {
             "label": "Custom Orders",
-            "link": "/pages/custom-orders",
-            "video_url": "https://cdn.shopify.com/videos/c/vp/cce518c9f90c47f89709a8a07eb487a7/cce518c9f90c47f89709a8a07eb487a7.HD-720p-1.6Mbps-88151310.mp4"
+            "link": "shopify://collections/personalised-jewellery",
+            "video": "shopify://files/videos/custom-orders.mp4",
+            "fallback_image": "",
+            "video_url": ""
+          }
+        },
+        "column_ypJjnd": {
+          "type": "column",
+          "settings": {
+            "label": "Collections",
+            "link": "shopify://collections",
+            "video": "shopify://files/videos/collections.mp4",
+            "fallback_image": "",
+            "video_url": ""
           }
         }
       },
-      "block_order": ["collections", "custom-orders"]
+      "block_order": [
+        "column_RYzmTV",
+        "column_ypJjnd"
+      ],
+      "settings": {}
     },
     "featured-bestsellers": {
       "type": "featured-collection",
       "settings": {
+        "collection": "",
+        "placeholder_images": "https://aadna.store/cdn/shop/files/name3.jpg",
         "products_to_show": 8,
         "columns": 4,
-        "placeholder_images": "https://aadna.store/cdn/shop/files/name3.jpg"
+        "show_view_all": false
       }
     },
     "collection-list": {
       "type": "collection-list",
       "blocks": {
-        "isla": {
+        "collection_VTiFim": {
           "type": "collection",
-          "settings": { "title": "Isla", "fallback_image": "https://cdn.shopify.com/s/files/1/0832/0781/5457/files/collection-isla.webp?v=1783244237" }
+          "settings": {
+            "collection": "gaea",
+            "title": "",
+            "fallback_image": ""
+          }
         },
-        "teardrop": {
+        "collection_DVtBdd": {
           "type": "collection",
-          "settings": { "title": "Teardrop", "fallback_image": "https://cdn.shopify.com/s/files/1/0832/0781/5457/files/collection-teardrop.webp?v=1783244237" }
+          "settings": {
+            "collection": "aura",
+            "title": "",
+            "fallback_image": ""
+          }
         },
-        "athena": {
+        "collection_YWFipW": {
           "type": "collection",
-          "settings": { "title": "Athena", "fallback_image": "https://cdn.shopify.com/s/files/1/0832/0781/5457/files/collection-athena.webp?v=1783244237" }
+          "settings": {
+            "collection": "aadna-x-tharshana",
+            "title": "",
+            "fallback_image": ""
+          }
         },
-        "island-love": {
+        "collection_bHTm4H": {
           "type": "collection",
-          "settings": { "title": "Island Love", "fallback_image": "https://cdn.shopify.com/s/files/1/0832/0781/5457/files/collection-island-love.webp?v=1783244237" }
+          "settings": {
+            "collection": "astrid",
+            "title": "",
+            "fallback_image": ""
+          }
         }
       },
-      "block_order": ["isla", "teardrop", "athena", "island-love"]
+      "block_order": [
+        "collection_VTiFim",
+        "collection_DVtBdd",
+        "collection_YWFipW",
+        "collection_bHTm4H"
+      ],
+      "settings": {}
     },
     "newsletter": {
-      "type": "newsletter"
+      "type": "newsletter",
+      "settings": {
+        "heading": "",
+        "text": "",
+        "background": "#f2ece2"
+      }
     },
     "full-width-image": {
       "type": "full-width-image",
       "settings": {
-        "alt": "AADNA campaign",
-        "fallback_video": "https://cdn.shopify.com/videos/c/vp/9a4339299b084b878307fb69f5bb9f34/9a4339299b084b878307fb69f5bb9f34.HD-1080p-2.5Mbps-88152310.mp4"
+        "video": "shopify://files/videos/Cubic signet ring_1080p.mp4",
+        "fallback_video": "",
+        "alt": "AADNA campaign"
       }
     }
   },
-  "order": ["hero", "craft-statement", "featured-luna", "two-column-links", "featured-bestsellers", "collection-list", "newsletter", "full-width-image"]
+  "order": [
+    "hero",
+    "craft-statement",
+    "featured-luna",
+    "two-column-links",
+    "featured-bestsellers",
+    "collection-list",
+    "newsletter",
+    "full-width-image"
+  ]
 }
