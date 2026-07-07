@@ -1,4 +1,4 @@
-<section class="featured-collection page-width">
+<section class="featured-collection page-width"{% if section.settings.remove_top_padding %} style="padding-top:0;"{% endif %}>
   <div class="product-grid product-grid--large" style="--columns:{{ section.settings.columns }};">
     {%- liquid
       if section.settings.collection != blank
@@ -39,7 +39,8 @@
     { "type": "text", "id": "placeholder_images", "label": "Fallback image URL (used when no collection is selected)" },
     { "type": "range", "id": "products_to_show", "min": 2, "max": 12, "step": 1, "default": 3, "label": "Products to show" },
     { "type": "range", "id": "columns", "min": 2, "max": 5, "step": 1, "default": 3, "label": "Columns (desktop)" },
-    { "type": "checkbox", "id": "show_view_all", "default": false, "label": "Show \"View all\" button" }
+    { "type": "checkbox", "id": "show_view_all", "default": false, "label": "Show \"View all\" button" },
+    { "type": "checkbox", "id": "remove_top_padding", "default": false, "label": "Remove top padding" }
   ],
   "presets": [
     { "name": "Featured collection" }

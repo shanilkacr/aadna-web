@@ -3,39 +3,15 @@
     {%- for block in section.blocks -%}
       {%- liquid
         assign collection = collections[block.settings.collection]
-        assign image_url = block.settings.fallback_image
       -%}
-      <div class="collection-list__item" {{ block.shopify_attributes }}>
-        <div class="collection-list__media">
-          {%- if block.settings.video != blank -%}
-            {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, controls: false }}
-          {%- elsif block.settings.image != blank -%}
-            <img
-              src="{{ block.settings.image | image_url: width: 1200 }}"
-              alt="{{ block.settings.title | default: collection.title | escape }}"
-              loading="lazy"
-              width="1200"
-              height="{{ 1200 | divided_by: block.settings.image.aspect_ratio | default: 1200 }}"
-            >
-          {%- elsif block.settings.collection != blank and collection.featured_image -%}
-            <img
-              src="{{ collection.featured_image | image_url: width: 1200 }}"
-              alt="{{ collection.title | escape }}"
-              loading="lazy"
-              width="1200"
-              height="{{ 1200 | divided_by: collection.featured_image.aspect_ratio | default: 1200 }}"
-            >
-          {%- elsif image_url != blank and image_url contains '://' -%}
-            <img src="{{ image_url }}" alt="{{ block.settings.title | escape }}" loading="lazy" width="1200" height="1200">
-          {%- elsif image_url != blank -%}
-            <img src="{{ image_url | asset_url }}" alt="{{ block.settings.title | escape }}" loading="lazy" width="1200" height="1200">
-          {%- endif -%}
-        </div>
-        <div class="collection-list__overlay"></div>
-        <div class="collection-list__content">
-          <h2 class="collection-list__title">{{ block.settings.title | default: collection.title }}</h2>
-          <a href="{{ collection.url | default: '#' }}" class="collection-list__cta">{{ 'collections.general.explore' | t }}</a>
-        </div>
+      <div {{ block.shopify_attributes }}>
+        {%- render 'collection-card',
+          collection: collection,
+          title: block.settings.title,
+          image: block.settings.image,
+          video: block.settings.video,
+          fallback_image: block.settings.fallback_image
+        -%}
       </div>
     {%- endfor -%}
   </div>

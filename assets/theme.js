@@ -23,19 +23,68 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  // Search panel (each header instance has its own toggle/panel pair)
-  document.querySelectorAll('[data-search-toggle]').forEach(function (searchToggle) {
-    var header = searchToggle.closest('.site-header');
-    var searchPanel = header ? header.querySelector('[data-search-panel]') : null;
-    if (searchPanel) {
-      searchToggle.addEventListener('click', function () {
-        searchPanel.hidden = !searchPanel.hidden;
-        searchPanel.classList.toggle('is-open');
-      });
+  // Shared search overlay: expands from the top and pushes page content down.
+  // Multiple headers (transparent/solid) share data-search-toggle buttons that
+  // all open the same single overlay.
+  var searchPanel = document.querySelector('[data-search-panel]');
+  var searchToggles = document.querySelectorAll('[data-search-toggle]');
+
+  function setToggleState(active) {
+    searchToggles.forEach(function (toggle) {
+      toggle.classList.toggle('is-active', active);
+    });
+  }
+
+  function openSearch() {
+    if (!searchPanel) return;
+    var pushHeight = searchPanel.scrollHeight;
+    document.documentElement.style.setProperty('--search-push', pushHeight + 'px');
+    searchPanel.classList.add('is-open');
+    setToggleState(true);
+    var input = searchPanel.querySelector('input[type="search"]');
+    // Avoid focus-triggered scrolling: the panel is fixed and already fully
+    // visible, so a plain focus() (no scroll) keeps the viewport in place.
+    if (input) input.focus({ preventScroll: true });
+  }
+
+  function closeSearch() {
+    if (!searchPanel) return;
+    searchPanel.classList.remove('is-open');
+    setToggleState(false);
+    document.documentElement.style.setProperty('--search-push', '0px');
+  }
+
+  function isSearchOpen() {
+    return searchPanel && searchPanel.classList.contains('is-open');
+  }
+
+  searchToggles.forEach(function (toggle) {
+    toggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (isSearchOpen()) {
+        closeSearch();
+      } else {
+        openSearch();
+      }
+    });
+  });
+
+  // Close on click outside the panel and its toggle buttons
+  document.addEventListener('click', function (e) {
+    if (!isSearchOpen()) return;
+    var clickedToggle = e.target.closest('[data-search-toggle]');
+    var clickedInsidePanel = searchPanel && searchPanel.contains(e.target);
+    if (!clickedToggle && !clickedInsidePanel) {
+      closeSearch();
     }
   });
 
-  // Solid header slides in once scrolled past the threshold
+  // Close on Escape
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && isSearchOpen()) closeSearch();
+  });
+
+  // Solid header (homepage only) slides in once scrolled past the threshold
   var solidHeader = document.querySelector('[data-header-solid]');
   if (solidHeader) {
     var scrollThreshold = 120;

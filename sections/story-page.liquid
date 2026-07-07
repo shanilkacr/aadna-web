@@ -1,0 +1,100 @@
+<section class="story-page page-width">
+  {%- for block in section.blocks -%}
+    {%- case block.type -%}
+      {%- when 'row' -%}
+        {%- assign row_parity = forloop.index0 | modulo: 2 -%}
+        <div class="story-page__row{% if row_parity == 1 %} story-page__row--reverse{% endif %}" {{ block.shopify_attributes }}>
+          <div class="story-page__media">
+            {%- if block.settings.image != blank -%}
+              <img
+                src="{{ block.settings.image | image_url: width: 1200 }}"
+                alt="{{ block.settings.heading | escape }}"
+                loading="lazy"
+                width="1200"
+                height="{{ 1200 | divided_by: block.settings.image.aspect_ratio | default: 1200 }}"
+              >
+            {%- endif -%}
+          </div>
+          <div class="story-page__text">
+            {%- if block.settings.quote != blank -%}
+              <p class="story-page__quote">&ldquo;{{ block.settings.quote }}&rdquo;</p>
+            {%- endif -%}
+            {%- if block.settings.heading != blank -%}
+              <h2>{{ block.settings.heading }}</h2>
+            {%- endif -%}
+            {%- if block.settings.body != blank -%}
+              <div class="story-page__body">{{ block.settings.body }}</div>
+            {%- endif -%}
+            {%- if block.settings.attribution != blank -%}
+              <p class="story-page__attribution">&mdash; {{ block.settings.attribution }}</p>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- when 'statement' -%}
+        <div class="story-page__statement" {{ block.shopify_attributes }}>
+          {%- if block.settings.heading != blank -%}
+            <h2>{{ block.settings.heading }}</h2>
+          {%- endif -%}
+        </div>
+    {%- endcase -%}
+  {%- endfor -%}
+</section>
+
+{% schema %}
+{
+  "name": "Story page",
+  "enabled_on": {
+    "templates": ["page"]
+  },
+  "settings": [],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "Image + text row",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "quote", "label": "Quote (optional)" },
+        { "type": "text", "id": "heading", "label": "Heading" },
+        { "type": "richtext", "id": "body", "label": "Body text" },
+        { "type": "text", "id": "attribution", "label": "Attribution" }
+      ]
+    },
+    {
+      "type": "statement",
+      "name": "Closing statement",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Story page",
+      "blocks": [
+        {
+          "type": "row",
+          "settings": {
+            "quote": "With each stone and each piece of jewellery we try to tell a story",
+            "body": "<p>The founder and designer, Kalpani, is truly inspired to make her clients feel like the owner and the custodian of each stone and piece of jewellery. At AADNA, the team is dedicated to creating unique jewellery influenced by the Sri Lankan heritage and using excellent local craftsmanship.</p><p><em>‘It’s like writing a poem or finishing a beautiful painting.. Only I do it with natural stones and metal..’</em></p>",
+            "attribution": "Kalpani Nandaratne"
+          }
+        },
+        {
+          "type": "row",
+          "settings": {
+            "heading": "Love what you do!",
+            "body": "<p>AADNA is the result of a wonder luscious journey of a Sri Lankan designer. Following her heart’s deep calling to create something magnificent, passionate and long lasting, she set forth wandering around the paradise island. As with many other artists she experimented with many muses only to find her soul resting on the great craftsmanship of jewellery design.</p>",
+            "attribution": "Kalpani Nandaratne"
+          }
+        },
+        {
+          "type": "statement",
+          "settings": {
+            "heading": "Handcrafted to perfection!"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

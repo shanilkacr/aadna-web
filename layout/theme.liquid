@@ -59,7 +59,9 @@
 
   {% sections 'header-group' %}
 
-  <main id="MainContent" role="main">
+  {% render 'search-overlay' %}
+
+  <main id="MainContent" role="main" data-page-content>
     {{ content_for_layout }}
   </main>
 

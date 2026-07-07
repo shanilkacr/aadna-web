@@ -1,0 +1,12 @@
+{%- comment -%}
+  Single shared search overlay, rendered once. Expands from the top and pushes
+  <main> down via JS-driven margin-top (see data-page-content in theme.liquid).
+{%- endcomment -%}
+<div class="search-overlay" data-search-panel>
+  <div class="page-width search-overlay__inner">
+    <form action="{{ routes.search_url }}" method="get" role="search">
+      <input type="search" name="q" placeholder="{{ 'general.search.placeholder' | t }}" value="{{ search.terms | escape }}">
+      <button type="submit" aria-label="{{ 'general.search.submit' | t }}">{% render 'icon-search' %}</button>
+    </form>
+  </div>
+</div>

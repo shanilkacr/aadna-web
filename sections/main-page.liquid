@@ -1,4 +1,4 @@
-<section class="page page-width">
+<section class="page page-width{% if section.settings.narrow %} page--narrow{% endif %}">
   <h1>{{ page.title }}</h1>
   <div class="page__content">{{ page.content }}</div>
 </section>
@@ -9,6 +9,14 @@
   "enabled_on": {
     "templates": ["page"]
   },
-  "settings": []
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "narrow",
+      "label": "Boxed narrow layout",
+      "info": "Constrains the page to a readable column width with extra breathing room — use for text-heavy pages like policies or care guides.",
+      "default": false
+    }
+  ]
 }
 {% endschema %}

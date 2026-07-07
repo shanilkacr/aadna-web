@@ -76,7 +76,8 @@
         "placeholder_images": "https://aadna.store/cdn/shop/files/name3.jpg",
         "products_to_show": 8,
         "columns": 4,
-        "show_view_all": false
+        "show_view_all": false,
+        "remove_top_padding": true
       }
     },
     "collection-list": {
@@ -142,9 +143,9 @@
   },
   "order": [
     "hero",
-    "craft-statement",
     "featured-luna",
     "two-column-links",
+    "craft-statement",
     "featured-bestsellers",
     "collection-list",
     "newsletter",

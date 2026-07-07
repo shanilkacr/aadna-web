@@ -1,21 +1,7 @@
-<section class="collection-list-page page-width">
-  <h1>{{ 'collections.general.shop_all' | t }}</h1>
-  <div class="collection-list__grid" style="--columns:4;">
+<section class="collection-list">
+  <div class="collection-list__grid">
     {%- for collection in collections -%}
-      <a href="{{ collection.url }}" class="collection-list__item">
-        <div class="collection-list__media">
-          {%- if collection.featured_image -%}
-            <img
-              src="{{ collection.featured_image | image_url: width: 900 }}"
-              alt="{{ collection.title | escape }}"
-              loading="lazy"
-              width="900"
-              height="{{ 900 | divided_by: collection.featured_image.aspect_ratio | default: 900 }}"
-            >
-          {%- endif -%}
-        </div>
-        <p class="collection-list__title">{{ collection.title }}</p>
-      </a>
+      {%- render 'collection-card', collection: collection -%}
     {%- endfor -%}
   </div>
 </section>

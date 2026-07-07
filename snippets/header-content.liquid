@@ -1,6 +1,7 @@
 {%- comment -%}
   Renders the inner header markup. Accepts: variant ('default' | 'transparent' | 'solid')
-  - default: black logo, used on non-hero pages (always solid)
+  - default: gold logo at 80% size, dark text — same styling/sizing/spacing as the
+    on-scroll (solid) homepage header. Used on non-hero pages (always visible, not fixed).
   - transparent: gold logo, full size, white text, overlays the hero (scrolls away, not fixed)
   - solid: gold logo at 80% size, dark text, slides in fixed once scrolled
 {%- endcomment -%}
@@ -10,19 +11,16 @@
       {% render 'icon-menu' %}
     </button>
     <button type="button" class="site-header__icon" data-search-toggle aria-label="{{ 'general.search.submit' | t }}">
-      {% render 'icon-search' %}
+      <span class="site-header__search-icon site-header__search-icon--search">{% render 'icon-search' %}</span>
+      <span class="site-header__search-icon site-header__search-icon--close">{% render 'icon-close' %}</span>
     </button>
   </div>
 
   <a href="{{ routes.root_url }}" class="site-header__logo" style="width:{{ settings.logo_width }}px;">
-    {%- if variant == 'transparent' or variant == 'solid' -%}
-      {%- if variant == 'solid' -%}
-        {% render 'logo', variant: variant, class: 'site-header__logo-img site-header__logo-img--scrolled', width: settings.logo_width %}
-      {%- else -%}
-        {% render 'logo', variant: variant, class: 'site-header__logo-img', width: settings.logo_width %}
-      {%- endif -%}
+    {%- if variant == 'transparent' -%}
+      {% render 'logo', variant: variant, class: 'site-header__logo-img', width: settings.logo_width %}
     {%- else -%}
-      {% render 'logo', variant: 'default', class: 'site-header__logo-img', width: settings.logo_width %}
+      {% render 'logo', variant: 'solid', class: 'site-header__logo-img site-header__logo-img--scrolled', width: settings.logo_width %}
     {%- endif -%}
   </a>
 
@@ -46,14 +44,5 @@
         <span class="site-header__cart-count">{{ cart.item_count }}</span>
       {%- endif -%}
     </button>
-  </div>
-</div>
-
-<div class="site-header__search" data-search-panel hidden>
-  <div class="page-width">
-    <form action="{{ routes.search_url }}" method="get" role="search">
-      <input type="search" name="q" placeholder="{{ 'general.search.placeholder' | t }}" value="{{ search.terms | escape }}">
-      <button type="submit" aria-label="{{ 'general.search.submit' | t }}">{% render 'icon-search' %}</button>
-    </form>
   </div>
 </div>
