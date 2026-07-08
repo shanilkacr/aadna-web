@@ -5,8 +5,22 @@
 <div class="search-overlay" data-search-panel>
   <div class="page-width search-overlay__inner">
     <form action="{{ routes.search_url }}" method="get" role="search">
-      <input type="search" name="q" placeholder="{{ 'general.search.placeholder' | t }}" value="{{ search.terms | escape }}">
+      <input
+        type="search"
+        name="q"
+        placeholder="{{ 'general.search.placeholder' | t }}"
+        value="{{ search.terms | escape }}"
+        data-predictive-input
+        autocomplete="off"
+      >
+      <input type="hidden" name="type" value="product">
       <button type="submit" aria-label="{{ 'general.search.submit' | t }}">{% render 'icon-search' %}</button>
     </form>
   </div>
+  <div
+    class="page-width predictive-search"
+    data-predictive-results
+    data-predictive-url="{{ routes.predictive_search_url }}"
+    hidden
+  ></div>
 </div>

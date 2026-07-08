@@ -54,7 +54,7 @@
     }
   </style>
 </head>
-<body{% if template.name == 'index' %} class="has-hero"{% endif %}>
+<body{% if template.name == 'index' %} class="has-hero"{% elsif template == 'page.contact' %} class="has-contact-page"{% elsif template == 'page.sizing-chart' %} class="has-sizing-chart-page"{% elsif template == 'page.our-story' %} class="has-story-page"{% endif %}>
   <a class="skip-to-content" href="#MainContent">Skip to content</a>
 
   {% sections 'header-group' %}

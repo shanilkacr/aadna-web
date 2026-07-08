@@ -1,7 +1,24 @@
 {
   "sections": {
     "main": {
-      "type": "main-product"
+      "type": "main-product",
+      "blocks": {
+        "details": {
+          "type": "accordion",
+          "settings": {
+            "title": "Details",
+            "content": "<p>Add material, dimensions, and care details here.</p>"
+          }
+        },
+        "shipping": {
+          "type": "accordion",
+          "settings": {
+            "title": "Shipping",
+            "content": "<p>Add shipping and delivery information here.</p>"
+          }
+        }
+      },
+      "block_order": ["details", "shipping"]
     }
   },
   "order": ["main"]

@@ -1,86 +1,189 @@
 <section class="product page-width">
   <div class="product__grid">
     <div class="product__media">
-      <div class="product__media-main">
-        {%- if product.selected_or_first_available_variant.featured_image -%}
-          <img
-            id="ProductMainImage"
-            src="{{ product.selected_or_first_available_variant.featured_image | image_url: width: 1200 }}"
-            alt="{{ product.selected_or_first_available_variant.featured_image.alt | escape }}"
-            width="1200"
-            height="{{ 1200 | divided_by: product.selected_or_first_available_variant.featured_image.aspect_ratio | default: 1500 }}"
-          >
-        {%- elsif product.featured_image -%}
-          <img
-            id="ProductMainImage"
-            src="{{ product.featured_image | image_url: width: 1200 }}"
-            alt="{{ product.title | escape }}"
-            width="1200"
-            height="{{ 1200 | divided_by: product.featured_image.aspect_ratio | default: 1500 }}"
-          >
-        {%- endif -%}
+      {%- comment -%} Desktop: 2-column image grid, all product images {%- endcomment -%}
+      <div class="product__media-grid">
+        {%- for image in product.images -%}
+          <div class="product__media-item">
+            <img
+              src="{{ image | image_url: width: 1200 }}"
+              alt="{{ image.alt | default: product.title | escape }}"
+              loading="{% if forloop.index0 < 2 %}eager{% else %}lazy{% endif %}"
+              width="1200"
+              height="{{ 1200 | divided_by: image.aspect_ratio | default: 1500 }}"
+            >
+          </div>
+        {%- else -%}
+          <div class="product__media-item"></div>
+        {%- endfor -%}
       </div>
-      {%- if product.images.size > 1 -%}
-        <div class="product__thumbnails">
+
+      {%- comment -%} Mobile: single-image swipeable slideshow with dot pagination {%- endcomment -%}
+      {%- if product.images.size > 0 -%}
+        <div class="product__media-mobile" data-product-slideshow>
           {%- for image in product.images -%}
-            <button type="button" class="product__thumbnail" data-thumbnail data-full="{{ image | image_url: width: 1200 }}">
+            <div class="product__media-slide{% if forloop.first %} is-active{% endif %}">
               <img
-                src="{{ image | image_url: width: 200 }}"
-                alt="{{ image.alt | escape }}"
-                loading="lazy"
-                width="200"
-                height="{{ 200 | divided_by: image.aspect_ratio | default: 250 }}"
+                src="{{ image | image_url: width: 1000 }}"
+                alt="{{ image.alt | default: product.title | escape }}"
+                loading="{% if forloop.index0 == 0 %}eager{% else %}lazy{% endif %}"
+                width="1000"
+                height="{{ 1000 | divided_by: image.aspect_ratio | default: 1250 }}"
               >
-            </button>
+            </div>
           {%- endfor -%}
         </div>
+        {%- if product.images.size > 1 -%}
+          <div class="product__media-dots" data-product-slideshow-dots>
+            {%- for image in product.images -%}
+              <span class="product__media-dot{% if forloop.first %} is-active{% endif %}"></span>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
       {%- endif -%}
     </div>
 
     <div class="product__info">
-      <h1 class="product__title">{{ product.title }}</h1>
-      {% render 'price', product: product %}
-
-      {%- form 'product', product -%}
-        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" data-variant-id>
-
-        {%- unless product.has_only_default_variant -%}
-          {%- for option in product.options_with_values -%}
-            <div class="product__option">
-              <label>{{ option.name }}</label>
-              <select name="options[{{ option.name | escape }}]" data-option-index="{{ forloop.index0 }}">
-                {%- for value in option.values -%}
-                  <option value="{{ value | escape }}" {% if value == option.selected_value %}selected{% endif %}>{{ value }}</option>
-                {%- endfor -%}
-              </select>
-            </div>
-          {%- endfor -%}
-        {%- endunless -%}
-
-        <div class="product__quantity">
-          <label for="Quantity">{{ 'products.product.quantity' | t }}</label>
-          <input type="number" id="Quantity" name="quantity" value="1" min="1">
+      <div class="product__info-inner">
+        <h1 class="product__title">{{ product.title }}</h1>
+        <div class="product__price">
+          {% render 'price', product: product %}
         </div>
 
-        <button
-          type="submit"
-          class="button button--primary product__add-to-cart"
-          {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}
-        >
-          {%- if product.selected_or_first_available_variant.available -%}
-            {{ 'products.product.add_to_cart' | t }}
-          {%- else -%}
-            {{ 'products.product.sold_out' | t }}
-          {%- endif -%}
-        </button>
-      {%- endform -%}
+        {%- form 'product', product, class: 'product__form' -%}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" data-variant-id>
 
-      {%- if product.description != blank -%}
-        <div class="product__description">{{ product.description }}</div>
-      {%- endif -%}
+          {%- unless product.has_only_default_variant -%}
+            {%- for option in product.options_with_values -%}
+              {%- assign option_index = forloop.index0 -%}
+              {%- assign option_name_downcase = option.name | downcase -%}
+              {%- assign is_color_option = false -%}
+              {%- if option_name_downcase == 'color' or option_name_downcase == 'colour' -%}
+                {%- assign is_color_option = true -%}
+              {%- endif -%}
+
+              <div class="product__option{% if is_color_option %} product__option--color{% endif %}">
+                <label>{{ option.name }}</label>
+
+                <select
+                  name="options[{{ option.name | escape }}]"
+                  data-option-index="{{ option_index }}"
+                  class="product__option-select{% if is_color_option %} visually-hidden{% endif %}"
+                >
+                  {%- for value in option.values -%}
+                    <option value="{{ value | escape }}" {% if value == option.selected_value %}selected{% endif %}>{{ value }}</option>
+                  {%- endfor -%}
+                </select>
+
+                {%- if is_color_option -%}
+                  <div class="product__color-chips" data-color-chips data-option-index="{{ option_index }}">
+                    {%- for value in option.values -%}
+                      {%- assign swatch_image = blank -%}
+                      {%- for variant in product.variants -%}
+                        {%- if variant.options[option_index] == value -%}
+                          {%- if variant.featured_media -%}
+                            {%- assign swatch_image = variant.featured_media | image_url: width: 80 -%}
+                          {%- elsif variant.image -%}
+                            {%- assign swatch_image = variant.image | image_url: width: 80 -%}
+                          {%- endif -%}
+                          {%- if swatch_image != blank -%}{%- break -%}{%- endif -%}
+                        {%- endif -%}
+                      {%- endfor -%}
+
+                      <button
+                        type="button"
+                        class="product__color-chip{% if value == option.selected_value %} is-selected{% endif %}"
+                        data-color-value="{{ value | escape }}"
+                        aria-pressed="{% if value == option.selected_value %}true{% else %}false{% endif %}"
+                      >
+                        <span
+                          class="product__color-swatch"
+                          style="{% if swatch_image != blank %}background-image: url({{ swatch_image }}); background-size: cover;{% else %}background-color: {% render 'swatch-color', color_name: value %};{% endif %}"
+                        ></span>
+                        <span class="product__color-label">{{ value }}</span>
+                      </button>
+                    {%- endfor -%}
+                  </div>
+                {%- endif -%}
+              </div>
+            {%- endfor -%}
+          {%- endunless -%}
+
+          <div class="product__quantity">
+            <label for="Quantity-{{ section.id }}">{{ 'products.product.quantity' | t }}</label>
+            <div class="product__quantity-control" data-quantity-control>
+              <button type="button" class="product__quantity-btn" data-quantity-minus aria-label="Decrease quantity">&minus;</button>
+              <input
+                type="number"
+                id="Quantity-{{ section.id }}"
+                name="quantity"
+                value="1"
+                min="1"
+                class="product__quantity-input"
+                data-quantity-input
+              >
+              <button type="button" class="product__quantity-btn" data-quantity-plus aria-label="Increase quantity">+</button>
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            class="button button--primary product__add-to-cart"
+            data-add-label="{{ 'products.product.add_to_cart' | t }}"
+            data-sold-out-label="{{ 'products.product.sold_out' | t }}"
+            {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}
+          >
+            {%- if product.selected_or_first_available_variant.available -%}
+              {{ 'products.product.add_to_cart' | t }}
+            {%- else -%}
+              {{ 'products.product.sold_out' | t }}
+            {%- endif -%}
+          </button>
+        {%- endform -%}
+
+        {%- if product.description != blank or section.blocks.size > 0 -%}
+          <div class="product__accordions" data-product-accordions>
+            {%- if product.description != blank -%}
+              <details class="product__accordion" data-product-accordion open>
+                <summary>{{ 'products.product.product_info' | t }}</summary>
+                <div class="product__accordion-content">{{ product.description }}</div>
+              </details>
+            {%- endif -%}
+
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'accordion' and block.settings.title != blank -%}
+                <details class="product__accordion" data-product-accordion {{ block.shopify_attributes }}>
+                  <summary>{{ block.settings.title }}</summary>
+                  <div class="product__accordion-content">{{ block.settings.content }}</div>
+                </details>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
     </div>
   </div>
+
+  <script type="application/json" id="ProductVariants-{{ section.id }}">
+    {{ product.variants | json }}
+  </script>
 </section>
+
+{%- assign related_collection = product.collections.first -%}
+{%- if related_collection -%}
+  {%- assign related_count = 0 -%}
+  <section class="product-recommendations page-width">
+    <h2 class="section-heading">You may also like</h2>
+    <div class="product-grid" style="--columns:4;">
+      {%- for related_product in related_collection.products -%}
+        {%- if related_product.id != product.id and related_count < 4 -%}
+          {% render 'product-card', product: related_product %}
+          {%- assign related_count = related_count | plus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </section>
+{%- endif -%}
 
 {% schema %}
 {
@@ -88,6 +191,37 @@
   "enabled_on": {
     "templates": ["product"]
   },
-  "settings": []
+  "settings": [],
+  "blocks": [
+    {
+      "type": "accordion",
+      "name": "Accordion",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "richtext", "id": "content", "label": "Content" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product information",
+      "blocks": [
+        {
+          "type": "accordion",
+          "settings": {
+            "title": "Details",
+            "content": "<p>Add material, dimensions, and care details here.</p>"
+          }
+        },
+        {
+          "type": "accordion",
+          "settings": {
+            "title": "Shipping",
+            "content": "<p>Add shipping and delivery information here.</p>"
+          }
+        }
+      ]
+    }
+  ]
 }
 {% endschema %}

@@ -1,0 +1,46 @@
+{%- comment -%}
+  Returns a hex color for a swatch label.
+  Accepts: color_name (string)
+{%- endcomment -%}
+{%- liquid
+  assign color_key = color_name | downcase | strip
+  assign swatch_hex = '#CCCCCC'
+
+  case color_key
+    when 'black' assign swatch_hex = '#000000'
+    when 'white' assign swatch_hex = '#FFFFFF'
+    when 'red' assign swatch_hex = '#C0392B'
+    when 'blue' assign swatch_hex = '#1F4E79'
+    when 'navy' assign swatch_hex = '#1B2A41'
+    when 'green' assign swatch_hex = '#2D6A4F'
+    when 'yellow' assign swatch_hex = '#F4D03F'
+    when 'orange' assign swatch_hex = '#E67E22'
+    when 'pink' assign swatch_hex = '#F5B7B1'
+    when 'purple' assign swatch_hex = '#7D3C98'
+    when 'brown' assign swatch_hex = '#6E4B3A'
+    when 'beige' assign swatch_hex = '#D9CBB8'
+    when 'cream' assign swatch_hex = '#F5F0E6'
+    when 'grey', 'gray' assign swatch_hex = '#9E9E9E'
+    when 'silver' assign swatch_hex = '#C0C0C0'
+    when 'sterling silver' assign swatch_hex = '#C0C0C0'
+    when 'sterling silver gold plated' assign swatch_hex = '#AD8A54'
+    when 'gold' assign swatch_hex = '#AD8A54'
+    when 'tan' assign swatch_hex = '#D2B48C'
+    when 'ivory' assign swatch_hex = '#FFFFF0'
+    when 'maroon' assign swatch_hex = '#800000'
+    when 'teal' assign swatch_hex = '#008080'
+    when 'olive' assign swatch_hex = '#808000'
+    when 'charcoal' assign swatch_hex = '#36454F'
+    when 'natural' assign swatch_hex = '#E8DCC8'
+    when 'sand' assign swatch_hex = '#C2B280'
+    when 'rust' assign swatch_hex = '#B7410E'
+    when 'burgundy' assign swatch_hex = '#800020'
+    when 'camel' assign swatch_hex = '#C19A6B'
+    when 'khaki' assign swatch_hex = '#C3B091'
+    when 'light blue' assign swatch_hex = '#ADD8E6'
+    when 'dark blue' assign swatch_hex = '#00008B'
+    when 'light grey', 'light gray' assign swatch_hex = '#D3D3D3'
+    when 'dark grey', 'dark gray' assign swatch_hex = '#4A4A4A'
+  endcase
+-%}
+{{- swatch_hex -}}

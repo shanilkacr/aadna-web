@@ -1,0 +1,43 @@
+{
+  "sections": {
+    "main": {
+      "type": "sizing-chart-page",
+      "blocks": {
+        "step_01": {
+          "type": "step",
+          "settings": {
+            "step_label": "Step 01",
+            "title": "Cut",
+            "text": "Cut yourself a strip of paper or piece of string long enough to wrap around your finger.",
+            "fallback_image": "ring-size-step-01-cut.png"
+          }
+        },
+        "step_02": {
+          "type": "step",
+          "settings": {
+            "step_label": "Step 02",
+            "title": "Wrap & Mark",
+            "text": "Wrap it at the base of the finger you would like to measure and mark where it overlaps.",
+            "fallback_image": "ring-size-step-02-wrap.png"
+          }
+        },
+        "step_03": {
+          "type": "step",
+          "settings": {
+            "step_label": "Step 03",
+            "title": "Measure",
+            "text": "Measure the piece of paper or string with a ruler and round up to the nearest mm.",
+            "fallback_image": "ring-size-step-03-measure.png"
+          }
+        }
+      },
+      "block_order": ["step_01", "step_02", "step_03"],
+      "settings": {
+        "title": "How to find your ring size in 3 easy steps",
+        "note": "Please kindly share the measurements in centimeters or millimeters with us. You can simply add the length in the 'Add Note' tab in the cart section, and we'll take it from there to craft your item with care. One of our team members will contact you for confirmation.",
+        "tip": "TIP : If you're using string, it can sometimes stretch causing you to get a smaller size. Repeat the steps a couple of times to ensure you're getting the right measurement."
+      }
+    }
+  },
+  "order": ["main"]
+}

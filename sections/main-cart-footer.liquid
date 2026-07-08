@@ -4,7 +4,10 @@
     <span>{{ 'general.cart.subtotal' | t }}</span>
     <span>{{ cart.total_price | money }}</span>
   </div>
-  <a href="{{ routes.checkout_url }}" class="button button--primary">{{ 'general.cart.checkout' | t }}</a>
+  <button type="submit" form="CartPageForm" name="checkout" class="button button--primary">{{ 'general.cart.checkout' | t }}</button>
+  {%- if additional_checkout_buttons -%}
+    <div class="cart-footer__dynamic">{{ content_for_additional_checkout_buttons }}</div>
+  {%- endif -%}
 </section>
 {%- endif -%}
 

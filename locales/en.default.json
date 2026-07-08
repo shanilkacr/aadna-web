@@ -8,7 +8,10 @@
       "results_count": {
         "one": "{{ count }} result",
         "other": "{{ count }} results"
-      }
+      },
+      "suggestions": "Suggestions",
+      "view_all": "View all results",
+      "no_results_short": "No results found"
     },
     "cart": {
       "title": "Your bag",
@@ -46,6 +49,7 @@
       "sold_out": "Sold out",
       "unavailable": "Unavailable",
       "quantity": "Quantity",
+      "product_info": "Product Info",
       "choose_options": "Choose options",
       "view_details": "View details",
       "on_sale": "Sale"
@@ -57,6 +61,27 @@
       "shop_all": "Shop all",
       "view_all": "View all",
       "explore": "Explore collection"
+    },
+    "filters": {
+      "title": "Filter",
+      "sort_and_filter": "Sort & filter",
+      "sort_by": "Sort by",
+      "sorting": "Sorting",
+      "filtering": "Filtering",
+      "close": "Close filters",
+      "apply": "Apply",
+      "from": "From",
+      "to": "To",
+      "active": "Applied filters",
+      "clear_all": "Clear all",
+      "collapse": "Collapse filters",
+      "expand": "Expand filters",
+      "pagination": "Pagination",
+      "product_count": {
+        "one": "{{ count }} product",
+        "other": "{{ count }} products"
+      },
+      "product_count_filtered": "{{ count }} of {{ total }} products"
     }
   },
   "sections": {

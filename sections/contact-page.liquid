@@ -1,0 +1,233 @@
+<section class="contact-page">
+  <div class="contact-page__hero page-width">
+    <h1>{{ section.settings.title | default: page.title }}</h1>
+  </div>
+
+  <div class="contact-page__row">
+    <div class="contact-page__content contact-page__info">
+      {%- if section.settings.heading != blank -%}
+        <h2>{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      <div class="contact-page__details">
+        {%- if section.settings.phone != blank -%}
+          <p>Tel: <a href="tel:{{ section.settings.phone | replace: ' ', '' }}">{{ section.settings.phone }}</a></p>
+        {%- endif -%}
+        {%- if section.settings.email != blank -%}
+          <p><a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a></p>
+        {%- endif -%}
+      </div>
+    </div>
+    <div class="contact-page__media">
+      {%- if section.settings.info_image != blank -%}
+        <img
+          src="{{ section.settings.info_image | image_url: width: 1200 }}"
+          alt="{{ section.settings.heading | escape }}"
+          width="1200"
+          height="{{ 1200 | divided_by: section.settings.info_image.aspect_ratio | default: 1200 }}"
+          loading="lazy"
+        >
+      {%- elsif section.settings.info_fallback_image != blank -%}
+        <img
+          src="{{ section.settings.info_fallback_image }}"
+          alt="{{ section.settings.heading | escape }}"
+          width="1200"
+          height="1200"
+          loading="lazy"
+        >
+      {%- else -%}
+        <div class="contact-page__placeholder" role="img" aria-label="{{ section.settings.heading | escape }}"></div>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="contact-page__row">
+    <div class="contact-page__media">
+      {%- if section.settings.form_image != blank -%}
+        <img
+          src="{{ section.settings.form_image | image_url: width: 1200 }}"
+          alt="{{ section.settings.message_label | escape }}"
+          width="1200"
+          height="{{ 1200 | divided_by: section.settings.form_image.aspect_ratio | default: 1200 }}"
+          loading="lazy"
+        >
+      {%- elsif section.settings.form_fallback_image != blank -%}
+        <img
+          src="{{ section.settings.form_fallback_image }}"
+          alt="{{ section.settings.message_label | escape }}"
+          width="1200"
+          height="1200"
+          loading="lazy"
+        >
+      {%- else -%}
+        <div class="contact-page__placeholder" role="img" aria-label="{{ section.settings.message_label | escape }}"></div>
+      {%- endif -%}
+    </div>
+    <div class="contact-page__content contact-page__form">
+      {% form 'contact', id: 'ContactForm', class: 'contact-page__form-fields' %}
+        {%- if form.posted_successfully? -%}
+          <p class="contact-page__success">{{ section.settings.success_message }}</p>
+        {%- endif -%}
+
+        {%- if form.errors -%}
+          <div class="contact-page__errors">{{ form.errors | default_errors }}</div>
+        {%- endif -%}
+
+        <div class="contact-page__name-row">
+          <div class="contact-page__field">
+            <label for="ContactForm-name">{{ section.settings.name_label }}</label>
+            <input
+              type="text"
+              id="ContactForm-name"
+              name="contact[Name]"
+              autocomplete="given-name"
+              required
+            >
+          </div>
+          <div class="contact-page__field">
+            <label for="ContactForm-last-name">{{ section.settings.last_name_label }}</label>
+            <input
+              type="text"
+              id="ContactForm-last-name"
+              name="contact[Last Name]"
+              autocomplete="family-name"
+            >
+          </div>
+        </div>
+
+        <div class="contact-page__field">
+          <label for="ContactForm-email">{{ section.settings.email_label }}</label>
+          <input
+            type="email"
+            id="ContactForm-email"
+            name="contact[email]"
+            autocomplete="email"
+            required
+          >
+        </div>
+
+        <div class="contact-page__field">
+          <label for="ContactForm-body">{{ section.settings.message_label }}</label>
+          <textarea id="ContactForm-body" name="contact[body]" rows="6"></textarea>
+        </div>
+
+        <button type="submit" class="button button--primary">{{ section.settings.submit_label }}</button>
+      {% endform %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Contact page",
+  "enabled_on": {
+    "templates": ["page"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Title"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Contact us"
+    },
+    {
+      "type": "header",
+      "content": "Contact info"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Get in touch!"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone",
+      "default": "+94 77 880 9890"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email",
+      "default": "info@aadna.store"
+    },
+    {
+      "type": "image_picker",
+      "id": "info_image",
+      "label": "Info column image"
+    },
+    {
+      "type": "text",
+      "id": "info_fallback_image",
+      "label": "Info column fallback image URL"
+    },
+    {
+      "type": "header",
+      "content": "Form"
+    },
+    {
+      "type": "image_picker",
+      "id": "form_image",
+      "label": "Form column image"
+    },
+    {
+      "type": "text",
+      "id": "form_fallback_image",
+      "label": "Form column fallback image URL"
+    },
+    {
+      "type": "text",
+      "id": "name_label",
+      "label": "Name label",
+      "default": "Name"
+    },
+    {
+      "type": "text",
+      "id": "last_name_label",
+      "label": "Last name label",
+      "default": "Last Name"
+    },
+    {
+      "type": "text",
+      "id": "email_label",
+      "label": "Email label",
+      "default": "Email"
+    },
+    {
+      "type": "text",
+      "id": "message_label",
+      "label": "Message label",
+      "default": "Message"
+    },
+    {
+      "type": "text",
+      "id": "submit_label",
+      "label": "Submit button label",
+      "default": "Send"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "Thanks for contacting us. We'll get back to you as soon as possible."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact page",
+      "settings": {
+        "title": "Contact us",
+        "heading": "Get in touch!",
+        "phone": "+94 77 880 9890",
+        "email": "info@aadna.store",
+        "info_fallback_image": "https://aadna.store/cdn/shop/files/slideshow4.jpg",
+        "form_fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg"
+      }
+    }
+  ]
+}
+{% endschema %}

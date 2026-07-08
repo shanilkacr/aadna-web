@@ -1,34 +1,62 @@
-<section class="collection page-width">
-  <div class="collection__header">
-    <h1>{{ collection.title }}</h1>
-    {%- if collection.description != blank -%}
-      <div class="collection__description">{{ collection.description }}</div>
-    {%- endif -%}
-  </div>
+{%- liquid
+  assign has_sidebar = false
+  if section.settings.enable_filtering or section.settings.enable_sorting
+    assign has_sidebar = true
+  endif
+-%}
 
-  {%- if collection.products.size == 0 -%}
-    <p class="collection__empty">{{ 'collections.general.no_products' | t }}</p>
-  {%- else -%}
-    {%- paginate collection.products by 24 -%}
-      <div class="product-grid" style="--columns:{{ section.settings.columns }};">
-        {%- for product in collection.products -%}
-          {% render 'product-card', product: product %}
-        {%- endfor -%}
-      </div>
-
-      {%- if paginate.pages > 1 -%}
-        <nav class="pagination">
-          {%- for part in paginate.parts -%}
-            {%- if part.is_link -%}
-              <a href="{{ part.url }}">{{ part.title }}</a>
-            {%- else -%}
-              <span class="{% if part.title == paginate.current_page %}is-current{% endif %}">{{ part.title }}</span>
-            {%- endif -%}
-          {%- endfor -%}
-        </nav>
+<section class="collection page-width{% unless collection.handle == 'all' %} collection--has-header{% endunless %}">
+  {%- unless collection.handle == 'all' -%}
+    <div class="collection__header">
+      <h1>{{ collection.title }}</h1>
+      {%- if collection.description != blank -%}
+        <div class="collection__description">{{ collection.description }}</div>
       {%- endif -%}
-    {%- endpaginate -%}
-  {%- endif -%}
+    </div>
+  {%- endunless -%}
+
+  <div
+    class="collection__body{% if has_sidebar %} collection__body--has-filters is-filters-expanded{% endif %}"
+    data-collection-body
+  >
+    {%- if has_sidebar -%}
+      {% render 'collection-filters',
+        results: collection,
+        enable_filtering: section.settings.enable_filtering,
+        enable_sorting: section.settings.enable_sorting
+      %}
+    {%- endif -%}
+
+    <div class="collection__main">
+      {%- paginate collection.products by section.settings.products_per_page -%}
+        {%- if collection.products.size == 0 -%}
+          <p class="collection__empty">{{ 'collections.general.no_products' | t }}</p>
+        {%- else -%}
+          <div
+            class="product-grid{% if has_sidebar %} collection__grid{% endif %}"
+            {% if has_sidebar %}data-collection-grid{% endif %}
+            style="--columns:{{ section.settings.columns }};{% if has_sidebar %} --grid-columns: 3;{% endif %}"
+          >
+            {%- for product in collection.products -%}
+              {% render 'product-card', product: product %}
+            {%- endfor -%}
+          </div>
+
+          {%- if paginate.pages > 1 -%}
+            <nav class="pagination" aria-label="{{ 'collections.filters.pagination' | t }}">
+              {%- for part in paginate.parts -%}
+                {%- if part.is_link -%}
+                  <a href="{{ part.url }}">{{ part.title }}</a>
+                {%- else -%}
+                  <span class="{% if part.title == paginate.current_page %}is-current{% endif %}">{{ part.title }}</span>
+                {%- endif -%}
+              {%- endfor -%}
+            </nav>
+          {%- endif -%}
+        {%- endif -%}
+      {%- endpaginate -%}
+    </div>
+  </div>
 </section>
 
 {% schema %}
@@ -38,7 +66,10 @@
     "templates": ["collection"]
   },
   "settings": [
-    { "type": "range", "id": "columns", "min": 2, "max": 5, "step": 1, "default": 4, "label": "Columns (desktop)" }
+    { "type": "range", "id": "columns", "min": 2, "max": 5, "step": 1, "default": 4, "label": "Columns when filters are hidden" },
+    { "type": "range", "id": "products_per_page", "min": 8, "max": 48, "step": 4, "default": 24, "label": "Products per page" },
+    { "type": "checkbox", "id": "enable_filtering", "default": true, "label": "Enable filtering" },
+    { "type": "checkbox", "id": "enable_sorting", "default": true, "label": "Enable sorting" }
   ]
 }
 {% endschema %}

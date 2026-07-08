@@ -1,6 +1,11 @@
-<section class="search page-width">
-  <h1>{{ 'general.search.title' | t }}</h1>
+{%- liquid
+  assign has_sidebar = false
+  if section.settings.enable_filtering or section.settings.enable_sorting
+    assign has_sidebar = true
+  endif
+-%}
 
+<section class="collection page-width search">
   <form action="{{ routes.search_url }}" method="get" role="search" class="search__form">
     <input
       type="search"
@@ -9,36 +14,56 @@
       placeholder="{{ 'general.search.placeholder' | t }}"
       aria-label="{{ 'general.search.placeholder' | t }}"
     >
-    <button type="submit" class="button button--secondary">{{ 'general.search.submit' | t }}</button>
+    <input type="hidden" name="type" value="product">
+    <button type="submit" class="text-link">{{ 'general.search.submit' | t }}</button>
   </form>
 
   {%- if search.performed -%}
-    {%- if search.results_count == 0 -%}
-      <p class="search__empty">{{ 'general.search.no_results' | t: terms: search.terms }}</p>
-    {%- else -%}
-      <p class="search__count">{{ 'general.search.results_count' | t: count: search.results_count }}</p>
-      {%- paginate search.results by 24 -%}
-        <div class="product-grid" style="--columns:{{ section.settings.columns }};">
-          {%- for item in search.results -%}
-            {%- if item.object_type == 'product' -%}
-              {% render 'product-card', product: item %}
-            {%- endif -%}
-          {%- endfor -%}
-        </div>
+    <div
+      class="collection__body{% if has_sidebar %} collection__body--has-filters is-filters-expanded{% endif %}"
+      data-collection-body
+    >
+      {%- if has_sidebar -%}
+        {% render 'collection-filters',
+          results: search,
+          enable_filtering: section.settings.enable_filtering,
+          enable_sorting: section.settings.enable_sorting,
+          is_search: true
+        %}
+      {%- endif -%}
 
-        {%- if paginate.pages > 1 -%}
-          <nav class="pagination">
-            {%- for part in paginate.parts -%}
-              {%- if part.is_link -%}
-                <a href="{{ part.url }}">{{ part.title }}</a>
-              {%- else -%}
-                <span class="{% if part.title == paginate.current_page %}is-current{% endif %}">{{ part.title }}</span>
-              {%- endif -%}
-            {%- endfor -%}
-          </nav>
-        {%- endif -%}
-      {%- endpaginate -%}
-    {%- endif -%}
+      <div class="collection__main">
+        {%- paginate search.results by section.settings.products_per_page -%}
+          {%- if search.results_count == 0 -%}
+            <p class="collection__empty">{{ 'general.search.no_results' | t: terms: search.terms }}</p>
+          {%- else -%}
+            <div
+              class="product-grid{% if has_sidebar %} collection__grid{% endif %}"
+              {% if has_sidebar %}data-collection-grid{% endif %}
+              style="--columns:{{ section.settings.columns }};{% if has_sidebar %} --grid-columns: 3;{% endif %}"
+            >
+              {%- for item in search.results -%}
+                {%- if item.object_type == 'product' -%}
+                  {% render 'product-card', product: item %}
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+
+            {%- if paginate.pages > 1 -%}
+              <nav class="pagination" aria-label="{{ 'collections.filters.pagination' | t }}">
+                {%- for part in paginate.parts -%}
+                  {%- if part.is_link -%}
+                    <a href="{{ part.url }}">{{ part.title }}</a>
+                  {%- else -%}
+                    <span class="{% if part.title == paginate.current_page %}is-current{% endif %}">{{ part.title }}</span>
+                  {%- endif -%}
+                {%- endfor -%}
+              </nav>
+            {%- endif -%}
+          {%- endif -%}
+        {%- endpaginate -%}
+      </div>
+    </div>
   {%- endif -%}
 </section>
 
@@ -49,7 +74,10 @@
     "templates": ["search"]
   },
   "settings": [
-    { "type": "range", "id": "columns", "min": 2, "max": 5, "step": 1, "default": 4, "label": "Columns (desktop)" }
+    { "type": "range", "id": "columns", "min": 2, "max": 5, "step": 1, "default": 4, "label": "Columns when filters are hidden" },
+    { "type": "range", "id": "products_per_page", "min": 8, "max": 48, "step": 4, "default": 24, "label": "Products per page" },
+    { "type": "checkbox", "id": "enable_filtering", "default": true, "label": "Enable filtering" },
+    { "type": "checkbox", "id": "enable_sorting", "default": true, "label": "Enable sorting" }
   ]
 }
 {% endschema %}

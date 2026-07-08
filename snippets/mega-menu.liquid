@@ -1,0 +1,60 @@
+{%- comment -%}
+  Mega menu panel shown on hover of the trigger nav item (see header-content.liquid).
+  Left: category links from section.settings.mega_menu_list.
+  Right: up to 4 image tiles from section blocks (type 'mega_tile').
+  Tile fallback chain: block image -> collection featured image -> block fallback URL -> placeholder SVG.
+  Tiles without a collection assigned fall back to the store's collections (skipping
+  'all'/'frontpage' and ones already used), so "latest" slots fill themselves.
+{%- endcomment -%}
+{%- liquid
+  assign used_handles = ''
+  for block in section.blocks
+    if block.type == 'mega_tile' and block.settings.collection != blank
+      assign used_handles = used_handles | append: ',' | append: block.settings.collection
+    endif
+  endfor
+-%}
+<div class="mega-menu" data-mega-menu aria-label="Shop menu">
+  <div class="page-width mega-menu__inner">
+    <ul class="mega-menu__links">
+      {%- for link in section.settings.mega_menu_list.links -%}
+        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+      {%- endfor -%}
+    </ul>
+
+    <div class="mega-menu__tiles">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'mega_tile' -%}
+          {%- liquid
+            assign tile_collection = collections[block.settings.collection]
+            if block.settings.collection == blank
+              for c in collections
+                unless c.handle == 'all' or c.handle == 'frontpage' or used_handles contains c.handle
+                  assign tile_collection = c
+                  assign used_handles = used_handles | append: ',' | append: c.handle
+                  break
+                endunless
+              endfor
+            endif
+            assign tile_label = block.settings.label | default: tile_collection.title | default: 'Collection'
+            assign tile_url = block.settings.link | default: tile_collection.url | default: routes.all_products_collection_url
+          -%}
+          <a href="{{ tile_url }}" class="mega-menu__tile" {{ block.shopify_attributes }}>
+            <div class="mega-menu__tile-media">
+              {%- if block.settings.image != blank -%}
+                <img src="{{ block.settings.image | image_url: width: 600 }}" alt="{{ tile_label | escape }}" loading="lazy" width="600" height="{{ 600 | divided_by: block.settings.image.aspect_ratio | default: 750 }}">
+              {%- elsif tile_collection.featured_image -%}
+                <img src="{{ tile_collection.featured_image | image_url: width: 600 }}" alt="{{ tile_label | escape }}" loading="lazy" width="600" height="{{ 600 | divided_by: tile_collection.featured_image.aspect_ratio | default: 750 }}">
+              {%- elsif block.settings.fallback_image != blank -%}
+                <img src="{{ block.settings.fallback_image }}" alt="{{ tile_label | escape }}" loading="lazy" width="600" height="750">
+              {%- else -%}
+                {{ 'collection-1' | placeholder_svg_tag: 'mega-menu__placeholder' }}
+              {%- endif -%}
+            </div>
+            <p class="mega-menu__tile-label">{{ tile_label }}</p>
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>

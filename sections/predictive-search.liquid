@@ -1,0 +1,52 @@
+{%- comment -%}
+  Rendered via the Section Rendering API by theme.js:
+  {{ routes.predictive_search_url }}?q=TERM&section_id=predictive-search
+  Returns product suggestions (image, title, price) for the search overlay.
+{%- endcomment -%}
+{%- if predictive_search.performed -%}
+  <div class="predictive-search__results" data-predictive-results-inner>
+    {%- if predictive_search.resources.products.size > 0 -%}
+      <ul class="predictive-search__list">
+        {%- for product in predictive_search.resources.products limit: 6 -%}
+          <li>
+            <a href="{{ product.url }}" class="predictive-search__item">
+              <div class="predictive-search__media">
+                {%- if product.featured_image -%}
+                  <img
+                    src="{{ product.featured_image | image_url: width: 200 }}"
+                    alt="{{ product.featured_image.alt | default: product.title | escape }}"
+                    loading="lazy"
+                    width="200"
+                    height="{{ 200 | divided_by: product.featured_image.aspect_ratio | default: 250 }}"
+                  >
+                {%- endif -%}
+              </div>
+              <div class="predictive-search__info">
+                <p class="predictive-search__title">{{ product.title }}</p>
+                <p class="predictive-search__price">
+                  {%- if product.compare_at_price > product.price -%}
+                    <s>{{ product.compare_at_price | money }}</s> {{ product.price | money }}
+                  {%- else -%}
+                    {{ product.price | money }}
+                  {%- endif -%}
+                </p>
+              </div>
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+      <a class="predictive-search__all text-link" href="{{ routes.search_url }}?q={{ predictive_search.terms | url_encode }}&type=product">
+        {{ 'general.search.view_all' | t }}
+      </a>
+    {%- else -%}
+      <p class="predictive-search__empty">{{ 'general.search.no_results_short' | t }}</p>
+    {%- endif -%}
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Predictive search",
+  "settings": []
+}
+{% endschema %}

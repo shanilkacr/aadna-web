@@ -8,33 +8,37 @@
       {% render 'social-icons' %}
     </div>
 
-    {%- for block in section.blocks -%}
-      {%- if block.type == 'link_list' -%}
-        <div class="site-footer__block" {{ block.shopify_attributes }}>
-          <p class="site-footer__heading">{{ block.settings.heading }}</p>
-          <ul>
-            {%- for link in block.settings.menu.links -%}
-              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-            {%- endfor -%}
-          </ul>
-        </div>
-      {%- elsif block.type == 'custom_links' -%}
-        <div class="site-footer__block" {{ block.shopify_attributes }}>
-          <p class="site-footer__heading">{{ block.settings.heading }}</p>
-          <ul>
-            {%- for i in (1..6) -%}
-              {%- assign label_key = 'link_' | append: i | append: '_label' -%}
-              {%- assign url_key = 'link_' | append: i | append: '_url' -%}
-              {%- assign label = block.settings[label_key] -%}
-              {%- assign url = block.settings[url_key] -%}
-              {%- if label != blank -%}
-                <li><a href="{{ url | default: '#' }}">{{ label }}</a></li>
-              {%- endif -%}
-            {%- endfor -%}
-          </ul>
-        </div>
-      {%- endif -%}
-    {%- endfor -%}
+    {%- if section.blocks.size > 0 -%}
+      <div class="site-footer__links">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'link_list' -%}
+            <div class="site-footer__block" {{ block.shopify_attributes }}>
+              <p class="site-footer__heading">{{ block.settings.heading }}</p>
+              <ul>
+                {%- for link in block.settings.menu.links -%}
+                  <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                {%- endfor -%}
+              </ul>
+            </div>
+          {%- elsif block.type == 'custom_links' -%}
+            <div class="site-footer__block" {{ block.shopify_attributes }}>
+              <p class="site-footer__heading">{{ block.settings.heading }}</p>
+              <ul>
+                {%- for i in (1..6) -%}
+                  {%- assign label_key = 'link_' | append: i | append: '_label' -%}
+                  {%- assign url_key = 'link_' | append: i | append: '_url' -%}
+                  {%- assign label = block.settings[label_key] -%}
+                  {%- assign url = block.settings[url_key] -%}
+                  {%- if label != blank -%}
+                    <li><a href="{{ url | default: '#' }}">{{ label }}</a></li>
+                  {%- endif -%}
+                {%- endfor -%}
+              </ul>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
 
     <div class="site-footer__block site-footer__newsletter">
       <p class="site-footer__heading">{{ 'general.newsletter.heading' | t }}</p>
@@ -46,7 +50,7 @@
         <input type="hidden" name="contact[tags]" value="newsletter">
         <div class="newsletter-form__row">
           <input type="email" name="contact[email]" placeholder="{{ 'general.newsletter.placeholder' | t }}" required>
-          <button type="submit">{{ 'general.newsletter.submit' | t }}</button>
+          <button type="submit" class="text-link">{{ 'general.newsletter.submit' | t }}</button>
         </div>
       {% endform %}
     </div>

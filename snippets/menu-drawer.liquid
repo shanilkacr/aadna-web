@@ -1,0 +1,41 @@
+{%- comment -%}
+  Off-canvas mobile menu, slides in from the left.
+  Rendered once by sections/header.liquid; opened by any [data-menu-toggle] button.
+  Accepts:
+    menu         - main linklist (section.settings.menu)
+    mega_trigger - title of the item that expands to show categories (section.settings.mega_menu_trigger)
+    mega_list    - linklist of category links (section.settings.mega_menu_list)
+{%- endcomment -%}
+{%- assign trigger_down = mega_trigger | downcase -%}
+<div class="menu-drawer" id="MenuDrawer" aria-hidden="true">
+  <div class="menu-drawer__overlay" data-menu-drawer-close></div>
+  <div class="menu-drawer__panel" role="dialog" aria-modal="true" aria-label="{{ 'sections.header.menu' | t }}">
+    <div class="menu-drawer__header">
+      <button type="button" class="menu-drawer__close" data-menu-drawer-close aria-label="{{ 'general.cart.close' | t }}">{% render 'icon-close' %}</button>
+    </div>
+    <nav class="menu-drawer__nav">
+      <ul>
+        {%- for link in menu.links -%}
+          {%- assign link_down = link.title | downcase -%}
+          {%- if trigger_down != blank and link_down == trigger_down and mega_list.links.size > 0 -%}
+            <li class="menu-drawer__expandable">
+              <details data-menu-drawer-expand>
+                <summary>{{ link.title }}</summary>
+                <ul class="menu-drawer__sublinks">
+                  {%- for sublink in mega_list.links -%}
+                    <li><a href="{{ sublink.url }}">{{ sublink.title }}</a></li>
+                  {%- endfor -%}
+                </ul>
+              </details>
+            </li>
+          {%- else -%}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </nav>
+    <div class="menu-drawer__footer">
+      <a href="{{ routes.account_url }}">{{ 'sections.header.account' | t }}</a>
+    </div>
+  </div>
+</div>

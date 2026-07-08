@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "contact-page",
+      "settings": {
+        "title": "Contact us",
+        "heading": "Get in touch!",
+        "phone": "+94 77 880 9890",
+        "email": "info@aadna.store",
+        "info_fallback_image": "https://aadna.store/cdn/shop/files/slideshow4.jpg",
+        "form_fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg"
+      }
+    }
+  },
+  "order": ["main"]
+}

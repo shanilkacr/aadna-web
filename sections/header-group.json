@@ -3,7 +3,32 @@
   "type": "header",
   "sections": {
     "header": {
-      "type": "header"
+      "type": "header",
+      "blocks": {
+        "tile-best-sellers": {
+          "type": "mega_tile",
+          "settings": {
+            "label": "Best sellers",
+            "link": "/collections/all"
+          }
+        },
+        "tile-latest": {
+          "type": "mega_tile",
+          "settings": {
+            "label": "Latest arrivals",
+            "link": "/collections/all"
+          }
+        },
+        "tile-collection-1": {
+          "type": "mega_tile",
+          "settings": {}
+        },
+        "tile-collection-2": {
+          "type": "mega_tile",
+          "settings": {}
+        }
+      },
+      "block_order": ["tile-best-sellers", "tile-latest", "tile-collection-1", "tile-collection-2"]
     }
   },
   "order": ["header"]

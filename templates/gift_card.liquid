@@ -8,7 +8,6 @@
   <title>{{ 'gift_cards.issued.title' | t: value: gift_card_balance, shop: shop.name }}</title>
   {{ content_for_header }}
   {{ 'theme.css' | asset_url | stylesheet_tag }}
-  {{ settings.font_heading | font_face: font_display: 'swap' }}
   {{ settings.font_body | font_face: font_display: 'swap' }}
   <style>
     :root{
@@ -16,9 +15,10 @@
       --color-text: {{ settings.color_text }};
       --color-accent: {{ settings.color_accent }};
       --color-border: {{ settings.color_border }};
-      --font-heading: {{ settings.font_heading.family }}, {{ settings.font_heading.fallback_families }};
+      --font-heading: 'Forum', serif;
       --font-body: {{ settings.font_body.family }}, {{ settings.font_body.fallback_families }};
     }
+    h1 { font-weight: 400; letter-spacing: 0; }
   </style>
 </head>
 <body class="gift-card">

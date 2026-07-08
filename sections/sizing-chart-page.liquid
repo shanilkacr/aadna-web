@@ -1,0 +1,157 @@
+<section class="sizing-chart-page">
+  <div class="sizing-chart-page__inner page-width">
+    <header class="sizing-chart-page__header">
+      {% render 'logo', variant: 'gold', class: 'sizing-chart-page__logo', width: 120 %}
+      <h1 class="sizing-chart-page__title">{{ section.settings.title | default: page.title }}</h1>
+    </header>
+
+    <ol class="sizing-chart-page__steps">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'step' -%}
+          <li class="sizing-chart-page__step" {{ block.shopify_attributes }}>
+            <div class="sizing-chart-page__illustration">
+              {%- if block.settings.image != blank -%}
+                <img
+                  src="{{ block.settings.image | image_url: width: 640 }}"
+                  alt="{{ block.settings.title | escape }}"
+                  width="320"
+                  height="320"
+                  loading="lazy"
+                >
+              {%- else -%}
+                <img
+                  src="{{ block.settings.fallback_image | asset_url }}"
+                  alt="{{ block.settings.title | escape }}"
+                  width="320"
+                  height="160"
+                  loading="lazy"
+                >
+              {%- endif -%}
+            </div>
+            <p class="sizing-chart-page__step-label">{{ block.settings.step_label }}</p>
+            <h2 class="sizing-chart-page__step-title">{{ block.settings.title }}</h2>
+            <p class="sizing-chart-page__step-text">{{ block.settings.text }}</p>
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ol>
+
+    <div class="sizing-chart-page__footer">
+      {%- if section.settings.note != blank -%}
+        <p class="sizing-chart-page__note">{{ section.settings.note }}</p>
+      {%- endif -%}
+      {%- if section.settings.tip != blank -%}
+        <p class="sizing-chart-page__tip"><em>{{ section.settings.tip }}</em></p>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Sizing chart page",
+  "enabled_on": {
+    "templates": ["page"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "How to find your ring size in 3 easy steps"
+    },
+    {
+      "type": "header",
+      "content": "Footer"
+    },
+    {
+      "type": "textarea",
+      "id": "note",
+      "label": "Instructions note",
+      "default": "Please kindly share the measurements in centimeters or millimeters with us. You can simply add the length in the 'Add Note' tab in the cart section, and we'll take it from there to craft your item with care. One of our team members will contact you for confirmation."
+    },
+    {
+      "type": "textarea",
+      "id": "tip",
+      "label": "Tip",
+      "default": "TIP : If you're using string, it can sometimes stretch causing you to get a smaller size. Repeat the steps a couple of times to ensure you're getting the right measurement."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "text",
+          "id": "step_label",
+          "label": "Step label",
+          "default": "Step 01"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Cut"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "Cut yourself a strip of paper or piece of string long enough to wrap around your finger."
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Illustration"
+        },
+        {
+          "type": "text",
+          "id": "fallback_image",
+          "label": "Fallback illustration asset",
+          "default": "ring-size-step-01-cut.png",
+          "info": "Theme asset filename used when no image is uploaded."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sizing chart page",
+      "settings": {
+        "title": "How to find your ring size in 3 easy steps"
+      },
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "step_label": "Step 01",
+            "title": "Cut",
+            "text": "Cut yourself a strip of paper or piece of string long enough to wrap around your finger.",
+            "fallback_image": "ring-size-step-01-cut.png"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "step_label": "Step 02",
+            "title": "Wrap & Mark",
+            "text": "Wrap it at the base of the finger you would like to measure and mark where it overlaps.",
+            "fallback_image": "ring-size-step-02-wrap.png"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "step_label": "Step 03",
+            "title": "Measure",
+            "text": "Measure the piece of paper or string with a ruler and round up to the nearest mm.",
+            "fallback_image": "ring-size-step-03-measure.png"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
