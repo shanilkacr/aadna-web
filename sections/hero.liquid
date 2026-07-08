@@ -6,10 +6,13 @@
         {%- if section.settings.image != blank -%}
           <img
             src="{{ section.settings.image | image_url: width: 1800 }}"
+            srcset="{{ section.settings.image | image_url: width: 900 }} 900w, {{ section.settings.image | image_url: width: 1400 }} 1400w, {{ section.settings.image | image_url: width: 1800 }} 1800w, {{ section.settings.image | image_url: width: 2400 }} 2400w"
+            sizes="100vw"
             alt="{{ section.settings.heading | escape }}"
             width="1800"
             height="{{ 1800 | divided_by: section.settings.image.aspect_ratio | default: 900 }}"
             loading="eager"
+            fetchpriority="high"
           >
         {%- elsif section.settings.fallback_image != blank -%}
           <img src="{{ section.settings.fallback_image }}" alt="{{ section.settings.heading | escape }}" width="1800" height="900" loading="eager">
@@ -21,10 +24,13 @@
       {%- if section.settings.image != blank -%}
         <img
           src="{{ section.settings.image | image_url: width: 1800 }}"
+          srcset="{{ section.settings.image | image_url: width: 900 }} 900w, {{ section.settings.image | image_url: width: 1400 }} 1400w, {{ section.settings.image | image_url: width: 1800 }} 1800w, {{ section.settings.image | image_url: width: 2400 }} 2400w"
+          sizes="100vw"
           alt="{{ section.settings.heading | escape }}"
           width="1800"
           height="{{ 1800 | divided_by: section.settings.image.aspect_ratio | default: 900 }}"
           loading="eager"
+          fetchpriority="high"
         >
       {%- elsif section.settings.fallback_image != blank -%}
         <img src="{{ section.settings.fallback_image }}" alt="{{ section.settings.heading | escape }}" width="1800" height="900" loading="eager">

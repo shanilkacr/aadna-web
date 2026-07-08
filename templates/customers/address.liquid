@@ -1,6 +1,9 @@
+{% # theme-check-disable UndefinedObject %}
 {%- liquid
+  # Shopify provides `address` on the edit route; fall back to a new address otherwise
   assign address = address | default: customer.new_address
 -%}
+{% # theme-check-enable UndefinedObject %}
 <section class="customer page-width">
   <h1>
     {%- if address.id -%}

@@ -8,6 +8,10 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ settings.favicon | image_url: width: 16, height: 16 }}">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ settings.favicon | image_url: width: 180, height: 180 }}">
+  {% else %}
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ 'favicon-32x32.png' | asset_url }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ 'favicon-16x16.png' | asset_url }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ 'apple-touch-icon.png' | asset_url }}">
   {% endif %}
 
   <title>
@@ -41,11 +45,8 @@
       --color-button-background: {{ settings.color_button_background }};
       --color-button-text: {{ settings.color_button_text }};
       --font-heading: serif;
-      --font-heading-weight: 400;
-      --font-heading-style: normal;
       --font-body: {{ settings.font_body.family }}, {{ settings.font_body.fallback_families }};
       --font-body-weight: {{ settings.font_body.weight }};
-      --heading-letter-spacing: {{ settings.heading_letter_spacing }}px;
       --page-width: {{ settings.page_width }}px;
       --spacing-sections: {{ settings.spacing_sections }}px;
       --grid-gap: {{ settings.grid_gap }}px;

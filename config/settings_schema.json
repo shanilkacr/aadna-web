@@ -95,25 +95,10 @@
     "settings": [
       {
         "type": "font_picker",
-        "id": "font_heading",
-        "label": "Heading font",
-        "default": "jost_n4"
-      },
-      {
-        "type": "font_picker",
         "id": "font_body",
         "label": "Body font",
+        "info": "Fallback only — the theme's own Stack Sans Headline loads first. Headings always use Forum.",
         "default": "assistant_n4"
-      },
-      {
-        "type": "range",
-        "id": "heading_letter_spacing",
-        "min": 0,
-        "max": 6,
-        "step": 1,
-        "default": 1,
-        "unit": "px",
-        "label": "Heading letter spacing"
       }
     ]
   },

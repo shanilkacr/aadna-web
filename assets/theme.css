@@ -643,11 +643,6 @@ strong, b, th { font-weight: 400; }
 .rich-text__inner { max-width: 720px; margin: 0 auto; }
 .rich-text__inner--center { text-align: center; }
 
-/* Press strip */
-.press-strip__heading { text-align: center; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 24px; }
-.press-strip__logos { display: flex; justify-content: center; align-items: center; gap: 48px; flex-wrap: wrap; opacity: .6; }
-.press-strip__logo img { max-height: 32px; width: auto; }
-
 /* Newsletter */
 .newsletter-banner__inner { max-width: 560px; margin: 0 auto; text-align: center; padding: calc(var(--spacing-sections) * 1.5) 0; }
 .newsletter-banner .newsletter-form {
