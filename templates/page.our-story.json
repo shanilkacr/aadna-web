@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -6,8 +15,10 @@
         "intro": {
           "type": "row",
           "settings": {
+            "image": "shopify://shop_images/me.jpg",
             "fallback_image": "https://aadna.store/cdn/shop/files/me.jpg",
             "quote": "With each stone and each piece of jewellery we try to tell a story",
+            "heading": "",
             "body": "<p>The founder and designer, Kalpani, is truly inspired to make her clients feel like the owner and the custodian of each stone and piece of jewellery. At AADNA, the team is dedicated to creating unique jewellery influenced by the Sri Lankan heritage and using excellent local craftsmanship.</p><p><em>‘It’s like writing a poem or finishing a beautiful painting.. Only I do it with natural stones and metal..’</em></p>",
             "attribution": "Kalpani Nandaratne"
           }
@@ -16,6 +27,7 @@
           "type": "row",
           "settings": {
             "fallback_image": "https://aadna.store/cdn/shop/files/gaea07.jpg",
+            "quote": "",
             "heading": "Love what you do!",
             "body": "<p>AADNA is the result of a wonder luscious journey of a Sri Lankan designer. Following her heart’s deep calling to create something magnificent, passionate and long lasting, she set forth wandering around the paradise island. As with many other artists she experimented with many muses only to find her soul resting on the great craftsmanship of jewellery design.</p>",
             "attribution": "Kalpani Nandaratne"
@@ -30,10 +42,10 @@
         }
       },
       "block_order": ["intro", "closing", "love"],
-      "settings": {
-
-      }
+      "settings": {}
     }
   },
-  "order": ["main"]
+  "order": [
+    "main"
+  ]
 }
