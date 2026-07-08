@@ -447,9 +447,28 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('resize', syncLayout);
   });
 
+  // Personalization: trim and enforce max 15 characters before add to cart
+  document.querySelectorAll('[data-personalization-input]').forEach(function (input) {
+    input.addEventListener('input', function () {
+      if (input.value.length > 15) {
+        input.value = input.value.slice(0, 15);
+      }
+    });
+  });
+
   // Cart add via fetch (progressive enhancement, falls back to normal form submit)
   document.querySelectorAll('form[action^="/cart/add"]').forEach(function (form) {
     form.addEventListener('submit', function (e) {
+      var personalizationInput = form.querySelector('[data-personalization-input]');
+      if (personalizationInput) {
+        personalizationInput.value = personalizationInput.value.trim().slice(0, 15);
+        if (!personalizationInput.value) {
+          e.preventDefault();
+          personalizationInput.focus({ preventScroll: true });
+          return;
+        }
+      }
+
       if (!window.fetch) return;
       e.preventDefault();
       var formData = new FormData(form);

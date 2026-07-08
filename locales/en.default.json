@@ -53,7 +53,10 @@
       "choose_options": "Choose options",
       "view_details": "View details",
       "on_sale": "Sale",
-      "you_may_also_like": "You may also like"
+      "you_may_also_like": "You may also like",
+      "personalization_label": "Name for engraving",
+      "personalization_placeholder": "Enter name",
+      "personalization_hint": "Plain text only, up to 15 characters."
     }
   },
   "collections": {

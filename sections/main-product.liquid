@@ -109,6 +109,39 @@
             {%- endfor -%}
           {%- endunless -%}
 
+          {%- liquid
+            assign show_personalization = false
+            if product.tags contains 'personalised' or product.tags contains 'personalized'
+              assign show_personalization = true
+            endif
+            unless show_personalization
+              for collection in product.collections
+                if collection.handle == 'personalised-jewellery'
+                  assign show_personalization = true
+                  break
+                endif
+              endfor
+            endunless
+          -%}
+
+          {%- if show_personalization -%}
+            <div class="product__personalization">
+              <label for="PersonalizationName-{{ section.id }}">{{ 'products.product.personalization_label' | t }}</label>
+              <input
+                type="text"
+                id="PersonalizationName-{{ section.id }}"
+                name="properties[Name]"
+                maxlength="15"
+                required
+                class="product__personalization-input"
+                placeholder="{{ 'products.product.personalization_placeholder' | t }}"
+                autocomplete="off"
+                data-personalization-input
+              >
+              <p class="product__personalization-hint">{{ 'products.product.personalization_hint' | t }}</p>
+            </div>
+          {%- endif -%}
+
           <div class="product__quantity">
             <label for="Quantity-{{ section.id }}">{{ 'products.product.quantity' | t }}</label>
             <div class="product__quantity-control" data-quantity-control>

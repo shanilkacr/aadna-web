@@ -1,0 +1,41 @@
+{%- comment -%}
+  Product type links for the shop mega menu and mobile drawer.
+  Source: product type filter on the All collection (Search & Discovery).
+  Fallback: fixed types in display order with filter URLs on /collections/all.
+{%- endcomment -%}
+{%- liquid
+  assign fallback_types = 'Earrings|Necklace|Rings|Cufflinks|Bangle|Charms' | split: '|'
+  assign shop_collection_url = collections.all.url | default: routes.all_products_collection_url
+
+  assign product_type_filter = blank
+  if collections.all.filters.size > 0
+    for filter in collections.all.filters
+      if filter.param_name == 'filter.p.product_type'
+        assign product_type_filter = filter
+        break
+      endif
+    endfor
+  endif
+-%}
+
+{%- for fallback_type in fallback_types -%}
+  {%- liquid
+    assign type_label = fallback_type
+    assign encoded_type = fallback_type | url_param_escape
+    assign type_url = shop_collection_url | append: '?filter.p.product_type=' | append: encoded_type
+    assign fallback_down = fallback_type | downcase
+
+    if product_type_filter != blank
+      for value in product_type_filter.values
+        assign value_label_down = value.label | downcase
+        assign value_param_down = value.value | downcase
+        if value_label_down == fallback_down or value_param_down == fallback_down
+          assign type_label = value.label
+          assign type_url = value.url
+          break
+        endif
+      endfor
+    endif
+  -%}
+  <li><a href="{{ type_url }}">{{ type_label }}</a></li>
+{%- endfor -%}

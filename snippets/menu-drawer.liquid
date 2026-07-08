@@ -3,8 +3,7 @@
   Rendered once by sections/header.liquid; opened by any [data-menu-toggle] button.
   Accepts:
     menu         - main linklist (section.settings.menu)
-    mega_trigger - title of the item that expands to show categories (section.settings.mega_menu_trigger)
-    mega_list    - linklist of category links (section.settings.mega_menu_list)
+    mega_trigger - title of the item that expands to show product types (section.settings.mega_menu_trigger)
 {%- endcomment -%}
 {%- assign trigger_down = mega_trigger | downcase -%}
 <div class="menu-drawer" id="MenuDrawer" aria-hidden="true">
@@ -17,14 +16,12 @@
       <ul>
         {%- for link in menu.links -%}
           {%- assign link_down = link.title | downcase -%}
-          {%- if trigger_down != blank and link_down == trigger_down and mega_list.links.size > 0 -%}
+          {%- if trigger_down != blank and link_down == trigger_down -%}
             <li class="menu-drawer__expandable">
               <details data-menu-drawer-expand>
                 <summary>{{ link.title }}</summary>
                 <ul class="menu-drawer__sublinks">
-                  {%- for sublink in mega_list.links -%}
-                    <li><a href="{{ sublink.url }}">{{ sublink.title }}</a></li>
-                  {%- endfor -%}
+                  {% render 'mega-menu-product-types' %}
                 </ul>
               </details>
             </li>

@@ -27,13 +27,16 @@
         "closing": {
           "type": "statement",
           "settings": {
+            "title": "Jewellery with a story, from the paradise island",
             "heading": "Handcrafted to perfection!",
             "vimeo_id": "870539693"
           }
         }
       },
-      "block_order": ["intro", "closing", "love"],
-      "settings": {}
+      "block_order": ["closing", "intro", "love"],
+      "settings": {
+        "intro": "Jewellery with a story, from the paradise island"
+      }
     }
   },
   "order": [

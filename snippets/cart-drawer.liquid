@@ -27,6 +27,11 @@
                 {%- if item.variant.title != 'Default Title' -%}
                   <p class="cart-drawer__item-variant">{{ item.variant.title }}</p>
                 {%- endif -%}
+                {%- for property in item.properties -%}
+                  {%- unless property.last == blank -%}
+                    <p class="cart-drawer__item-property">{{ property.first }}: {{ property.last }}</p>
+                  {%- endunless -%}
+                {%- endfor -%}
                 <p class="cart-drawer__item-price">{{ item.final_price | money }}</p>
                 <p class="cart-drawer__item-qty">{{ 'general.cart.quantity' | t }}: {{ item.quantity }}</p>
               </div>

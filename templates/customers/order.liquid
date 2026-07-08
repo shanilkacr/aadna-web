@@ -13,7 +13,14 @@
     <tbody>
       {%- for line_item in order.line_items -%}
         <tr class="cart-page__row">
-          <td>{{ line_item.title }}</td>
+          <td>
+            {{ line_item.title }}
+            {%- for property in line_item.properties -%}
+              {%- unless property.last == blank -%}
+                <p>{{ property.first }}: {{ property.last }}</p>
+              {%- endunless -%}
+            {%- endfor -%}
+          </td>
           <td>{{ line_item.quantity }}</td>
           <td>{{ line_item.final_line_price | money }}</td>
         </tr>

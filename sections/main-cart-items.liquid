@@ -24,6 +24,11 @@
                 <div>
                   <a href="{{ item.url }}">{{ item.product.title }}</a>
                   {%- if item.variant.title != 'Default Title' -%}<p>{{ item.variant.title }}</p>{%- endif -%}
+                  {%- for property in item.properties -%}
+                    {%- unless property.last == blank -%}
+                      <p>{{ property.first }}: {{ property.last }}</p>
+                    {%- endunless -%}
+                  {%- endfor -%}
                   <p>{{ item.final_price | money }}</p>
                 </div>
               </td>
