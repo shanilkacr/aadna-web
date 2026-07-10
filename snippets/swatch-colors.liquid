@@ -1,0 +1,56 @@
+{%- comment -%}
+  Returns one or two hex colours for a swatch label.
+  Single colour: #C0C0C0
+  Dual colour: #C0C0C0|#AD8A54
+  Accepts: color_name (string)
+{%- endcomment -%}
+{%- liquid
+  assign color_key = color_name | downcase | strip
+  assign is_dual = false
+  assign part_a = blank
+  assign part_b = blank
+
+  if color_key contains 'sterling silver' and color_key contains 'gold'
+    assign is_dual = true
+    assign part_a = 'sterling silver'
+    assign part_b = 'gold'
+  elsif color_key contains ' and '
+    assign parts = color_key | split: ' and '
+    if parts.size == 2
+      assign is_dual = true
+      assign part_a = parts[0] | strip
+      assign part_b = parts[1] | strip
+    endif
+  elsif color_key contains '/'
+    assign parts = color_key | split: '/'
+    if parts.size == 2
+      assign is_dual = true
+      assign part_a = parts[0] | strip
+      assign part_b = parts[1] | strip
+    endif
+  elsif color_key contains 'silver' and color_key contains 'gold'
+    assign is_dual = true
+    assign part_a = 'silver'
+    assign part_b = 'gold'
+  endif
+
+  if is_dual and part_a != blank and part_b != blank
+    capture hex_a
+      render 'swatch-color', color_name: part_a
+    endcapture
+    capture hex_b
+      render 'swatch-color', color_name: part_b
+    endcapture
+    assign hex_a = hex_a | strip
+    assign hex_b = hex_b | strip
+    if hex_a != hex_b
+      echo hex_a
+      echo '|'
+      echo hex_b
+    else
+      echo hex_a
+    endif
+  else
+    render 'swatch-color', color_name: color_name
+  endif
+-%}

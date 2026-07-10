@@ -1,8 +1,47 @@
 {%- comment -%}
-  Renders a product card.
-  Accepts: product (object), fallback_image (string, optional CDN url used when no product is passed)
+  Renders a product card with dynamic badges and quick-add on hover.
+  Accepts: product (object), fallback_image (string, optional CDN url)
 {%- endcomment -%}
-<div class="product-card">
+{%- liquid
+  assign is_bestseller = false
+  assign is_new = false
+
+  for col in product.collections
+    assign col_down = col.handle | downcase
+    if col_down == 'best-sellers' or col_down == 'bestsellers' or col_down == 'best-seller'
+      assign is_bestseller = true
+    endif
+  endfor
+
+  if product.tags.size > 0
+    for tag in product.tags
+      assign tag_down = tag | downcase
+      if tag_down == 'new-arrival' or tag_down == 'new arrival' or tag_down == 'new'
+        assign is_new = true
+      endif
+      if tag_down == 'best-seller' or tag_down == 'bestseller' or tag_down == 'best seller'
+        assign is_bestseller = true
+      endif
+    endfor
+  endif
+
+  if product.created_at != blank
+    assign created_seconds = product.created_at | date: '%s' | plus: 0
+    assign now_seconds = 'now' | date: '%s' | plus: 0
+    assign age_seconds = now_seconds | minus: created_seconds
+    assign thirty_days = 7776000
+    if age_seconds < thirty_days
+      assign is_new = true
+    endif
+  endif
+
+  assign first_variant = product.selected_or_first_available_variant | default: product.variants.first
+  assign is_single_variant = false
+  if product.variants.size == 1
+    assign is_single_variant = true
+  endif
+-%}
+<div class="product-card{% unless product.available %} product-card--sold-out{% endunless %}">
   <a href="{{ product.url | default: '#' }}" class="product-card__link">
     <div class="product-card__media">
       {%- if product.featured_image -%}
@@ -26,7 +65,35 @@
           height="{{ 800 | divided_by: product.images[1].aspect_ratio | default: 1000 }}"
         >
       {%- endif -%}
+
+      {%- if is_new or is_bestseller or product.available == false -%}
+        <div class="product-card__badges">
+          {%- unless product.available -%}
+            <span class="product-card__badge product-card__badge--sold-out">Sold Out</span>
+          {%- endunless -%}
+          {%- if is_new -%}
+            <span class="product-card__badge product-card__badge--new">{{ 'products.product.new_arrival' | t | default: 'New Arrival' }}</span>
+          {%- endif -%}
+          {%- if is_bestseller -%}
+            <span class="product-card__badge product-card__badge--bestseller">{{ 'products.product.best_seller' | t | default: 'Best Seller' }}</span>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if product != blank and first_variant.available -%}
+        <button
+          type="button"
+          class="product-card__quick-add"
+          data-quick-add
+          {%- if is_single_variant -%}
+            data-variant-id="{{ first_variant.id }}"
+          {%- else -%}
+            data-product-url="{{ product.url }}"
+          {%- endif -%}
+        >Add to Cart</button>
+      {%- endif -%}
     </div>
+
     <div class="product-card__info">
       <p class="product-card__title">{{ product.title | default: 'Product title' }}</p>
       {%- if product != blank -%}

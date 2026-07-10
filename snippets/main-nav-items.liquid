@@ -1,0 +1,78 @@
+{%- comment -%}
+  Renders main navigation list items for the header and mobile drawer.
+  Accepts:
+    menu          - link_list object (section.settings.menu)
+    mega_trigger  - top-level item title that opens the mega menu / drawer submenu
+    variant       - 'header' or 'drawer'
+  Uses Shopify navigation when available; otherwise falls back to default links.
+  Legacy "Personalised" menu labels are mapped to Design Your Own.
+{%- endcomment -%}
+{%- liquid
+  assign trigger_down = mega_trigger | downcase
+  assign menu_links = menu.links
+  assign use_fallback = false
+  if menu_links.size == 0
+    assign use_fallback = true
+  endif
+-%}
+
+{%- if use_fallback -%}
+  {%- assign fallback_titles = 'Home|Shop|Our Story|Design Your Own' | split: '|' -%}
+  {%- assign fallback_urls = routes.root_url | append: '||' | append: routes.all_products_collection_url | append: '||/pages/our-story||/pages/design-your-own' | split: '||' -%}
+  {%- for fallback_title in fallback_titles -%}
+    {%- assign link_title_down = fallback_title | downcase -%}
+    {%- assign link_url = fallback_urls[forloop.index0] -%}
+    {%- if variant == 'drawer' and trigger_down != blank and link_title_down == trigger_down -%}
+      <li class="menu-drawer__expandable">
+        <details data-menu-drawer-expand>
+          <summary>{{ fallback_title }}</summary>
+          <ul class="menu-drawer__sublinks">
+            {% render 'mega-menu-product-types' %}
+          </ul>
+        </details>
+      </li>
+    {%- elsif variant == 'drawer' -%}
+      <li><a href="{{ link_url }}">{{ fallback_title }}</a></li>
+    {%- elsif trigger_down != blank and link_title_down == trigger_down -%}
+      <li class="site-header__nav-item site-header__nav-item--mega" data-mega-trigger>
+        <a href="{{ link_url }}">{{ fallback_title }}</a>
+      </li>
+    {%- else -%}
+      <li class="site-header__nav-item">
+        <a href="{{ link_url }}">{{ fallback_title }}</a>
+      </li>
+    {%- endif -%}
+  {%- endfor -%}
+{%- else -%}
+  {%- for link in menu_links -%}
+    {%- liquid
+      assign link_title = link.title
+      assign link_url = link.url
+      assign link_title_down = link.title | downcase
+      if link_title_down == 'personalised' or link_title_down == 'personalized'
+        assign link_title = 'Design Your Own'
+        assign link_url = '/pages/design-your-own'
+      endif
+    -%}
+    {%- if variant == 'drawer' and trigger_down != blank and link_title_down == trigger_down -%}
+      <li class="menu-drawer__expandable">
+        <details data-menu-drawer-expand>
+          <summary>{{ link_title }}</summary>
+          <ul class="menu-drawer__sublinks">
+            {% render 'mega-menu-product-types' %}
+          </ul>
+        </details>
+      </li>
+    {%- elsif variant == 'drawer' -%}
+      <li><a href="{{ link_url }}">{{ link_title }}</a></li>
+    {%- elsif trigger_down != blank and link_title_down == trigger_down -%}
+      <li class="site-header__nav-item site-header__nav-item--mega" data-mega-trigger>
+        <a href="{{ link_url }}">{{ link_title }}</a>
+      </li>
+    {%- else -%}
+      <li class="site-header__nav-item">
+        <a href="{{ link_url }}">{{ link_title }}</a>
+      </li>
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}

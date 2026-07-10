@@ -456,6 +456,58 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  // Design Your Own enquiry form: include selected file details in the contact body
+  document.querySelectorAll('[data-design-your-own-form]').forEach(function (form) {
+    var fileInput = form.querySelector('[data-design-your-own-file]');
+    var bodyInput = form.querySelector('[data-design-your-own-body]');
+    var preview = form.querySelector('[data-design-your-own-preview]');
+    var maxFileSize = 5 * 1024 * 1024;
+
+    if (fileInput) {
+      fileInput.addEventListener('change', function () {
+        if (!preview) return;
+        preview.hidden = true;
+        preview.innerHTML = '';
+
+        var file = fileInput.files && fileInput.files[0];
+        if (!file) return;
+
+        if (file.size > maxFileSize) {
+          preview.hidden = false;
+          preview.textContent = 'File is too large. Please choose an image or PDF under 5 MB.';
+          fileInput.value = '';
+          return;
+        }
+
+        preview.hidden = false;
+        preview.textContent = 'Selected: ' + file.name;
+
+        if (file.type.indexOf('image/') === 0) {
+          var reader = new FileReader();
+          reader.onload = function (event) {
+            var img = document.createElement('img');
+            img.src = event.target.result;
+            img.alt = file.name;
+            preview.appendChild(img);
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    }
+
+    form.addEventListener('submit', function () {
+      if (!bodyInput || !fileInput) return;
+
+      var file = fileInput.files && fileInput.files[0];
+      if (!file) return;
+
+      var note = '\n\nReference file: ' + file.name + ' (' + Math.max(1, Math.round(file.size / 1024)) + ' KB)';
+      if (bodyInput.value.indexOf(note) === -1) {
+        bodyInput.value = bodyInput.value.trim() + note;
+      }
+    });
+  });
+
   // Cart add via fetch (progressive enhancement, falls back to normal form submit)
   document.querySelectorAll('form[action^="/cart/add"]').forEach(function (form) {
     form.addEventListener('submit', function (e) {
@@ -478,4 +530,38 @@ document.addEventListener('DOMContentLoaded', function () {
         .catch(function () { form.submit(); });
     });
   });
+
+  // Quick Add to Cart
+  document.querySelectorAll('[data-quick-add]').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var variantId = btn.getAttribute('data-variant-id');
+      if (!variantId) {
+        window.location.href = btn.getAttribute('data-product-url');
+        return;
+      }
+      btn.style.pointerEvents = 'none';
+      fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items: [{ id: parseInt(variantId, 10), quantity: 1 }] })
+      })
+        .then(function (res) { return res.json(); })
+        .then(function () {
+          btn.style.pointerEvents = '';
+          document.dispatchEvent(new CustomEvent('cart:updated'));
+        })
+        .catch(function () { btn.style.pointerEvents = ''; });
+    });
+  });
+
+  // Design Your Own: show selected filename next to the attach button
+  var dyoFile = document.querySelector('[data-design-your-own-file]');
+  var dyoFilename = document.querySelector('[data-design-your-own-filename]');
+  if (dyoFile && dyoFilename) {
+    dyoFile.addEventListener('change', function () {
+      dyoFilename.textContent = dyoFile.files.length ? dyoFile.files[0].name : '';
+    });
+  }
 });

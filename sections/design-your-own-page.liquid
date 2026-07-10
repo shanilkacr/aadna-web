@@ -1,0 +1,448 @@
+{%- liquid
+  assign gallery_blocks = section.blocks | where: 'type', 'gallery_image'
+  assign hero_blocks = section.blocks | where: 'type', 'hero_image'
+  assign default_fallbacks = 'https://aadna.store/cdn/shop/files/slideshow2.jpg|https://aadna.store/cdn/shop/files/slideshow4.jpg|https://aadna.store/cdn/shop/files/name3.jpg|https://aadna.store/cdn/shop/files/gaea07.jpg|https://aadna.store/cdn/shop/files/me.jpg|https://aadna.store/cdn/shop/files/Lunacuff2.png' | split: '|'
+  assign default_captions = 'Custom signet ring|Bespoke pendant|Handcrafted cufflinks|One-of-a-kind necklace|Handcrafted ring|Personalised bangle' | split: '|'
+
+  assign row1_fallbacks = 'https://aadna.store/cdn/shop/files/slideshow2.jpg|https://aadna.store/cdn/shop/files/slideshow4.jpg|https://aadna.store/cdn/shop/files/name3.jpg|https://aadna.store/cdn/shop/files/gaea07.jpg|https://aadna.store/cdn/shop/files/me.jpg|https://aadna.store/cdn/shop/files/Lunacuff2.png|https://aadna.store/cdn/shop/files/slideshow2.jpg|https://aadna.store/cdn/shop/files/slideshow4.jpg' | split: '|'
+  assign row2_fallbacks = 'https://aadna.store/cdn/shop/files/gaea07.jpg|https://aadna.store/cdn/shop/files/me.jpg|https://aadna.store/cdn/shop/files/Lunacuff2.png|https://aadna.store/cdn/shop/files/slideshow2.jpg|https://aadna.store/cdn/shop/files/slideshow4.jpg|https://aadna.store/cdn/shop/files/name3.jpg|https://aadna.store/cdn/shop/files/gaea07.jpg|https://aadna.store/cdn/shop/files/me.jpg' | split: '|'
+
+-%}
+
+{%- capture hero_images -%}
+  {%- if hero_blocks.size > 0 -%}
+    {%- for block in hero_blocks -%}
+      <div class="dyo-page__marquee-cell" {{ block.shopify_attributes }}>
+        {%- if block.settings.image != blank -%}
+          <img src="{{ block.settings.image | image_url: width: 400 }}" alt="" width="400" height="500" loading="eager">
+        {%- elsif block.settings.fallback_image != blank -%}
+          <img src="{{ block.settings.fallback_image }}" alt="" width="400" height="500" loading="eager">
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+  {%- else -%}
+    {%- for url in row1_fallbacks -%}
+      <div class="dyo-page__marquee-cell">
+        <img src="{{ url }}" alt="" width="400" height="500" loading="eager">
+      </div>
+    {%- endfor -%}
+    {%- for url in row2_fallbacks -%}
+      <div class="dyo-page__marquee-cell">
+        <img src="{{ url }}" alt="" width="400" height="500" loading="eager">
+      </div>
+    {%- endfor -%}
+  {%- endif -%}
+{%- endcapture -%}
+
+<section class="dyo-page">
+  <div class="dyo-page__hero-mosaic">
+    <div class="dyo-page__marquee-row">
+      <div class="dyo-page__marquee-track">
+        <div class="dyo-page__marquee-set">{{ hero_images }}</div>
+        <div class="dyo-page__marquee-set">{{ hero_images }}</div>
+      </div>
+    </div>
+    <div class="dyo-page__mosaic-overlay">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="dyo-page__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      <h1>{{ section.settings.title | default: page.title }}</h1>
+    </div>
+  </div>
+
+  <div class="dyo-page__form-section">
+    <div class="dyo-page__hero-form">
+      <div class="dyo-page__hero-media">
+        {%- if section.settings.form_image != blank -%}
+          <img
+            src="{{ section.settings.form_image | image_url: width: 1400 }}"
+            srcset="{{ section.settings.form_image | image_url: width: 800 }} 800w, {{ section.settings.form_image | image_url: width: 1400 }} 1400w"
+            sizes="50vw"
+            alt="{{ section.settings.title | escape }}"
+            width="1400"
+            height="{{ 1400 | divided_by: section.settings.form_image.aspect_ratio | default: 1750 }}"
+            loading="lazy"
+          >
+        {%- elsif section.settings.form_fallback_image != blank -%}
+          <img
+            src="{{ section.settings.form_fallback_image }}"
+            alt="{{ section.settings.title | escape }}"
+            width="1400"
+            height="1750"
+            loading="lazy"
+          >
+        {%- else -%}
+          <img
+            src="https://aadna.store/cdn/shop/files/slideshow4.jpg"
+            alt="{{ section.settings.title | escape }}"
+            width="1400"
+            height="1750"
+            loading="lazy"
+          >
+        {%- endif -%}
+      </div>
+
+      <div class="dyo-page__hero-panel">
+        {%- if section.settings.form_heading != blank -%}
+          <h2 class="dyo-page__form-heading">{{ section.settings.form_heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.intro != blank -%}
+          <div class="dyo-page__intro">{{ section.settings.intro }}</div>
+        {%- endif -%}
+
+        {% form 'contact', id: 'DesignYourOwnForm', class: 'dyo-page__form', data-design-your-own-form: true %}
+          <input type="hidden" name="contact[Form type]" value="Design Your Own enquiry">
+
+          {%- if form.posted_successfully? -%}
+            <p class="dyo-page__success">{{ section.settings.success_message }}</p>
+          {%- endif -%}
+
+          {%- if form.errors -%}
+            <div class="dyo-page__errors">{{ form.errors | default_errors }}</div>
+          {%- endif -%}
+
+          <div class="dyo-page__field-row">
+            <div class="dyo-page__field">
+              <label for="DesignYourOwnForm-name">{{ section.settings.name_label }}</label>
+              <input type="text" id="DesignYourOwnForm-name" name="contact[Name]" autocomplete="name" required>
+            </div>
+            <div class="dyo-page__field">
+              <label for="DesignYourOwnForm-email">{{ section.settings.email_label }}</label>
+              <input type="email" id="DesignYourOwnForm-email" name="contact[email]" autocomplete="email" required>
+            </div>
+          </div>
+
+          <div class="dyo-page__field">
+            <label for="DesignYourOwnForm-phone">{{ section.settings.phone_label }}</label>
+            <input type="tel" id="DesignYourOwnForm-phone" name="contact[Phone]" autocomplete="tel" required>
+          </div>
+
+          <div class="dyo-page__field">
+            <label for="DesignYourOwnForm-type">{{ section.settings.type_label }}</label>
+            <select id="DesignYourOwnForm-type" name="contact[Jewellery type]">
+              <option value="">Select a type</option>
+              <option value="Ring">Ring</option>
+              <option value="Necklace">Necklace</option>
+              <option value="Bracelet / Bangle">Bracelet / Bangle</option>
+              <option value="Earrings">Earrings</option>
+              <option value="Pendant">Pendant</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="dyo-page__field">
+            <label for="DesignYourOwnForm-body">{{ section.settings.brief_label }}</label>
+            <textarea
+              id="DesignYourOwnForm-body"
+              name="contact[body]"
+              rows="5"
+              placeholder="{{ section.settings.brief_placeholder }}"
+              required
+              data-design-your-own-body
+            ></textarea>
+          </div>
+
+          <input type="file" id="DesignYourOwnForm-file" accept="image/*,.pdf" data-design-your-own-file hidden>
+          <div class="dyo-page__file-preview" data-design-your-own-preview hidden></div>
+
+          <div class="dyo-page__actions">
+            <label for="DesignYourOwnForm-file" class="dyo-page__file-btn" role="button" tabindex="0">{{ section.settings.file_label }}</label>
+            <span class="dyo-page__file-name" data-design-your-own-filename></span>
+            <button type="submit" class="button button--primary">{{ section.settings.submit_label }}</button>
+          </div>
+          <p class="dyo-page__file-hint">{{ section.settings.file_hint }}</p>
+        {% endform %}
+      </div>
+    </div>
+  </div>
+
+  {%- if section.settings.show_gallery -%}
+    <div class="dyo-page__gallery page-width">
+      <div class="dyo-page__gallery-header">
+        <h2>{{ section.settings.gallery_heading }}</h2>
+        {%- if section.settings.gallery_subheading != blank -%}
+          <p>{{ section.settings.gallery_subheading }}</p>
+        {%- endif -%}
+      </div>
+
+      <div class="dyo-page__gallery-grid product-grid" style="--columns:4;" data-dyo-gallery>
+        {%- if gallery_blocks.size > 0 -%}
+          {%- for block in gallery_blocks -%}
+            {%- assign image_alt = block.settings.caption | default: block.settings.image.alt | default: 'Bespoke piece' -%}
+            <div class="dyo-page__gallery-item" {{ block.shopify_attributes }}>
+              <div class="dyo-page__gallery-media">
+                {%- if block.settings.image != blank -%}
+                  <img
+                    src="{{ block.settings.image | image_url: width: 800 }}"
+                    alt="{{ image_alt | escape }}"
+                    loading="lazy"
+                    width="800"
+                    height="{{ 800 | divided_by: block.settings.image.aspect_ratio | default: 1000 }}"
+                  >
+                {%- elsif block.settings.fallback_image != blank -%}
+                  <img src="{{ block.settings.fallback_image }}" alt="{{ image_alt | escape }}" loading="lazy" width="800" height="1000">
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- else -%}
+          {%- for fallback_url in default_fallbacks -%}
+            <div class="dyo-page__gallery-item">
+              <div class="dyo-page__gallery-media">
+                <img src="{{ fallback_url }}" alt="{{ default_captions[forloop.index0] | escape }}" loading="lazy" width="800" height="1000">
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Design Your Own page",
+  "enabled_on": {
+    "templates": ["page"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Hero mosaic"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Bespoke jewellery"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Design Your Own"
+    },
+    {
+      "type": "header",
+      "content": "Enquiry form"
+    },
+    {
+      "type": "text",
+      "id": "form_heading",
+      "label": "Form heading",
+      "default": "Start your design"
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Form description",
+      "default": "<p>Create something entirely yours. Share your vision — stones, metal, silhouette — and our atelier will bring it to life, handcrafted in Sri Lanka.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "form_image",
+      "label": "Form side image"
+    },
+    {
+      "type": "text",
+      "id": "form_fallback_image",
+      "label": "Form side fallback image URL",
+      "default": "https://aadna.store/cdn/shop/files/name3.jpg"
+    },
+    {
+      "type": "text",
+      "id": "name_label",
+      "label": "Name label",
+      "default": "Name"
+    },
+    {
+      "type": "text",
+      "id": "email_label",
+      "label": "Email label",
+      "default": "Email"
+    },
+    {
+      "type": "text",
+      "id": "phone_label",
+      "label": "Phone label",
+      "default": "Phone"
+    },
+    {
+      "type": "text",
+      "id": "type_label",
+      "label": "Jewellery type label",
+      "default": "Type of jewellery"
+    },
+    {
+      "type": "text",
+      "id": "brief_label",
+      "label": "Brief label",
+      "default": "Your design brief"
+    },
+    {
+      "type": "text",
+      "id": "brief_placeholder",
+      "label": "Brief placeholder",
+      "default": "Describe the piece you have in mind — stones, metal, occasion, sizing, or any details that matter to you."
+    },
+    {
+      "type": "text",
+      "id": "file_label",
+      "label": "File upload label",
+      "default": "Attach reference image"
+    },
+    {
+      "type": "text",
+      "id": "file_hint",
+      "label": "File upload hint",
+      "default": "JPEG, PNG, WEBP, or PDF up to 5 MB."
+    },
+    {
+      "type": "text",
+      "id": "submit_label",
+      "label": "Submit button label",
+      "default": "Send enquiry"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "Thank you — your enquiry has been sent. We'll be in touch shortly."
+    },
+    {
+      "type": "header",
+      "content": "Gallery"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_gallery",
+      "label": "Show gallery",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "gallery_heading",
+      "label": "Gallery heading",
+      "default": "Past creations"
+    },
+    {
+      "type": "text",
+      "id": "gallery_subheading",
+      "label": "Gallery subheading",
+      "default": "A selection of one-of-a-kind pieces crafted for our clients."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "hero_image",
+      "name": "Hero grid image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "fallback_image",
+          "label": "Fallback image URL"
+        }
+      ]
+    },
+    {
+      "type": "gallery_image",
+      "name": "Gallery image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "fallback_image",
+          "label": "Fallback image URL",
+          "info": "Shown until an image is selected above."
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption"
+        },
+        {
+          "type": "checkbox",
+          "id": "featured",
+          "label": "Featured (larger tile)",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Design Your Own page",
+      "blocks": [
+        { "type": "hero_image", "settings": { "fallback_image": "https://aadna.store/cdn/shop/files/slideshow2.jpg" } },
+        { "type": "hero_image", "settings": { "fallback_image": "https://aadna.store/cdn/shop/files/slideshow4.jpg" } },
+        { "type": "hero_image", "settings": { "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg" } },
+        { "type": "hero_image", "settings": { "fallback_image": "https://aadna.store/cdn/shop/files/gaea07.jpg" } },
+        { "type": "hero_image", "settings": { "fallback_image": "https://aadna.store/cdn/shop/files/me.jpg" } },
+        { "type": "hero_image", "settings": { "fallback_image": "https://aadna.store/cdn/shop/files/Lunacuff2.png" } },
+        { "type": "hero_image", "settings": { "fallback_image": "https://aadna.store/cdn/shop/files/slideshow2.jpg" } },
+        { "type": "hero_image", "settings": { "fallback_image": "https://aadna.store/cdn/shop/files/slideshow4.jpg" } },
+        { "type": "hero_image", "settings": { "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg" } },
+        { "type": "hero_image", "settings": { "fallback_image": "https://aadna.store/cdn/shop/files/gaea07.jpg" } },
+        { "type": "hero_image", "settings": { "fallback_image": "https://aadna.store/cdn/shop/files/me.jpg" } },
+        { "type": "hero_image", "settings": { "fallback_image": "https://aadna.store/cdn/shop/files/Lunacuff2.png" } },
+        { "type": "hero_image", "settings": { "fallback_image": "https://aadna.store/cdn/shop/files/slideshow2.jpg" } },
+        { "type": "hero_image", "settings": { "fallback_image": "https://aadna.store/cdn/shop/files/slideshow4.jpg" } },
+        { "type": "hero_image", "settings": { "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg" } },
+        { "type": "hero_image", "settings": { "fallback_image": "https://aadna.store/cdn/shop/files/gaea07.jpg" } },
+        {
+          "type": "gallery_image",
+          "settings": {
+            "fallback_image": "https://aadna.store/cdn/shop/files/slideshow2.jpg",
+            "caption": "Custom signet ring",
+            "featured": true
+          }
+        },
+        {
+          "type": "gallery_image",
+          "settings": {
+            "fallback_image": "https://aadna.store/cdn/shop/files/slideshow4.jpg",
+            "caption": "Bespoke pendant"
+          }
+        },
+        {
+          "type": "gallery_image",
+          "settings": {
+            "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg",
+            "caption": "Handcrafted cufflinks"
+          }
+        },
+        {
+          "type": "gallery_image",
+          "settings": {
+            "fallback_image": "https://aadna.store/cdn/shop/files/gaea07.jpg",
+            "caption": "One-of-a-kind necklace"
+          }
+        },
+        {
+          "type": "gallery_image",
+          "settings": {
+            "fallback_image": "https://aadna.store/cdn/shop/files/me.jpg",
+            "caption": "Handcrafted ring"
+          }
+        },
+        {
+          "type": "gallery_image",
+          "settings": {
+            "fallback_image": "https://aadna.store/cdn/shop/files/Lunacuff2.png",
+            "caption": "Personalised bangle"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -3,6 +3,7 @@
     "hero": {
       "type": "hero",
       "settings": {
+        "banner_text": "Islandwide free delivery",
         "image": "shopify://shop_images/hero-image.jpg",
         "image_mobile": "shopify://shop_images/hero-image.jpg",
         "fallback_image": "",
@@ -36,7 +37,7 @@
         "column_RYzmTV": {
           "type": "column",
           "settings": {
-            "label": "Custom Orders",
+            "label": "Personalised",
             "link": "shopify://collections/personalised-jewellery",
             "video": "shopify://files/videos/custom-orders.mp4",
             "fallback_image": "",

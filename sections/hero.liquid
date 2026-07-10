@@ -1,3 +1,7 @@
+{%- if section.settings.banner_text != blank -%}
+  <div class="hero-banner">{{ section.settings.banner_text }}</div>
+{%- endif -%}
+
 <section class="hero">
   <div class="hero__media">
     {%- if section.settings.image_mobile != blank -%}
@@ -52,6 +56,7 @@
 {
   "name": "Hero",
   "settings": [
+    { "type": "text", "id": "banner_text", "label": "Banner text", "default": "Islandwide free delivery" },
     { "type": "image_picker", "id": "image", "label": "Image (desktop)" },
     { "type": "image_picker", "id": "image_mobile", "label": "Image (mobile)" },
     { "type": "text", "id": "fallback_image", "label": "Fallback image URL (used until an image is selected above)" },

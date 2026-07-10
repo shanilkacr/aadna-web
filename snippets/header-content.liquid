@@ -26,19 +26,11 @@
 
   <nav class="site-header__nav" data-nav>
     <ul>
-      {%- assign mega_trigger = section.settings.mega_menu_trigger | downcase -%}
-      {%- for link in section.settings.menu.links -%}
-        {%- assign link_title_down = link.title | downcase -%}
-        {%- if mega_trigger != blank and link_title_down == mega_trigger -%}
-          <li class="site-header__nav-item site-header__nav-item--mega" data-mega-trigger>
-            <a href="{{ link.url }}">{{ link.title }}</a>
-          </li>
-        {%- else -%}
-          <li class="site-header__nav-item">
-            <a href="{{ link.url }}">{{ link.title }}</a>
-          </li>
-        {%- endif -%}
-      {%- endfor -%}
+      {% render 'main-nav-items',
+        menu: section.settings.menu,
+        mega_trigger: section.settings.mega_menu_trigger,
+        variant: 'header'
+      %}
     </ul>
   </nav>
 

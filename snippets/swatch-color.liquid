@@ -25,6 +25,7 @@
     when 'sterling silver' assign swatch_hex = '#C0C0C0'
     when 'sterling silver gold plated' assign swatch_hex = '#AD8A54'
     when 'gold' assign swatch_hex = '#AD8A54'
+    when 'rose gold' assign swatch_hex = '#B76E79'
     when 'tan' assign swatch_hex = '#D2B48C'
     when 'ivory' assign swatch_hex = '#FFFFF0'
     when 'maroon' assign swatch_hex = '#800000'
@@ -41,6 +42,32 @@
     when 'dark blue' assign swatch_hex = '#00008B'
     when 'light grey', 'light gray' assign swatch_hex = '#D3D3D3'
     when 'dark grey', 'dark gray' assign swatch_hex = '#4A4A4A'
+    when 'bronze' assign swatch_hex = '#8C6239'
+    when 'brass' assign swatch_hex = '#B5A642'
+    when 'copper' assign swatch_hex = '#B87333'
+    when 'platinum' assign swatch_hex = '#E5E4E2'
+    when 'gunmetal' assign swatch_hex = '#2A3439'
+    when 'matte black' assign swatch_hex = '#1A1A1A'
   endcase
+
+  if swatch_hex == '#CCCCCC'
+    if color_key contains 'gold plated' or color_key contains 'gold-plated' or color_key contains '22k gold' or color_key contains '18k gold'
+      assign swatch_hex = '#AD8A54'
+    elsif color_key contains 'rose gold'
+      assign swatch_hex = '#B76E79'
+    elsif color_key contains 'sterling silver' or color_key contains 'silver'
+      assign swatch_hex = '#C0C0C0'
+    elsif color_key contains 'gold'
+      assign swatch_hex = '#AD8A54'
+    elsif color_key contains 'bronze'
+      assign swatch_hex = '#8C6239'
+    elsif color_key contains 'brass'
+      assign swatch_hex = '#B5A642'
+    elsif color_key contains 'copper'
+      assign swatch_hex = '#B87333'
+    elsif color_key contains 'platinum'
+      assign swatch_hex = '#E5E4E2'
+    endif
+  endif
 -%}
 {{- swatch_hex -}}

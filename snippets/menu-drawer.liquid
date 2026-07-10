@@ -5,7 +5,6 @@
     menu         - main linklist (section.settings.menu)
     mega_trigger - title of the item that expands to show product types (section.settings.mega_menu_trigger)
 {%- endcomment -%}
-{%- assign trigger_down = mega_trigger | downcase -%}
 <div class="menu-drawer" id="MenuDrawer" aria-hidden="true">
   <div class="menu-drawer__overlay" data-menu-drawer-close></div>
   <div class="menu-drawer__panel" role="dialog" aria-modal="true" aria-label="{{ 'sections.header.menu' | t }}">
@@ -14,21 +13,11 @@
     </div>
     <nav class="menu-drawer__nav">
       <ul>
-        {%- for link in menu.links -%}
-          {%- assign link_down = link.title | downcase -%}
-          {%- if trigger_down != blank and link_down == trigger_down -%}
-            <li class="menu-drawer__expandable">
-              <details data-menu-drawer-expand>
-                <summary>{{ link.title }}</summary>
-                <ul class="menu-drawer__sublinks">
-                  {% render 'mega-menu-product-types' %}
-                </ul>
-              </details>
-            </li>
-          {%- else -%}
-            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-          {%- endif -%}
-        {%- endfor -%}
+        {% render 'main-nav-items',
+          menu: menu,
+          mega_trigger: mega_trigger,
+          variant: 'drawer'
+        %}
       </ul>
     </nav>
     <div class="menu-drawer__footer">

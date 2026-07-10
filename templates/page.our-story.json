@@ -17,25 +17,18 @@
         "love": {
           "type": "row",
           "settings": {
-            "fallback_image": "https://aadna.store/cdn/shop/files/gaea07.jpg",
+            "vimeo_id": "870539693",
             "quote": "",
-            "heading": "Love what you do!",
+            "heading": "Handcrafted to perfection",
             "body": "<p>AADNA is the result of a wonder luscious journey of a Sri Lankan designer. Following her heart’s deep calling to create something magnificent, passionate and long lasting, she set forth wandering around the paradise island. As with many other artists she experimented with many muses only to find her soul resting on the great craftsmanship of jewellery design.</p>",
             "attribution": "Kalpani Nandaratne"
           }
-        },
-        "closing": {
-          "type": "statement",
-          "settings": {
-            "title": "Jewellery with a story, from the paradise island",
-            "heading": "Handcrafted to perfection!",
-            "vimeo_id": "870539693"
-          }
         }
       },
-      "block_order": ["closing", "intro", "love"],
+      "block_order": ["intro", "love"],
       "settings": {
-        "intro": "Jewellery with a story, from the paradise island"
+        "hero_title": "Jewellery with a story, from the paradise island",
+        "hero_subtitle": ""
       }
     }
   },

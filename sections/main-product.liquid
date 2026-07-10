@@ -2,7 +2,7 @@
   <div class="product__grid">
     <div class="product__media">
       {%- comment -%} Desktop: 2-column image grid, all product images {%- endcomment -%}
-      <div class="product__media-grid">
+      <div class="product__media-grid{% if product.images.size == 1 %} product__media-grid--single{% endif %}">
         {%- for image in product.images -%}
           <div class="product__media-item">
             <img
@@ -71,36 +71,42 @@
                   class="product__option-select{% if is_color_option %} visually-hidden{% endif %}"
                 >
                   {%- for value in option.values -%}
-                    <option value="{{ value | escape }}" {% if value == option.selected_value %}selected{% endif %}>{{ value }}</option>
+                    {%- assign value_name = value.name | default: value -%}
+                    {%- assign value_selected = false -%}
+                    {%- if value.name -%}
+                      {%- assign value_selected = value.selected -%}
+                    {%- elsif value_name == option.selected_value -%}
+                      {%- assign value_selected = true -%}
+                    {%- endif -%}
+                    <option value="{{ value_name | escape }}" {% if value_selected %}selected{% endif %}>{{ value_name }}</option>
                   {%- endfor -%}
                 </select>
 
                 {%- if is_color_option -%}
                   <div class="product__color-chips" data-color-chips data-option-index="{{ option_index }}">
                     {%- for value in option.values -%}
-                      {%- assign swatch_image = blank -%}
-                      {%- for variant in product.variants -%}
-                        {%- if variant.options[option_index] == value -%}
-                          {%- if variant.featured_media -%}
-                            {%- assign swatch_image = variant.featured_media | image_url: width: 80 -%}
-                          {%- elsif variant.image -%}
-                            {%- assign swatch_image = variant.image | image_url: width: 80 -%}
-                          {%- endif -%}
-                          {%- if swatch_image != blank -%}{%- break -%}{%- endif -%}
-                        {%- endif -%}
-                      {%- endfor -%}
+                      {%- assign value_name = value.name | default: value -%}
+                      {%- assign value_selected = false -%}
+                      {%- if value.name -%}
+                        {%- assign value_selected = value.selected -%}
+                      {%- elsif value_name == option.selected_value -%}
+                        {%- assign value_selected = true -%}
+                      {%- endif -%}
+                      {%- capture swatch_style -%}
+                        {%- render 'swatch-style', swatch: value.swatch, color_name: value_name -%}
+                      {%- endcapture -%}
 
                       <button
                         type="button"
-                        class="product__color-chip{% if value == option.selected_value %} is-selected{% endif %}"
-                        data-color-value="{{ value | escape }}"
-                        aria-pressed="{% if value == option.selected_value %}true{% else %}false{% endif %}"
+                        class="product__color-chip{% if value_selected %} is-selected{% endif %}"
+                        data-color-value="{{ value_name | escape }}"
+                        aria-pressed="{% if value_selected %}true{% else %}false{% endif %}"
                       >
                         <span
                           class="product__color-swatch"
-                          style="{% if swatch_image != blank %}background-image: url({{ swatch_image }}); background-size: cover;{% else %}background-color: {% render 'swatch-color', color_name: value %};{% endif %}"
+                          style="{{ swatch_style | strip }}"
                         ></span>
-                        <span class="product__color-label">{{ value }}</span>
+                        <span class="product__color-label">{{ value_name }}</span>
                       </button>
                     {%- endfor -%}
                   </div>

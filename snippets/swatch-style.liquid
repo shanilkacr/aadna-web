@@ -1,0 +1,31 @@
+{%- comment -%}
+  Returns inline CSS for a color swatch background.
+  Accepts:
+  - swatch: optional Shopify swatch object (product_option_value or filter_value)
+  - color_name: fallback label string
+{%- endcomment -%}
+{%- liquid
+  assign style = blank
+
+  if swatch.image
+    assign image_url = swatch.image | image_url: width: 80
+    assign style = 'background-image: url(' | append: image_url | append: '); background-size: cover; background-position: center;'
+  elsif swatch.color
+    assign style = 'background-color: rgb(' | append: swatch.color.rgb | append: ');'
+  endif
+
+  if style == blank and color_name != blank
+    capture colors
+      render 'swatch-colors', color_name: color_name
+    endcapture
+    assign colors = colors | strip
+
+    if colors contains '|'
+      assign color_parts = colors | split: '|'
+      assign style = 'background: linear-gradient(135deg, ' | append: color_parts[0] | append: ' 50%, ' | append: color_parts[1] | append: ' 50%);'
+    else
+      assign style = 'background-color: ' | append: colors | append: ';'
+    endif
+  endif
+-%}
+{{- style -}}

@@ -149,9 +149,12 @@
                                 {% if value.count == 0 and value.active == false %}disabled{% endif %}
                               >
                               {%- if is_color_filter -%}
+                                {%- capture swatch_style -%}
+                                  {%- render 'swatch-style', swatch: value.swatch, color_name: value.label -%}
+                                {%- endcapture -%}
                                 <span
                                   class="collection-filters__swatch"
-                                  style="background-color: {% render 'swatch-color', color_name: value.label %};"
+                                  style="{{ swatch_style | strip }}"
                                 ></span>
                               {%- endif -%}
                               <span class="collection-filters__label-text">{{ value.label | escape }}</span>

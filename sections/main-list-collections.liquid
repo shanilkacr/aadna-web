@@ -1,6 +1,9 @@
+{%- liquid
+  assign sorted_collections = collections | sort: 'published_at' | reverse
+-%}
 <section class="collection-list">
   <div class="collection-list__grid">
-    {%- for collection in collections -%}
+    {%- for collection in sorted_collections -%}
       {%- render 'collection-card', collection: collection -%}
     {%- endfor -%}
   </div>

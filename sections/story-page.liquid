@@ -1,4 +1,17 @@
-<section class="story-page">
+<section class="story-page page-width">
+  <div class="collection__header">
+    {%- liquid
+      assign hero_title = section.settings.hero_title
+      if hero_title == blank
+        assign hero_title = page.title
+      endif
+    -%}
+    <h1>{{ hero_title }}</h1>
+    {%- if section.settings.hero_subtitle != blank -%}
+      <div class="collection__description">{{ section.settings.hero_subtitle }}</div>
+    {%- endif -%}
+  </div>
+
   {%- assign row_index = 0 -%}
   {%- for block in section.blocks -%}
     {%- case block.type -%}
@@ -6,8 +19,18 @@
         {%- assign row_parity = row_index | modulo: 2 -%}
         {%- assign row_index = row_index | plus: 1 -%}
         <div class="story-page__row{% if row_parity == 1 %} story-page__row--reverse{% endif %}" {{ block.shopify_attributes }}>
-          <div class="story-page__media">
-            {%- if block.settings.image != blank -%}
+          <div class="story-page__media{% if block.settings.vimeo_id != blank %} story-page__media--video{% endif %}">
+            {%- if block.settings.vimeo_id != blank -%}
+              <div class="story-page__media-video">
+                <iframe
+                  src="https://player.vimeo.com/video/{{ block.settings.vimeo_id }}?background=1&autoplay=1&muted=1&loop=1&playsinline=1"
+                  frameborder="0"
+                  allow="autoplay; fullscreen"
+                  loading="lazy"
+                  title="{{ block.settings.heading | escape }}"
+                ></iframe>
+              </div>
+            {%- elsif block.settings.image != blank -%}
               <img
                 src="{{ block.settings.image | image_url: width: 1200 }}"
                 alt="{{ block.settings.heading | escape }}"
@@ -37,20 +60,8 @@
           </div>
         </div>
       {%- when 'statement' -%}
-        <div class="story-page__statement{% if forloop.first %} story-page__statement--hero{% endif %}" {{ block.shopify_attributes }}>
+        <div class="story-page__statement" {{ block.shopify_attributes }}>
           <div class="story-page__statement-text">
-            {%- liquid
-              assign statement_title = block.settings.title
-              if statement_title == blank
-                assign statement_title = section.settings.intro
-              endif
-              if statement_title == blank
-                assign statement_title = 'Jewellery with a story, from the paradise island'
-              endif
-            -%}
-            {%- if forloop.first or block.settings.title != blank -%}
-              <h1>{{ statement_title }}</h1>
-            {%- endif -%}
             {%- if block.settings.heading != blank -%}
               <h2>{{ block.settings.heading }}</h2>
             {%- endif -%}
@@ -83,10 +94,14 @@
   "settings": [
     {
       "type": "text",
-      "id": "intro",
-      "label": "Intro line",
-      "info": "Short line shown under the page title.",
+      "id": "hero_title",
+      "label": "Page title",
       "default": "Jewellery with a story, from the paradise island"
+    },
+    {
+      "type": "text",
+      "id": "hero_subtitle",
+      "label": "Subtitle"
     }
   ],
   "blocks": [
@@ -96,6 +111,7 @@
       "settings": [
         { "type": "image_picker", "id": "image", "label": "Image" },
         { "type": "text", "id": "fallback_image", "label": "Fallback image URL", "info": "Used only until an image is picked above." },
+        { "type": "text", "id": "vimeo_id", "label": "Vimeo video ID", "info": "If set, replaces the image with a background video. The number from the Vimeo URL, e.g. 870539693." },
         { "type": "text", "id": "quote", "label": "Quote (optional)" },
         { "type": "text", "id": "heading", "label": "Heading" },
         { "type": "richtext", "id": "body", "label": "Body text" },
@@ -106,10 +122,9 @@
       "type": "statement",
       "name": "Closing statement",
       "settings": [
-        { "type": "text", "id": "title", "label": "Title (H1)", "default": "Jewellery with a story, from the paradise island" },
-        { "type": "text", "id": "heading", "label": "Heading (H2)" },
+        { "type": "text", "id": "heading", "label": "Heading" },
         { "type": "richtext", "id": "body", "label": "Text" },
-        { "type": "text", "id": "vimeo_id", "label": "Vimeo video ID", "info": "The number from the Vimeo URL, e.g. 870539693.", "default": "870539693" }
+        { "type": "text", "id": "vimeo_id", "label": "Vimeo video ID", "info": "The number from the Vimeo URL, e.g. 870539693." }
       ]
     }
   ],
@@ -128,16 +143,10 @@
         {
           "type": "row",
           "settings": {
-            "heading": "Love what you do!",
+            "heading": "Handcrafted to perfection",
+            "vimeo_id": "870539693",
             "body": "<p>AADNA is the result of a wonder luscious journey of a Sri Lankan designer. Following her heart’s deep calling to create something magnificent, passionate and long lasting, she set forth wandering around the paradise island. As with many other artists she experimented with many muses only to find her soul resting on the great craftsmanship of jewellery design.</p>",
             "attribution": "Kalpani Nandaratne"
-          }
-        },
-        {
-          "type": "statement",
-          "settings": {
-            "title": "Jewellery with a story, from the paradise island",
-            "heading": "Handcrafted to perfection!"
           }
         }
       ]
