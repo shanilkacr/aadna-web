@@ -1,27 +1,117 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
       "type": "design-your-own-page",
       "blocks": {
-        "hero-1": { "type": "hero_image", "settings": { "fallback_image": "https://aadna.store/cdn/shop/files/slideshow2.jpg" } },
-        "hero-2": { "type": "hero_image", "settings": { "fallback_image": "https://aadna.store/cdn/shop/files/slideshow4.jpg" } },
-        "hero-3": { "type": "hero_image", "settings": { "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg" } },
-        "hero-4": { "type": "hero_image", "settings": { "fallback_image": "https://aadna.store/cdn/shop/files/gaea07.jpg" } },
-        "hero-5": { "type": "hero_image", "settings": { "fallback_image": "https://aadna.store/cdn/shop/files/me.jpg" } },
-        "hero-6": { "type": "hero_image", "settings": { "fallback_image": "https://aadna.store/cdn/shop/files/Lunacuff2.png" } },
-        "hero-7": { "type": "hero_image", "settings": { "fallback_image": "https://aadna.store/cdn/shop/files/slideshow2.jpg" } },
-        "hero-8": { "type": "hero_image", "settings": { "fallback_image": "https://aadna.store/cdn/shop/files/slideshow4.jpg" } },
-        "hero-9": { "type": "hero_image", "settings": { "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg" } },
-        "hero-10": { "type": "hero_image", "settings": { "fallback_image": "https://aadna.store/cdn/shop/files/gaea07.jpg" } },
-        "hero-11": { "type": "hero_image", "settings": { "fallback_image": "https://aadna.store/cdn/shop/files/me.jpg" } },
-        "hero-12": { "type": "hero_image", "settings": { "fallback_image": "https://aadna.store/cdn/shop/files/Lunacuff2.png" } },
-        "hero-13": { "type": "hero_image", "settings": { "fallback_image": "https://aadna.store/cdn/shop/files/slideshow2.jpg" } },
-        "hero-14": { "type": "hero_image", "settings": { "fallback_image": "https://aadna.store/cdn/shop/files/slideshow4.jpg" } },
-        "hero-15": { "type": "hero_image", "settings": { "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg" } },
-        "hero-16": { "type": "hero_image", "settings": { "fallback_image": "https://aadna.store/cdn/shop/files/gaea07.jpg" } },
+        "hero-1": {
+          "type": "hero_image",
+          "settings": {
+            "fallback_image": "https://aadna.store/cdn/shop/files/slideshow2.jpg"
+          }
+        },
+        "hero-2": {
+          "type": "hero_image",
+          "settings": {
+            "fallback_image": "https://aadna.store/cdn/shop/files/slideshow4.jpg"
+          }
+        },
+        "hero-3": {
+          "type": "hero_image",
+          "settings": {
+            "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg"
+          }
+        },
+        "hero-4": {
+          "type": "hero_image",
+          "settings": {
+            "fallback_image": "https://aadna.store/cdn/shop/files/gaea07.jpg"
+          }
+        },
+        "hero-5": {
+          "type": "hero_image",
+          "settings": {
+            "fallback_image": "https://aadna.store/cdn/shop/files/me.jpg"
+          }
+        },
+        "hero-6": {
+          "type": "hero_image",
+          "settings": {
+            "fallback_image": "https://aadna.store/cdn/shop/files/Lunacuff2.png"
+          }
+        },
+        "hero-7": {
+          "type": "hero_image",
+          "settings": {
+            "fallback_image": "https://aadna.store/cdn/shop/files/slideshow2.jpg"
+          }
+        },
+        "hero-8": {
+          "type": "hero_image",
+          "settings": {
+            "fallback_image": "https://aadna.store/cdn/shop/files/slideshow4.jpg"
+          }
+        },
+        "hero-9": {
+          "type": "hero_image",
+          "settings": {
+            "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg"
+          }
+        },
+        "hero-10": {
+          "type": "hero_image",
+          "settings": {
+            "fallback_image": "https://aadna.store/cdn/shop/files/gaea07.jpg"
+          }
+        },
+        "hero-11": {
+          "type": "hero_image",
+          "settings": {
+            "fallback_image": "https://aadna.store/cdn/shop/files/me.jpg"
+          }
+        },
+        "hero-12": {
+          "type": "hero_image",
+          "settings": {
+            "fallback_image": "https://aadna.store/cdn/shop/files/Lunacuff2.png"
+          }
+        },
+        "hero-13": {
+          "type": "hero_image",
+          "settings": {
+            "fallback_image": "https://aadna.store/cdn/shop/files/slideshow2.jpg"
+          }
+        },
+        "hero-14": {
+          "type": "hero_image",
+          "settings": {
+            "fallback_image": "https://aadna.store/cdn/shop/files/slideshow4.jpg"
+          }
+        },
+        "hero-15": {
+          "type": "hero_image",
+          "settings": {
+            "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg"
+          }
+        },
+        "hero-16": {
+          "type": "hero_image",
+          "settings": {
+            "fallback_image": "https://aadna.store/cdn/shop/files/gaea07.jpg"
+          }
+        },
         "gallery-1": {
           "type": "gallery_image",
           "settings": {
+            "image": "shopify://shop_images/Untitleddesign-2.png",
             "fallback_image": "https://aadna.store/cdn/shop/files/slideshow2.jpg",
             "caption": "Custom signet ring",
             "featured": true
@@ -30,31 +120,62 @@
         "gallery-2": {
           "type": "gallery_image",
           "settings": {
+            "image": "shopify://shop_images/IMG_6382.jpg",
             "fallback_image": "https://aadna.store/cdn/shop/files/slideshow4.jpg",
-            "caption": "Bespoke pendant"
+            "caption": "Bespoke pendant",
+            "featured": false
           }
         },
         "gallery-3": {
           "type": "gallery_image",
           "settings": {
+            "image": "shopify://shop_images/IMG_2726.jpg",
             "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg",
-            "caption": "Handcrafted cufflinks"
+            "caption": "Handcrafted cufflinks",
+            "featured": false
           }
-        },
+        }
       },
       "block_order": [
-        "hero-1", "hero-2", "hero-3", "hero-4", "hero-5", "hero-6", "hero-7", "hero-8",
-        "hero-9", "hero-10", "hero-11", "hero-12", "hero-13", "hero-14", "hero-15", "hero-16",
-        "gallery-1", "gallery-2", "gallery-3"
+        "hero-1",
+        "hero-2",
+        "hero-3",
+        "hero-4",
+        "hero-5",
+        "hero-6",
+        "hero-7",
+        "hero-8",
+        "hero-9",
+        "hero-10",
+        "hero-11",
+        "hero-12",
+        "hero-13",
+        "hero-14",
+        "hero-15",
+        "hero-16",
+        "gallery-1",
+        "gallery-2",
+        "gallery-3"
       ],
       "settings": {
         "eyebrow": "Bespoke jewellery",
         "title": "Design Your Own",
         "form_heading": "Start your design",
+        "intro": "<p>Create something entirely yours. Share your vision — stones, metal, silhouette — and our atelier will bring it to life, handcrafted in Sri Lanka.</p>",
+        "form_fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg",
+        "name_label": "Name",
+        "email_label": "Email",
+        "phone_label": "Phone",
+        "type_label": "Type of jewellery",
+        "brief_label": "Your design brief",
+        "brief_placeholder": "Describe the piece you have in mind — stones, metal, occasion, sizing, or any details that matter to you.",
+        "file_label": "Attach reference image",
+        "file_hint": "JPEG, PNG, WEBP, or PDF up to 5 MB.",
+        "submit_label": "Send enquiry",
+        "success_message": "Thank you — your enquiry has been sent. We'll be in touch shortly.",
         "show_gallery": true,
         "gallery_heading": "Past creations",
-        "gallery_subheading": "A selection of one-of-a-kind pieces crafted for our clients.",
-        "form_fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg"
+        "gallery_subheading": "A selection of one-of-a-kind pieces crafted for our clients."
       }
     }
   },
