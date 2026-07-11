@@ -1,7 +1,7 @@
 <section class="newsletter-banner" style="background-color:{{ section.settings.background }};">
   <div class="page-width newsletter-banner__inner">
-    <h2>{{ section.settings.heading | default: 'general.newsletter.heading' | t }}</h2>
-    <p>{{ section.settings.text | default: 'general.newsletter.text' | t }}</p>
+    <h2>{% if section.settings.heading != blank %}{{ section.settings.heading }}{% else %}{{ 'general.newsletter.heading' | t }}{% endif %}</h2>
+    <p>{% if section.settings.text != blank %}{{ section.settings.text }}{% else %}{{ 'general.newsletter.text' | t }}{% endif %}</p>
     {% form 'customer', class: 'newsletter-form' %}
       {%- if form.posted_successfully? -%}
         <p class="newsletter-form__success">{{ 'general.newsletter.success' | t }}</p>

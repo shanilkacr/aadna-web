@@ -309,13 +309,32 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }
 
+    function formatMoney(cents) {
+      var shopCurrency = window.Shopify && window.Shopify.currency && window.Shopify.currency.active || 'LKR';
+      return new Intl.NumberFormat('en-LK', { style: 'currency', currency: shopCurrency, minimumFractionDigits: 2 }).format(cents / 100);
+    }
+
     function updateVariantState() {
       var variant = findVariant(getSelectedOptions());
-      if (!variant || !addButton) return;
+      if (!variant) return;
 
       variantInput.value = variant.id;
-      addButton.disabled = !variant.available;
-      addButton.textContent = variant.available ? addToCartLabel : soldOutLabel;
+
+      if (addButton) {
+        addButton.disabled = !variant.available;
+        addButton.textContent = variant.available ? addToCartLabel : soldOutLabel;
+      }
+
+      var priceContainer = form.closest('.product__info-inner') && form.closest('.product__info-inner').querySelector('.product__price');
+      if (priceContainer) {
+        var compareAt = variant.compare_at_price;
+        var price = variant.price;
+        if (compareAt && compareAt > price) {
+          priceContainer.innerHTML = '<div class="price price--on-sale"><span class="price__compare">' + formatMoney(compareAt) + '</span><span class="price__sale">' + formatMoney(price) + '</span></div>';
+        } else {
+          priceContainer.innerHTML = '<div class="price"><span class="price__regular">' + formatMoney(price) + '</span></div>';
+        }
+      }
     }
 
     optionSelects.forEach(function (select) {

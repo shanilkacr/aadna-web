@@ -2482,11 +2482,12 @@ strong, b, th { font-weight: 400; }
     min-height: auto;
   }
   .dyo-page__hero-media {
-    position: relative;
-    height: 50vh;
+    display: none;
   }
   .dyo-page__hero-panel {
     padding: 36px 24px 48px;
+    overflow-y: visible;
+    height: auto;
   }
   .dyo-page__field-row {
     grid-template-columns: 1fr;

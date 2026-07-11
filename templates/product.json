@@ -3,13 +3,6 @@
     "main": {
       "type": "main-product",
       "blocks": {
-        "details": {
-          "type": "accordion",
-          "settings": {
-            "title": "Details",
-            "content": "<p>Add material, dimensions, and care details here.</p>"
-          }
-        },
         "shipping": {
           "type": "accordion",
           "settings": {
@@ -18,7 +11,7 @@
           }
         }
       },
-      "block_order": ["details", "shipping"]
+      "block_order": ["shipping"]
     }
   },
   "order": ["main"]
