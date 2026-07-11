@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "name": "Header group",
   "type": "header",
@@ -8,28 +17,53 @@
         "tile-best-sellers": {
           "type": "mega_tile",
           "settings": {
+            "collection": "",
             "label": "Best sellers",
-            "link": "/collections/all"
+            "link": "/collections/all",
+            "fallback_image": ""
           }
         },
         "tile-latest": {
           "type": "mega_tile",
           "settings": {
+            "collection": "timeless-collection",
             "label": "Latest arrivals",
-            "link": "/collections/all"
+            "link": "/collections/all",
+            "fallback_image": ""
           }
         },
         "tile-collection-1": {
           "type": "mega_tile",
-          "settings": {}
+          "settings": {
+            "collection": "",
+            "label": "",
+            "link": "",
+            "fallback_image": ""
+          }
         },
         "tile-collection-2": {
           "type": "mega_tile",
-          "settings": {}
+          "settings": {
+            "collection": "",
+            "label": "",
+            "link": "",
+            "fallback_image": ""
+          }
         }
       },
-      "block_order": ["tile-best-sellers", "tile-latest", "tile-collection-1", "tile-collection-2"]
+      "block_order": [
+        "tile-best-sellers",
+        "tile-latest",
+        "tile-collection-1",
+        "tile-collection-2"
+      ],
+      "settings": {
+        "menu": "main-menu",
+        "mega_menu_trigger": "Shop"
+      }
     }
   },
-  "order": ["header"]
+  "order": [
+    "header"
+  ]
 }
