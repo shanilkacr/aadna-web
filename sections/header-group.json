@@ -17,7 +17,7 @@
         "tile-best-sellers": {
           "type": "mega_tile",
           "settings": {
-            "collection": "",
+            "collection": "timeless-collection",
             "label": "Best sellers",
             "link": "/collections/all",
             "fallback_image": ""
@@ -26,8 +26,8 @@
         "tile-latest": {
           "type": "mega_tile",
           "settings": {
-            "collection": "timeless-collection",
-            "label": "Latest arrivals",
+            "collection": "isla-mark-your-treasures-1",
+            "label": "",
             "link": "/collections/all",
             "fallback_image": ""
           }
