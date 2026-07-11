@@ -18,7 +18,7 @@
           "type": "mega_tile",
           "settings": {
             "collection": "timeless-collection",
-            "label": "New arrivals",
+            "label": "Best sellers",
             "link": "/collections/all",
             "fallback_image": ""
           }
