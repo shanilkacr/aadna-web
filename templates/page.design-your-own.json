@@ -111,7 +111,7 @@
         "gallery-1": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/Untitleddesign-2.png",
+            "image": "shopify://shop_images/Untitled_design-2.png",
             "fallback_image": "https://aadna.store/cdn/shop/files/slideshow2.jpg",
             "caption": "Custom signet ring",
             "featured": true
