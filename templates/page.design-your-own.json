@@ -189,15 +189,6 @@
             "featured": false
           }
         },
-        "gallery_image_cfEpcb": {
-          "type": "gallery_image",
-          "settings": {
-            "image": "shopify://shop_images/resized_1080.jpg",
-            "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg",
-            "caption": "Bridal Necklace",
-            "featured": false
-          }
-        },
         "gallery_image_gcWDNG": {
           "type": "gallery_image",
           "settings": {
@@ -222,6 +213,15 @@
             "image": "shopify://shop_images/DSC07781_1080x1080_enhanced.jpg",
             "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg",
             "caption": "Tharshana Iris Pendant",
+            "featured": false
+          }
+        },
+        "gallery_image_cfEpcb": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/resized_1080.jpg",
+            "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg",
+            "caption": "Bridal Necklace",
             "featured": false
           }
         }
@@ -252,10 +252,10 @@
         "gallery_image_8Th6iT",
         "gallery_image_Ghn8p4",
         "gallery_image_mpPzpQ",
-        "gallery_image_cfEpcb",
         "gallery_image_gcWDNG",
         "gallery_image_XQBnxT",
-        "gallery_image_enqk4m"
+        "gallery_image_enqk4m",
+        "gallery_image_cfEpcb"
       ],
       "settings": {
         "eyebrow": "Bespoke jewellery",
