@@ -126,6 +126,15 @@
             "featured": false
           }
         },
+        "gallery_image_xhFRVE": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/PHOTO-2022-09-30-16-27-50_1080x1080_full.png",
+            "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg",
+            "caption": "Bridal Necklace",
+            "featured": false
+          }
+        },
         "gallery-3": {
           "type": "gallery_image",
           "settings": {
@@ -224,15 +233,6 @@
             "caption": "Bridal Necklace",
             "featured": false
           }
-        },
-        "gallery_image_xhFRVE": {
-          "type": "gallery_image",
-          "settings": {
-            "image": "shopify://shop_images/resized_1080.jpg",
-            "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg",
-            "caption": "Bridal Necklace",
-            "featured": false
-          }
         }
       },
       "block_order": [
@@ -254,6 +254,7 @@
         "hero-16",
         "gallery-1",
         "gallery-2",
+        "gallery_image_xhFRVE",
         "gallery-3",
         "gallery_image_zKpPkz",
         "gallery_image_zG7qDd",
@@ -264,8 +265,7 @@
         "gallery_image_gcWDNG",
         "gallery_image_XQBnxT",
         "gallery_image_enqk4m",
-        "gallery_image_cfEpcb",
-        "gallery_image_xhFRVE"
+        "gallery_image_cfEpcb"
       ],
       "settings": {
         "eyebrow": "Bespoke jewellery",
