@@ -201,7 +201,7 @@
         "gallery_image_gcWDNG": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/resized_1080.jpg",
+            "image": "shopify://shop_images/dyo12.jpg",
             "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg",
             "caption": "Handcrafted cufflinks",
             "featured": false
