@@ -162,6 +162,15 @@
             "featured": false
           }
         },
+        "gallery_image_XQBnxT": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/IMG_9864_1080x1080_3a55210e-b0d2-4502-9ed5-ad86cd142525.jpg",
+            "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg",
+            "caption": "Tharshana Iris Pendant",
+            "featured": false
+          }
+        },
         "gallery_image_yPWaNU": {
           "type": "gallery_image",
           "settings": {
@@ -207,15 +216,6 @@
             "featured": false
           }
         },
-        "gallery_image_XQBnxT": {
-          "type": "gallery_image",
-          "settings": {
-            "image": "shopify://shop_images/IMG_9864_1080x1080_3a55210e-b0d2-4502-9ed5-ad86cd142525.jpg",
-            "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg",
-            "caption": "Tharshana Iris Pendant",
-            "featured": false
-          }
-        },
         "gallery_image_enqk4m": {
           "type": "gallery_image",
           "settings": {
@@ -258,12 +258,12 @@
         "gallery-3",
         "gallery_image_zKpPkz",
         "gallery_image_zG7qDd",
+        "gallery_image_XQBnxT",
         "gallery_image_yPWaNU",
         "gallery_image_8Th6iT",
         "gallery_image_Ghn8p4",
         "gallery_image_mpPzpQ",
         "gallery_image_gcWDNG",
-        "gallery_image_XQBnxT",
         "gallery_image_enqk4m",
         "gallery_image_cfEpcb"
       ],
