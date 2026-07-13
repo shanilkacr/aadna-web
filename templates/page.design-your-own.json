@@ -120,7 +120,7 @@
         "gallery-2": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/IMG_6382.jpg",
+            "image": "shopify://shop_images/DYO10.png",
             "fallback_image": "https://aadna.store/cdn/shop/files/slideshow4.jpg",
             "caption": "Bespoke pendant",
             "featured": false
