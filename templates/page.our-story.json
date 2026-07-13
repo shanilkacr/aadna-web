@@ -17,6 +17,7 @@
           "settings": {
             "image": "shopify://shop_images/me.jpg",
             "fallback_image": "https://aadna.store/cdn/shop/files/me.jpg",
+            "vimeo_id": "",
             "quote": "With each stone and each piece of jewellery we try to tell a story",
             "heading": "",
             "body": "<p>The founder and designer, Kalpani, is truly inspired to make her clients feel like the owner and the custodian of each stone and piece of jewellery. At AADNA, the team is dedicated to creating unique jewellery influenced by the Sri Lankan heritage and using excellent local craftsmanship.</p><p><em>‘It’s like writing a poem or finishing a beautiful painting.. Only I do it with natural stones and metal..’</em></p>",
@@ -26,6 +27,7 @@
         "love": {
           "type": "row",
           "settings": {
+            "fallback_image": "",
             "vimeo_id": "870539693",
             "quote": "",
             "heading": "Handcrafted to perfection",
@@ -34,9 +36,12 @@
           }
         }
       },
-      "block_order": ["intro", "love"],
+      "block_order": [
+        "intro",
+        "love"
+      ],
       "settings": {
-        "hero_title": "Jewellery with a story, from the paradise island",
+        "hero_title": "",
         "hero_subtitle": ""
       }
     }
