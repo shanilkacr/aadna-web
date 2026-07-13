@@ -134,6 +134,15 @@
             "caption": "Handcrafted cufflinks",
             "featured": false
           }
+        },
+        "gallery_image_zG7qDd": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/dyo1.jpg",
+            "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg",
+            "caption": "Handcrafted cufflinks",
+            "featured": false
+          }
         }
       },
       "block_order": [
@@ -155,7 +164,8 @@
         "hero-16",
         "gallery-1",
         "gallery-2",
-        "gallery-3"
+        "gallery-3",
+        "gallery_image_zG7qDd"
       ],
       "settings": {
         "eyebrow": "Bespoke jewellery",

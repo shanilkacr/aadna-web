@@ -28,7 +28,7 @@
           "settings": {
             "collection": "isla-mark-your-treasures-1",
             "label": "",
-            "link": "/collections/all",
+            "link": "shopify://collections/isla-mark-your-treasures-1",
             "fallback_image": ""
           }
         },
