@@ -246,7 +246,7 @@
         "gallery_image_GTGX3n": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/D14E7A90_1080x1080_54b1385b-5d96-4b7b-a2d7-6bea3d7322c3.jpg",
+            "image": "shopify://shop_images/anchor_1080x1080_enhanced.jpg",
             "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg",
             "caption": "Bridal Necklace",
             "featured": false
