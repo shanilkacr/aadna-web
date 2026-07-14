@@ -85,14 +85,6 @@
     "collection-list": {
       "type": "collection-list",
       "blocks": {
-        "collection_VTiFim": {
-          "type": "collection",
-          "settings": {
-            "collection": "gaea",
-            "title": "",
-            "fallback_image": ""
-          }
-        },
         "collection_DVtBdd": {
           "type": "collection",
           "settings": {
@@ -109,6 +101,14 @@
             "fallback_image": ""
           }
         },
+        "collection_VTiFim": {
+          "type": "collection",
+          "settings": {
+            "collection": "gaea",
+            "title": "",
+            "fallback_image": ""
+          }
+        },
         "collection_bHTm4H": {
           "type": "collection",
           "settings": {
@@ -119,9 +119,9 @@
         }
       },
       "block_order": [
-        "collection_VTiFim",
         "collection_DVtBdd",
         "collection_YWFipW",
+        "collection_VTiFim",
         "collection_bHTm4H"
       ],
       "settings": {}
