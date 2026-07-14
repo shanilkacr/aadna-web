@@ -93,6 +93,14 @@
             "fallback_image": ""
           }
         },
+        "collection_bHTm4H": {
+          "type": "collection",
+          "settings": {
+            "collection": "astrid",
+            "title": "",
+            "fallback_image": ""
+          }
+        },
         "collection_YWFipW": {
           "type": "collection",
           "settings": {
@@ -108,21 +116,13 @@
             "title": "",
             "fallback_image": ""
           }
-        },
-        "collection_bHTm4H": {
-          "type": "collection",
-          "settings": {
-            "collection": "astrid",
-            "title": "",
-            "fallback_image": ""
-          }
         }
       },
       "block_order": [
         "collection_DVtBdd",
+        "collection_bHTm4H",
         "collection_YWFipW",
-        "collection_VTiFim",
-        "collection_bHTm4H"
+        "collection_VTiFim"
       ],
       "settings": {}
     },
