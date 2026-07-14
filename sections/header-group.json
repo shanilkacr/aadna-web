@@ -44,7 +44,7 @@
         "tile-collection-2": {
           "type": "mega_tile",
           "settings": {
-            "collection": "",
+            "collection": "aura",
             "label": "",
             "link": "",
             "fallback_image": ""
