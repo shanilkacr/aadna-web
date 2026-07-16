@@ -287,6 +287,15 @@
             "caption": "Bridal Necklace",
             "featured": false
           }
+        },
+        "gallery_image_bNAxKY": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/bridal.png",
+            "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg",
+            "caption": "Bridal Necklace",
+            "featured": false
+          }
         }
       },
       "block_order": [
@@ -325,7 +334,8 @@
         "gallery_image_qbprtz",
         "gallery_image_6pRWcw",
         "gallery_image_TDF8bh",
-        "gallery_image_yWqykC"
+        "gallery_image_yWqykC",
+        "gallery_image_bNAxKY"
       ],
       "settings": {
         "eyebrow": "Bespoke jewellery",
