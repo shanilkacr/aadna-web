@@ -269,6 +269,15 @@
             "caption": "Bridal Necklace",
             "featured": false
           }
+        },
+        "gallery_image_TDF8bh": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/chakra.png",
+            "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg",
+            "caption": "Bridal Necklace",
+            "featured": false
+          }
         }
       },
       "block_order": [
@@ -305,7 +314,8 @@
         "gallery_image_enqk4m",
         "gallery_image_cfEpcb",
         "gallery_image_qbprtz",
-        "gallery_image_6pRWcw"
+        "gallery_image_6pRWcw",
+        "gallery_image_TDF8bh"
       ],
       "settings": {
         "eyebrow": "Bespoke jewellery",
