@@ -310,8 +310,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function formatMoney(cents) {
-      var shopCurrency = window.Shopify && window.Shopify.currency && window.Shopify.currency.active || 'LKR';
-      return new Intl.NumberFormat('en-LK', { style: 'currency', currency: shopCurrency, minimumFractionDigits: 2 }).format(cents / 100);
+      var amount = (cents / 100).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      return 'LKR ' + amount;
     }
 
     function updateVariantState() {

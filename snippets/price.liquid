@@ -9,9 +9,9 @@
 -%}
 <div class="price {% if compare_at_price > price %}price--on-sale{% endif %}">
   {%- if compare_at_price > price -%}
-    <span class="price__compare">{{ compare_at_price | money_with_currency }}</span>
-    <span class="price__sale">{{ price | money_with_currency }}</span>
+    <span class="price__compare">LKR {{ compare_at_price | money_without_currency }}</span>
+    <span class="price__sale">LKR {{ price | money_without_currency }}</span>
   {%- else -%}
-    <span class="price__regular">{{ price | money_with_currency }}</span>
+    <span class="price__regular">LKR {{ price | money_without_currency }}</span>
   {%- endif -%}
 </div>
