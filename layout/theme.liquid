@@ -69,7 +69,7 @@
   {% sections 'footer-group' %}
 
   {% if settings.cart_type == 'drawer' %}
-    {% render 'cart-drawer' %}
+    {% section 'cart-drawer' %}
   {% endif %}
 
   <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>

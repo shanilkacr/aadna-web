@@ -5,11 +5,50 @@ document.addEventListener('DOMContentLoaded', function () {
   var cartCloses = document.querySelectorAll('[data-cart-drawer-close]');
 
   function openCart() {
-    if (cartDrawer) cartDrawer.classList.add('is-open');
+    if (cartDrawer) {
+      cartDrawer.classList.add('is-open');
+      cartDrawer.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('cart-drawer-open');
+    }
   }
   function closeCart() {
-    if (cartDrawer) cartDrawer.classList.remove('is-open');
+    if (cartDrawer) {
+      cartDrawer.classList.remove('is-open');
+      cartDrawer.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('cart-drawer-open');
+    }
   }
+
+  function refreshCartAndOpen() {
+    fetch('/?sections=cart-drawer')
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        if (data['cart-drawer'] && cartDrawer) {
+          var tmp = document.createElement('div');
+          tmp.innerHTML = data['cart-drawer'];
+          var newDrawer = tmp.querySelector('#CartDrawer');
+          if (newDrawer) {
+            cartDrawer.innerHTML = newDrawer.innerHTML;
+            // Re-bind close buttons inside refreshed content
+            cartDrawer.querySelectorAll('[data-cart-drawer-close]').forEach(function (el) {
+              el.addEventListener('click', closeCart);
+            });
+          }
+        }
+        // Update cart count badge
+        fetch('/cart.js')
+          .then(function (r) { return r.json(); })
+          .then(function (cart) {
+            document.querySelectorAll('[data-cart-count]').forEach(function (el) {
+              el.textContent = cart.item_count;
+              el.hidden = cart.item_count === 0;
+            });
+          });
+        openCart();
+      })
+      .catch(function () { openCart(); });
+  }
+
   cartToggles.forEach(function (el) { el.addEventListener('click', openCart); });
   cartCloses.forEach(function (el) { el.addEventListener('click', closeCart); });
 
@@ -545,7 +584,7 @@ document.addEventListener('DOMContentLoaded', function () {
       var formData = new FormData(form);
       fetch('/cart/add.js', { method: 'POST', body: formData })
         .then(function (res) { return res.json(); })
-        .then(function () { window.location.reload(); })
+        .then(function () { refreshCartAndOpen(); })
         .catch(function () { form.submit(); });
     });
   });
@@ -569,7 +608,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(function (res) { return res.json(); })
         .then(function () {
           btn.style.pointerEvents = '';
-          document.dispatchEvent(new CustomEvent('cart:updated'));
+          refreshCartAndOpen();
         })
         .catch(function () { btn.style.pointerEvents = ''; });
     });
