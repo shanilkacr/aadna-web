@@ -10,15 +10,15 @@
       {%- if cart.item_count > 0 -%}
         <ul class="cart-drawer__items">
           {%- for item in cart.items -%}
-            <li class="cart-drawer__item">
+            <li class="cart-drawer__item" data-cart-item-key="{{ item.key }}">
               <a href="{{ item.url }}" class="cart-drawer__item-media">
                 {%- if item.image -%}
                   <img
                     src="{{ item.image | image_url: width: 200 }}"
                     alt="{{ item.image.alt | escape }}"
                     loading="lazy"
-                    width="200"
-                    height="{{ 200 | divided_by: item.image.aspect_ratio | default: 250 }}"
+                    width="72"
+                    height="90"
                   >
                 {%- endif -%}
               </a>
@@ -33,7 +33,14 @@
                   {%- endunless -%}
                 {%- endfor -%}
                 <p class="cart-drawer__item-price">LKR {{ item.final_price | money_without_currency }}</p>
-                <p class="cart-drawer__item-qty">{{ 'general.cart.quantity' | t }}: {{ item.quantity }}</p>
+                <div class="cart-drawer__item-controls">
+                  <div class="cart-drawer__qty">
+                    <button type="button" class="cart-drawer__qty-btn" data-qty-minus aria-label="Decrease quantity">&#8722;</button>
+                    <span class="cart-drawer__qty-num">{{ item.quantity }}</span>
+                    <button type="button" class="cart-drawer__qty-btn" data-qty-plus aria-label="Increase quantity">&#43;</button>
+                  </div>
+                  <button type="button" class="cart-drawer__remove" data-cart-remove>Remove</button>
+                </div>
               </div>
             </li>
           {%- endfor -%}

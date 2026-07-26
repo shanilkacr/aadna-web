@@ -52,6 +52,35 @@ document.addEventListener('DOMContentLoaded', function () {
   cartToggles.forEach(function (el) { el.addEventListener('click', openCart); });
   cartCloses.forEach(function (el) { el.addEventListener('click', closeCart); });
 
+  // Cart drawer: quantity +/- and remove via event delegation (survives HTML refresh)
+  function updateCartItem(key, quantity) {
+    fetch('/cart/change.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: key, quantity: quantity })
+    })
+      .then(function (res) { return res.json(); })
+      .then(function () { refreshCartAndOpen(); })
+      .catch(function () {});
+  }
+
+  document.addEventListener('click', function (e) {
+    if (!cartDrawer) return;
+    var item = e.target.closest('[data-cart-item-key]');
+    if (!item) return;
+    var key = item.getAttribute('data-cart-item-key');
+    var qtyNum = item.querySelector('.cart-drawer__qty-num');
+    var currentQty = qtyNum ? parseInt(qtyNum.textContent, 10) : 1;
+
+    if (e.target.closest('[data-qty-minus]')) {
+      updateCartItem(key, Math.max(0, currentQty - 1));
+    } else if (e.target.closest('[data-qty-plus]')) {
+      updateCartItem(key, currentQty + 1);
+    } else if (e.target.closest('[data-cart-remove]')) {
+      updateCartItem(key, 0);
+    }
+  });
+
   // Mobile menu drawer: slides in from the left, shared by all header instances
   var menuDrawer = document.getElementById('MenuDrawer');
   function closeMenuDrawer() {

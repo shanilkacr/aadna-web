@@ -85,12 +85,9 @@
           type="button"
           class="product-card__quick-add"
           data-quick-add
-          {%- if is_single_variant -%}
-            data-variant-id="{{ first_variant.id }}"
-          {%- else -%}
-            data-product-url="{{ product.url }}"
-          {%- endif -%}
-        >Add to Cart</button>
+          data-variant-id="{{ first_variant.id }}"
+          data-product-url="{{ product.url }}"
+        >Add to Bag</button>
       {%- endif -%}
     </div>
 
