@@ -4,7 +4,7 @@
 {%- endcomment -%}
 
 {%- liquid
-  assign sort_by = results.sort_by | default: results.default_sort_by
+  assign sort_by = results.sort_by | default: 'created-descending'
   assign total_active_values = 0
   assign has_filter_groups = false
   if enable_filtering and results.filters.size > 0

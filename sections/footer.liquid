@@ -41,8 +41,8 @@
     {%- endif -%}
 
     <div class="site-footer__block site-footer__newsletter">
-      <p class="site-footer__heading">{{ 'general.newsletter.heading' | t }}</p>
-      <p class="site-footer__text">{{ 'general.newsletter.text' | t }}</p>
+      <p class="site-footer__heading">{% if section.settings.newsletter_heading != blank %}{{ section.settings.newsletter_heading }}{% else %}{{ 'general.newsletter.heading' | t }}{% endif %}</p>
+      <p class="site-footer__text">{% if section.settings.newsletter_text != blank %}{{ section.settings.newsletter_text }}{% else %}{{ 'general.newsletter.text' | t }}{% endif %}</p>
       {% form 'customer', class: 'newsletter-form' %}
         {%- if form.posted_successfully? -%}
           <p class="newsletter-form__success">{{ 'general.newsletter.success' | t }}</p>
@@ -58,7 +58,7 @@
 
   <div class="site-footer__bottom">
     <div class="page-width site-footer__bottom-inner">
-      <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. {{ 'sections.footer.copyright' | t }}</p>
+      <p>&copy; {{ 'now' | date: '%Y' }} {% if section.settings.copyright_text != blank %}{{ section.settings.copyright_text }}{% else %}{{ shop.name }}. {{ 'sections.footer.copyright' | t }}{% endif %}</p>
       <div class="site-footer__payment">
         {%- for type in shop.enabled_payment_types -%}
           {{ type | payment_type_svg_tag: class: 'payment-icon' }}
@@ -72,7 +72,12 @@
 {
   "name": "Footer",
   "settings": [
-    { "type": "text", "id": "tagline", "label": "Tagline", "default": "She is a force of nature, she is everything you need." }
+    { "type": "text", "id": "tagline", "label": "Tagline", "default": "She is a force of nature, she is everything you need." },
+    { "type": "header", "content": "Newsletter block" },
+    { "type": "text", "id": "newsletter_heading", "label": "Newsletter heading", "default": "Join AADNA Circle" },
+    { "type": "textarea", "id": "newsletter_text", "label": "Newsletter text", "default": "An invitation to those who value the considered over the ordinary — early access to new arrivals, private previews, and a 10% welcome gift, reserved for our circle." },
+    { "type": "header", "content": "Footer bottom" },
+    { "type": "text", "id": "copyright_text", "label": "Copyright text", "default": "AADNA. All rights reserved.", "info": "Shown after the year, e.g. © 2025 AADNA. All rights reserved." }
   ],
   "blocks": [
     {

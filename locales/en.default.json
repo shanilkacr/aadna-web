@@ -56,7 +56,10 @@
       "you_may_also_like": "You may also like",
       "personalization_label": "Name for engraving",
       "personalization_placeholder": "Enter name",
-      "personalization_hint": "Plain text only, up to 15 characters."
+      "personalization_hint": "Plain text only, up to 15 characters.",
+      "new_arrival": "New Arrival",
+      "best_seller": "Best Seller",
+      "add_to_cart_short": "Add to Cart"
     }
   },
   "collections": {
