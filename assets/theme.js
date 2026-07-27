@@ -584,8 +584,7 @@ document.addEventListener('DOMContentLoaded', function () {
       showUploading();
 
       var sizeKb = Math.max(1, Math.round(file.size / 1024));
-
-      setTimeout(function () {
+      var buildSuccess = function (imgSrc) {
         dropzone && dropzone.classList.remove('dyo-page__dropzone--uploading');
         dropzone && dropzone.classList.add('dyo-page__dropzone--done');
         if (dropzoneInner) dropzoneInner.hidden = true;
@@ -597,19 +596,40 @@ document.addEventListener('DOMContentLoaded', function () {
         removeBtn.addEventListener('click', function () {
           fileInput.value = '';
           resetDropzone();
-          if (dropzoneInner) {
-            var hint = dropzoneInner.querySelector('.dyo-page__dropzone-hint');
-            if (hint) hint.textContent = dropzone.getAttribute('data-hint-original') || '';
-          }
         });
 
-        preview.innerHTML =
-          '<svg class="dyo-page__upload-check" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg>' +
-          '<p class="dyo-page__file-preview-name">' + file.name + '</p>' +
-          '<p class="dyo-page__file-preview-size">' + sizeKb + ' KB</p>';
+        preview.innerHTML = '';
+
+        if (imgSrc) {
+          var img = document.createElement('img');
+          img.className = 'dyo-page__file-preview-img';
+          img.src = imgSrc;
+          img.alt = file.name;
+          preview.appendChild(img);
+        } else {
+          var iconEl = document.createElement('div');
+          iconEl.innerHTML = '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>';
+          iconEl.style.color = 'var(--color-text-muted)';
+          preview.appendChild(iconEl);
+        }
+
+        var meta = document.createElement('div');
+        meta.className = 'dyo-page__file-preview-meta';
+        meta.innerHTML = '<strong>' + file.name + '</strong><span>' + sizeKb + ' KB</span>';
+        preview.appendChild(meta);
+
+        removeBtn.innerHTML = '&times;';
         preview.appendChild(removeBtn);
         preview.hidden = false;
-      }, 600);
+      };
+
+      if (file.type.indexOf('image/') === 0) {
+        var reader = new FileReader();
+        reader.onload = function (e) { buildSuccess(e.target.result); };
+        reader.readAsDataURL(file);
+      } else {
+        setTimeout(function () { buildSuccess(null); }, 600);
+      }
     }
 
     if (fileInput) {

@@ -2409,7 +2409,7 @@ strong, b, th { font-weight: 400; }
 .dyo-page__dropzone {
   border: 1px dashed var(--color-border);
   border-radius: var(--button-radius);
-  padding: 20px 24px;
+  height: 160px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -2425,9 +2425,18 @@ strong, b, th { font-weight: 400; }
   border-color: var(--color-text);
   background: rgba(0,0,0,.03);
 }
+.dyo-page__dropzone-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+.dyo-page__dropzone-inner[hidden] { display: none; }
 .dyo-page__dropzone-icon {
   color: var(--color-text-muted);
-  margin-bottom: 6px;
+  margin-bottom: 4px;
+  display: block;
 }
 .dyo-page__dropzone-label {
   font-size: 13px;
@@ -2452,16 +2461,44 @@ strong, b, th { font-weight: 400; }
   margin: 0;
 }
 .dyo-page__file-preview {
+  position: absolute;
+  inset: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 8px 0 4px;
+  padding: 12px;
   text-align: center;
+  overflow: hidden;
 }
 .dyo-page__file-preview[hidden] {
   display: none;
+}
+.dyo-page__file-preview-img {
+  max-height: 90px;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.dyo-page__file-preview-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  color: var(--color-text-muted);
+  letter-spacing: .04em;
+}
+.dyo-page__file-preview-meta strong {
+  color: var(--color-text);
+  font-weight: 400;
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .dyo-page__upload-spinner {
   width: 28px;
@@ -2476,82 +2513,25 @@ strong, b, th { font-weight: 400; }
 .dyo-page__upload-check {
   color: var(--color-text);
   animation: dyo-check-in .3s ease both;
-  margin-bottom: 4px;
 }
 @keyframes dyo-check-in {
   from { opacity: 0; transform: scale(.6); }
   to   { opacity: 1; transform: scale(1); }
 }
-.dyo-page__file-preview-name {
-  font-size: 11px;
-  color: var(--color-text);
-  letter-spacing: .04em;
-  margin: 0;
-  max-width: 240px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.dyo-page__file-preview-size {
-  font-size: 10px;
-  color: var(--color-text-muted);
-  margin: 0;
-}
 .dyo-page__file-preview-remove {
+  position: absolute;
+  top: 8px;
+  right: 10px;
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: .06em;
+  font-size: 16px;
+  line-height: 1;
   color: var(--color-text-muted);
-  text-decoration: underline;
-  margin-top: 2px;
-  padding: 0;
+  padding: 2px;
+  transition: color .15s;
 }
-.dyo-page__file-preview {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 300px;
-  height: 300px;
-  margin-top: 16px;
-  border: 1px solid var(--color-border);
-  background: var(--color-background-alt);
-  overflow: hidden;
-  position: relative;
-}
-.dyo-page__file-preview img {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  opacity: 0;
-  transition: opacity .3s ease;
-}
-.dyo-page__file-preview img.is-loaded {
-  opacity: 1;
-}
-.dyo-page__file-preview__spinner {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.dyo-page__file-preview__spinner::after {
-  content: '';
-  width: 28px;
-  height: 28px;
-  border: 2px solid var(--color-border);
-  border-top-color: var(--color-text);
-  border-radius: 50%;
-  animation: dyo-spin .7s linear infinite;
-}
-@keyframes dyo-spin {
-  to { transform: rotate(360deg); }
-}
+.dyo-page__file-preview-remove:hover { color: var(--color-text); }
 
 /* Actions row — attach + submit side by side */
 .dyo-page__actions {
@@ -2579,7 +2559,7 @@ strong, b, th { font-weight: 400; }
 /* Portfolio gallery */
 .dyo-page__gallery {
   background: var(--color-background);
-  padding: calc(var(--spacing-sections) * 1.2) 0;
+  padding: 0 0 calc(var(--spacing-sections) * 1.2);
 }
 .dyo-page__gallery-header {
   text-align: center;
