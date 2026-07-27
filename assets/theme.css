@@ -2240,7 +2240,7 @@ strong, b, th { font-weight: 400; }
 }
 .dyo-page__mosaic-overlay .dyo-page__eyebrow {
   color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 16px;
+  margin-bottom: 4px;
 }
 .dyo-page__mosaic-overlay h1 {
   color: #fff;
@@ -2288,8 +2288,21 @@ strong, b, th { font-weight: 400; }
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  text-align: center;
   padding: 40px 0;
   overflow-y: auto;
+}
+.dyo-page__hero-panel .dyo-page__form,
+.dyo-page__hero-panel .dyo-page__field,
+.dyo-page__hero-panel .dyo-page__field-row,
+.dyo-page__hero-panel .dyo-page__dropzone,
+.dyo-page__hero-panel .dyo-page__actions {
+  width: 100%;
+  text-align: left;
+}
+.dyo-page__hero-panel .dyo-page__actions {
+  text-align: center;
 }
 .dyo-page__eyebrow {
   margin: 0 0 12px;
@@ -2355,7 +2368,7 @@ strong, b, th { font-weight: 400; }
   outline: none;
   border-bottom-color: var(--color-text);
 }
-.dyo-page__field textarea { resize: vertical; min-height: 80px; }
+.dyo-page__field textarea { resize: vertical; min-height: 56px; }
 
 /* File upload — styled as a button */
 .dyo-page__field input[type="file"] {
@@ -2395,7 +2408,7 @@ strong, b, th { font-weight: 400; }
 .dyo-page__dropzone {
   border: 1px dashed var(--color-border);
   border-radius: var(--button-radius);
-  padding: 36px 24px;
+  padding: 20px 24px;
   text-align: center;
   cursor: pointer;
   transition: border-color .2s ease, background .2s ease;
@@ -2409,7 +2422,7 @@ strong, b, th { font-weight: 400; }
 }
 .dyo-page__dropzone-icon {
   color: var(--color-text-muted);
-  margin-bottom: 12px;
+  margin-bottom: 6px;
 }
 .dyo-page__dropzone-label {
   font-size: 13px;
