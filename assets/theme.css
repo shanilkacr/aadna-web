@@ -2411,6 +2411,10 @@ strong, b, th { font-weight: 400; }
   border-radius: var(--button-radius);
   padding: 20px 24px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   transition: border-color .2s ease, background .2s ease;
   margin-bottom: 4px;
@@ -2448,33 +2452,45 @@ strong, b, th { font-weight: 400; }
   margin: 0;
 }
 .dyo-page__file-preview {
-  margin-top: 16px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 10px;
-  text-align: left;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 0 4px;
+  text-align: center;
 }
 .dyo-page__file-preview[hidden] {
   display: none;
 }
-.dyo-page__file-preview-thumb {
-  width: 56px;
-  height: 56px;
-  object-fit: cover;
-  border: 1px solid var(--color-border);
-  flex-shrink: 0;
+.dyo-page__upload-spinner {
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--color-border);
+  border-top-color: var(--color-text);
+  border-radius: 50%;
+  animation: dyo-spin .7s linear infinite;
+  margin: 0 auto 4px;
 }
-.dyo-page__file-preview-info {
-  flex: 1;
-  min-width: 0;
+@keyframes dyo-spin { to { transform: rotate(360deg); } }
+.dyo-page__upload-check {
+  color: var(--color-text);
+  animation: dyo-check-in .3s ease both;
+  margin-bottom: 4px;
+}
+@keyframes dyo-check-in {
+  from { opacity: 0; transform: scale(.6); }
+  to   { opacity: 1; transform: scale(1); }
 }
 .dyo-page__file-preview-name {
   font-size: 11px;
   color: var(--color-text);
-  white-space: nowrap;
+  letter-spacing: .04em;
+  margin: 0;
+  max-width: 240px;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin: 0 0 2px;
+  white-space: nowrap;
 }
 .dyo-page__file-preview-size {
   font-size: 10px;
@@ -2490,7 +2506,8 @@ strong, b, th { font-weight: 400; }
   letter-spacing: .06em;
   color: var(--color-text-muted);
   text-decoration: underline;
-  flex-shrink: 0;
+  margin-top: 2px;
+  padding: 0;
 }
 .dyo-page__file-preview {
   display: flex;

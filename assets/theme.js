@@ -551,45 +551,65 @@ document.addEventListener('DOMContentLoaded', function () {
     var dropzone = form.querySelector('[data-design-your-own-dropzone]');
     var maxFileSize = 5 * 1024 * 1024;
 
-    function showPreview(file) {
-      if (!preview) return;
-      preview.hidden = true;
-      preview.innerHTML = '';
+    var dropzoneInner = dropzone ? dropzone.querySelector('.dyo-page__dropzone-inner') : null;
 
-      if (!file) return;
+    function resetDropzone() {
+      if (dropzoneInner) dropzoneInner.hidden = false;
+      if (preview) { preview.hidden = true; preview.innerHTML = ''; }
+      dropzone && dropzone.classList.remove('dyo-page__dropzone--uploading', 'dyo-page__dropzone--done');
+    }
+
+    function showUploading() {
+      if (dropzoneInner) dropzoneInner.hidden = true;
+      dropzone && dropzone.classList.add('dyo-page__dropzone--uploading');
+      if (preview) {
+        preview.innerHTML = '<div class="dyo-page__upload-spinner"></div>';
+        preview.hidden = false;
+      }
+    }
+
+    function showPreview(file) {
+      if (!file) { resetDropzone(); return; }
 
       if (file.size > maxFileSize) {
-        preview.hidden = false;
-        preview.textContent = 'File too large — please choose an image or PDF under 5 MB.';
+        resetDropzone();
+        if (dropzoneInner) {
+          var hint = dropzoneInner.querySelector('.dyo-page__dropzone-hint');
+          if (hint) hint.textContent = 'File too large — max 5 MB.';
+        }
         fileInput.value = '';
         return;
       }
 
+      showUploading();
+
       var sizeKb = Math.max(1, Math.round(file.size / 1024));
-      var info = document.createElement('div');
-      info.className = 'dyo-page__file-preview-info';
-      var nameEl = document.createElement('p');
-      nameEl.className = 'dyo-page__file-preview-name';
-      nameEl.textContent = file.name;
-      var sizeEl = document.createElement('p');
-      sizeEl.className = 'dyo-page__file-preview-size';
-      sizeEl.textContent = sizeKb + ' KB';
-      info.appendChild(nameEl);
-      info.appendChild(sizeEl);
 
-      var removeBtn = document.createElement('button');
-      removeBtn.type = 'button';
-      removeBtn.className = 'dyo-page__file-preview-remove';
-      removeBtn.textContent = 'Remove';
-      removeBtn.addEventListener('click', function () {
-        fileInput.value = '';
-        preview.hidden = true;
-        preview.innerHTML = '';
-      });
+      setTimeout(function () {
+        dropzone && dropzone.classList.remove('dyo-page__dropzone--uploading');
+        dropzone && dropzone.classList.add('dyo-page__dropzone--done');
+        if (dropzoneInner) dropzoneInner.hidden = true;
 
-      preview.appendChild(info);
-      preview.appendChild(removeBtn);
-      preview.hidden = false;
+        var removeBtn = document.createElement('button');
+        removeBtn.type = 'button';
+        removeBtn.className = 'dyo-page__file-preview-remove';
+        removeBtn.textContent = 'Remove';
+        removeBtn.addEventListener('click', function () {
+          fileInput.value = '';
+          resetDropzone();
+          if (dropzoneInner) {
+            var hint = dropzoneInner.querySelector('.dyo-page__dropzone-hint');
+            if (hint) hint.textContent = dropzone.getAttribute('data-hint-original') || '';
+          }
+        });
+
+        preview.innerHTML =
+          '<svg class="dyo-page__upload-check" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg>' +
+          '<p class="dyo-page__file-preview-name">' + file.name + '</p>' +
+          '<p class="dyo-page__file-preview-size">' + sizeKb + ' KB</p>';
+        preview.appendChild(removeBtn);
+        preview.hidden = false;
+      }, 600);
     }
 
     if (fileInput) {
