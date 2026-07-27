@@ -610,8 +610,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
       if (!window.fetch) return;
       e.preventDefault();
-      var formData = new FormData(form);
-      fetch('/cart/add.js', { method: 'POST', body: formData })
+
+      // Build JSON payload so Shopify reliably receives line item properties
+      var variantIdInput = form.querySelector('[name="id"]');
+      var quantityInput = form.querySelector('[name="quantity"]');
+      var variantId = variantIdInput ? parseInt(variantIdInput.value, 10) : null;
+      var quantity = quantityInput ? parseInt(quantityInput.value, 10) || 1 : 1;
+
+      var item = { id: variantId, quantity: quantity };
+      if (personalizationInput && personalizationInput.value) {
+        item.properties = { 'Name for engraving': personalizationInput.value };
+      }
+
+      fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items: [item] })
+      })
         .then(function (res) { return res.json(); })
         .then(function () { refreshCartAndOpen(); })
         .catch(function () { form.submit(); });
