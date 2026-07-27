@@ -2267,8 +2267,9 @@ strong, b, th { font-weight: 400; }
 .dyo-page__hero-form--single {
   grid-template-columns: 1fr;
   height: auto;
-  max-width: 640px;
+  max-width: 960px;
   margin: 0 auto;
+  padding: 0 clamp(24px, 4vw, 60px);
 }
 .dyo-page__hero-media {
   overflow: hidden;
@@ -2287,7 +2288,7 @@ strong, b, th { font-weight: 400; }
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 32px clamp(28px, 4vw, 64px);
+  padding: 40px 0;
   overflow-y: auto;
 }
 .dyo-page__eyebrow {
@@ -2312,12 +2313,12 @@ strong, b, th { font-weight: 400; }
 
 /* Form fields — compact spacing to fit 90vh */
 .dyo-page__form { display: flex; flex-direction: column; }
-.dyo-page__field { margin-bottom: 14px; }
+.dyo-page__field { margin-bottom: 10px; }
 .dyo-page__field-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
 }
 .dyo-page__field-row .dyo-page__field { margin-bottom: 0; }
 .dyo-page__field label {
@@ -2640,11 +2641,6 @@ strong, b, th { font-weight: 400; }
     overflow-y: visible;
     height: auto;
   }
-  .dyo-page__field-row {
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
-  .dyo-page__field-row .dyo-page__field { margin-bottom: 20px; }
   .dyo-page__gallery-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 3px;
@@ -2829,4 +2825,12 @@ strong, b, th { font-weight: 400; }
   .story-page__body td {
     overflow-wrap: anywhere;
   }
+}
+
+@media (max-width: 480px) {
+  .dyo-page__field-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .dyo-page__field-row .dyo-page__field { margin-bottom: 10px; }
 }

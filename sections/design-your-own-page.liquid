@@ -71,14 +71,14 @@
             </div>
           </div>
 
-          <div class="dyo-page__field">
-            <label for="DesignYourOwnForm-phone">{{ section.settings.phone_label }}</label>
-            <input type="tel" id="DesignYourOwnForm-phone" name="contact[Phone]" autocomplete="tel" required>
-          </div>
-
-          <div class="dyo-page__field">
-            <label for="DesignYourOwnForm-type">{{ section.settings.type_label }}</label>
-            <select id="DesignYourOwnForm-type" name="contact[Jewellery type]">
+          <div class="dyo-page__field-row">
+            <div class="dyo-page__field">
+              <label for="DesignYourOwnForm-phone">{{ section.settings.phone_label }}</label>
+              <input type="tel" id="DesignYourOwnForm-phone" name="contact[Phone]" autocomplete="tel" required>
+            </div>
+            <div class="dyo-page__field">
+              <label for="DesignYourOwnForm-type">{{ section.settings.type_label }}</label>
+              <select id="DesignYourOwnForm-type" name="contact[Jewellery type]">
               <option value="">Select a type</option>
               <option value="Ring">Ring</option>
               <option value="Necklace">Necklace</option>
@@ -87,6 +87,7 @@
               <option value="Pendant">Pendant</option>
               <option value="Other">Other</option>
             </select>
+            </div>
           </div>
 
           <div class="dyo-page__field">
@@ -94,7 +95,7 @@
             <textarea
               id="DesignYourOwnForm-body"
               name="contact[body]"
-              rows="5"
+              rows="3"
               placeholder="{{ section.settings.brief_placeholder }}"
               required
               data-design-your-own-body
