@@ -566,15 +566,21 @@ document.addEventListener('DOMContentLoaded', function () {
           return;
         }
 
-        preview.hidden = false;
-        preview.textContent = 'Selected: ' + file.name;
-
         if (file.type.indexOf('image/') === 0) {
+          preview.hidden = false;
+          var spinner = document.createElement('div');
+          spinner.className = 'dyo-page__file-preview__spinner';
+          preview.appendChild(spinner);
+
           var reader = new FileReader();
           reader.onload = function (event) {
             var img = document.createElement('img');
-            img.src = event.target.result;
             img.alt = file.name;
+            img.onload = function () {
+              if (spinner.parentNode) spinner.parentNode.removeChild(spinner);
+              img.classList.add('is-loaded');
+            };
+            img.src = event.target.result;
             preview.appendChild(img);
           };
           reader.readAsDataURL(file);

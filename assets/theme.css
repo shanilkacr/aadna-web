@@ -2182,7 +2182,7 @@ strong, b, th { font-weight: 400; }
   padding-bottom: 0;
 }
 
-/* Hero marquee: single continuously scrolling image grid with overlaid title */
+/* Hero marquee: two independent scrolling rows of 5 images */
 .dyo-page__hero-mosaic {
   position: relative;
   overflow: hidden;
@@ -2193,21 +2193,27 @@ strong, b, th { font-weight: 400; }
 .dyo-page__marquee-track {
   display: flex;
   will-change: transform;
-  animation: dyo-marquee 80s linear infinite;
 }
-@keyframes dyo-marquee {
+.dyo-page__marquee-track--row1 {
+  animation: dyo-marquee-fwd 40s linear infinite;
+}
+.dyo-page__marquee-track--row2 {
+  animation: dyo-marquee-rev 50s linear infinite;
+}
+@keyframes dyo-marquee-fwd {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
+@keyframes dyo-marquee-rev {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
 .dyo-page__marquee-set {
   flex-shrink: 0;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 1fr 1fr;
-  gap: 0;
-  width: 100vw;
+  display: flex;
 }
 .dyo-page__marquee-cell {
+  flex: 0 0 20vw;
   overflow: hidden;
   aspect-ratio: 4 / 5;
 }
@@ -2378,6 +2384,49 @@ strong, b, th { font-weight: 400; }
   color: var(--color-text-muted);
   letter-spacing: 0.5px;
 }
+.dyo-page__file-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 300px;
+  margin-top: 16px;
+  border: 1px solid var(--color-border);
+  background: var(--color-background-alt);
+  overflow: hidden;
+  position: relative;
+}
+.dyo-page__file-preview img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+.dyo-page__file-preview img.is-loaded {
+  opacity: 1;
+}
+.dyo-page__file-preview__spinner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dyo-page__file-preview__spinner::after {
+  content: '';
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--color-border);
+  border-top-color: var(--color-text);
+  border-radius: 50%;
+  animation: dyo-spin .7s linear infinite;
+}
+@keyframes dyo-spin {
+  to { transform: rotate(360deg); }
+}
 
 /* Actions row — attach + submit side by side */
 .dyo-page__actions {
@@ -2479,9 +2528,8 @@ strong, b, th { font-weight: 400; }
 }
 
 @media (max-width: 900px) {
-  .dyo-page__marquee-set {
-    grid-template-columns: repeat(8, 1fr);
-    width: 200vw;
+  .dyo-page__marquee-cell {
+    flex: 0 0 40vw;
   }
   .dyo-page__mosaic-overlay h1 {
     font-size: 28px;

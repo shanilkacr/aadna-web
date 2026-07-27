@@ -1,45 +1,40 @@
 {%- liquid
   assign gallery_blocks = section.blocks | where: 'type', 'gallery_image'
   assign hero_blocks = section.blocks | where: 'type', 'hero_image'
-  assign default_fallbacks = 'https://aadna.store/cdn/shop/files/slideshow2.jpg|https://aadna.store/cdn/shop/files/slideshow4.jpg|https://aadna.store/cdn/shop/files/name3.jpg|https://aadna.store/cdn/shop/files/gaea07.jpg|https://aadna.store/cdn/shop/files/me.jpg|https://aadna.store/cdn/shop/files/Lunacuff2.png' | split: '|'
   assign default_captions = 'Custom signet ring|Bespoke pendant|Handcrafted cufflinks|One-of-a-kind necklace|Handcrafted ring|Personalised bangle' | split: '|'
 
-  assign row1_fallbacks = 'https://aadna.store/cdn/shop/files/slideshow2.jpg|https://aadna.store/cdn/shop/files/slideshow4.jpg|https://aadna.store/cdn/shop/files/name3.jpg|https://aadna.store/cdn/shop/files/gaea07.jpg' | split: '|'
-  assign row2_fallbacks = 'https://aadna.store/cdn/shop/files/me.jpg|https://aadna.store/cdn/shop/files/Lunacuff2.png|https://aadna.store/cdn/shop/files/slideshow4.jpg|https://aadna.store/cdn/shop/files/name3.jpg' | split: '|'
-
+  assign row1_fallbacks = 'https://aadna.store/cdn/shop/files/slideshow2.jpg|https://aadna.store/cdn/shop/files/slideshow4.jpg|https://aadna.store/cdn/shop/files/name3.jpg|https://aadna.store/cdn/shop/files/gaea07.jpg|https://aadna.store/cdn/shop/files/me.jpg' | split: '|'
+  assign row2_fallbacks = 'https://aadna.store/cdn/shop/files/Lunacuff2.png|https://aadna.store/cdn/shop/files/slideshow4.jpg|https://aadna.store/cdn/shop/files/name3.jpg|https://aadna.store/cdn/shop/files/gaea07.jpg|https://aadna.store/cdn/shop/files/slideshow2.jpg' | split: '|'
 -%}
 
-{%- capture hero_images -%}
-  {%- if hero_blocks.size > 0 -%}
-    {%- for block in hero_blocks -%}
-      <div class="dyo-page__marquee-cell" {{ block.shopify_attributes }}>
-        {%- if block.settings.image != blank -%}
-          <img src="{{ block.settings.image | image_url: width: 400 }}" alt="" width="400" height="500" loading="eager">
-        {%- elsif block.settings.fallback_image != blank -%}
-          <img src="{{ block.settings.fallback_image }}" alt="" width="400" height="500" loading="eager">
-        {%- endif -%}
-      </div>
-    {%- endfor -%}
-  {%- else -%}
-    {%- for url in row1_fallbacks -%}
-      <div class="dyo-page__marquee-cell">
-        <img src="{{ url }}" alt="" width="400" height="500" loading="eager">
-      </div>
-    {%- endfor -%}
-    {%- for url in row2_fallbacks -%}
-      <div class="dyo-page__marquee-cell">
-        <img src="{{ url }}" alt="" width="400" height="500" loading="eager">
-      </div>
-    {%- endfor -%}
-  {%- endif -%}
+{%- capture row1_images -%}
+  {%- for url in row1_fallbacks -%}
+    <div class="dyo-page__marquee-cell">
+      <img src="{{ url }}" alt="" width="400" height="500" loading="eager">
+    </div>
+  {%- endfor -%}
+{%- endcapture -%}
+
+{%- capture row2_images -%}
+  {%- for url in row2_fallbacks -%}
+    <div class="dyo-page__marquee-cell">
+      <img src="{{ url }}" alt="" width="400" height="500" loading="eager">
+    </div>
+  {%- endfor -%}
 {%- endcapture -%}
 
 <section class="dyo-page">
   <div class="dyo-page__hero-mosaic">
     <div class="dyo-page__marquee-row">
-      <div class="dyo-page__marquee-track">
-        <div class="dyo-page__marquee-set">{{ hero_images }}</div>
-        <div class="dyo-page__marquee-set">{{ hero_images }}</div>
+      <div class="dyo-page__marquee-track dyo-page__marquee-track--row1">
+        <div class="dyo-page__marquee-set">{{ row1_images }}</div>
+        <div class="dyo-page__marquee-set">{{ row1_images }}</div>
+      </div>
+    </div>
+    <div class="dyo-page__marquee-row">
+      <div class="dyo-page__marquee-track dyo-page__marquee-track--row2">
+        <div class="dyo-page__marquee-set">{{ row2_images }}</div>
+        <div class="dyo-page__marquee-set">{{ row2_images }}</div>
       </div>
     </div>
     <div class="dyo-page__mosaic-overlay">
