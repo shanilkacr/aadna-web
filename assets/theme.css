@@ -2264,6 +2264,12 @@ strong, b, th { font-weight: 400; }
   height: 90vh;
   align-items: stretch;
 }
+.dyo-page__hero-form--single {
+  grid-template-columns: 1fr;
+  height: auto;
+  max-width: 640px;
+  margin: 0 auto;
+}
 .dyo-page__hero-media {
   overflow: hidden;
   background: var(--color-background-alt);

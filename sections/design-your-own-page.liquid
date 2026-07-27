@@ -40,37 +40,7 @@
   </div>
 
   <div class="dyo-page__form-section">
-    <div class="dyo-page__hero-form">
-      <div class="dyo-page__hero-media">
-        {%- if section.settings.form_image != blank -%}
-          <img
-            src="{{ section.settings.form_image | image_url: width: 1400 }}"
-            srcset="{{ section.settings.form_image | image_url: width: 800 }} 800w, {{ section.settings.form_image | image_url: width: 1400 }} 1400w"
-            sizes="50vw"
-            alt="{{ section.settings.title | escape }}"
-            width="1400"
-            height="{{ 1400 | divided_by: section.settings.form_image.aspect_ratio | default: 1750 }}"
-            loading="lazy"
-          >
-        {%- elsif section.settings.form_fallback_image != blank -%}
-          <img
-            src="{{ section.settings.form_fallback_image }}"
-            alt="{{ section.settings.title | escape }}"
-            width="1400"
-            height="1750"
-            loading="lazy"
-          >
-        {%- else -%}
-          <img
-            src="https://aadna.store/cdn/shop/files/slideshow4.jpg"
-            alt="{{ section.settings.title | escape }}"
-            width="1400"
-            height="1750"
-            loading="lazy"
-          >
-        {%- endif -%}
-      </div>
-
+    <div class="dyo-page__hero-form dyo-page__hero-form--single">
       <div class="dyo-page__hero-panel">
         {%- if section.settings.form_heading != blank -%}
           <h2 class="dyo-page__form-heading">{{ section.settings.form_heading }}</h2>
