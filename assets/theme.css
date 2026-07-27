@@ -2439,6 +2439,9 @@ strong, b, th { font-weight: 400; }
   gap: 10px;
   text-align: left;
 }
+.dyo-page__file-preview[hidden] {
+  display: none;
+}
 .dyo-page__file-preview-thumb {
   width: 56px;
   height: 56px;
