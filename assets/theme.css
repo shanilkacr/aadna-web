@@ -2214,8 +2214,8 @@ strong, b, th { font-weight: 400; }
 }
 .dyo-page__marquee-cell {
   flex: 0 0 auto;
-  width: calc(50vh * 2 / 3);
-  height: 50vh;
+  width: calc(62vh * 2 / 3);
+  height: 62vh;
   overflow: hidden;
 }
 .dyo-page__marquee-cell img {
