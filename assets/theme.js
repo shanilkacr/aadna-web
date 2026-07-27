@@ -587,24 +587,9 @@ document.addEventListener('DOMContentLoaded', function () {
         preview.innerHTML = '';
       });
 
-      if (file.type.indexOf('image/') === 0) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-          var thumb = document.createElement('img');
-          thumb.className = 'dyo-page__file-preview-thumb';
-          thumb.src = e.target.result;
-          thumb.alt = file.name;
-          preview.appendChild(thumb);
-          preview.appendChild(info);
-          preview.appendChild(removeBtn);
-          preview.hidden = false;
-        };
-        reader.readAsDataURL(file);
-      } else {
-        preview.appendChild(info);
-        preview.appendChild(removeBtn);
-        preview.hidden = false;
-      }
+      preview.appendChild(info);
+      preview.appendChild(removeBtn);
+      preview.hidden = false;
     }
 
     if (fileInput) {

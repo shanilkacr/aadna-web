@@ -2213,9 +2213,10 @@ strong, b, th { font-weight: 400; }
   display: flex;
 }
 .dyo-page__marquee-cell {
-  flex: 0 0 22vw;
+  flex: 0 0 auto;
+  width: calc(50vh * 2 / 3);
+  height: 50vh;
   overflow: hidden;
-  aspect-ratio: 3 / 2;
 }
 .dyo-page__marquee-cell img {
   width: 100%;
@@ -2385,14 +2386,18 @@ strong, b, th { font-weight: 400; }
   letter-spacing: 0.5px;
 }
 .dyo-page__dropzone {
-  padding: 28px 0 8px;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--button-radius);
+  padding: 36px 24px;
   text-align: center;
   cursor: pointer;
-  transition: background .2s ease;
+  transition: border-color .2s ease, background .2s ease;
   margin-bottom: 4px;
   position: relative;
+  overflow: hidden;
 }
 .dyo-page__dropzone.is-drag-over {
+  border-color: var(--color-text);
   background: rgba(0,0,0,.03);
 }
 .dyo-page__dropzone-icon {
