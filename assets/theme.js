@@ -548,43 +548,94 @@ document.addEventListener('DOMContentLoaded', function () {
     var fileInput = form.querySelector('[data-design-your-own-file]');
     var bodyInput = form.querySelector('[data-design-your-own-body]');
     var preview = form.querySelector('[data-design-your-own-preview]');
+    var dropzone = form.querySelector('[data-design-your-own-dropzone]');
     var maxFileSize = 5 * 1024 * 1024;
+
+    function showPreview(file) {
+      if (!preview) return;
+      preview.hidden = true;
+      preview.innerHTML = '';
+
+      if (!file) return;
+
+      if (file.size > maxFileSize) {
+        preview.hidden = false;
+        preview.textContent = 'File too large — please choose an image or PDF under 5 MB.';
+        fileInput.value = '';
+        return;
+      }
+
+      var sizeKb = Math.max(1, Math.round(file.size / 1024));
+      var info = document.createElement('div');
+      info.className = 'dyo-page__file-preview-info';
+      var nameEl = document.createElement('p');
+      nameEl.className = 'dyo-page__file-preview-name';
+      nameEl.textContent = file.name;
+      var sizeEl = document.createElement('p');
+      sizeEl.className = 'dyo-page__file-preview-size';
+      sizeEl.textContent = sizeKb + ' KB';
+      info.appendChild(nameEl);
+      info.appendChild(sizeEl);
+
+      var removeBtn = document.createElement('button');
+      removeBtn.type = 'button';
+      removeBtn.className = 'dyo-page__file-preview-remove';
+      removeBtn.textContent = 'Remove';
+      removeBtn.addEventListener('click', function () {
+        fileInput.value = '';
+        preview.hidden = true;
+        preview.innerHTML = '';
+      });
+
+      if (file.type.indexOf('image/') === 0) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          var thumb = document.createElement('img');
+          thumb.className = 'dyo-page__file-preview-thumb';
+          thumb.src = e.target.result;
+          thumb.alt = file.name;
+          preview.appendChild(thumb);
+          preview.appendChild(info);
+          preview.appendChild(removeBtn);
+          preview.hidden = false;
+        };
+        reader.readAsDataURL(file);
+      } else {
+        preview.appendChild(info);
+        preview.appendChild(removeBtn);
+        preview.hidden = false;
+      }
+    }
 
     if (fileInput) {
       fileInput.addEventListener('change', function () {
-        if (!preview) return;
-        preview.hidden = true;
-        preview.innerHTML = '';
+        showPreview(fileInput.files && fileInput.files[0]);
+      });
+    }
 
-        var file = fileInput.files && fileInput.files[0];
+    if (dropzone) {
+      dropzone.addEventListener('click', function (e) {
+        if (e.target.closest('.dyo-page__file-preview-remove')) return;
+        if (e.target.tagName === 'LABEL') return;
+        fileInput.click();
+      });
+
+      dropzone.addEventListener('dragover', function (e) {
+        e.preventDefault();
+        dropzone.classList.add('is-drag-over');
+      });
+      dropzone.addEventListener('dragleave', function (e) {
+        if (!dropzone.contains(e.relatedTarget)) dropzone.classList.remove('is-drag-over');
+      });
+      dropzone.addEventListener('drop', function (e) {
+        e.preventDefault();
+        dropzone.classList.remove('is-drag-over');
+        var file = e.dataTransfer.files && e.dataTransfer.files[0];
         if (!file) return;
-
-        if (file.size > maxFileSize) {
-          preview.hidden = false;
-          preview.textContent = 'File is too large. Please choose an image or PDF under 5 MB.';
-          fileInput.value = '';
-          return;
-        }
-
-        if (file.type.indexOf('image/') === 0) {
-          preview.hidden = false;
-          var spinner = document.createElement('div');
-          spinner.className = 'dyo-page__file-preview__spinner';
-          preview.appendChild(spinner);
-
-          var reader = new FileReader();
-          reader.onload = function (event) {
-            var img = document.createElement('img');
-            img.alt = file.name;
-            img.onload = function () {
-              if (spinner.parentNode) spinner.parentNode.removeChild(spinner);
-              img.classList.add('is-loaded');
-            };
-            img.src = event.target.result;
-            preview.appendChild(img);
-          };
-          reader.readAsDataURL(file);
-        }
+        var dt = new DataTransfer();
+        dt.items.add(file);
+        fileInput.files = dt.files;
+        showPreview(file);
       });
     }
 

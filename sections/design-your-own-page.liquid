@@ -31,12 +31,6 @@
         <div class="dyo-page__marquee-set">{{ row1_images }}</div>
       </div>
     </div>
-    <div class="dyo-page__marquee-row">
-      <div class="dyo-page__marquee-track dyo-page__marquee-track--row2">
-        <div class="dyo-page__marquee-set">{{ row2_images }}</div>
-        <div class="dyo-page__marquee-set">{{ row2_images }}</div>
-      </div>
-    </div>
     <div class="dyo-page__mosaic-overlay">
       {%- if section.settings.eyebrow != blank -%}
         <p class="dyo-page__eyebrow">{{ section.settings.eyebrow }}</p>
@@ -138,14 +132,20 @@
           </div>
 
           <input type="file" id="DesignYourOwnForm-file" accept="image/*,.pdf" data-design-your-own-file hidden>
-          <div class="dyo-page__file-preview" data-design-your-own-preview hidden></div>
+
+          <div class="dyo-page__dropzone" data-design-your-own-dropzone>
+            <div class="dyo-page__dropzone-inner">
+              <svg class="dyo-page__dropzone-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              <p class="dyo-page__dropzone-label">Drag &amp; drop your file here</p>
+              <p class="dyo-page__dropzone-sub">or <label for="DesignYourOwnForm-file" class="dyo-page__dropzone-browse">browse to upload</label></p>
+              <p class="dyo-page__dropzone-hint">{{ section.settings.file_hint }}</p>
+            </div>
+            <div class="dyo-page__file-preview" data-design-your-own-preview hidden></div>
+          </div>
 
           <div class="dyo-page__actions">
-            <label for="DesignYourOwnForm-file" class="dyo-page__file-btn" role="button" tabindex="0">{{ section.settings.file_label }}</label>
-            <span class="dyo-page__file-name" data-design-your-own-filename></span>
             <button type="submit" class="button button--primary">{{ section.settings.submit_label }}</button>
           </div>
-          <p class="dyo-page__file-hint">{{ section.settings.file_hint }}</p>
         {% endform %}
       </div>
     </div>
