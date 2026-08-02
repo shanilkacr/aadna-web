@@ -1,25 +1,72 @@
-<section class="customer page-width">
-  <h1>{{ 'customer.account.title' | t }}</h1>
-  <p>{{ 'customer.account.welcome' | t: first_name: customer.first_name }}</p>
+<div class="account-page page-width">
 
-  <div class="customer__links">
-    <a href="{{ routes.account_addresses_url }}">{{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})</a>
-    <a href="{{ routes.account_logout_url }}">{{ 'customer.account.log_out' | t }}</a>
+  <div class="account-page__header">
+    <div>
+      <p class="account-page__eyebrow">{{ 'customer.account.title' | t }}</p>
+      <h1 class="account-page__name">{{ customer.first_name }} {{ customer.last_name }}</h1>
+      <p class="account-page__email">{{ customer.email }}</p>
+    </div>
+    <div class="account-page__actions">
+      <a href="{{ routes.account_addresses_url }}" class="button button--secondary">
+        {{ 'customer.account.view_addresses' | t }}
+        {%- if customer.addresses_count > 0 -%}
+          <span class="account-page__badge">{{ customer.addresses_count }}</span>
+        {%- endif -%}
+      </a>
+      <a href="{{ routes.account_logout_url }}" class="account-page__logout">{{ 'customer.account.log_out' | t }}</a>
+    </div>
   </div>
 
-  <h2>{{ 'customer.account.order_history' | t }}</h2>
-  {%- if customer.orders.size > 0 -%}
-    <ul class="customer__order-list">
-      {%- for order in customer.orders -%}
-        <li>
-          <a href="{{ order.customer_url }}">
-            <span>{{ order.name }}</span>
-            <span>{{ order.created_at | date: '%B %d, %Y' }}</span>
-          </a>
-        </li>
-      {%- endfor -%}
-    </ul>
-  {%- else -%}
-    <p>{{ 'customer.account.no_orders' | t }}</p>
-  {%- endif -%}
-</section>
+  <div class="account-page__body">
+
+    <div class="account-page__orders">
+      <h2 class="account-page__section-title">{{ 'customer.account.order_history' | t }}</h2>
+
+      {%- if customer.orders.size > 0 -%}
+        <div class="account-orders-wrap">
+          <table class="account-orders">
+            <thead>
+              <tr>
+                <th>Order</th>
+                <th>Date</th>
+                <th>Items</th>
+                <th>Total</th>
+                <th>Payment</th>
+                <th>Fulfilment</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {%- for order in customer.orders -%}
+                <tr>
+                  <td class="account-orders__num">{{ order.name }}</td>
+                  <td class="account-orders__date">{{ order.created_at | date: '%d %b %Y' }}</td>
+                  <td>{{ order.line_items | size }}</td>
+                  <td class="account-orders__total">LKR {{ order.total_price | money_without_currency }}</td>
+                  <td>
+                    <span class="account-orders__status account-orders__status--{{ order.financial_status }}">
+                      {{ order.financial_status_label }}
+                    </span>
+                  </td>
+                  <td>
+                    <span class="account-orders__status account-orders__status--{{ order.fulfillment_status }}">
+                      {{ order.fulfillment_status_label | default: 'Unfulfilled' }}
+                    </span>
+                  </td>
+                  <td><a href="{{ order.customer_url }}" class="account-orders__view">View &rarr;</a></td>
+                </tr>
+              {%- endfor -%}
+            </tbody>
+          </table>
+        </div>
+
+      {%- else -%}
+        <div class="account-page__empty">
+          <p class="account-page__empty-text">{{ 'customer.account.no_orders' | t }}</p>
+          <a href="{{ routes.all_products_collection_url }}" class="button button--primary">Explore the Collection</a>
+        </div>
+      {%- endif -%}
+    </div>
+
+  </div>
+</div>
