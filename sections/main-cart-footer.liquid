@@ -2,7 +2,7 @@
 <section class="cart-footer page-width">
   <div class="cart-footer__subtotal">
     <span>{{ 'general.cart.subtotal' | t }}</span>
-    <span>{{ cart.total_price | money }}</span>
+    <span>LKR {{ cart.total_price | money_without_currency }}</span>
   </div>
   <button type="submit" form="CartPageForm" name="checkout" class="button button--primary">{{ 'general.cart.checkout' | t }}</button>
   {%- if additional_checkout_buttons -%}
