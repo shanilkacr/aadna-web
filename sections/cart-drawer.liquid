@@ -57,7 +57,7 @@
           <span>LKR {{ cart.total_price | money_without_currency }}</span>
         </div>
         <a href="{{ routes.cart_url }}" class="button button--secondary">{{ 'general.cart.view_cart' | t }}</a>
-        <a href="{{ routes.checkout_url }}" class="button button--primary">{{ 'general.cart.checkout' | t }}</a>
+        <a href="{{ routes.checkout_url | default: '/checkout' }}" class="button button--primary">{{ 'general.cart.checkout' | t }}</a>
       </div>
     {%- endif -%}
   </div>
