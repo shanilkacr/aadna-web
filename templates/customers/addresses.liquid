@@ -1,36 +1,208 @@
-<section class="customer page-width">
-  <h1>{{ 'customer.addresses.title' | t }}</h1>
+<div class="address-page page-width">
 
-  {%- paginate customer.addresses by 5 -%}
-    {%- for address in customer.addresses -%}
-      <div style="margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid var(--color-border);">
-        {{ address | format_address }}
-        <div class="customer__links" style="margin-top:12px;">
-          <a href="{{ address.url_to_edit }}">{{ 'customer.addresses.edit' | t }}</a>
-          <form class="address-delete-form" method="post" action="{{ address.url }}">
-            <input type="hidden" name="_method" value="delete">
-            <button type="submit">{{ 'customer.addresses.delete' | t }}</button>
-          </form>
+  <div class="address-page__header">
+    <div>
+      <p class="account-page__eyebrow">My Account</p>
+      <h1 class="account-page__name">Addresses</h1>
+    </div>
+    <a href="{{ routes.account_url }}" class="account-page__logout">&larr; Back to account</a>
+  </div>
+
+  {%- paginate customer.addresses by 10 -%}
+
+    <div class="address-grid">
+
+      {%- for address in customer.addresses -%}
+        <div class="address-card" id="address-card-{{ address.id }}">
+
+          {%- if address.id == customer.default_address.id -%}
+            <span class="address-card__default">Default</span>
+          {%- endif -%}
+
+          <div class="address-card__details" id="address-details-{{ address.id }}">
+            <p class="address-card__name">{{ address.first_name }} {{ address.last_name }}</p>
+            {%- if address.company != blank -%}<p>{{ address.company }}</p>{%- endif -%}
+            <p>{{ address.address1 }}</p>
+            {%- if address.address2 != blank -%}<p>{{ address.address2 }}</p>{%- endif -%}
+            <p>{{ address.city }}{%- if address.province != blank -%}, {{ address.province }}{%- endif %} {{ address.zip }}</p>
+            <p>{{ address.country }}</p>
+            {%- if address.phone != blank -%}<p>{{ address.phone }}</p>{%- endif -%}
+
+            <div class="address-card__actions">
+              <button class="address-card__edit-btn" onclick="toggleAddressEdit('{{ address.id }}')" type="button">Edit</button>
+              <form method="post" action="{{ address.url }}" onsubmit="return confirm('Delete this address?')">
+                <input type="hidden" name="_method" value="delete">
+                {{ form | escape }}
+                <button type="submit" class="address-card__delete-btn">Delete</button>
+              </form>
+            </div>
+          </div>
+
+          <div class="address-card__form" id="address-form-{{ address.id }}" hidden>
+            <p class="address-form__title">Edit Address</p>
+            {%- form 'customer_address', address -%}
+              <div class="address-form__grid">
+                <div class="address-form__field">
+                  <label for="edit-first-{{ address.id }}">First name</label>
+                  <input type="text" id="edit-first-{{ address.id }}" name="address[first_name]" value="{{ address.first_name }}" autocomplete="given-name">
+                </div>
+                <div class="address-form__field">
+                  <label for="edit-last-{{ address.id }}">Last name</label>
+                  <input type="text" id="edit-last-{{ address.id }}" name="address[last_name]" value="{{ address.last_name }}" autocomplete="family-name">
+                </div>
+                <div class="address-form__field address-form__field--full">
+                  <label for="edit-company-{{ address.id }}">Company <span class="address-form__optional">(optional)</span></label>
+                  <input type="text" id="edit-company-{{ address.id }}" name="address[company]" value="{{ address.company }}" autocomplete="organization">
+                </div>
+                <div class="address-form__field address-form__field--full">
+                  <label for="edit-addr1-{{ address.id }}">Address</label>
+                  <input type="text" id="edit-addr1-{{ address.id }}" name="address[address1]" value="{{ address.address1 }}" autocomplete="address-line1">
+                </div>
+                <div class="address-form__field address-form__field--full">
+                  <label for="edit-addr2-{{ address.id }}">Apartment, suite, etc. <span class="address-form__optional">(optional)</span></label>
+                  <input type="text" id="edit-addr2-{{ address.id }}" name="address[address2]" value="{{ address.address2 }}" autocomplete="address-line2">
+                </div>
+                <div class="address-form__field">
+                  <label for="edit-city-{{ address.id }}">City</label>
+                  <input type="text" id="edit-city-{{ address.id }}" name="address[city]" value="{{ address.city }}" autocomplete="address-level2">
+                </div>
+                <div class="address-form__field">
+                  <label for="edit-zip-{{ address.id }}">Postal / ZIP</label>
+                  <input type="text" id="edit-zip-{{ address.id }}" name="address[zip]" value="{{ address.zip }}" autocomplete="postal-code">
+                </div>
+                <div class="address-form__field">
+                  <label for="edit-country-{{ address.id }}">Country</label>
+                  <select id="edit-country-{{ address.id }}" name="address[country]" autocomplete="country">
+                    {{ all_country_option_tags }}
+                  </select>
+                </div>
+                <div class="address-form__field">
+                  <label for="edit-province-{{ address.id }}">Province / State</label>
+                  <input type="text" id="edit-province-{{ address.id }}" name="address[province]" value="{{ address.province }}" autocomplete="address-level1">
+                </div>
+                <div class="address-form__field address-form__field--full">
+                  <label for="edit-phone-{{ address.id }}">Phone <span class="address-form__optional">(optional)</span></label>
+                  <input type="tel" id="edit-phone-{{ address.id }}" name="address[phone]" value="{{ address.phone }}" autocomplete="tel">
+                </div>
+                <div class="address-form__field address-form__field--full">
+                  <label class="address-form__checkbox">
+                    <input type="checkbox" name="address[default]" value="1" {%- if address.id == customer.default_address.id -%} checked{%- endif -%}>
+                    Set as default address
+                  </label>
+                </div>
+              </div>
+              <div class="address-form__footer">
+                <button type="submit" class="button button--primary">Save address</button>
+                <button type="button" class="button button--secondary" onclick="toggleAddressEdit('{{ address.id }}')">Cancel</button>
+              </div>
+            {%- endform -%}
+          </div>
+
+        </div>
+      {%- endfor -%}
+
+      <!-- Add new address card -->
+      <div class="address-card address-card--new" id="address-card-new">
+        <div class="address-card__add" id="address-add-trigger">
+          <button type="button" class="address-card__add-btn" onclick="toggleNewAddress()">
+            <span class="address-card__add-icon">+</span>
+            Add a new address
+          </button>
+        </div>
+
+        <div class="address-card__form" id="address-form-new" hidden>
+          <p class="address-form__title">New Address</p>
+          {%- form 'customer_address', customer.new_address -%}
+            <div class="address-form__grid">
+              <div class="address-form__field">
+                <label for="new-first">First name</label>
+                <input type="text" id="new-first" name="address[first_name]" value="{{ customer.new_address.first_name }}" autocomplete="given-name">
+              </div>
+              <div class="address-form__field">
+                <label for="new-last">Last name</label>
+                <input type="text" id="new-last" name="address[last_name]" value="{{ customer.new_address.last_name }}" autocomplete="family-name">
+              </div>
+              <div class="address-form__field address-form__field--full">
+                <label for="new-company">Company <span class="address-form__optional">(optional)</span></label>
+                <input type="text" id="new-company" name="address[company]" autocomplete="organization">
+              </div>
+              <div class="address-form__field address-form__field--full">
+                <label for="new-addr1">Address</label>
+                <input type="text" id="new-addr1" name="address[address1]" autocomplete="address-line1">
+              </div>
+              <div class="address-form__field address-form__field--full">
+                <label for="new-addr2">Apartment, suite, etc. <span class="address-form__optional">(optional)</span></label>
+                <input type="text" id="new-addr2" name="address[address2]" autocomplete="address-line2">
+              </div>
+              <div class="address-form__field">
+                <label for="new-city">City</label>
+                <input type="text" id="new-city" name="address[city]" autocomplete="address-level2">
+              </div>
+              <div class="address-form__field">
+                <label for="new-zip">Postal / ZIP</label>
+                <input type="text" id="new-zip" name="address[zip]" autocomplete="postal-code">
+              </div>
+              <div class="address-form__field">
+                <label for="new-country">Country</label>
+                <select id="new-country" name="address[country]" autocomplete="country">
+                  {{ all_country_option_tags }}
+                </select>
+              </div>
+              <div class="address-form__field">
+                <label for="new-province">Province / State</label>
+                <input type="text" id="new-province" name="address[province]" autocomplete="address-level1">
+              </div>
+              <div class="address-form__field address-form__field--full">
+                <label for="new-phone">Phone <span class="address-form__optional">(optional)</span></label>
+                <input type="tel" id="new-phone" name="address[phone]" autocomplete="tel">
+              </div>
+              <div class="address-form__field address-form__field--full">
+                <label class="address-form__checkbox">
+                  <input type="checkbox" name="address[default]" value="1">
+                  Set as default address
+                </label>
+              </div>
+            </div>
+            <div class="address-form__footer">
+              <button type="submit" class="button button--primary">Save address</button>
+              <button type="button" class="button button--secondary" onclick="toggleNewAddress()">Cancel</button>
+            </div>
+          {%- endform -%}
         </div>
       </div>
-    {%- endfor -%}
+
+    </div>
 
     {%- if paginate.pages > 1 -%}
-      <nav class="pagination">
+      <nav class="pagination" style="margin-top:32px; display:flex; gap:8px;">
         {%- for part in paginate.parts -%}
           {%- if part.is_link -%}
-            <a href="{{ part.url }}">{{ part.title }}</a>
+            <a href="{{ part.url }}" class="button button--secondary">{{ part.title }}</a>
           {%- else -%}
-            <span>{{ part.title }}</span>
+            <span style="padding:8px 12px;">{{ part.title }}</span>
           {%- endif -%}
         {%- endfor -%}
       </nav>
     {%- endif -%}
+
   {%- endpaginate -%}
 
-  <a href="{{ routes.account_addresses_url }}/new" class="button button--secondary">{{ 'customer.addresses.add_new' | t }}</a>
+</div>
 
-  <div class="customer__links">
-    <a href="{{ routes.account_url }}">{{ 'customer.order.back_to_account' | t }}</a>
-  </div>
-</section>
+<script>
+  function toggleAddressEdit(id) {
+    var details = document.getElementById('address-details-' + id);
+    var form = document.getElementById('address-form-' + id);
+    var isHidden = form.hidden;
+    details.hidden = isHidden;
+    form.hidden = !isHidden;
+  }
+
+  function toggleNewAddress() {
+    var trigger = document.getElementById('address-add-trigger');
+    var form = document.getElementById('address-form-new');
+    var isHidden = form.hidden;
+    trigger.hidden = isHidden;
+    form.hidden = !isHidden;
+  }
+</script>

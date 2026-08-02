@@ -1,7 +1,13 @@
-<section class="page-404 page-width">
-  <h1>{{ '404.title' | t }}</h1>
-  <p>{{ '404.subtext' | t }}</p>
-  <a href="{{ routes.root_url }}" class="button button--primary">{{ '404.link' | t }}</a>
+<section class="page-404">
+  <div class="page-404__inner">
+    <p class="page-404__code">404</p>
+    <h1 class="page-404__title">This page took the jewellery and left.</h1>
+    <p class="page-404__sub">Whatever you were looking for has vanished — no note, no forwarding address, not even a ring. It happens to the best of us.</p>
+    <div class="page-404__actions">
+      <a href="{{ routes.root_url }}" class="button button--primary">Back to home</a>
+      <a href="{{ routes.all_products_collection_url }}" class="button button--secondary">Browse the collection</a>
+    </div>
+  </div>
 </section>
 
 {% schema %}
