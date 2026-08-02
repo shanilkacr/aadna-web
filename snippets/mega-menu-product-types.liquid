@@ -31,7 +31,9 @@
         assign value_param_down = value.value | downcase
         if value_label_down == fallback_down or value_param_down == fallback_down
           assign type_label = value.label
-          assign type_url = value.url
+          if value.url != blank and value.url != '/'
+            assign type_url = value.url
+          endif
           break
         endif
       endfor
