@@ -36,6 +36,10 @@
             endif
             assign tile_label = block.settings.label | default: tile_collection.title | default: 'Collection'
             assign tile_url = block.settings.link | default: tile_collection.url | default: routes.all_products_collection_url
+            assign tile_label_down = tile_label | downcase
+            if tile_url == routes.all_products_collection_url and tile_label_down contains 'best'
+              assign tile_url = routes.all_products_collection_url | append: '?sort_by=best-selling'
+            endif
           -%}
           <a href="{{ tile_url }}" class="mega-menu__tile" {{ block.shopify_attributes }}>
             <div class="mega-menu__tile-media">
