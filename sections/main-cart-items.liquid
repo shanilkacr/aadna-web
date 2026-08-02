@@ -33,7 +33,7 @@
                 </div>
               </td>
               <td>
-                <input type="number" name="updates[{{ forloop.index0 }}]" value="{{ item.quantity }}" min="0">
+                <input type="number" name="updates[{{ item.key }}]" value="{{ item.quantity }}" min="0">
               </td>
               <td>{{ item.final_line_price | money }}</td>
             </tr>
