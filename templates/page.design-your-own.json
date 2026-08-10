@@ -22,6 +22,7 @@
         "hero-11": {
           "type": "hero_image",
           "settings": {
+            "image": "shopify://shop_images/lookbook.jpg",
             "fallback_image": "https://aadna.store/cdn/shop/files/me.jpg"
           }
         },
