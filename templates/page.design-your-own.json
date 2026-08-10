@@ -29,6 +29,7 @@
         "hero-12": {
           "type": "hero_image",
           "settings": {
+            "image": "shopify://shop_images/OQ8A5682.jpg",
             "fallback_image": "https://aadna.store/cdn/shop/files/Lunacuff2.png"
           }
         },
