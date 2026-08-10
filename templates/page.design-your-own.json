@@ -15,6 +15,7 @@
         "hero-1": {
           "type": "hero_image",
           "settings": {
+            "image": "shopify://shop_images/signetring5.jpg",
             "fallback_image": "https://aadna.store/cdn/shop/files/slideshow2.jpg"
           }
         },
