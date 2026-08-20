@@ -1,0 +1,84 @@
+{%- liquid
+  assign hero_blocks = section.blocks | where: 'type', 'hero_image'
+-%}
+
+{%- capture marquee_cells -%}
+  {%- for block in hero_blocks -%}
+    <div class="dyo-page__marquee-cell" {{ block.shopify_attributes }}>
+      {%- if block.settings.image != blank -%}
+        <img
+          src="{{ block.settings.image | image_url: width: 600 }}"
+          alt="{{ block.settings.alt | default: 'AADNA bespoke jewellery' | escape }}"
+          width="400" height="500" loading="{% if forloop.index <= 3 %}eager{% else %}lazy{% endif %}"
+        >
+      {%- elsif block.settings.fallback_image != blank -%}
+        <img src="{{ block.settings.fallback_image }}" alt="{{ block.settings.alt | default: 'AADNA bespoke jewellery' | escape }}" width="400" height="500" loading="lazy">
+      {%- endif -%}
+    </div>
+  {%- endfor -%}
+{%- endcapture -%}
+
+<div class="dyo-page__hero-mosaic">
+  <div class="dyo-page__marquee-row">
+    <div class="dyo-page__marquee-track dyo-page__marquee-track--row1">
+      <div class="dyo-page__marquee-set">{{ marquee_cells }}</div>
+      <div class="dyo-page__marquee-set" aria-hidden="true">{{ marquee_cells }}</div>
+    </div>
+  </div>
+  <div class="dyo-page__mosaic-overlay">
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="dyo-page__eyebrow">{{ section.settings.eyebrow }}</p>
+    {%- endif -%}
+    <h1>{{ section.settings.title | default: page.title }}</h1>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "DYO — Hero",
+  "enabled_on": { "templates": ["page"] },
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "Bespoke jewellery"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Design Your Own"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "hero_image",
+      "name": "Hero image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "alt",
+          "label": "Alt text"
+        },
+        {
+          "type": "text",
+          "id": "fallback_image",
+          "label": "Fallback image URL",
+          "info": "Used only if no image is selected above."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "DYO — Hero"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,162 @@
+<section class="dyo-page__form-section">
+  <div class="dyo-page__hero-form dyo-page__hero-form--single">
+    <div class="dyo-page__hero-panel">
+      {%- if section.settings.form_heading != blank -%}
+        <h2 class="dyo-page__form-heading">{{ section.settings.form_heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.intro != blank -%}
+        <div class="dyo-page__intro">{{ section.settings.intro }}</div>
+      {%- endif -%}
+
+      {% form 'contact', id: 'DesignYourOwnForm', class: 'dyo-page__form', data-design-your-own-form: true %}
+        <input type="hidden" name="contact[Form type]" value="Design Your Own enquiry">
+
+        {%- if form.posted_successfully? -%}
+          <p class="dyo-page__success">{{ section.settings.success_message }}</p>
+        {%- endif -%}
+
+        {%- if form.errors -%}
+          <div class="dyo-page__errors">{{ form.errors | default_errors }}</div>
+        {%- endif -%}
+
+        <div class="dyo-page__field-row">
+          <div class="dyo-page__field">
+            <label for="DesignYourOwnForm-name">{{ section.settings.name_label }}</label>
+            <input type="text" id="DesignYourOwnForm-name" name="contact[Name]" autocomplete="name" required>
+          </div>
+          <div class="dyo-page__field">
+            <label for="DesignYourOwnForm-email">{{ section.settings.email_label }}</label>
+            <input type="email" id="DesignYourOwnForm-email" name="contact[email]" autocomplete="email" required>
+          </div>
+        </div>
+
+        <div class="dyo-page__field-row">
+          <div class="dyo-page__field">
+            <label for="DesignYourOwnForm-phone">{{ section.settings.phone_label }}</label>
+            <input type="tel" id="DesignYourOwnForm-phone" name="contact[Phone]" autocomplete="tel" required>
+          </div>
+          <div class="dyo-page__field">
+            <label for="DesignYourOwnForm-type">{{ section.settings.type_label }}</label>
+            <select id="DesignYourOwnForm-type" name="contact[Jewellery type]">
+              <option value="">Select a type</option>
+              <option value="Ring">Ring</option>
+              <option value="Necklace">Necklace</option>
+              <option value="Bracelet / Bangle">Bracelet / Bangle</option>
+              <option value="Earrings">Earrings</option>
+              <option value="Pendant">Pendant</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="dyo-page__field">
+          <label for="DesignYourOwnForm-body">{{ section.settings.brief_label }}</label>
+          <textarea
+            id="DesignYourOwnForm-body"
+            name="contact[body]"
+            rows="2"
+            placeholder="{{ section.settings.brief_placeholder }}"
+            required
+            data-design-your-own-body
+          ></textarea>
+        </div>
+
+        <input type="file" id="DesignYourOwnForm-file" accept="image/*,.pdf" data-design-your-own-file hidden>
+
+        <div class="dyo-page__dropzone" data-design-your-own-dropzone>
+          <div class="dyo-page__dropzone-inner">
+            <svg class="dyo-page__dropzone-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <p class="dyo-page__dropzone-label">Drag &amp; drop your file here</p>
+            <p class="dyo-page__dropzone-sub">or <label for="DesignYourOwnForm-file" class="dyo-page__dropzone-browse">browse to upload</label></p>
+            <p class="dyo-page__dropzone-hint">{{ section.settings.file_hint }}</p>
+          </div>
+          <div class="dyo-page__file-preview" data-design-your-own-preview hidden></div>
+        </div>
+
+        <div class="dyo-page__actions">
+          <button type="submit" class="button button--primary">{{ section.settings.submit_label }}</button>
+        </div>
+      {% endform %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "DYO — Enquiry Form",
+  "enabled_on": { "templates": ["page"] },
+  "settings": [
+    {
+      "type": "text",
+      "id": "form_heading",
+      "label": "Form heading",
+      "default": "Start your design"
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Form description",
+      "default": "<p>Create something entirely yours. Share your vision — stones, metal, silhouette — and our atelier will bring it to life, handcrafted in Sri Lanka.</p>"
+    },
+    {
+      "type": "text",
+      "id": "name_label",
+      "label": "Name field label",
+      "default": "Name"
+    },
+    {
+      "type": "text",
+      "id": "email_label",
+      "label": "Email field label",
+      "default": "Email"
+    },
+    {
+      "type": "text",
+      "id": "phone_label",
+      "label": "Phone field label",
+      "default": "Phone"
+    },
+    {
+      "type": "text",
+      "id": "type_label",
+      "label": "Jewellery type label",
+      "default": "Type of jewellery"
+    },
+    {
+      "type": "text",
+      "id": "brief_label",
+      "label": "Design brief label",
+      "default": "Your design brief"
+    },
+    {
+      "type": "text",
+      "id": "brief_placeholder",
+      "label": "Design brief placeholder",
+      "default": "Describe the piece you have in mind — stones, metal, occasion, sizing, or any details that matter to you."
+    },
+    {
+      "type": "text",
+      "id": "file_hint",
+      "label": "File upload hint",
+      "default": "JPEG, PNG, WEBP, or PDF up to 5 MB."
+    },
+    {
+      "type": "text",
+      "id": "submit_label",
+      "label": "Submit button label",
+      "default": "Send enquiry"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "Thank you — your enquiry has been sent. We'll be in touch shortly."
+    }
+  ],
+  "presets": [
+    {
+      "name": "DYO — Enquiry Form"
+    }
+  ]
+}
+{% endschema %}

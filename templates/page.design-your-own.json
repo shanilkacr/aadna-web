@@ -1,62 +1,86 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
-    "main": {
-      "type": "design-your-own-page",
+    "dyo-hero": {
+      "type": "dyo-hero",
       "blocks": {
         "hero-1": {
           "type": "hero_image",
           "settings": {
             "image": "shopify://shop_images/signetring5.jpg",
+            "alt": "Signet ring detail",
             "fallback_image": "https://aadna.store/cdn/shop/files/slideshow2.jpg"
           }
         },
-        "hero-11": {
+        "hero-2": {
           "type": "hero_image",
           "settings": {
             "image": "shopify://shop_images/lookbook.jpg",
+            "alt": "AADNA lookbook",
             "fallback_image": "https://aadna.store/cdn/shop/files/me.jpg"
           }
         },
-        "hero-12": {
+        "hero-3": {
           "type": "hero_image",
           "settings": {
             "image": "shopify://shop_images/OQ8A5682.jpg",
+            "alt": "Handcrafted jewellery",
             "fallback_image": "https://aadna.store/cdn/shop/files/Lunacuff2.png"
           }
         },
-        "hero-13": {
+        "hero-4": {
           "type": "hero_image",
           "settings": {
-            "fallback_image": "https://aadna.store/cdn/shop/files/slideshow2.jpg"
-          }
-        },
-        "hero-14": {
-          "type": "hero_image",
-          "settings": {
+            "alt": "Bespoke piece",
             "fallback_image": "https://aadna.store/cdn/shop/files/slideshow4.jpg"
           }
         },
-        "hero-15": {
+        "hero-5": {
           "type": "hero_image",
           "settings": {
+            "alt": "Custom jewellery",
             "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg"
           }
         },
-        "hero-16": {
+        "hero-6": {
           "type": "hero_image",
           "settings": {
+            "alt": "Atelier piece",
             "fallback_image": "https://aadna.store/cdn/shop/files/gaea07.jpg"
           }
         },
+        "hero-7": {
+          "type": "hero_image",
+          "settings": {
+            "alt": "One of a kind",
+            "fallback_image": "https://aadna.store/cdn/shop/files/slideshow2.jpg"
+          }
+        }
+      },
+      "block_order": ["hero-1", "hero-2", "hero-3", "hero-4", "hero-5", "hero-6", "hero-7"],
+      "settings": {
+        "eyebrow": "Bespoke jewellery",
+        "title": "Design Your Own"
+      }
+    },
+    "dyo-form": {
+      "type": "dyo-form",
+      "settings": {
+        "form_heading": "Start your design",
+        "intro": "<p>It's a canvas for innovation.</p><p>Create something entirely yours. Share your vision, stones, metal, silhouette and our atelier will bring it to life, handcrafted in Sri Lanka.</p>",
+        "name_label": "Name",
+        "email_label": "Email",
+        "phone_label": "Phone",
+        "type_label": "Type of jewellery",
+        "brief_label": "Your design brief",
+        "brief_placeholder": "Describe the piece you have in mind — stones, metal, occasion, sizing, or any details that matter to you.",
+        "file_hint": "JPEG, PNG, WEBP, or PDF up to 5 MB.",
+        "submit_label": "Send enquiry",
+        "success_message": "Thank you — your enquiry has been sent. We'll be in touch shortly."
+      }
+    },
+    "dyo-gallery": {
+      "type": "dyo-gallery",
+      "blocks": {
         "gallery-1": {
           "type": "gallery_image",
           "settings": {
@@ -70,266 +94,199 @@
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/DYO10.png",
-            "fallback_image": "https://aadna.store/cdn/shop/files/slideshow4.jpg",
             "caption": "Engagement Ring",
-            "featured": false
-          }
-        },
-        "gallery_image_xhFRVE": {
-          "type": "gallery_image",
-          "settings": {
-            "image": "shopify://shop_images/PHOTO-2022-09-30-16-27-50_1080x1080_full.png",
-            "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg",
-            "caption": "Bridal Necklace",
             "featured": false
           }
         },
         "gallery-3": {
           "type": "gallery_image",
           "settings": {
+            "image": "shopify://shop_images/PHOTO-2022-09-30-16-27-50_1080x1080_full.png",
+            "caption": "Bridal Necklace",
+            "featured": false
+          }
+        },
+        "gallery-4": {
+          "type": "gallery_image",
+          "settings": {
             "image": "shopify://shop_images/DYO7.jpg",
-            "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg",
             "caption": "Signet Ring",
             "featured": false
           }
         },
-        "gallery_image_zKpPkz": {
+        "gallery-5": {
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/Screenshot_2569-07-13_at_9.33.13_PM.png",
-            "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg",
             "caption": "Bridal Earrings",
             "featured": false
           }
         },
-        "gallery_image_zG7qDd": {
+        "gallery-6": {
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/dyo1.jpg",
-            "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg",
             "caption": "",
             "featured": false
           }
         },
-        "gallery_image_xYpDBk": {
+        "gallery-7": {
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/wg.png",
-            "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg",
             "caption": "Bridal Necklace",
             "featured": false
           }
         },
-        "gallery_image_XQBnxT": {
+        "gallery-8": {
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/IMG_9864_1080x1080_3a55210e-b0d2-4502-9ed5-ad86cd142525.jpg",
-            "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg",
             "caption": "Tharshana Iris Pendant",
             "featured": false
           }
         },
-        "gallery_image_yPWaNU": {
+        "gallery-9": {
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/DYO9.png",
-            "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg",
             "caption": "Wedding Bands",
             "featured": false
           }
         },
-        "gallery_image_8Th6iT": {
+        "gallery-10": {
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/DYO11.jpg",
-            "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg",
             "caption": "Handcrafted cufflinks",
             "featured": false
           }
         },
-        "gallery_image_GTGX3n": {
+        "gallery-11": {
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/anchor_1080x1080_enhanced.jpg",
-            "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg",
-            "caption": "Bridal Necklace",
+            "caption": "Anchor Pendant",
             "featured": false
           }
         },
-        "gallery_image_Ghn8p4": {
+        "gallery-12": {
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/DYO2.jpg",
-            "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg",
             "caption": "Wedding Bands",
             "featured": false
           }
         },
-        "gallery_image_mpPzpQ": {
+        "gallery-13": {
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/DYO4.jpg",
-            "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg",
             "caption": "Handcrafted cufflinks",
             "featured": false
           }
         },
-        "gallery_image_gcWDNG": {
+        "gallery-14": {
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/dyo12.jpg",
-            "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg",
             "caption": "Amethyst Ring",
             "featured": false
           }
         },
-        "gallery_image_enqk4m": {
+        "gallery-15": {
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/DSC07781_1080x1080_enhanced.jpg",
-            "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg",
             "caption": "Tharshana Iris Pendant",
             "featured": false
           }
         },
-        "gallery_image_cfEpcb": {
+        "gallery-16": {
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/resized_1080.jpg",
-            "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg",
             "caption": "Bridal Necklace",
             "featured": false
           }
         },
-        "gallery_image_qbprtz": {
+        "gallery-17": {
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/D14E7A90_1080x1080_54b1385b-5d96-4b7b-a2d7-6bea3d7322c3.jpg",
-            "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg",
             "caption": "Bridal Necklace",
             "featured": false
           }
         },
-        "gallery_image_yWqykC": {
+        "gallery-18": {
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/shana.png",
-            "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg",
             "caption": "Bridal Necklace",
             "featured": false
           }
         },
-        "gallery_image_APLMUK": {
+        "gallery-19": {
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/bride2.png",
-            "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg",
-            "caption": "Bridal Necklace",
+            "caption": "Bridal Set",
             "featured": false
           }
         },
-        "gallery_image_6pRWcw": {
+        "gallery-20": {
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/letter1.png",
-            "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg",
-            "caption": "Bridal Necklace",
+            "caption": "Initial Pendant",
             "featured": false
           }
         },
-        "gallery_image_TDF8bh": {
+        "gallery-21": {
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/chakra.png",
-            "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg",
-            "caption": "Bridal Necklace",
+            "caption": "Chakra Piece",
             "featured": false
           }
         },
-        "gallery_image_bNAxKY": {
+        "gallery-22": {
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/bridal.png",
-            "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg",
             "caption": "Bridal Necklace",
             "featured": false
           }
         },
-        "gallery_image_34cfyc": {
+        "gallery-23": {
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/bride3.png",
-            "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg",
-            "caption": "Bridal Necklace",
+            "caption": "Bridal Set",
             "featured": false
           }
         },
-        "gallery_image_YczGxW": {
+        "gallery-24": {
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/bride4.png",
-            "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg",
-            "caption": "Bridal Necklace",
+            "caption": "Bridal Set",
             "featured": false
           }
         }
       },
       "block_order": [
-        "hero-1",
-        "hero-11",
-        "hero-12",
-        "hero-13",
-        "hero-14",
-        "hero-15",
-        "hero-16",
-        "gallery-1",
-        "gallery-2",
-        "gallery_image_xhFRVE",
-        "gallery-3",
-        "gallery_image_zKpPkz",
-        "gallery_image_zG7qDd",
-        "gallery_image_xYpDBk",
-        "gallery_image_XQBnxT",
-        "gallery_image_yPWaNU",
-        "gallery_image_8Th6iT",
-        "gallery_image_GTGX3n",
-        "gallery_image_Ghn8p4",
-        "gallery_image_mpPzpQ",
-        "gallery_image_gcWDNG",
-        "gallery_image_enqk4m",
-        "gallery_image_cfEpcb",
-        "gallery_image_qbprtz",
-        "gallery_image_yWqykC",
-        "gallery_image_APLMUK",
-        "gallery_image_6pRWcw",
-        "gallery_image_TDF8bh",
-        "gallery_image_bNAxKY",
-        "gallery_image_34cfyc",
-        "gallery_image_YczGxW"
+        "gallery-1", "gallery-2", "gallery-3", "gallery-4", "gallery-5", "gallery-6",
+        "gallery-7", "gallery-8", "gallery-9", "gallery-10", "gallery-11", "gallery-12",
+        "gallery-13", "gallery-14", "gallery-15", "gallery-16", "gallery-17", "gallery-18",
+        "gallery-19", "gallery-20", "gallery-21", "gallery-22", "gallery-23", "gallery-24"
       ],
       "settings": {
-        "eyebrow": "Bespoke jewellery",
-        "title": "Design Your Own",
-        "form_heading": "Start your design",
-        "intro": "<p>It's a canvas for innovation.</p><p>Create something entirely yours. Share your vision, stones, metal, silhouette and our atelier will bring it to life, handcrafted in Sri Lanka.</p>",
-        "form_fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg",
-        "name_label": "Name",
-        "email_label": "Email",
-        "phone_label": "Phone",
-        "type_label": "Type of jewellery",
-        "brief_label": "Your design brief",
-        "brief_placeholder": "Describe the piece you have in mind — stones, metal, occasion, sizing, or any details that matter to you.",
-        "file_label": "Attach reference image",
-        "file_hint": "JPEG, PNG, WEBP, or PDF up to 5 MB.",
-        "submit_label": "Send enquiry",
-        "success_message": "Thank you — your enquiry has been sent. We'll be in touch shortly.",
         "show_gallery": true,
         "gallery_heading": "Past creations",
         "gallery_subheading": "A selection of one-of-a-kind pieces crafted for our clients."
       }
     }
   },
-  "order": [
-    "main"
-  ]
+  "order": ["dyo-hero", "dyo-form", "dyo-gallery"]
 }

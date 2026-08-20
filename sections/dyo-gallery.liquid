@@ -1,0 +1,98 @@
+{%- if section.settings.show_gallery -%}
+<div class="dyo-page__gallery page-width">
+  <div class="dyo-page__gallery-header">
+    {%- if section.settings.gallery_heading != blank -%}
+      <h2>{{ section.settings.gallery_heading }}</h2>
+    {%- endif -%}
+    {%- if section.settings.gallery_subheading != blank -%}
+      <p>{{ section.settings.gallery_subheading }}</p>
+    {%- endif -%}
+  </div>
+
+  <div class="dyo-page__gallery-grid product-grid" style="--columns:4;" data-dyo-gallery>
+    {%- for block in section.blocks -%}
+      {%- assign image_alt = block.settings.caption | default: block.settings.image.alt | default: 'Bespoke piece' -%}
+      <div class="dyo-page__gallery-item{% if block.settings.featured %} dyo-page__gallery-item--featured{% endif %}" {{ block.shopify_attributes }}>
+        <div class="dyo-page__gallery-media">
+          {%- if block.settings.image != blank -%}
+            <img
+              src="{{ block.settings.image | image_url: width: 800 }}"
+              alt="{{ image_alt | escape }}"
+              loading="lazy"
+              width="800"
+              height="{{ 800 | divided_by: block.settings.image.aspect_ratio | default: 1000 }}"
+            >
+          {%- elsif block.settings.fallback_image != blank -%}
+            <img src="{{ block.settings.fallback_image }}" alt="{{ image_alt | escape }}" loading="lazy" width="800" height="1000">
+          {%- endif -%}
+        </div>
+        {%- if block.settings.caption != blank -%}
+          <p class="dyo-page__gallery-caption">{{ block.settings.caption }}</p>
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "DYO — Gallery",
+  "enabled_on": { "templates": ["page"] },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_gallery",
+      "label": "Show gallery",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "gallery_heading",
+      "label": "Heading",
+      "default": "Past creations"
+    },
+    {
+      "type": "text",
+      "id": "gallery_subheading",
+      "label": "Subheading",
+      "default": "A selection of one-of-a-kind pieces crafted for our clients."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "gallery_image",
+      "name": "Gallery image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "fallback_image",
+          "label": "Fallback image URL",
+          "info": "Shown until an image is picked above."
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption"
+        },
+        {
+          "type": "checkbox",
+          "id": "featured",
+          "label": "Featured (larger tile)",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "DYO — Gallery"
+    }
+  ]
+}
+{% endschema %}
