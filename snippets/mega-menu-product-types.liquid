@@ -22,7 +22,7 @@
   {%- liquid
     assign type_label = fallback_type
     assign encoded_type = fallback_type | url_param_escape
-    assign type_url = shop_collection_url | append: '?filter.p.product_type=' | append: encoded_type
+    assign type_url = shop_collection_url | append: '?filter.p.product_type=' | append: encoded_type | append: '&sort_by=created-descending'
     assign fallback_down = fallback_type | downcase
 
     if product_type_filter != blank
@@ -32,7 +32,7 @@
         if value_label_down == fallback_down or value_param_down == fallback_down
           assign type_label = value.label
           if value.url != blank and value.url != '/'
-            assign type_url = value.url
+            assign type_url = value.url | append: '&sort_by=created-descending'
           endif
           break
         endif
