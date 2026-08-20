@@ -15,72 +15,21 @@
         "hero-1": {
           "type": "hero_image",
           "settings": {
+            "image": "shopify://shop_images/signetring5.jpg",
             "fallback_image": "https://aadna.store/cdn/shop/files/slideshow2.jpg"
-          }
-        },
-        "hero-2": {
-          "type": "hero_image",
-          "settings": {
-            "fallback_image": "https://aadna.store/cdn/shop/files/slideshow4.jpg"
-          }
-        },
-        "hero-3": {
-          "type": "hero_image",
-          "settings": {
-            "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg"
-          }
-        },
-        "hero-4": {
-          "type": "hero_image",
-          "settings": {
-            "fallback_image": "https://aadna.store/cdn/shop/files/gaea07.jpg"
-          }
-        },
-        "hero-5": {
-          "type": "hero_image",
-          "settings": {
-            "fallback_image": "https://aadna.store/cdn/shop/files/me.jpg"
-          }
-        },
-        "hero-6": {
-          "type": "hero_image",
-          "settings": {
-            "fallback_image": "https://aadna.store/cdn/shop/files/Lunacuff2.png"
-          }
-        },
-        "hero-7": {
-          "type": "hero_image",
-          "settings": {
-            "fallback_image": "https://aadna.store/cdn/shop/files/slideshow2.jpg"
-          }
-        },
-        "hero-8": {
-          "type": "hero_image",
-          "settings": {
-            "fallback_image": "https://aadna.store/cdn/shop/files/slideshow4.jpg"
-          }
-        },
-        "hero-9": {
-          "type": "hero_image",
-          "settings": {
-            "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg"
-          }
-        },
-        "hero-10": {
-          "type": "hero_image",
-          "settings": {
-            "fallback_image": "https://aadna.store/cdn/shop/files/gaea07.jpg"
           }
         },
         "hero-11": {
           "type": "hero_image",
           "settings": {
+            "image": "shopify://shop_images/lookbook.jpg",
             "fallback_image": "https://aadna.store/cdn/shop/files/me.jpg"
           }
         },
         "hero-12": {
           "type": "hero_image",
           "settings": {
+            "image": "shopify://shop_images/OQ8A5682.jpg",
             "fallback_image": "https://aadna.store/cdn/shop/files/Lunacuff2.png"
           }
         },
@@ -327,15 +276,6 @@
       },
       "block_order": [
         "hero-1",
-        "hero-2",
-        "hero-3",
-        "hero-4",
-        "hero-5",
-        "hero-6",
-        "hero-7",
-        "hero-8",
-        "hero-9",
-        "hero-10",
         "hero-11",
         "hero-12",
         "hero-13",
