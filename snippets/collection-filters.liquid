@@ -122,7 +122,7 @@
                 {%- assign filter_id = 'Filter-' | append: filter.param_name | handleize -%}
                 <details class="collection-filters__group" open>
                   <summary class="collection-filters__group-label">
-                    <span>{{ filter.label | escape }}</span>
+                    <span>{% if filter.label contains 'Color' or filter.label contains 'Colour' %}Finish{% else %}{{ filter.label | escape }}{% endif %}</span>
                     {%- if filter.active_values.size > 0 -%}
                       <span class="collection-filters__group-count">({{ filter.active_values.size }})</span>
                     {%- endif -%}

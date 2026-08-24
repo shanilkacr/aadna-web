@@ -18,7 +18,7 @@
       {%- when 'row' -%}
         {%- assign row_parity = row_index | modulo: 2 -%}
         {%- assign row_index = row_index | plus: 1 -%}
-        <div class="story-page__row{% if row_parity == 1 %} story-page__row--reverse{% endif %}" {{ block.shopify_attributes }}>
+        <div class="story-page__row{% if row_parity == 1 %} story-page__row--reverse{% endif %}{% if forloop.index0 == 0 %} story-page__row--first{% endif %}" {{ block.shopify_attributes }}>
           <div class="story-page__media{% if block.settings.vimeo_id != blank %} story-page__media--video{% endif %}">
             {%- if block.settings.vimeo_id != blank -%}
               <div class="story-page__media-video">

@@ -4,7 +4,7 @@
   Fallback: fixed types in display order with filter URLs on /collections/all.
 {%- endcomment -%}
 {%- liquid
-  assign fallback_types = 'Earrings|Necklace|Rings|Cufflinks|Bangle|Charms' | split: '|'
+  assign fallback_types = 'Earrings|Necklace|Rings|Cufflinks|Bangle|Shop All' | split: '|'
   assign shop_collection_url = collections.all.url | default: routes.all_products_collection_url
 
   assign product_type_filter = blank
@@ -21,22 +21,27 @@
 {%- for fallback_type in fallback_types -%}
   {%- liquid
     assign type_label = fallback_type
-    assign encoded_type = fallback_type | url_param_escape
-    assign type_url = shop_collection_url | append: '?filter.p.product_type=' | append: encoded_type | append: '&sort_by=created-descending'
-    assign fallback_down = fallback_type | downcase
 
-    if product_type_filter != blank
-      for value in product_type_filter.values
-        assign value_label_down = value.label | downcase
-        assign value_param_down = value.value | downcase
-        if value_label_down == fallback_down or value_param_down == fallback_down
-          assign type_label = value.label
-          if value.url != blank and value.url != '/'
-            assign type_url = value.url | append: '&sort_by=created-descending'
+    if fallback_type == 'Shop All'
+      assign type_url = shop_collection_url | append: '?sort_by=created-descending'
+    else
+      assign encoded_type = fallback_type | url_param_escape
+      assign type_url = shop_collection_url | append: '?filter.p.product_type=' | append: encoded_type | append: '&sort_by=created-descending'
+      assign fallback_down = fallback_type | downcase
+
+      if product_type_filter != blank
+        for value in product_type_filter.values
+          assign value_label_down = value.label | downcase
+          assign value_param_down = value.value | downcase
+          if value_label_down == fallback_down or value_param_down == fallback_down
+            assign type_label = value.label
+            if value.url != blank and value.url != '/'
+              assign type_url = value.url | append: '&sort_by=created-descending'
+            endif
+            break
           endif
-          break
-        endif
-      endfor
+        endfor
+      endif
     endif
   -%}
   <li><a href="{{ type_url }}">{{ type_label }}</a></li>
