@@ -1741,7 +1741,7 @@ strong, b, th { font-weight: 400; }
 .cart-page__remove:hover { opacity: 1; text-decoration: underline; }
 .cart-page__product { display: flex; gap: 12px; }
 .cart-page__image img { width: 80px; height: 100px; object-fit: cover; }
-.cart-footer { display: flex; justify-content: flex-end; align-items: center; gap: 24px; padding: 24px 0 var(--spacing-sections); }
+.cart-footer { display: flex; justify-content: flex-end; align-items: center; gap: 24px; padding-top: 24px; padding-bottom: var(--spacing-sections); }
 .cart-footer__subtotal { font-size: 12px; }
 
 /* Misc pages */
@@ -2928,13 +2928,6 @@ strong, b, th { font-weight: 400; }
   .dyo-page__gallery-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 3px;
-  }
-  .dyo-page__gallery-item--featured {
-    grid-column: span 2;
-    grid-row: span 1;
-  }
-  .dyo-page__gallery-item--featured .dyo-page__gallery-media {
-    aspect-ratio: 16 / 9;
   }
   .dyo-page__gallery-item figcaption {
     opacity: 1;

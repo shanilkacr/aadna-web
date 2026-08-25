@@ -26,9 +26,6 @@
             <img src="{{ block.settings.fallback_image }}" alt="{{ image_alt | escape }}" loading="lazy" width="800" height="1000">
           {%- endif -%}
         </div>
-        {%- if block.settings.caption != blank -%}
-          <p class="dyo-page__gallery-caption">{{ block.settings.caption }}</p>
-        {%- endif -%}
       </div>
     {%- endfor -%}
   </div>
