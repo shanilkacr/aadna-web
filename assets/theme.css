@@ -2866,18 +2866,10 @@ strong, b, th { font-weight: 400; }
   position: relative;
   overflow: hidden;
 }
-.dyo-page__gallery-item--featured {
-  grid-column: span 2;
-  grid-row: span 2;
-}
 .dyo-page__gallery-media {
   aspect-ratio: 1 / 1;
   overflow: hidden;
   background: var(--color-background-alt);
-}
-.dyo-page__gallery-item--featured .dyo-page__gallery-media {
-  aspect-ratio: auto;
-  height: 100%;
 }
 .dyo-page__gallery-media img,
 .dyo-page__placeholder {
