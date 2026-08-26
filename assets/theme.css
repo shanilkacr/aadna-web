@@ -2235,7 +2235,7 @@ strong, b, th { font-weight: 400; }
 /* Contact page */
 .contact-page__hero {
   text-align: center;
-  padding: calc(var(--spacing-sections) * 0.95) 32px calc(var(--spacing-sections) * 1.14);
+  padding: 60px 32px;
 }
 .contact-page__hero h1 {
   margin: 0;
@@ -2964,29 +2964,41 @@ strong, b, th { font-weight: 400; }
   .contact-page__content {
     padding: 32px;
   }
+  .contact-page__info {
+    padding-top: 0;
+  }
   .contact-page__name-row { grid-template-columns: 1fr; }
 }
 
 /* Customer account */
 /* ── Customer / account shared base ── */
-.customer { padding: var(--spacing-sections) 0; max-width: 480px; margin: 0 auto; }
-.customer h1 { text-align: center; margin-bottom: 24px; }
-.customer form { display: grid; gap: 16px; }
-.customer label { display: block; margin-bottom: 4px; font-size: 11px; letter-spacing: 1px; }
+.customer { padding: var(--spacing-sections) 24px; max-width: 480px; margin: 0 auto; box-sizing: border-box; }
+.customer__header { text-align: center; margin-bottom: 36px; }
+.customer h1 { margin-bottom: 8px; }
+.customer__subtitle { font-size: 13px; color: var(--color-text-muted); letter-spacing: 0.5px; margin: 0; }
+.customer form { display: grid; gap: 20px; }
+.customer__field { display: flex; flex-direction: column; gap: 6px; }
+.customer label { display: block; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--color-text-muted); }
 .customer input[type="email"],
 .customer input[type="password"],
 .customer input[type="text"],
 .customer input[type="tel"] {
-  width: 100%; padding: 12px 4px; border: none; border-bottom: 1px solid var(--color-border);
-  background: transparent; font: inherit;
+  width: 100%; padding: 12px 0; border: none; border-bottom: 1px solid var(--color-border);
+  background: transparent; font: inherit; font-size: 15px; box-sizing: border-box;
 }
+.customer input::placeholder { color: var(--color-text-muted); opacity: 0.5; }
 .customer input:focus { outline: none; border-bottom-color: var(--color-text); }
+.customer__forgot { text-align: right; margin-top: -8px; }
+.customer__forgot a { font-size: 11px; letter-spacing: 0.5px; color: var(--color-text-muted); text-decoration: underline; text-underline-offset: 3px; }
+.customer__submit { width: 100%; margin-top: 8px; }
+.customer__register { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 24px; font-size: 12px; color: var(--color-text-muted); letter-spacing: 0.3px; }
+.customer__register-link { font-size: 12px; font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase; text-decoration: underline; text-underline-offset: 3px; color: var(--color-text); }
+.customer a:not(.button) { text-underline-offset: 3px; }
 .customer__links { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; text-align: center; font-size: 11px; }
-.customer a:not(.button) { text-decoration: underline; text-underline-offset: 3px; }
 .customer__order-list { list-style: none; padding: 0; margin: 0; }
 .customer__order-list li { padding: 16px 0; border-bottom: 1px solid var(--color-border); }
 .customer__order-list a { display: flex; justify-content: space-between; }
-.customer__errors { color: #b00020; margin-bottom: 16px; }
+.customer__errors { color: #b00020; margin-bottom: 16px; font-size: 13px; }
 
 /* ── Account page ── */
 .account-page { padding: 48px 0 80px; }

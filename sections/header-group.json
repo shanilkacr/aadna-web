@@ -19,7 +19,7 @@
           "settings": {
             "collection": "timeless-collection",
             "label": "Best sellers",
-            "link": "/collections/all",
+            "link": "/collections/all?sort_by=created-descending",
             "fallback_image": ""
           }
         },

@@ -13,7 +13,7 @@
 {%- endcomment -%}
 {%- liquid
   assign display_title = title | default: collection.title
-  assign display_link = collection.url | default: '#'
+  assign display_link = collection.url | append: '?sort_by=created-descending' | default: '#'
 -%}
 <div class="collection-list__item">
   <div class="collection-list__media">

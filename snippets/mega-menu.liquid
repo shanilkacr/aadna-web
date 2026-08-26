@@ -40,6 +40,9 @@
             if tile_url == routes.all_products_collection_url and tile_label_down contains 'best'
               assign tile_url = routes.all_products_collection_url | append: '?sort_by=best-selling'
             endif
+            unless tile_url contains 'sort_by='
+              assign tile_url = tile_url | append: '?sort_by=created-descending'
+            endunless
           -%}
           <a href="{{ tile_url }}" class="mega-menu__tile" {{ block.shopify_attributes }}>
             <div class="mega-menu__tile-media">

@@ -1,22 +1,32 @@
 <section class="customer page-width">
-  <h1>{{ 'customer.login.title' | t }}</h1>
+  <div class="customer__header">
+    <h1>{{ 'customer.login.title' | t }}</h1>
+  </div>
 
   {% form 'customer_login' %}
     {%- if form.errors -%}
       <div class="customer__errors">{{ form.errors | default_errors }}</div>
     {%- endif -%}
 
-    <label for="CustomerEmail">{{ 'customer.login.email' | t }}</label>
-    <input type="email" name="customer[email]" id="CustomerEmail" autocomplete="email" required>
+    <div class="customer__field">
+      <label for="CustomerEmail">{{ 'customer.login.email' | t }}</label>
+      <input type="email" name="customer[email]" id="CustomerEmail" autocomplete="email" required placeholder="your@email.com">
+    </div>
 
-    <label for="CustomerPassword">{{ 'customer.login.password' | t }}</label>
-    <input type="password" name="customer[password]" id="CustomerPassword" autocomplete="current-password" required>
+    <div class="customer__field">
+      <label for="CustomerPassword">{{ 'customer.login.password' | t }}</label>
+      <input type="password" name="customer[password]" id="CustomerPassword" autocomplete="current-password" required placeholder="••••••••">
+    </div>
 
-    <button type="submit" class="button button--primary">{{ 'customer.login.sign_in' | t }}</button>
+    <div class="customer__forgot">
+      <a href="{{ routes.account_recover_url }}">{{ 'customer.login.forgot_password' | t }}</a>
+    </div>
+
+    <button type="submit" class="button button--primary customer__submit">{{ 'customer.login.sign_in' | t }}</button>
   {% endform %}
 
-  <div class="customer__links">
-    <a href="{{ routes.account_register_url }}">{{ 'customer.login.create_account' | t }}</a>
-    <a href="{{ routes.account_recover_url }}">{{ 'customer.login.forgot_password' | t }}</a>
+  <div class="customer__register">
+    <span>New to AADNA?</span>
+    <a href="{{ routes.account_register_url }}" class="customer__register-link">{{ 'customer.login.create_account' | t }}</a>
   </div>
 </section>
