@@ -58,12 +58,12 @@
               {%- assign option_index = forloop.index0 -%}
               {%- assign option_name_downcase = option.name | downcase -%}
               {%- assign is_color_option = false -%}
-              {%- if option_name_downcase == 'color' or option_name_downcase == 'colour' -%}
+              {%- if option_name_downcase == 'color' or option_name_downcase == 'colour' or option_name_downcase == 'finish' -%}
                 {%- assign is_color_option = true -%}
               {%- endif -%}
 
               <div class="product__option{% if is_color_option %} product__option--color{% endif %}">
-                <label>{{ option.name }}</label>
+                <label>{% if is_color_option %}Finish{% else %}{{ option.name }}{% endif %}</label>
 
                 <select
                   name="options[{{ option.name | escape }}]"

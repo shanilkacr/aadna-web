@@ -118,107 +118,166 @@
             {%- endif -%}
 
             {%- if has_filter_groups -%}
+              {%- comment -%}
+                Render all color/finish type filters merged into one FINISH group,
+                and all other filter types (price, product_type, boolean) separately.
+              {%- endcomment -%}
+              {%- assign finish_group_rendered = false -%}
               {%- for filter in results.filters -%}
-                {%- assign filter_id = 'Filter-' | append: filter.param_name | handleize -%}
-                <details class="collection-filters__group" open>
-                  <summary class="collection-filters__group-label">
-                    <span>{% if filter.label contains 'Color' or filter.label contains 'Colour' %}Finish{% else %}{{ filter.label | escape }}{% endif %}</span>
-                    {%- if filter.active_values.size > 0 -%}
-                      <span class="collection-filters__group-count">({{ filter.active_values.size }})</span>
-                    {%- endif -%}
-                  </summary>
+                {%- liquid
+                  assign is_finish_type = false
+                  if filter.param_name contains 'color' or filter.param_name contains 'finish' or filter.label contains 'Color' or filter.label contains 'Colour' or filter.label contains 'Finish'
+                    assign is_finish_type = true
+                  endif
+                -%}
 
-                  {%- case filter.type -%}
-                    {%- when 'list' -%}
+                {%- if is_finish_type -%}
+                  {%- comment -%} Render merged FINISH group only once {%- endcomment -%}
+                  {%- unless finish_group_rendered -%}
+                    {%- assign finish_group_rendered = true -%}
+                    {%- liquid
+                      assign finish_active_count = 0
+                      for f2 in results.filters
+                        assign is_f2_finish = false
+                        if f2.param_name contains 'color' or f2.param_name contains 'finish' or f2.label contains 'Color' or f2.label contains 'Colour' or f2.label contains 'Finish'
+                          assign is_f2_finish = true
+                        endif
+                        if is_f2_finish
+                          assign finish_active_count = finish_active_count | plus: f2.active_values.size
+                        endif
+                      endfor
+                    -%}
+                    <details class="collection-filters__group" open>
+                      <summary class="collection-filters__group-label">
+                        <span>Finish</span>
+                        {%- if finish_active_count > 0 -%}
+                          <span class="collection-filters__group-count">({{ finish_active_count }})</span>
+                        {%- endif -%}
+                      </summary>
                       <ul class="collection-filters__list" role="list">
-                        {%- for value in filter.values -%}
+                        {%- for f2 in results.filters -%}
                           {%- liquid
-                            assign is_color_filter = false
-                            if filter.param_name contains 'color' or filter.label contains 'Color' or filter.label contains 'colour'
-                              assign is_color_filter = true
+                            assign is_f2_finish = false
+                            if f2.param_name contains 'color' or f2.param_name contains 'finish' or f2.label contains 'Color' or f2.label contains 'Colour' or f2.label contains 'Finish'
+                              assign is_f2_finish = true
                             endif
                           -%}
-                          <li class="collection-filters__item{% if is_color_filter %} collection-filters__item--color{% endif %}">
-                            <label for="{{ filter_id }}-{{ forloop.index }}" class="collection-filters__label{% if value.active %} is-active{% endif %}">
-                              <input
-                                type="checkbox"
-                                id="{{ filter_id }}-{{ forloop.index }}"
-                                name="{{ value.param_name }}"
-                                value="{{ value.value }}"
-                                {% if value.active %}checked{% endif %}
-                                {% if value.count == 0 and value.active == false %}disabled{% endif %}
-                              >
-                              {%- if is_color_filter -%}
-                                {%- capture swatch_style -%}
-                                  {%- render 'swatch-style', swatch: value.swatch, color_name: value.label -%}
-                                {%- endcapture -%}
-                                <span
-                                  class="collection-filters__swatch"
-                                  style="{{ swatch_style | strip }}"
-                                ></span>
-                              {%- endif -%}
-                              <span class="collection-filters__label-text">{{ value.label | escape }}</span>
-                              <span class="collection-filters__value-count">({{ value.count }})</span>
-                            </label>
-                          </li>
+                          {%- if is_f2_finish -%}
+                            {%- assign f2_id = 'Filter-' | append: f2.param_name | handleize -%}
+                            {%- for value in f2.values -%}
+                              <li class="collection-filters__item collection-filters__item--color">
+                                <label for="{{ f2_id }}-{{ forloop.index }}" class="collection-filters__label{% if value.active %} is-active{% endif %}">
+                                  <input
+                                    type="checkbox"
+                                    id="{{ f2_id }}-{{ forloop.index }}"
+                                    name="{{ value.param_name }}"
+                                    value="{{ value.value }}"
+                                    {% if value.active %}checked{% endif %}
+                                    {% if value.count == 0 and value.active == false %}disabled{% endif %}
+                                  >
+                                  {%- capture swatch_style -%}
+                                    {%- render 'swatch-style', swatch: value.swatch, color_name: value.label -%}
+                                  {%- endcapture -%}
+                                  <span class="collection-filters__swatch" style="{{ swatch_style | strip }}"></span>
+                                  <span class="collection-filters__label-text">{{ value.label | escape }}</span>
+                                  <span class="collection-filters__value-count">({{ value.count }})</span>
+                                </label>
+                              </li>
+                            {%- endfor -%}
+                          {%- endif -%}
                         {%- endfor -%}
                       </ul>
+                    </details>
+                  {%- endunless -%}
 
-                    {%- when 'price_range' -%}
-                      <div class="collection-filters__price">
-                        <div class="collection-filters__price-field">
-                          <label class="visually-hidden" for="{{ filter_id }}-min">{{ 'collections.filters.from' | t }}</label>
-                          <span class="collection-filters__price-currency">LKR</span>
-                          <input
-                            type="number"
-                            id="{{ filter_id }}-min"
-                            name="{{ filter.min_value.param_name }}"
-                            {% if filter.min_value.value %}value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"{% endif %}
-                            placeholder="{{ filter.range_min | money_without_currency | replace: ',', '' }}"
-                            min="0"
-                            max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
-                          >
-                        </div>
-                        <span class="collection-filters__price-separator">{{ 'collections.filters.to' | t }}</span>
-                        <div class="collection-filters__price-field">
-                          <label class="visually-hidden" for="{{ filter_id }}-max">{{ 'collections.filters.to' | t }}</label>
-                          <span class="collection-filters__price-currency">LKR</span>
-                          <input
-                            type="number"
-                            id="{{ filter_id }}-max"
-                            name="{{ filter.max_value.param_name }}"
-                            {% if filter.max_value.value %}value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"{% endif %}
-                            placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
-                            min="0"
-                            max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
-                          >
-                        </div>
-                        <button type="submit" class="text-link collection-filters__apply">
-                          {{ 'collections.filters.apply' | t }}
-                        </button>
-                      </div>
+                {%- else -%}
+                  {%- comment -%} Non-finish filter — render normally {%- endcomment -%}
+                  {%- assign filter_id = 'Filter-' | append: filter.param_name | handleize -%}
+                  <details class="collection-filters__group" open>
+                    <summary class="collection-filters__group-label">
+                      <span>{{ filter.label | escape }}</span>
+                      {%- if filter.active_values.size > 0 -%}
+                        <span class="collection-filters__group-count">({{ filter.active_values.size }})</span>
+                      {%- endif -%}
+                    </summary>
 
-                    {%- when 'boolean' -%}
-                      <ul class="collection-filters__list" role="list">
-                        {%- for value in filter.values -%}
-                          <li class="collection-filters__item">
-                            <label for="{{ filter_id }}-{{ forloop.index }}" class="collection-filters__label{% if value.active %} is-active{% endif %}">
-                              <input
-                                type="checkbox"
-                                id="{{ filter_id }}-{{ forloop.index }}"
-                                name="{{ value.param_name }}"
-                                value="{{ value.value }}"
-                                {% if value.active %}checked{% endif %}
-                                {% if value.count == 0 and value.active == false %}disabled{% endif %}
-                              >
-                              <span class="collection-filters__label-text">{{ value.label | escape }}</span>
-                              <span class="collection-filters__value-count">({{ value.count }})</span>
-                            </label>
-                          </li>
-                        {%- endfor -%}
-                      </ul>
-                  {%- endcase -%}
-                </details>
+                    {%- case filter.type -%}
+                      {%- when 'list' -%}
+                        <ul class="collection-filters__list" role="list">
+                          {%- for value in filter.values -%}
+                            <li class="collection-filters__item">
+                              <label for="{{ filter_id }}-{{ forloop.index }}" class="collection-filters__label{% if value.active %} is-active{% endif %}">
+                                <input
+                                  type="checkbox"
+                                  id="{{ filter_id }}-{{ forloop.index }}"
+                                  name="{{ value.param_name }}"
+                                  value="{{ value.value }}"
+                                  {% if value.active %}checked{% endif %}
+                                  {% if value.count == 0 and value.active == false %}disabled{% endif %}
+                                >
+                                <span class="collection-filters__label-text">{{ value.label | escape }}</span>
+                                <span class="collection-filters__value-count">({{ value.count }})</span>
+                              </label>
+                            </li>
+                          {%- endfor -%}
+                        </ul>
+
+                      {%- when 'price_range' -%}
+                        <div class="collection-filters__price">
+                          <div class="collection-filters__price-field">
+                            <label class="visually-hidden" for="{{ filter_id }}-min">{{ 'collections.filters.from' | t }}</label>
+                            <span class="collection-filters__price-currency">LKR</span>
+                            <input
+                              type="number"
+                              id="{{ filter_id }}-min"
+                              name="{{ filter.min_value.param_name }}"
+                              {% if filter.min_value.value %}value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"{% endif %}
+                              placeholder="{{ filter.range_min | money_without_currency | replace: ',', '' }}"
+                              min="0"
+                              max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                            >
+                          </div>
+                          <span class="collection-filters__price-separator">{{ 'collections.filters.to' | t }}</span>
+                          <div class="collection-filters__price-field">
+                            <label class="visually-hidden" for="{{ filter_id }}-max">{{ 'collections.filters.to' | t }}</label>
+                            <span class="collection-filters__price-currency">LKR</span>
+                            <input
+                              type="number"
+                              id="{{ filter_id }}-max"
+                              name="{{ filter.max_value.param_name }}"
+                              {% if filter.max_value.value %}value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"{% endif %}
+                              placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                              min="0"
+                              max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                            >
+                          </div>
+                          <button type="submit" class="text-link collection-filters__apply">
+                            {{ 'collections.filters.apply' | t }}
+                          </button>
+                        </div>
+
+                      {%- when 'boolean' -%}
+                        <ul class="collection-filters__list" role="list">
+                          {%- for value in filter.values -%}
+                            <li class="collection-filters__item">
+                              <label for="{{ filter_id }}-{{ forloop.index }}" class="collection-filters__label{% if value.active %} is-active{% endif %}">
+                                <input
+                                  type="checkbox"
+                                  id="{{ filter_id }}-{{ forloop.index }}"
+                                  name="{{ value.param_name }}"
+                                  value="{{ value.value }}"
+                                  {% if value.active %}checked{% endif %}
+                                  {% if value.count == 0 and value.active == false %}disabled{% endif %}
+                                >
+                                <span class="collection-filters__label-text">{{ value.label | escape }}</span>
+                                <span class="collection-filters__value-count">({{ value.count }})</span>
+                              </label>
+                            </li>
+                          {%- endfor -%}
+                        </ul>
+                    {%- endcase -%}
+                  </details>
+                {%- endif -%}
               {%- endfor -%}
             {%- endif -%}
           </div>

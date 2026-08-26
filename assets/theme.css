@@ -1562,7 +1562,8 @@ strong, b, th { font-weight: 400; }
 }
 
 .collection-filters__price-field input {
-  width: 100%;
+  flex: 1;
+  min-width: 0;
   padding: 6px 0;
   border: none;
   background: transparent;
@@ -1571,7 +1572,7 @@ strong, b, th { font-weight: 400; }
 }
 
 .collection-filters__price-field input:focus { outline: none; }
-.collection-filters__price-currency { opacity: 0.85; }
+.collection-filters__price-currency { opacity: 0.85; white-space: nowrap; flex-shrink: 0; font-size: 11px; }
 .collection-filters__price-separator { font-size: 11px; opacity: 0.85; }
 
 @media (min-width: 901px) {

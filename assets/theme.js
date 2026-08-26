@@ -426,6 +426,16 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  // Submit filter form, stripping empty price inputs so they don't pollute the URL
+  function submitFiltersForm(form) {
+    form.querySelectorAll('input[type="number"]').forEach(function (input) {
+      if (input.value === '' || input.value === null) {
+        input.disabled = true;
+      }
+    });
+    form.submit();
+  }
+
   // Collection filters: sidebar collapse + mobile drawer
   document.querySelectorAll('[data-collection-body]').forEach(function (body) {
     var filtersWrap = body.querySelector('[data-collection-filters]');
@@ -506,14 +516,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
       sortSelect.addEventListener('change', function () {
         updateSortDisplay();
-        form.submit();
+        submitFiltersForm(form);
       });
     }
 
     if (form) {
       form.querySelectorAll('input[type="checkbox"]').forEach(function (input) {
         input.addEventListener('change', function () {
-          form.submit();
+          submitFiltersForm(form);
         });
       });
     }
