@@ -13,7 +13,7 @@
       "type": "hero",
       "settings": {
         "banner_text": "Islandwide free delivery",
-        "image": "shopify://shop_images/hero-image.jpg",
+        "image": "shopify://shop_images/Untitled_design-8.png",
         "image_mobile": "shopify://shop_images/hero-image.jpg",
         "fallback_image": "",
         "heading": "Flamboyant handcrafted jewellery",
@@ -87,7 +87,6 @@
       "settings": {
         "image": "shopify://shop_images/hero-image.jpg",
         "fallback_image": "",
-        "video": "",
         "fallback_video": "",
         "alt": "AADNA campaign",
         "eyebrow": "",
@@ -151,9 +150,14 @@
     "full-width-image": {
       "type": "full-width-image",
       "settings": {
+        "fallback_image": "",
         "video": "shopify://files/videos/Cubic signet ring_1080p.mp4",
         "fallback_video": "",
-        "alt": "AADNA campaign"
+        "alt": "AADNA campaign",
+        "eyebrow": "",
+        "heading": "",
+        "button_label": "",
+        "button_link": ""
       }
     }
   },
