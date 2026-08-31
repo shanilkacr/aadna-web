@@ -39,6 +39,7 @@
         "hero-4": {
           "type": "hero_image",
           "settings": {
+            "image": "shopify://shop_images/ML6A5883.jpg",
             "alt": "Bespoke piece",
             "fallback_image": "https://aadna.store/cdn/shop/files/slideshow4.jpg"
           }
