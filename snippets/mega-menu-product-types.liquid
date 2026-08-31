@@ -4,7 +4,11 @@
   Fallback: fixed types in display order with filter URLs on /collections/all.
 {%- endcomment -%}
 {%- liquid
-  assign fallback_types = 'Earrings|Necklace|Rings|Cufflinks|Bangle|Shop All' | split: '|'
+  if variant == 'drawer'
+    assign fallback_types = 'Shop All|Earrings|Necklace|Rings|Cufflinks|Bangle' | split: '|'
+  else
+    assign fallback_types = 'Earrings|Necklace|Rings|Cufflinks|Bangle|Shop All' | split: '|'
+  endif
   assign shop_collection_url = collections.all.url | default: routes.all_products_collection_url
 
   assign product_type_filter = blank

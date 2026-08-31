@@ -82,6 +82,20 @@
         "remove_top_padding": true
       }
     },
+    "full-width-banner": {
+      "type": "full-width-image",
+      "settings": {
+        "image": "shopify://shop_images/hero-image.jpg",
+        "fallback_image": "",
+        "video": "",
+        "fallback_video": "",
+        "alt": "AADNA campaign",
+        "eyebrow": "",
+        "heading": "",
+        "button_label": "",
+        "button_link": ""
+      }
+    },
     "collection-list": {
       "type": "collection-list",
       "blocks": {
@@ -149,6 +163,7 @@
     "two-column-links",
     "craft-statement",
     "featured-bestsellers",
+    "full-width-banner",
     "collection-list",
     "newsletter",
     "full-width-image"

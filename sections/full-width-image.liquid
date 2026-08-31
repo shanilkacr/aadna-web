@@ -3,6 +3,33 @@
     {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, controls: false, class: 'full-width-image__media' }}
   {%- elsif section.settings.fallback_video != blank -%}
     <video class="full-width-image__media" src="{{ section.settings.fallback_video }}" autoplay muted loop playsinline aria-label="{{ section.settings.alt | escape }}"></video>
+  {%- elsif section.settings.image != blank -%}
+    <img
+      class="full-width-image__media"
+      src="{{ section.settings.image | image_url: width: 1800 }}"
+      srcset="{{ section.settings.image | image_url: width: 900 }} 900w, {{ section.settings.image | image_url: width: 1400 }} 1400w, {{ section.settings.image | image_url: width: 1800 }} 1800w, {{ section.settings.image | image_url: width: 2400 }} 2400w"
+      sizes="100vw"
+      alt="{{ section.settings.alt | escape }}"
+      loading="lazy"
+      width="1800"
+      height="{{ 1800 | divided_by: section.settings.image.aspect_ratio | default: 900 }}"
+    >
+  {%- elsif section.settings.fallback_image != blank -%}
+    <img class="full-width-image__media" src="{{ section.settings.fallback_image }}" alt="{{ section.settings.alt | escape }}" loading="lazy">
+  {%- endif -%}
+
+  {%- if section.settings.eyebrow != blank or section.settings.heading != blank or section.settings.button_label != blank -%}
+    <div class="full-width-image__overlay">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="full-width-image__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="full-width-image__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.button_label != blank -%}
+        <a href="{{ section.settings.button_link }}" class="button button--outline-white full-width-image__button">{{ section.settings.button_label }}</a>
+      {%- endif -%}
+    </div>
   {%- endif -%}
 </section>
 
@@ -10,9 +37,15 @@
 {
   "name": "Full width image",
   "settings": [
-    { "type": "video", "id": "video", "label": "Video" },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "fallback_image", "label": "Fallback image URL (used until an image is selected above)" },
+    { "type": "video", "id": "video", "label": "Video (overrides image)" },
     { "type": "text", "id": "fallback_video", "label": "Fallback video URL (used until a video is selected above)" },
-    { "type": "text", "id": "alt", "label": "Accessible label", "default": "AADNA campaign" }
+    { "type": "text", "id": "alt", "label": "Accessible label", "default": "AADNA campaign" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow text (optional)" },
+    { "type": "text", "id": "heading", "label": "Heading (optional)" },
+    { "type": "text", "id": "button_label", "label": "Button label (optional)" },
+    { "type": "url", "id": "button_link", "label": "Button link" }
   ],
   "presets": [
     {
