@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "dyo-hero": {
@@ -6,7 +15,7 @@
         "hero-1": {
           "type": "hero_image",
           "settings": {
-            "image": "shopify://shop_images/signetring5.jpg",
+            "image": "shopify://shop_images/chrishedmobile.jpg",
             "alt": "Signet ring detail",
             "fallback_image": "https://aadna.store/cdn/shop/files/slideshow2.jpg"
           }
@@ -37,6 +46,7 @@
         "hero-5": {
           "type": "hero_image",
           "settings": {
+            "image": "shopify://shop_images/earcuff6.jpg",
             "alt": "Custom jewellery",
             "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg"
           }
@@ -56,7 +66,15 @@
           }
         }
       },
-      "block_order": ["hero-1", "hero-2", "hero-3", "hero-4", "hero-5", "hero-6", "hero-7"],
+      "block_order": [
+        "hero-1",
+        "hero-2",
+        "hero-3",
+        "hero-4",
+        "hero-5",
+        "hero-6",
+        "hero-7"
+      ],
       "settings": {
         "eyebrow": "Bespoke jewellery",
         "title": "Design Your Own"
@@ -94,6 +112,7 @@
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/DYO10.png",
+            "fallback_image": "",
             "caption": "Engagement Ring",
             "featured": false
           }
@@ -102,6 +121,7 @@
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/PHOTO-2022-09-30-16-27-50_1080x1080_full.png",
+            "fallback_image": "",
             "caption": "Bridal Necklace",
             "featured": false
           }
@@ -110,6 +130,7 @@
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/DYO7.jpg",
+            "fallback_image": "",
             "caption": "Signet Ring",
             "featured": false
           }
@@ -118,6 +139,7 @@
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/Screenshot_2569-07-13_at_9.33.13_PM.png",
+            "fallback_image": "",
             "caption": "Bridal Earrings",
             "featured": false
           }
@@ -126,6 +148,7 @@
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/dyo1.jpg",
+            "fallback_image": "",
             "caption": "",
             "featured": false
           }
@@ -134,6 +157,7 @@
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/wg.png",
+            "fallback_image": "",
             "caption": "Bridal Necklace",
             "featured": false
           }
@@ -142,6 +166,7 @@
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/IMG_9864_1080x1080_3a55210e-b0d2-4502-9ed5-ad86cd142525.jpg",
+            "fallback_image": "",
             "caption": "Tharshana Iris Pendant",
             "featured": false
           }
@@ -150,6 +175,7 @@
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/DYO9.png",
+            "fallback_image": "",
             "caption": "Wedding Bands",
             "featured": false
           }
@@ -158,6 +184,7 @@
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/DYO11.jpg",
+            "fallback_image": "",
             "caption": "Handcrafted cufflinks",
             "featured": false
           }
@@ -166,6 +193,7 @@
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/anchor_1080x1080_enhanced.jpg",
+            "fallback_image": "",
             "caption": "Anchor Pendant",
             "featured": false
           }
@@ -174,6 +202,7 @@
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/DYO2.jpg",
+            "fallback_image": "",
             "caption": "Wedding Bands",
             "featured": false
           }
@@ -182,6 +211,7 @@
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/DYO4.jpg",
+            "fallback_image": "",
             "caption": "Handcrafted cufflinks",
             "featured": false
           }
@@ -190,6 +220,7 @@
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/dyo12.jpg",
+            "fallback_image": "",
             "caption": "Amethyst Ring",
             "featured": false
           }
@@ -198,6 +229,7 @@
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/DSC07781_1080x1080_enhanced.jpg",
+            "fallback_image": "",
             "caption": "Tharshana Iris Pendant",
             "featured": false
           }
@@ -206,6 +238,7 @@
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/resized_1080.jpg",
+            "fallback_image": "",
             "caption": "Bridal Necklace",
             "featured": false
           }
@@ -214,6 +247,7 @@
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/D14E7A90_1080x1080_54b1385b-5d96-4b7b-a2d7-6bea3d7322c3.jpg",
+            "fallback_image": "",
             "caption": "Bridal Necklace",
             "featured": false
           }
@@ -222,6 +256,7 @@
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/shana.png",
+            "fallback_image": "",
             "caption": "Bridal Necklace",
             "featured": false
           }
@@ -230,6 +265,7 @@
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/bride2.png",
+            "fallback_image": "",
             "caption": "Bridal Set",
             "featured": false
           }
@@ -238,6 +274,7 @@
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/letter1.png",
+            "fallback_image": "",
             "caption": "Initial Pendant",
             "featured": false
           }
@@ -246,6 +283,7 @@
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/chakra.png",
+            "fallback_image": "",
             "caption": "Chakra Piece",
             "featured": false
           }
@@ -254,6 +292,7 @@
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/bridal.png",
+            "fallback_image": "",
             "caption": "Bridal Necklace",
             "featured": false
           }
@@ -262,6 +301,7 @@
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/bride3.png",
+            "fallback_image": "",
             "caption": "Bridal Set",
             "featured": false
           }
@@ -270,16 +310,37 @@
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/bride4.png",
+            "fallback_image": "",
             "caption": "Bridal Set",
             "featured": false
           }
         }
       },
       "block_order": [
-        "gallery-1", "gallery-2", "gallery-3", "gallery-4", "gallery-5", "gallery-6",
-        "gallery-7", "gallery-8", "gallery-9", "gallery-10", "gallery-11", "gallery-12",
-        "gallery-13", "gallery-14", "gallery-15", "gallery-16", "gallery-17", "gallery-18",
-        "gallery-19", "gallery-20", "gallery-21", "gallery-22", "gallery-23", "gallery-24"
+        "gallery-1",
+        "gallery-2",
+        "gallery-3",
+        "gallery-4",
+        "gallery-5",
+        "gallery-6",
+        "gallery-7",
+        "gallery-8",
+        "gallery-9",
+        "gallery-10",
+        "gallery-11",
+        "gallery-12",
+        "gallery-13",
+        "gallery-14",
+        "gallery-15",
+        "gallery-16",
+        "gallery-17",
+        "gallery-18",
+        "gallery-19",
+        "gallery-20",
+        "gallery-21",
+        "gallery-22",
+        "gallery-23",
+        "gallery-24"
       ],
       "settings": {
         "show_gallery": true,
@@ -288,5 +349,9 @@
       }
     }
   },
-  "order": ["dyo-hero", "dyo-form", "dyo-gallery"]
+  "order": [
+    "dyo-hero",
+    "dyo-form",
+    "dyo-gallery"
+  ]
 }
