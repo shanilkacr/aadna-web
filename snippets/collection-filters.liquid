@@ -120,7 +120,7 @@
             {%- if has_filter_groups -%}
               {%- for filter in results.filters -%}
                 {%- assign filter_id = 'Filter-' | append: filter.param_name | handleize -%}
-                <details class="collection-filters__group" open>
+                <details class="collection-filters__group{% if filter.param_name contains 'product_type' %} collection-filters__group--product-type{% endif %}" open>
                   <summary class="collection-filters__group-label">
                     <span>{% if filter.label contains 'Color' or filter.label contains 'Colour' %}Finish{% else %}{{ filter.label | escape }}{% endif %}</span>
                     {%- if filter.active_values.size > 0 -%}
