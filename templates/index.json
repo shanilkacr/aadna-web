@@ -18,7 +18,7 @@
         "fallback_image": "",
         "heading": "Flamboyant handcrafted jewellery",
         "button_label": "Shop the collection",
-        "button_link": "/collections/all?sort_by=created-descending"
+        "button_link": "shopify://collections/motif"
       }
     },
     "featured-luna": {
