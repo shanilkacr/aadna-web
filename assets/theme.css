@@ -533,9 +533,9 @@ strong, b, th { font-weight: 400; }
 @media (min-width: 901px) {
   .hero__content {
     justify-content: flex-end;
-    align-items: flex-start;
+    align-items: center;
     text-align: center;
-    padding: 0 0 96px 64px;
+    padding: 0 64px 96px;
   }
   .hero__heading { max-width: none; white-space: nowrap; }
 }
