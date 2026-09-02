@@ -534,7 +534,7 @@ strong, b, th { font-weight: 400; }
   .hero__content {
     justify-content: flex-end;
     align-items: flex-start;
-    text-align: left;
+    text-align: center;
     padding: 0 0 96px 64px;
   }
   .hero__heading { max-width: 640px; }
