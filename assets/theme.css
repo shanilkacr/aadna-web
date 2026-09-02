@@ -533,11 +533,11 @@ strong, b, th { font-weight: 400; }
 @media (min-width: 901px) {
   .hero__content {
     justify-content: flex-end;
-    align-items: center;
+    align-items: flex-start;
     text-align: center;
-    padding: 0 64px 96px;
+    padding: 0 0 96px 64px;
   }
-  .hero__heading { max-width: 640px; }
+  .hero__heading { max-width: none; white-space: nowrap; }
 }
 
 @media (max-width: 900px) {
