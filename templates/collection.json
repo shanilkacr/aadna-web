@@ -13,7 +13,7 @@
       "type": "main-collection-product-grid",
       "settings": {
         "columns": 4,
-        "products_per_page": 32,
+        "products_per_page": 36,
         "enable_filtering": true,
         "enable_sorting": true
       }

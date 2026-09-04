@@ -193,7 +193,7 @@
                 {%- else -%}
                   {%- comment -%} Non-finish filter — render normally {%- endcomment -%}
                   {%- assign filter_id = 'Filter-' | append: filter.param_name | handleize -%}
-                  <details class="collection-filters__group" open>
+                  <details class="collection-filters__group{% if filter.param_name contains 'product_type' %} collection-filters__group--product-type{% endif %}" open>
                     <summary class="collection-filters__group-label">
                       <span>{{ filter.label | escape }}</span>
                       {%- if filter.active_values.size > 0 -%}
