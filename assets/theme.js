@@ -758,4 +758,35 @@ document.addEventListener('DOMContentLoaded', function () {
       dyoFilename.textContent = dyoFile.files.length ? dyoFile.files[0].name : '';
     });
   }
+
+  // Localization (country/currency) selector: flag emoji + auto-submit on change
+  var localizationSelect = document.querySelector('[data-localization-select]');
+  if (localizationSelect) {
+    var isoToFlag = function (iso) {
+      if (!iso || iso.length !== 2) return '';
+      var codePoints = iso.toUpperCase().split('').map(function (c) {
+        return 127397 + c.charCodeAt(0);
+      });
+      return String.fromCodePoint.apply(String, codePoints);
+    };
+
+    localizationSelect.querySelectorAll('option').forEach(function (opt) {
+      var flag = isoToFlag(opt.getAttribute('data-flag'));
+      if (flag) opt.textContent = flag + ' ' + opt.textContent.trim();
+    });
+
+    var flagSpan = localizationSelect.closest('.localization-selector__control').querySelector('[data-localization-flag]');
+    var setFlag = function () {
+      var selected = localizationSelect.options[localizationSelect.selectedIndex];
+      var flag = isoToFlag(selected ? selected.getAttribute('data-flag') : '');
+      if (flagSpan && flag) flagSpan.textContent = flag;
+    };
+    setFlag();
+
+    localizationSelect.addEventListener('change', function () {
+      setFlag();
+      var form = localizationSelect.closest('form');
+      if (form) form.submit();
+    });
+  }
 });

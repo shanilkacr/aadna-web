@@ -1,4 +1,4 @@
-<section class="full-width-image">
+<section class="full-width-image{% unless section.settings.pull_next_section %} full-width-image--no-pull{% endunless %}">
   {%- if section.settings.video != blank -%}
     {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, controls: false, class: 'full-width-image__media' }}
   {%- elsif section.settings.fallback_video != blank -%}
@@ -45,7 +45,8 @@
     { "type": "text", "id": "eyebrow", "label": "Eyebrow text (optional)" },
     { "type": "text", "id": "heading", "label": "Heading (optional)" },
     { "type": "text", "id": "button_label", "label": "Button label (optional)" },
-    { "type": "url", "id": "button_link", "label": "Button link" }
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "checkbox", "id": "pull_next_section", "default": true, "label": "Pull the next section flush against this one", "info": "Turn off when the next section already has its own top spacing (e.g. a padded, non-full-bleed section)." }
   ],
   "presets": [
     {

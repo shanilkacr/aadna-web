@@ -1,0 +1,35 @@
+{%- comment -%}
+  Fixed country/currency switcher shown site-wide (bottom-left).
+  Uses Shopify's built-in localization form — country/currency options come
+  from the markets configured in Settings > Markets in the Shopify admin.
+  Renders nothing if only one country/currency is available.
+{%- endcomment -%}
+{%- if localization.available_countries.size > 1 -%}
+  <div class="localization-selector" data-localization-selector>
+    {%- form 'localization', id: 'LocalizationForm' -%}
+      <div class="localization-selector__control">
+        <span class="localization-selector__flag" data-localization-flag aria-hidden="true"></span>
+        <label class="visually-hidden" for="LocalizationCountry">{{ 'localization.country_label' | t: default: 'Country/region' }}</label>
+        <select
+          id="LocalizationCountry"
+          name="country_code"
+          class="localization-selector__select"
+          data-localization-select
+        >
+          {%- for country in localization.available_countries -%}
+            <option
+              value="{{ country.iso_code }}"
+              {% if country.iso_code == localization.country.iso_code %}selected{% endif %}
+              data-flag="{{ country.iso_code | downcase }}"
+            >
+              {{ country.name }} ({{ country.currency.iso_code }})
+            </option>
+          {%- endfor -%}
+        </select>
+        <span class="localization-selector__display" aria-hidden="true">{{ localization.country.currency.iso_code }}</span>
+        <span class="localization-selector__arrow">{% render 'icon-chevron' %}</span>
+      </div>
+      <input type="hidden" name="return_to" value="{{ request.path }}">
+    {%- endform -%}
+  </div>
+{%- endif -%}

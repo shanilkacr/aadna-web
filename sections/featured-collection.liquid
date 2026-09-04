@@ -1,5 +1,8 @@
-<section class="featured-collection page-width"{% if section.settings.remove_top_padding %} style="padding-top:0;"{% endif %}>
-  <div class="product-grid product-grid--large" style="--columns:{{ section.settings.columns }};">
+<section class="featured-collection{% unless section.settings.full_width %} page-width{% endunless %}"{% if section.settings.remove_top_padding or section.settings.remove_bottom_padding %} style="{% if section.settings.remove_top_padding %}padding-top:0;{% endif %}{% if section.settings.remove_bottom_padding %}padding-bottom:0;{% endif %}"{% endif %}>
+  {%- if section.settings.heading != blank -%}
+    <h2 class="section-heading">{{ section.settings.heading }}</h2>
+  {%- endif -%}
+  <div class="product-grid product-grid--large{% if section.settings.full_width %} product-grid--full-width{% endif %}" style="--columns:{{ section.settings.columns }};">
     {%- liquid
       if section.settings.collection != blank
         assign collection = collections[section.settings.collection]
@@ -15,11 +18,11 @@
     -%}
     {%- if collection != blank and products.size > 0 -%}
       {%- for product in products limit: count -%}
-        {% render 'product-card', product: product %}
+        {% render 'product-card', product: product, show_price: section.settings.show_price %}
       {%- endfor -%}
     {%- else -%}
       {%- for i in (1..count) -%}
-        {% render 'product-card', fallback_image: section.settings.placeholder_images %}
+        {% render 'product-card', fallback_image: section.settings.placeholder_images, show_price: section.settings.show_price %}
       {%- endfor -%}
     {%- endif -%}
   </div>
@@ -35,12 +38,16 @@
 {
   "name": "Featured collection",
   "settings": [
+    { "type": "text", "id": "heading", "label": "Heading (optional)" },
     { "type": "collection", "id": "collection", "label": "Collection", "info": "Leave empty to show all products, newest first." },
     { "type": "text", "id": "placeholder_images", "label": "Fallback image URL (used when no collection is selected)" },
     { "type": "range", "id": "products_to_show", "min": 2, "max": 12, "step": 1, "default": 3, "label": "Products to show" },
     { "type": "range", "id": "columns", "min": 2, "max": 5, "step": 1, "default": 3, "label": "Columns (desktop)" },
     { "type": "checkbox", "id": "show_view_all", "default": false, "label": "Show \"View all\" button" },
-    { "type": "checkbox", "id": "remove_top_padding", "default": false, "label": "Remove top padding" }
+    { "type": "checkbox", "id": "remove_top_padding", "default": false, "label": "Remove top padding" },
+    { "type": "checkbox", "id": "remove_bottom_padding", "default": false, "label": "Remove bottom padding" },
+    { "type": "checkbox", "id": "full_width", "default": false, "label": "Full width (edge-to-edge, no side padding)" },
+    { "type": "checkbox", "id": "show_price", "default": true, "label": "Show price" }
   ],
   "presets": [
     { "name": "Featured collection" }

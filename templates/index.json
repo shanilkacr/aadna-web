@@ -90,9 +90,25 @@
         "fallback_video": "",
         "alt": "AADNA campaign",
         "eyebrow": "",
+        "heading": "Water Lily Drop Earrings",
+        "button_label": "Shop now",
+        "button_link": "/products/water-lily-drop-earrings",
+        "pull_next_section": true
+      }
+    },
+    "featured-items": {
+      "type": "featured-collection",
+      "settings": {
         "heading": "",
-        "button_label": "",
-        "button_link": ""
+        "collection": "",
+        "placeholder_images": "https://aadna.store/cdn/shop/files/name3.jpg",
+        "products_to_show": 4,
+        "columns": 4,
+        "full_width": true,
+        "show_price": false,
+        "show_view_all": false,
+        "remove_top_padding": false,
+        "remove_bottom_padding": true
       }
     },
     "collection-list": {
@@ -168,6 +184,7 @@
     "craft-statement",
     "featured-bestsellers",
     "full-width-banner",
+    "featured-items",
     "collection-list",
     "newsletter",
     "full-width-image"
