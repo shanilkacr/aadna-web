@@ -14,6 +14,9 @@
 {%- liquid
   assign display_title = title | default: collection.title
   assign display_link = collection.url | append: '?sort_by=created-descending' | default: '#'
+  assign img_pos = image_position | default: 'center center'
+  assign img_fit = image_fit | default: 'cover'
+  assign media_style = 'object-fit: ' | append: img_fit | append: '; object-position: ' | append: img_pos | append: ';'
 -%}
 <div class="collection-list__item">
   <div class="collection-list__media">
@@ -26,6 +29,7 @@
         loading="lazy"
         width="1200"
         height="{{ 1200 | divided_by: image.aspect_ratio | default: 1200 }}"
+        style="{{ media_style }}"
       >
     {%- elsif collection.featured_image -%}
       <img
@@ -34,6 +38,7 @@
         loading="lazy"
         width="1200"
         height="{{ 1200 | divided_by: collection.featured_image.aspect_ratio | default: 1200 }}"
+        style="{{ media_style }}"
       >
     {%- elsif fallback_image != blank and fallback_image contains '://' -%}
       <img src="{{ fallback_image }}" alt="{{ display_title | escape }}" loading="lazy" width="1200" height="1200">

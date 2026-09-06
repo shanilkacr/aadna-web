@@ -19,6 +19,7 @@
           <figure class="image-gallery__item" {{ block.shopify_attributes }}>
             <div class="image-gallery__media">
               {%- if block.settings.image != blank -%}
+                {%- assign media_style = 'object-fit: ' | append: block.settings.image_fit | append: '; object-position: ' | append: block.settings.image_position | append: ';' -%}
                 <img
                   src="{{ block.settings.image | image_url: width: 900 }}"
                   srcset="{{ block.settings.image | image_url: width: 450 }} 450w, {{ block.settings.image | image_url: width: 900 }} 900w"
@@ -27,6 +28,7 @@
                   width="900"
                   height="{{ 900 | divided_by: block.settings.image.aspect_ratio | default: 1 }}"
                   loading="lazy"
+                  style="{{ media_style }}"
                 >
               {%- elsif block.settings.fallback_image != blank -%}
                 <img
@@ -75,22 +77,19 @@
       "type": "image",
       "name": "Image",
       "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image"
-        },
-        {
-          "type": "text",
-          "id": "fallback_image",
-          "label": "Fallback image URL",
-          "info": "Used only until an image is selected above."
-        },
-        {
-          "type": "text",
-          "id": "caption",
-          "label": "Caption"
-        }
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "select", "id": "image_position", "label": "Image position", "default": "center center", "options": [
+          { "value": "top left", "label": "Top left" }, { "value": "top center", "label": "Top center" }, { "value": "top right", "label": "Top right" },
+          { "value": "center left", "label": "Center left" }, { "value": "center center", "label": "Center (default)" }, { "value": "center right", "label": "Center right" },
+          { "value": "bottom left", "label": "Bottom left" }, { "value": "bottom center", "label": "Bottom center" }, { "value": "bottom right", "label": "Bottom right" }
+        ]},
+        { "type": "select", "id": "image_fit", "label": "Image fit", "default": "cover", "options": [
+          { "value": "cover", "label": "Cover — fill the area, crop if needed" },
+          { "value": "contain", "label": "Contain — show the whole image, letterbox" },
+          { "value": "fill", "label": "Fill — stretch to fit exactly" }
+        ]},
+        { "type": "text", "id": "fallback_image", "label": "Fallback image URL", "info": "Used only until an image is selected above." },
+        { "type": "text", "id": "caption", "label": "Caption" }
       ]
     }
   ],

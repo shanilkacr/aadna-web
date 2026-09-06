@@ -5,12 +5,14 @@
         {%- if block.settings.video != blank -%}
           {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, controls: false }}
         {%- elsif block.settings.image != blank -%}
+          {%- assign media_style = 'object-fit: ' | append: block.settings.image_fit | append: '; object-position: ' | append: block.settings.image_position | append: ';' -%}
           <img
             src="{{ block.settings.image | image_url: width: 1200 }}"
             alt="{{ block.settings.label | escape }}"
             width="1200"
             height="{{ 1200 | divided_by: block.settings.image.aspect_ratio | default: 1200 }}"
             loading="lazy"
+            style="{{ media_style }}"
           >
         {%- elsif block.settings.video_url != blank and block.settings.video_url contains '://' -%}
           <video src="{{ block.settings.video_url }}" autoplay muted loop playsinline></video>
@@ -39,6 +41,16 @@
         { "type": "url", "id": "link", "label": "Link" },
         { "type": "video", "id": "video", "label": "Background video (overrides image)" },
         { "type": "image_picker", "id": "image", "label": "Background image" },
+        { "type": "select", "id": "image_position", "label": "Image position", "default": "center center", "options": [
+          { "value": "top left", "label": "Top left" }, { "value": "top center", "label": "Top center" }, { "value": "top right", "label": "Top right" },
+          { "value": "center left", "label": "Center left" }, { "value": "center center", "label": "Center (default)" }, { "value": "center right", "label": "Center right" },
+          { "value": "bottom left", "label": "Bottom left" }, { "value": "bottom center", "label": "Bottom center" }, { "value": "bottom right", "label": "Bottom right" }
+        ]},
+        { "type": "select", "id": "image_fit", "label": "Image fit", "default": "cover", "options": [
+          { "value": "cover", "label": "Cover — fill the area, crop if needed" },
+          { "value": "contain", "label": "Contain — show the whole image, letterbox" },
+          { "value": "fill", "label": "Fill — stretch to fit exactly" }
+        ]},
         { "type": "text", "id": "fallback_image", "label": "Fallback image URL (used until image is set)" },
         { "type": "text", "id": "video_url", "label": "Legacy video asset filename" }
       ]

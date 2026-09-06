@@ -25,6 +25,7 @@
           width="1200"
           height="{{ 1200 | divided_by: section.settings.info_image.aspect_ratio | default: 1200 }}"
           loading="lazy"
+          style="object-fit: {{ section.settings.info_image_fit }}; object-position: {{ section.settings.info_image_position }};"
         >
       {%- elsif section.settings.info_fallback_image != blank -%}
         <img
@@ -49,6 +50,7 @@
           width="1200"
           height="{{ 1200 | divided_by: section.settings.form_image.aspect_ratio | default: 1200 }}"
           loading="lazy"
+          style="object-fit: {{ section.settings.form_image_fit }}; object-position: {{ section.settings.form_image_position }};"
         >
       {%- elsif section.settings.form_fallback_image != blank -%}
         <img
@@ -155,30 +157,31 @@
       "label": "Email",
       "default": "info@aadna.store"
     },
-    {
-      "type": "image_picker",
-      "id": "info_image",
-      "label": "Info column image"
-    },
-    {
-      "type": "text",
-      "id": "info_fallback_image",
-      "label": "Info column fallback image URL"
-    },
-    {
-      "type": "header",
-      "content": "Form"
-    },
-    {
-      "type": "image_picker",
-      "id": "form_image",
-      "label": "Form column image"
-    },
-    {
-      "type": "text",
-      "id": "form_fallback_image",
-      "label": "Form column fallback image URL"
-    },
+    { "type": "image_picker", "id": "info_image", "label": "Info column image" },
+    { "type": "select", "id": "info_image_position", "label": "Info image position", "default": "center center", "options": [
+      { "value": "top left", "label": "Top left" }, { "value": "top center", "label": "Top center" }, { "value": "top right", "label": "Top right" },
+      { "value": "center left", "label": "Center left" }, { "value": "center center", "label": "Center (default)" }, { "value": "center right", "label": "Center right" },
+      { "value": "bottom left", "label": "Bottom left" }, { "value": "bottom center", "label": "Bottom center" }, { "value": "bottom right", "label": "Bottom right" }
+    ]},
+    { "type": "select", "id": "info_image_fit", "label": "Info image fit", "default": "cover", "options": [
+      { "value": "cover", "label": "Cover — fill the area, crop if needed" },
+      { "value": "contain", "label": "Contain — show the whole image, letterbox" },
+      { "value": "fill", "label": "Fill — stretch to fit exactly" }
+    ]},
+    { "type": "text", "id": "info_fallback_image", "label": "Info column fallback image URL" },
+    { "type": "header", "content": "Form" },
+    { "type": "image_picker", "id": "form_image", "label": "Form column image" },
+    { "type": "select", "id": "form_image_position", "label": "Form image position", "default": "center center", "options": [
+      { "value": "top left", "label": "Top left" }, { "value": "top center", "label": "Top center" }, { "value": "top right", "label": "Top right" },
+      { "value": "center left", "label": "Center left" }, { "value": "center center", "label": "Center (default)" }, { "value": "center right", "label": "Center right" },
+      { "value": "bottom left", "label": "Bottom left" }, { "value": "bottom center", "label": "Bottom center" }, { "value": "bottom right", "label": "Bottom right" }
+    ]},
+    { "type": "select", "id": "form_image_fit", "label": "Form image fit", "default": "cover", "options": [
+      { "value": "cover", "label": "Cover — fill the area, crop if needed" },
+      { "value": "contain", "label": "Contain — show the whole image, letterbox" },
+      { "value": "fill", "label": "Fill — stretch to fit exactly" }
+    ]},
+    { "type": "text", "id": "form_fallback_image", "label": "Form column fallback image URL" },
     {
       "type": "text",
       "id": "name_label",

@@ -3,6 +3,9 @@
 {%- endif -%}
 
 <section class="hero">
+  {%- liquid
+    assign media_style = 'object-fit: ' | append: section.settings.image_fit | append: '; object-position: ' | append: section.settings.image_position | append: ';'
+  -%}
   <div class="hero__media">
     {%- if section.settings.image_mobile != blank -%}
       <picture>
@@ -17,9 +20,10 @@
             height="{{ 1800 | divided_by: section.settings.image.aspect_ratio | default: 900 }}"
             loading="eager"
             fetchpriority="high"
+            style="{{ media_style }}"
           >
         {%- elsif section.settings.fallback_image != blank -%}
-          <img src="{{ section.settings.fallback_image }}" alt="{{ section.settings.heading | escape }}" width="1800" height="900" loading="eager">
+          <img src="{{ section.settings.fallback_image }}" alt="{{ section.settings.heading | escape }}" width="1800" height="900" loading="eager" style="{{ media_style }}">
         {%- else -%}
           <div class="hero__placeholder" role="img" aria-label="{{ section.settings.heading | escape }}"></div>
         {%- endif -%}
@@ -35,9 +39,10 @@
           height="{{ 1800 | divided_by: section.settings.image.aspect_ratio | default: 900 }}"
           loading="eager"
           fetchpriority="high"
+          style="{{ media_style }}"
         >
       {%- elsif section.settings.fallback_image != blank -%}
-        <img src="{{ section.settings.fallback_image }}" alt="{{ section.settings.heading | escape }}" width="1800" height="900" loading="eager">
+        <img src="{{ section.settings.fallback_image }}" alt="{{ section.settings.heading | escape }}" width="1800" height="900" loading="eager" style="{{ media_style }}">
       {%- else -%}
         <div class="hero__placeholder" role="img" aria-label="{{ section.settings.heading | escape }}"></div>
       {%- endif -%}
@@ -59,6 +64,34 @@
     { "type": "text", "id": "banner_text", "label": "Banner text", "default": "Islandwide free delivery" },
     { "type": "image_picker", "id": "image", "label": "Image (desktop)" },
     { "type": "image_picker", "id": "image_mobile", "label": "Image (mobile)" },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position",
+      "default": "center center",
+      "options": [
+        { "value": "top left",      "label": "Top left" },
+        { "value": "top center",    "label": "Top center" },
+        { "value": "top right",     "label": "Top right" },
+        { "value": "center left",   "label": "Center left" },
+        { "value": "center center", "label": "Center (default)" },
+        { "value": "center right",  "label": "Center right" },
+        { "value": "bottom left",   "label": "Bottom left" },
+        { "value": "bottom center", "label": "Bottom center" },
+        { "value": "bottom right",  "label": "Bottom right" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Image fit",
+      "default": "cover",
+      "options": [
+        { "value": "cover",   "label": "Cover — fill the area, crop if needed" },
+        { "value": "contain", "label": "Contain — show the whole image, letterbox" },
+        { "value": "fill",    "label": "Fill — stretch to fit exactly" }
+      ]
+    },
     { "type": "text", "id": "fallback_image", "label": "Fallback image URL (used until an image is selected above)" },
     { "type": "text", "id": "heading", "label": "Heading" },
     { "type": "text", "id": "button_label", "label": "Button label" },

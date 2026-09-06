@@ -6,10 +6,12 @@
   {%- for block in hero_blocks -%}
     <div class="dyo-page__marquee-cell" {{ block.shopify_attributes }}>
       {%- if block.settings.image != blank -%}
+        {%- assign media_style = 'object-fit: ' | append: block.settings.image_fit | append: '; object-position: ' | append: block.settings.image_position | append: ';' -%}
         <img
           src="{{ block.settings.image | image_url: width: 600 }}"
           alt="{{ block.settings.alt | default: 'AADNA bespoke jewellery' | escape }}"
           width="400" height="500" loading="{% if forloop.index <= 3 %}eager{% else %}lazy{% endif %}"
+          style="{{ media_style }}"
         >
       {%- elsif block.settings.fallback_image != blank -%}
         <img src="{{ block.settings.fallback_image }}" alt="{{ block.settings.alt | default: 'AADNA bespoke jewellery' | escape }}" width="400" height="500" loading="lazy">
@@ -56,22 +58,19 @@
       "type": "hero_image",
       "name": "Hero image",
       "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image"
-        },
-        {
-          "type": "text",
-          "id": "alt",
-          "label": "Alt text"
-        },
-        {
-          "type": "text",
-          "id": "fallback_image",
-          "label": "Fallback image URL",
-          "info": "Used only if no image is selected above."
-        }
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "select", "id": "image_position", "label": "Image position", "default": "center center", "options": [
+          { "value": "top left", "label": "Top left" }, { "value": "top center", "label": "Top center" }, { "value": "top right", "label": "Top right" },
+          { "value": "center left", "label": "Center left" }, { "value": "center center", "label": "Center (default)" }, { "value": "center right", "label": "Center right" },
+          { "value": "bottom left", "label": "Bottom left" }, { "value": "bottom center", "label": "Bottom center" }, { "value": "bottom right", "label": "Bottom right" }
+        ]},
+        { "type": "select", "id": "image_fit", "label": "Image fit", "default": "cover", "options": [
+          { "value": "cover", "label": "Cover — fill the area, crop if needed" },
+          { "value": "contain", "label": "Contain — show the whole image, letterbox" },
+          { "value": "fill", "label": "Fill — stretch to fit exactly" }
+        ]},
+        { "type": "text", "id": "alt", "label": "Alt text" },
+        { "type": "text", "id": "fallback_image", "label": "Fallback image URL", "info": "Used only if no image is selected above." }
       ]
     }
   ],

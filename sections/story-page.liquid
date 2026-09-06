@@ -31,12 +31,14 @@
                 ></iframe>
               </div>
             {%- elsif block.settings.image != blank -%}
+              {%- assign media_style = 'object-fit: ' | append: block.settings.image_fit | append: '; object-position: ' | append: block.settings.image_position | append: ';' -%}
               <img
                 src="{{ block.settings.image | image_url: width: 1200 }}"
                 alt="{{ block.settings.heading | escape }}"
                 loading="lazy"
                 width="1200"
                 height="{{ 1200 | divided_by: block.settings.image.aspect_ratio | default: 1200 }}"
+                style="{{ media_style }}"
               >
             {%- elsif block.settings.fallback_image != blank -%}
               <img src="{{ block.settings.fallback_image }}" alt="{{ block.settings.heading | escape }}" loading="lazy" width="1200" height="1500">
@@ -110,6 +112,16 @@
       "name": "Image + text row",
       "settings": [
         { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "select", "id": "image_position", "label": "Image position", "default": "center center", "options": [
+          { "value": "top left", "label": "Top left" }, { "value": "top center", "label": "Top center" }, { "value": "top right", "label": "Top right" },
+          { "value": "center left", "label": "Center left" }, { "value": "center center", "label": "Center (default)" }, { "value": "center right", "label": "Center right" },
+          { "value": "bottom left", "label": "Bottom left" }, { "value": "bottom center", "label": "Bottom center" }, { "value": "bottom right", "label": "Bottom right" }
+        ]},
+        { "type": "select", "id": "image_fit", "label": "Image fit", "default": "cover", "options": [
+          { "value": "cover", "label": "Cover — fill the area, crop if needed" },
+          { "value": "contain", "label": "Contain — show the whole image, letterbox" },
+          { "value": "fill", "label": "Fill — stretch to fit exactly" }
+        ]},
         { "type": "text", "id": "fallback_image", "label": "Fallback image URL", "info": "Used only until an image is picked above." },
         { "type": "text", "id": "vimeo_id", "label": "Vimeo video ID", "info": "If set, replaces the image with a background video. The number from the Vimeo URL, e.g. 870539693." },
         { "type": "text", "id": "quote", "label": "Quote (optional)" },

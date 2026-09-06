@@ -1,8 +1,11 @@
 <section class="full-width-image{% unless section.settings.pull_next_section %} full-width-image--no-pull{% endunless %}">
+  {%- liquid
+    assign media_style = 'object-fit: ' | append: section.settings.image_fit | append: '; object-position: ' | append: section.settings.image_position | append: ';'
+  -%}
   {%- if section.settings.video != blank -%}
-    {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, controls: false, class: 'full-width-image__media' }}
+    {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, controls: false, class: 'full-width-image__media', style: media_style }}
   {%- elsif section.settings.fallback_video != blank -%}
-    <video class="full-width-image__media" src="{{ section.settings.fallback_video }}" autoplay muted loop playsinline aria-label="{{ section.settings.alt | escape }}"></video>
+    <video class="full-width-image__media" src="{{ section.settings.fallback_video }}" autoplay muted loop playsinline aria-label="{{ section.settings.alt | escape }}" style="{{ media_style }}"></video>
   {%- elsif section.settings.image != blank -%}
     <img
       class="full-width-image__media"
@@ -13,9 +16,10 @@
       loading="lazy"
       width="1800"
       height="{{ 1800 | divided_by: section.settings.image.aspect_ratio | default: 900 }}"
+      style="{{ media_style }}"
     >
   {%- elsif section.settings.fallback_image != blank -%}
-    <img class="full-width-image__media" src="{{ section.settings.fallback_image }}" alt="{{ section.settings.alt | escape }}" loading="lazy">
+    <img class="full-width-image__media" src="{{ section.settings.fallback_image }}" alt="{{ section.settings.alt | escape }}" loading="lazy" style="{{ media_style }}">
   {%- endif -%}
 
   {%- if section.settings.eyebrow != blank or section.settings.heading != blank or section.settings.button_label != blank -%}
@@ -38,6 +42,34 @@
   "name": "Full width image",
   "settings": [
     { "type": "image_picker", "id": "image", "label": "Image" },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position",
+      "default": "center center",
+      "options": [
+        { "value": "top left",      "label": "Top left" },
+        { "value": "top center",    "label": "Top center" },
+        { "value": "top right",     "label": "Top right" },
+        { "value": "center left",   "label": "Center left" },
+        { "value": "center center", "label": "Center (default)" },
+        { "value": "center right",  "label": "Center right" },
+        { "value": "bottom left",   "label": "Bottom left" },
+        { "value": "bottom center", "label": "Bottom center" },
+        { "value": "bottom right",  "label": "Bottom right" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Image fit",
+      "default": "cover",
+      "options": [
+        { "value": "cover",   "label": "Cover — fill the area, crop if needed" },
+        { "value": "contain", "label": "Contain — show the whole image, letterbox" },
+        { "value": "fill",    "label": "Fill — stretch to fit exactly" }
+      ]
+    },
     { "type": "text", "id": "fallback_image", "label": "Fallback image URL (used until an image is selected above)" },
     { "type": "video", "id": "video", "label": "Video (overrides image)" },
     { "type": "text", "id": "fallback_video", "label": "Fallback video URL (used until a video is selected above)" },
