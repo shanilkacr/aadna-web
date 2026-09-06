@@ -42,7 +42,7 @@
                   <td class="account-orders__num">{{ order.name }}</td>
                   <td class="account-orders__date">{{ order.created_at | date: '%d %b %Y' }}</td>
                   <td>{{ order.line_items | size }}</td>
-                  <td class="account-orders__total">LKR {{ order.total_price | money_without_currency }}</td>
+                  <td class="account-orders__total">{{ order.total_price | money }}</td>
                   <td>
                     <span class="account-orders__status account-orders__status--{{ order.financial_status }}">
                       {{ order.financial_status_label }}

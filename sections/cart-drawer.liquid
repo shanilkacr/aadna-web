@@ -32,7 +32,7 @@
                     <p class="cart-drawer__item-property">{{ property.first }}: {{ property.last }}</p>
                   {%- endunless -%}
                 {%- endfor -%}
-                <p class="cart-drawer__item-price">LKR {{ item.final_price | money_without_currency }}</p>
+                <p class="cart-drawer__item-price"><span class="money">{{ item.final_price | money }}</span></p>
                 <div class="cart-drawer__item-controls">
                   <div class="cart-drawer__qty">
                     <button type="button" class="cart-drawer__qty-btn" data-qty-minus aria-label="Decrease quantity">&#8722;</button>
@@ -54,7 +54,7 @@
       <div class="cart-drawer__footer">
         <div class="cart-drawer__subtotal">
           <span>{{ 'general.cart.subtotal' | t }}</span>
-          <span>LKR {{ cart.total_price | money_without_currency }}</span>
+          <span class="money">{{ cart.total_price | money }}</span>
         </div>
         <a href="{{ routes.cart_url }}" class="button button--secondary">{{ 'general.cart.view_cart' | t }}</a>
         <a href="{{ routes.checkout_url | default: '/checkout' }}" class="button button--primary">{{ 'general.cart.checkout' | t }}</a>

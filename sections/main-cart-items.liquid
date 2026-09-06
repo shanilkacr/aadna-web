@@ -29,14 +29,14 @@
                       <p>{{ property.first }}: {{ property.last }}</p>
                     {%- endunless -%}
                   {%- endfor -%}
-                  <p>LKR {{ item.final_price | money_without_currency }}</p>
+                  <p><span class="money">{{ item.final_price | money }}</span></p>
                 </div>
               </td>
               <td>
                 <input type="number" name="updates[{{ item.key }}]" value="{{ item.quantity }}" min="0">
                 <a href="{{ routes.cart_change_url }}?id={{ item.key }}&quantity=0" class="cart-page__remove">{{ 'general.cart.remove' | t | default: 'Remove' }}</a>
               </td>
-              <td>LKR {{ item.final_line_price | money_without_currency }}</td>
+              <td><span class="money">{{ item.final_line_price | money }}</span></td>
             </tr>
           {%- endfor -%}
         </tbody>

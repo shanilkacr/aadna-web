@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "aadna-shopify",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["@shopify/cli", "theme", "dev", "--store", "aadnastore", "--port", "9393"],
+      "port": 9393
+    }
+  ]
+}

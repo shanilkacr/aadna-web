@@ -74,6 +74,11 @@
     {% section 'cart-drawer' %}
   {% endif %}
 
+  <script>
+    window.Shopify = window.Shopify || {};
+    window.Shopify.currency = { active: {{ cart.currency.iso_code | json }}, rate: '1.0' };
+    window.Shopify.money_format = {{ shop.money_format | json }};
+  </script>
   <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
 </body>
 </html>
