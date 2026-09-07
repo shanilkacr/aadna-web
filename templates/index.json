@@ -15,6 +15,8 @@
         "banner_text": "Islandwide free delivery",
         "image": "shopify://shop_images/AADNA_Motif_18.jpg",
         "image_mobile": "shopify://shop_images/AADNA_-1.jpg",
+        "image_position": "center center",
+        "image_fit": "cover",
         "fallback_image": "",
         "heading": "Flamboyant handcrafted jewellery",
         "button_label": "Shop the collection",
@@ -45,6 +47,8 @@
             "label": "Personalised",
             "link": "shopify://collections/personalised-jewellery",
             "video": "shopify://files/videos/custom-orders.mp4",
+            "image_position": "center center",
+            "image_fit": "cover",
             "fallback_image": "",
             "video_url": ""
           }
@@ -55,6 +59,8 @@
             "label": "Collections",
             "link": "shopify://collections",
             "video": "shopify://files/videos/collections.mp4",
+            "image_position": "center center",
+            "image_fit": "cover",
             "fallback_image": "",
             "video_url": ""
           }
@@ -93,7 +99,9 @@
     "full-width-banner": {
       "type": "full-width-image",
       "settings": {
-        "image": "shopify://shop_images/ML6A6177_5d1b7496-c087-4a56-8180-ce92204ad4ab.jpg",
+        "image": "shopify://shop_images/ML6A6177_d5235690-c77e-41d7-8e13-3b1ae586c5b8.jpg",
+        "image_position": "center center",
+        "image_fit": "cover",
         "fallback_image": "",
         "fallback_video": "",
         "alt": "AADNA campaign",
@@ -127,6 +135,8 @@
           "settings": {
             "collection": "aura",
             "title": "",
+            "image_position": "center center",
+            "image_fit": "cover",
             "fallback_image": ""
           }
         },
@@ -135,6 +145,8 @@
           "settings": {
             "collection": "astrid",
             "title": "",
+            "image_position": "center center",
+            "image_fit": "cover",
             "fallback_image": ""
           }
         },
@@ -143,6 +155,8 @@
           "settings": {
             "collection": "aadna-x-tharshana",
             "title": "",
+            "image_position": "center center",
+            "image_fit": "cover",
             "fallback_image": ""
           }
         },
@@ -151,6 +165,8 @@
           "settings": {
             "collection": "gaea",
             "title": "",
+            "image_position": "center center",
+            "image_fit": "cover",
             "fallback_image": ""
           }
         }
@@ -174,6 +190,8 @@
     "full-width-image": {
       "type": "full-width-image",
       "settings": {
+        "image_position": "center center",
+        "image_fit": "cover",
         "fallback_image": "",
         "video": "shopify://files/videos/Cubic signet ring_1080p.mp4",
         "fallback_video": "",
