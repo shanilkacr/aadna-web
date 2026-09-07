@@ -116,7 +116,7 @@
       "type": "featured-collection",
       "settings": {
         "heading": "",
-        "collection": "",
+        "collection": "timeless-collection",
         "placeholder_images": "https://aadna.store/cdn/shop/files/name3.jpg",
         "products_to_show": 4,
         "columns": 4,
