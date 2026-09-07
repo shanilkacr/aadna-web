@@ -85,7 +85,7 @@
       "type": "featured-collection",
       "settings": {
         "heading": "",
-        "collection": "",
+        "collection": "motif",
         "placeholder_images": "https://aadna.store/cdn/shop/files/name3.jpg",
         "products_to_show": 8,
         "columns": 4,
