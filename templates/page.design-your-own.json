@@ -16,6 +16,8 @@
           "type": "hero_image",
           "settings": {
             "image": "shopify://shop_images/OQ8A5682.jpg",
+            "image_position": "center center",
+            "image_fit": "cover",
             "alt": "Handcrafted jewellery",
             "fallback_image": "https://aadna.store/cdn/shop/files/Lunacuff2.png"
           }
@@ -24,6 +26,8 @@
           "type": "hero_image",
           "settings": {
             "image": "shopify://shop_images/lookbook.jpg",
+            "image_position": "center center",
+            "image_fit": "cover",
             "alt": "AADNA lookbook",
             "fallback_image": "https://aadna.store/cdn/shop/files/me.jpg"
           }
@@ -32,6 +36,8 @@
           "type": "hero_image",
           "settings": {
             "image": "shopify://shop_images/ML6A6177.jpg",
+            "image_position": "center center",
+            "image_fit": "cover",
             "alt": "Bespoke piece",
             "fallback_image": "https://aadna.store/cdn/shop/files/slideshow4.jpg"
           }
@@ -40,6 +46,8 @@
           "type": "hero_image",
           "settings": {
             "image": "shopify://shop_images/earcuff6.jpg",
+            "image_position": "center center",
+            "image_fit": "cover",
             "alt": "Custom jewellery",
             "fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg"
           }
@@ -48,6 +56,8 @@
           "type": "hero_image",
           "settings": {
             "image": "shopify://shop_images/chrishedmobile.jpg",
+            "image_position": "center center",
+            "image_fit": "cover",
             "alt": "Signet ring detail",
             "fallback_image": "https://aadna.store/cdn/shop/files/slideshow2.jpg"
           }
@@ -55,6 +65,8 @@
         "hero-6": {
           "type": "hero_image",
           "settings": {
+            "image_position": "center center",
+            "image_fit": "cover",
             "alt": "Atelier piece",
             "fallback_image": "https://aadna.store/cdn/shop/files/gaea07.jpg"
           }
@@ -62,6 +74,8 @@
         "hero-7": {
           "type": "hero_image",
           "settings": {
+            "image_position": "center center",
+            "image_fit": "cover",
             "alt": "One of a kind",
             "fallback_image": "https://aadna.store/cdn/shop/files/slideshow2.jpg"
           }
@@ -83,6 +97,7 @@
     },
     "dyo-form": {
       "type": "dyo-form",
+      "disabled": true,
       "settings": {
         "form_heading": "Start your design",
         "intro": "<p>It's a canvas for innovation.</p><p>Create something entirely yours. Share your vision, stones, metal, silhouette and our atelier will bring it to life, handcrafted in Sri Lanka.</p>",
@@ -96,6 +111,21 @@
         "submit_label": "Send enquiry",
         "success_message": "Thank you — your enquiry has been sent. We'll be in touch shortly."
       }
+    },
+    "17887683984013b0ad": {
+      "type": "apps",
+      "blocks": {
+        "powerful_form_builder_app_block_tGdpcU": {
+          "type": "shopify://apps/powerful-form-builder/blocks/app-block/e4bcb1eb-35b2-42e6-bc37-bfe0e1542c9d",
+          "settings": {
+            "shortcode": "<div class=\"globo-formbuilder\" data-id=\"MTYzMTAw\"></div>"
+          }
+        }
+      },
+      "block_order": [
+        "powerful_form_builder_app_block_tGdpcU"
+      ],
+      "settings": {}
     },
     "dyo-gallery": {
       "type": "dyo-gallery",
@@ -353,6 +383,7 @@
   "order": [
     "dyo-hero",
     "dyo-form",
+    "17887683984013b0ad",
     "dyo-gallery"
   ]
 }
