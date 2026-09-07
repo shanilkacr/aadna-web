@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -6,11 +15,23 @@
         "title": "Contact us",
         "heading": "Get in touch!",
         "phone": "+94 77 880 9890",
-        "email": "info@aadna.store",
+        "email": "oneli@tezzeract.com",
+        "info_image_position": "center center",
+        "info_image_fit": "cover",
         "info_fallback_image": "https://aadna.store/cdn/shop/files/slideshow4.jpg",
-        "form_fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg"
+        "form_image_position": "center center",
+        "form_image_fit": "cover",
+        "form_fallback_image": "https://aadna.store/cdn/shop/files/name3.jpg",
+        "name_label": "Name",
+        "last_name_label": "Last Name",
+        "email_label": "Email",
+        "message_label": "Message",
+        "submit_label": "Send",
+        "success_message": "Thanks for contacting us. We'll get back to you as soon as possible."
       }
     }
   },
-  "order": ["main"]
+  "order": [
+    "main"
+  ]
 }
