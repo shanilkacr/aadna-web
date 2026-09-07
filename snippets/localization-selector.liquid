@@ -9,7 +9,7 @@
     {%- form 'localization', id: 'LocalizationForm' -%}
       <div class="localization-selector__control">
         <span class="localization-selector__flag" data-localization-flag aria-hidden="true"></span>
-        <label class="visually-hidden" for="LocalizationCountry">{{ 'localization.country_label' | t: default: 'Country/region' }}</label>
+        <label class="visually-hidden" for="LocalizationCountry">Country/region</label>
         <select
           id="LocalizationCountry"
           name="country_code"
@@ -29,7 +29,6 @@
         <span class="localization-selector__display" aria-hidden="true">{{ localization.country.currency.iso_code }}</span>
         <span class="localization-selector__arrow">{% render 'icon-chevron' %}</span>
       </div>
-      <input type="hidden" name="return_to" value="{{ request.path }}">
     {%- endform -%}
   </div>
 {%- endif -%}

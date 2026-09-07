@@ -6,20 +6,32 @@
     {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, controls: false, class: 'full-width-image__media', style: media_style }}
   {%- elsif section.settings.fallback_video != blank -%}
     <video class="full-width-image__media" src="{{ section.settings.fallback_video }}" autoplay muted loop playsinline aria-label="{{ section.settings.alt | escape }}" style="{{ media_style }}"></video>
-  {%- elsif section.settings.image != blank -%}
-    <img
-      class="full-width-image__media"
-      src="{{ section.settings.image | image_url: width: 1800 }}"
-      srcset="{{ section.settings.image | image_url: width: 900 }} 900w, {{ section.settings.image | image_url: width: 1400 }} 1400w, {{ section.settings.image | image_url: width: 1800 }} 1800w, {{ section.settings.image | image_url: width: 2400 }} 2400w"
-      sizes="100vw"
-      alt="{{ section.settings.alt | escape }}"
-      loading="lazy"
-      width="1800"
-      height="{{ 1800 | divided_by: section.settings.image.aspect_ratio | default: 900 }}"
-      style="{{ media_style }}"
-    >
-  {%- elsif section.settings.fallback_image != blank -%}
-    <img class="full-width-image__media" src="{{ section.settings.fallback_image }}" alt="{{ section.settings.alt | escape }}" loading="lazy" style="{{ media_style }}">
+  {%- elsif section.settings.image != blank or section.settings.fallback_image != blank -%}
+    {%- capture desktop_image -%}
+      {%- if section.settings.image != blank -%}
+        <img
+          class="full-width-image__media"
+          src="{{ section.settings.image | image_url: width: 1800 }}"
+          srcset="{{ section.settings.image | image_url: width: 900 }} 900w, {{ section.settings.image | image_url: width: 1400 }} 1400w, {{ section.settings.image | image_url: width: 1800 }} 1800w, {{ section.settings.image | image_url: width: 2400 }} 2400w"
+          sizes="100vw"
+          alt="{{ section.settings.alt | escape }}"
+          loading="lazy"
+          width="1800"
+          height="{{ 1800 | divided_by: section.settings.image.aspect_ratio | default: 900 }}"
+          style="{{ media_style }}"
+        >
+      {%- else -%}
+        <img class="full-width-image__media" src="{{ section.settings.fallback_image }}" alt="{{ section.settings.alt | escape }}" loading="lazy" style="{{ media_style }}">
+      {%- endif -%}
+    {%- endcapture -%}
+    {%- if section.settings.image_mobile != blank -%}
+      <picture>
+        <source media="(max-width: 749px)" srcset="{{ section.settings.image_mobile | image_url: width: 900 }}">
+        {{ desktop_image }}
+      </picture>
+    {%- else -%}
+      {{ desktop_image }}
+    {%- endif -%}
   {%- endif -%}
 
   {%- if section.settings.eyebrow != blank or section.settings.heading != blank or section.settings.button_label != blank -%}
@@ -41,7 +53,8 @@
 {
   "name": "Full width image",
   "settings": [
-    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "image_picker", "id": "image", "label": "Image (desktop)" },
+    { "type": "image_picker", "id": "image_mobile", "label": "Image (mobile, optional)", "info": "Leave empty to use the desktop image on mobile too." },
     {
       "type": "select",
       "id": "image_position",

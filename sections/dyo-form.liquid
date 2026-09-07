@@ -8,7 +8,7 @@
         <div class="dyo-page__intro">{{ section.settings.intro }}</div>
       {%- endif -%}
 
-      {% form 'contact', id: 'DesignYourOwnForm', class: 'dyo-page__form', data-design-your-own-form: true %}
+      {% form 'contact', id: 'DesignYourOwnForm', class: 'dyo-page__form', enctype: 'multipart/form-data', data-design-your-own-form: true %}
         <input type="hidden" name="contact[Form type]" value="Design Your Own enquiry">
 
         {%- if form.posted_successfully? -%}
@@ -61,7 +61,7 @@
           ></textarea>
         </div>
 
-        <input type="file" id="DesignYourOwnForm-file" accept="image/*,.pdf" data-design-your-own-file hidden>
+        <input type="file" id="DesignYourOwnForm-file" name="contact[attachment1]" accept="image/*,.pdf" data-design-your-own-file hidden>
 
         <div class="dyo-page__dropzone" data-design-your-own-dropzone>
           <div class="dyo-page__dropzone-inner">
