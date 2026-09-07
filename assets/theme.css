@@ -3368,3 +3368,19 @@ strong, b, th { font-weight: 400; }
   .dyo-page__field-row .dyo-page__field { margin-bottom: 10px; }
 }
 
+/* Design Your Own: Powerful Form Builder app block — mobile side padding only */
+@media (max-width: 900px) {
+  [id$="__17887683984013b0ad"] {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+/* Design Your Own: match the "Send enquiry" (Globo form builder) button border to the theme's sharp-cornered buttons */
+[id$="__17887683984013b0ad"] button.wizard__submit.action.next.submit.line-button {
+  border-radius: var(--button-radius) !important;
+  border-width: 1px !important;
+  border-style: solid !important;
+  border-color: var(--color-button-background) !important;
+}
+
