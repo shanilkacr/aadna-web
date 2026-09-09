@@ -35,7 +35,7 @@
         "tile-latest": {
           "type": "mega_tile",
           "settings": {
-            "collection": "isla-mark-your-treasures-1",
+            "collection": "metal-collections-new",
             "label": "",
             "link": "shopify://collections/isla-mark-your-treasures-1",
             "fallback_image": ""
