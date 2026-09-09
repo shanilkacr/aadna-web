@@ -426,6 +426,15 @@
             "caption": "Bridal Set",
             "featured": false
           }
+        },
+        "gallery_image_QiwytJ": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Sep_9_2026_at_01_37_47_PM.png",
+            "fallback_image": "",
+            "caption": "Bridal Set",
+            "featured": false
+          }
         }
       },
       "block_order": [
@@ -461,7 +470,8 @@
         "gallery_image_fLinYk",
         "gallery_image_hbDMwq",
         "gallery_image_g8YiU3",
-        "gallery_image_FnWfgk"
+        "gallery_image_FnWfgk",
+        "gallery_image_QiwytJ"
       ],
       "settings": {
         "show_gallery": true,
