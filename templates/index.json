@@ -99,7 +99,7 @@
     "full-width-banner": {
       "type": "full-width-image",
       "settings": {
-        "image": "shopify://shop_images/New_Project_1.webp",
+        "image": "shopify://shop_images/Artboard_1-100.webp",
         "image_mobile": "shopify://shop_images/ML6A6177_5d1b7496-c087-4a56-8180-ce92204ad4ab.jpg",
         "image_position": "center center",
         "image_fit": "cover",
