@@ -142,7 +142,7 @@
         "gallery_image_QkknaQ": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/resized_1080x1080_fixed.jpg",
+            "image": "shopify://shop_images/resized_1080x1080_full.jpg",
             "fallback_image": "",
             "caption": "Engagement Ring",
             "featured": false
