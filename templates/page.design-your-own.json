@@ -745,7 +745,7 @@
         "gallery_image_kdziyj": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/aadna_1080_3.jpg",
+            "image": "shopify://shop_images/aadna_final_1080.jpg",
             "fallback_image": "",
             "caption": "Bridal Set",
             "featured": false
