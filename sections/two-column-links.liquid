@@ -3,7 +3,12 @@
     <a href="{{ block.settings.link }}" class="two-col-links__item" {{ block.shopify_attributes }}>
       <div class="two-col-links__media">
         {%- if block.settings.video != blank -%}
-          {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, controls: false }}
+          {%- capture video_markup -%}
+            {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, controls: false }}
+          {%- endcapture -%}
+          {%- assign video_alt = block.settings.label | escape -%}
+          {%- assign img_replacement = '<img alt="' | append: video_alt | append: '" ' -%}
+          {{- video_markup | replace: '<img ', img_replacement -}}
         {%- elsif block.settings.image != blank -%}
           {%- assign media_style = 'object-fit: ' | append: block.settings.image_fit | append: '; object-position: ' | append: block.settings.image_position | append: ';' -%}
           <img
@@ -23,7 +28,7 @@
         {%- endif -%}
       </div>
       <div class="two-col-links__overlay"></div>
-      <h3 class="two-col-links__link">{{ block.settings.label }}</h3>
+      <h2 class="two-col-links__link">{{ block.settings.label }}</h2>
     </a>
   {%- endfor -%}
 </section>

@@ -3,7 +3,10 @@
     assign media_style = 'object-fit: ' | append: section.settings.image_fit | append: '; object-position: ' | append: section.settings.image_position | append: ';'
   -%}
   {%- if section.settings.video != blank -%}
-    {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, controls: false, class: 'full-width-image__media', style: media_style }}
+    {%- capture video_markup -%}
+      {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, controls: false, class: 'full-width-image__media', style: media_style }}
+    {%- endcapture -%}
+    {{- video_markup | replace: '<img ', '<img alt="" ' -}}
   {%- elsif section.settings.fallback_video != blank -%}
     <video class="full-width-image__media" src="{{ section.settings.fallback_video }}" autoplay muted loop playsinline aria-label="{{ section.settings.alt | escape }}" style="{{ media_style }}"></video>
   {%- elsif section.settings.image != blank or section.settings.fallback_image != blank -%}

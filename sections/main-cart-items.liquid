@@ -19,7 +19,7 @@
             <tr class="cart-page__row">
               <td class="cart-page__product">
                 <a href="{{ item.url }}" class="cart-page__image">
-                  {%- if item.image -%}<img src="{{ item.image | image_url: width: 200 }}" alt="{{ item.image.alt | escape }}" width="200" height="{{ 200 | divided_by: item.image.aspect_ratio | default: 250 }}">{%- endif -%}
+                  {%- if item.image -%}<img src="{{ item.image | image_url: width: 200 }}" alt="{{ item.image.alt | escape }}" width="200" height="{{ 200 | divided_by: item.image.aspect_ratio | default: 250 }}" loading="lazy">{%- endif -%}
                 </a>
                 <div>
                   <a href="{{ item.url }}">{{ item.product.title }}</a>
