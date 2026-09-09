@@ -13,8 +13,8 @@
       "type": "hero",
       "settings": {
         "banner_text": "Islandwide free delivery",
-        "image": "shopify://shop_images/AADNA_Motif_18.jpg",
-        "image_mobile": "shopify://shop_images/AADNA_-1.jpg",
+        "image": "shopify://shop_images/AADNA_Motif_18.webp",
+        "image_mobile": "shopify://shop_images/AADNA_-1.webp",
         "image_position": "center center",
         "image_fit": "cover",
         "fallback_image": "",
@@ -46,7 +46,7 @@
           "settings": {
             "label": "Personalised",
             "link": "shopify://collections/personalised-jewellery",
-            "video": "shopify://files/videos/custom-orders.mp4",
+            "video": "shopify://files/videos/custom-orders.webm",
             "image_position": "center center",
             "image_fit": "cover",
             "fallback_image": "",
@@ -58,7 +58,7 @@
           "settings": {
             "label": "Collections",
             "link": "shopify://collections",
-            "video": "shopify://files/videos/collections.mp4",
+            "video": "shopify://files/videos/2.webm",
             "image_position": "center center",
             "image_fit": "cover",
             "fallback_image": "",
@@ -99,7 +99,7 @@
     "full-width-banner": {
       "type": "full-width-image",
       "settings": {
-        "image": "shopify://shop_images/aadna.png",
+        "image": "shopify://shop_images/New_Project_1.webp",
         "image_mobile": "shopify://shop_images/ML6A6177_5d1b7496-c087-4a56-8180-ce92204ad4ab.jpg",
         "image_position": "center center",
         "image_fit": "cover",
@@ -194,7 +194,7 @@
         "image_position": "center center",
         "image_fit": "cover",
         "fallback_image": "",
-        "video": "shopify://files/videos/Cubic signet ring_1080p.mp4",
+        "video": "shopify://files/videos/Cubic signet ring_1080p.webm",
         "fallback_video": "",
         "alt": "AADNA campaign",
         "eyebrow": "",

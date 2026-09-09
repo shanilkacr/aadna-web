@@ -15,7 +15,7 @@
         "hero-3": {
           "type": "hero_image",
           "settings": {
-            "image": "shopify://shop_images/OQ8A5682.jpg",
+            "image": "shopify://shop_images/OQ8A5682.webp",
             "image_position": "center center",
             "image_fit": "cover",
             "alt": "Handcrafted jewellery",
@@ -25,7 +25,7 @@
         "hero-2": {
           "type": "hero_image",
           "settings": {
-            "image": "shopify://shop_images/lookbook.jpg",
+            "image": "shopify://shop_images/lookbook.webp",
             "image_position": "center center",
             "image_fit": "cover",
             "alt": "AADNA lookbook",
@@ -35,7 +35,7 @@
         "hero-4": {
           "type": "hero_image",
           "settings": {
-            "image": "shopify://shop_images/ML6A6177.jpg",
+            "image": "shopify://shop_images/ML6A6177.webp",
             "image_position": "center center",
             "image_fit": "cover",
             "alt": "Bespoke piece",
@@ -45,7 +45,7 @@
         "hero-5": {
           "type": "hero_image",
           "settings": {
-            "image": "shopify://shop_images/earcuff6.jpg",
+            "image": "shopify://shop_images/earcuff6.webp",
             "image_position": "center center",
             "image_fit": "cover",
             "alt": "Custom jewellery",
@@ -55,7 +55,7 @@
         "hero-1": {
           "type": "hero_image",
           "settings": {
-            "image": "shopify://shop_images/chrishedmobile.jpg",
+            "image": "shopify://shop_images/chrishedmobile.webp",
             "image_position": "center center",
             "image_fit": "cover",
             "alt": "Signet ring detail",
@@ -130,19 +130,28 @@
     "dyo-gallery": {
       "type": "dyo-gallery",
       "blocks": {
-        "gallery-1": {
+        "gallery_image_kWmBrC": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/Untitled_design-2.png",
-            "fallback_image": "https://aadna.store/cdn/shop/files/slideshow2.jpg",
-            "caption": "Custom Emerald Pendant",
-            "featured": true
+            "image": "shopify://shop_images/DSC00460_1080x1080_39bd77ac-7b5d-4c6f-948c-0cc3223c2360.jpg",
+            "fallback_image": "",
+            "caption": "Engagement Ring",
+            "featured": false
           }
         },
         "gallery-2": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/DYO10.png",
+            "image": "shopify://shop_images/DYO10.webp",
+            "fallback_image": "",
+            "caption": "Engagement Ring",
+            "featured": false
+          }
+        },
+        "gallery_image_QkknaQ": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/resized_1080x1080_full.jpg",
             "fallback_image": "",
             "caption": "Engagement Ring",
             "featured": false
@@ -151,7 +160,7 @@
         "gallery-3": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/PHOTO-2022-09-30-16-27-50_1080x1080_full.png",
+            "image": "shopify://shop_images/PHOTO-2022-09-30-16-27-50_1080x1080_full.webp",
             "fallback_image": "",
             "caption": "Bridal Necklace",
             "featured": false
@@ -160,7 +169,7 @@
         "gallery-4": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/DYO7.jpg",
+            "image": "shopify://shop_images/DYO7.webp",
             "fallback_image": "",
             "caption": "Signet Ring",
             "featured": false
@@ -169,16 +178,25 @@
         "gallery-5": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/Screenshot_2569-07-13_at_9.33.13_PM.png",
+            "image": "shopify://shop_images/Screenshot_2569-07-13_at_9.33.13_PM.webp",
             "fallback_image": "",
             "caption": "Bridal Earrings",
             "featured": false
           }
         },
+        "gallery-1": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/Sep_9_2026_at_03_06_07_PM.png",
+            "fallback_image": "https://aadna.store/cdn/shop/files/slideshow2.jpg",
+            "caption": "Custom Emerald Pendant",
+            "featured": true
+          }
+        },
         "gallery-6": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/dyo1.jpg",
+            "image": "shopify://shop_images/dyo1.webp",
             "fallback_image": "",
             "caption": "",
             "featured": false
@@ -187,7 +205,7 @@
         "gallery-7": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/wg.png",
+            "image": "shopify://shop_images/wg.webp",
             "fallback_image": "",
             "caption": "Bridal Necklace",
             "featured": false
@@ -196,7 +214,7 @@
         "gallery-8": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/IMG_9864_1080x1080_3a55210e-b0d2-4502-9ed5-ad86cd142525.jpg",
+            "image": "shopify://shop_images/IMG_9864_1080x1080_3a55210e-b0d2-4502-9ed5-ad86cd142525.webp",
             "fallback_image": "",
             "caption": "Tharshana Iris Pendant",
             "featured": false
@@ -205,7 +223,7 @@
         "gallery-9": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/DYO9.png",
+            "image": "shopify://shop_images/DYO9.webp",
             "fallback_image": "",
             "caption": "Wedding Bands",
             "featured": false
@@ -214,7 +232,7 @@
         "gallery-10": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/DYO11.jpg",
+            "image": "shopify://shop_images/DYO11.webp",
             "fallback_image": "",
             "caption": "Handcrafted cufflinks",
             "featured": false
@@ -223,7 +241,7 @@
         "gallery-11": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/anchor_1080x1080_enhanced.jpg",
+            "image": "shopify://shop_images/anchor_1080x1080_enhanced.webp",
             "fallback_image": "",
             "caption": "Anchor Pendant",
             "featured": false
@@ -232,7 +250,7 @@
         "gallery-12": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/DYO2.jpg",
+            "image": "shopify://shop_images/DYO2.webp",
             "fallback_image": "",
             "caption": "Wedding Bands",
             "featured": false
@@ -241,7 +259,7 @@
         "gallery-13": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/DYO4.jpg",
+            "image": "shopify://shop_images/DYO4.webp",
             "fallback_image": "",
             "caption": "Handcrafted cufflinks",
             "featured": false
@@ -250,7 +268,7 @@
         "gallery-14": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/dyo12.jpg",
+            "image": "shopify://shop_images/dyo12.webp",
             "fallback_image": "",
             "caption": "Amethyst Ring",
             "featured": false
@@ -259,7 +277,7 @@
         "gallery-15": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/DSC07781_1080x1080_enhanced.jpg",
+            "image": "shopify://shop_images/DSC07781_1080x1080_enhanced.webp",
             "fallback_image": "",
             "caption": "Tharshana Iris Pendant",
             "featured": false
@@ -268,7 +286,7 @@
         "gallery-16": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/resized_1080.jpg",
+            "image": "shopify://shop_images/resized_1080.webp",
             "fallback_image": "",
             "caption": "Bridal Necklace",
             "featured": false
@@ -277,7 +295,7 @@
         "gallery-17": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/D14E7A90_1080x1080_54b1385b-5d96-4b7b-a2d7-6bea3d7322c3.jpg",
+            "image": "shopify://shop_images/D14E7A90_1080x1080_54b1385b-5d96-4b7b-a2d7-6bea3d7322c3.webp",
             "fallback_image": "",
             "caption": "Bridal Necklace",
             "featured": false
@@ -286,7 +304,7 @@
         "gallery-18": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/shana.png",
+            "image": "shopify://shop_images/shana.webp",
             "fallback_image": "",
             "caption": "Bridal Necklace",
             "featured": false
@@ -295,7 +313,7 @@
         "gallery-19": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/bride2.png",
+            "image": "shopify://shop_images/bride2.webp",
             "fallback_image": "",
             "caption": "Bridal Set",
             "featured": false
@@ -304,7 +322,7 @@
         "gallery-20": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/letter1.png",
+            "image": "shopify://shop_images/letter1.webp",
             "fallback_image": "",
             "caption": "Initial Pendant",
             "featured": false
@@ -313,7 +331,7 @@
         "gallery-21": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/chakra.png",
+            "image": "shopify://shop_images/chakra.webp",
             "fallback_image": "",
             "caption": "Chakra Piece",
             "featured": false
@@ -322,7 +340,7 @@
         "gallery-22": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/bridal.png",
+            "image": "shopify://shop_images/bridal.webp",
             "fallback_image": "",
             "caption": "Bridal Necklace",
             "featured": false
@@ -331,7 +349,7 @@
         "gallery-23": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/bride3.png",
+            "image": "shopify://shop_images/bride3.webp",
             "fallback_image": "",
             "caption": "Bridal Set",
             "featured": false
@@ -340,7 +358,232 @@
         "gallery-24": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/bride4.png",
+            "image": "shopify://shop_images/bride4.webp",
+            "fallback_image": "",
+            "caption": "Bridal Set",
+            "featured": false
+          }
+        },
+        "gallery_image_rwtAwD": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/IMG_5140_1080x1080_refined.jpg",
+            "fallback_image": "",
+            "caption": "Bridal Set",
+            "featured": false
+          }
+        },
+        "gallery_image_mqCRUW": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/IMG_7412_1080x1080_centered.jpg",
+            "fallback_image": "",
+            "caption": "Bridal Set",
+            "featured": false
+          }
+        },
+        "gallery_image_AxHxfP": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/IMG_5138_1080x1080_refined.png",
+            "fallback_image": "",
+            "caption": "Bridal Set",
+            "featured": false
+          }
+        },
+        "gallery_image_fLinYk": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Sep_9_2026_at_01_17_42_PM.png",
+            "fallback_image": "",
+            "caption": "Bridal Set",
+            "featured": false
+          }
+        },
+        "gallery_image_hbDMwq": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Sep_9_2026_at_01_08_00_PM.png",
+            "fallback_image": "",
+            "caption": "Bridal Set",
+            "featured": false
+          }
+        },
+        "gallery_image_g8YiU3": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Sep_9_2026_at_01_19_15_PM.png",
+            "fallback_image": "",
+            "caption": "Bridal Set",
+            "featured": false
+          }
+        },
+        "gallery_image_FnWfgk": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Sep_9_2026_at_01_35_02_PM.png",
+            "fallback_image": "",
+            "caption": "Bridal Set",
+            "featured": false
+          }
+        },
+        "gallery_image_QiwytJ": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Sep_9_2026_at_01_37_47_PM.png",
+            "fallback_image": "",
+            "caption": "Bridal Set",
+            "featured": false
+          }
+        },
+        "gallery_image_9yLad3": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Sep_9_2026_at_01_39_45_PM.png",
+            "fallback_image": "",
+            "caption": "Bridal Set",
+            "featured": false
+          }
+        },
+        "gallery_image_ffVdF6": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jul_16_2026_at_12_02_52_PM.png",
+            "fallback_image": "",
+            "caption": "Bridal Set",
+            "featured": false
+          }
+        },
+        "gallery_image_gEGCrc": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/Image_Jul_14_2026_at_10_54_35_AM.png",
+            "fallback_image": "",
+            "caption": "Bridal Set",
+            "featured": false
+          }
+        },
+        "gallery_image_BHccYF": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/DYO8_79e59173-3c18-4f7a-9820-8a6e7fdfa801.png",
+            "fallback_image": "",
+            "caption": "Bridal Set",
+            "featured": false
+          }
+        },
+        "gallery_image_MHPUHa": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/DUO3.jpg",
+            "fallback_image": "",
+            "caption": "Bridal Set",
+            "featured": false
+          }
+        },
+        "gallery_image_zmp6cp": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/Sep_9_2026_at_02_26_50_PM.png",
+            "fallback_image": "",
+            "caption": "Bridal Set",
+            "featured": false
+          }
+        },
+        "gallery_image_yAANnG": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/Sep_9_2026_at_02_28_00_PM.png",
+            "fallback_image": "",
+            "caption": "Bridal Set",
+            "featured": false
+          }
+        },
+        "gallery_image_gFALeb": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/ring_1080x1080_8329d8a1-3a0f-44ee-8148-a6e56a12fad0.png",
+            "fallback_image": "",
+            "caption": "Bridal Set",
+            "featured": false
+          }
+        },
+        "gallery_image_amcyJw": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/Sep_9_2026_at_02_36_39_PM.png",
+            "fallback_image": "",
+            "caption": "Bridal Set",
+            "featured": false
+          }
+        },
+        "gallery_image_mj99Pw": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/Sep_9_2026_at_02_39_52_PM.png",
+            "fallback_image": "",
+            "caption": "Bridal Set",
+            "featured": false
+          }
+        },
+        "gallery_image_BkGQFn": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/Sep_9_2026_at_02_41_22_PM.png",
+            "fallback_image": "",
+            "caption": "Bridal Set",
+            "featured": false
+          }
+        },
+        "gallery_image_P6ajh3": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/Sep_9_2026_at_02_44_21_PM.png",
+            "fallback_image": "",
+            "caption": "Bridal Set",
+            "featured": false
+          }
+        },
+        "gallery_image_YJbitn": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/Sep_9_2026_at_02_45_42_PM.png",
+            "fallback_image": "",
+            "caption": "Bridal Set",
+            "featured": false
+          }
+        },
+        "gallery_image_LeFEaC": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/IMG_2296_1080.jpg",
+            "fallback_image": "",
+            "caption": "Bridal Set",
+            "featured": false
+          }
+        },
+        "gallery_image_Gp7mJd": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/IMG_1684_1080.jpg",
+            "fallback_image": "",
+            "caption": "Bridal Set",
+            "featured": false
+          }
+        },
+        "gallery_image_zxzBth": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/IMG_1885_1080.jpg",
+            "fallback_image": "",
+            "caption": "Bridal Set",
+            "featured": false
+          }
+        },
+        "gallery_image_Bmcnm4": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/Sep_9_2026_at_03_02_41_PM.png",
             "fallback_image": "",
             "caption": "Bridal Set",
             "featured": false
@@ -348,11 +591,13 @@
         }
       },
       "block_order": [
-        "gallery-1",
+        "gallery_image_kWmBrC",
         "gallery-2",
+        "gallery_image_QkknaQ",
         "gallery-3",
         "gallery-4",
         "gallery-5",
+        "gallery-1",
         "gallery-6",
         "gallery-7",
         "gallery-8",
@@ -371,7 +616,32 @@
         "gallery-21",
         "gallery-22",
         "gallery-23",
-        "gallery-24"
+        "gallery-24",
+        "gallery_image_rwtAwD",
+        "gallery_image_mqCRUW",
+        "gallery_image_AxHxfP",
+        "gallery_image_fLinYk",
+        "gallery_image_hbDMwq",
+        "gallery_image_g8YiU3",
+        "gallery_image_FnWfgk",
+        "gallery_image_QiwytJ",
+        "gallery_image_9yLad3",
+        "gallery_image_ffVdF6",
+        "gallery_image_gEGCrc",
+        "gallery_image_BHccYF",
+        "gallery_image_MHPUHa",
+        "gallery_image_zmp6cp",
+        "gallery_image_yAANnG",
+        "gallery_image_gFALeb",
+        "gallery_image_amcyJw",
+        "gallery_image_mj99Pw",
+        "gallery_image_BkGQFn",
+        "gallery_image_P6ajh3",
+        "gallery_image_YJbitn",
+        "gallery_image_LeFEaC",
+        "gallery_image_Gp7mJd",
+        "gallery_image_zxzBth",
+        "gallery_image_Bmcnm4"
       ],
       "settings": {
         "show_gallery": true,
