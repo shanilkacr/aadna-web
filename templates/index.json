@@ -13,8 +13,8 @@
       "type": "hero",
       "settings": {
         "banner_text": "Islandwide free delivery",
-        "image": "shopify://shop_images/AADNA_Motif_18.jpg",
-        "image_mobile": "shopify://shop_images/AADNA_-1.jpg",
+        "image": "shopify://shop_images/AADNA_Motif_18.webp",
+        "image_mobile": "shopify://shop_images/AADNA_-1.webp",
         "image_position": "center center",
         "image_fit": "cover",
         "fallback_image": "",
@@ -99,7 +99,7 @@
     "full-width-banner": {
       "type": "full-width-image",
       "settings": {
-        "image": "shopify://shop_images/New_Project_1.png",
+        "image": "shopify://shop_images/New_Project_1.webp",
         "image_mobile": "shopify://shop_images/ML6A6177_5d1b7496-c087-4a56-8180-ce92204ad4ab.jpg",
         "image_position": "center center",
         "image_fit": "cover",
