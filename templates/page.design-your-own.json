@@ -471,6 +471,15 @@
             "caption": "Bridal Set",
             "featured": false
           }
+        },
+        "gallery_image_MHPUHa": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/DUO3.jpg",
+            "fallback_image": "",
+            "caption": "Bridal Set",
+            "featured": false
+          }
         }
       },
       "block_order": [
@@ -511,7 +520,8 @@
         "gallery_image_9yLad3",
         "gallery_image_ffVdF6",
         "gallery_image_gEGCrc",
-        "gallery_image_BHccYF"
+        "gallery_image_BHccYF",
+        "gallery_image_MHPUHa"
       ],
       "settings": {
         "show_gallery": true,
