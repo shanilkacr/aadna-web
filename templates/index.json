@@ -45,7 +45,7 @@
           "type": "column",
           "settings": {
             "label": "Personalised",
-            "link": "shopify://collections/personalised-jewellery",
+            "link": "/collections/personalised-jewellery?sort_by=created-descending",
             "video": "shopify://files/videos/custom-orders.webm",
             "image_position": "center center",
             "image_fit": "cover",
