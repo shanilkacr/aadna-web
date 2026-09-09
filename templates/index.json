@@ -131,16 +131,6 @@
     "collection-list": {
       "type": "collection-list",
       "blocks": {
-        "collection_DVtBdd": {
-          "type": "collection",
-          "settings": {
-            "collection": "aura",
-            "title": "",
-            "image_position": "center center",
-            "image_fit": "cover",
-            "fallback_image": ""
-          }
-        },
         "collection_bHTm4H": {
           "type": "collection",
           "settings": {
@@ -151,10 +141,10 @@
             "fallback_image": ""
           }
         },
-        "collection_YWFipW": {
+        "collection_DVtBdd": {
           "type": "collection",
           "settings": {
-            "collection": "aadna-x-tharshana",
+            "collection": "aura",
             "title": "",
             "image_position": "center center",
             "image_fit": "cover",
@@ -170,13 +160,23 @@
             "image_fit": "cover",
             "fallback_image": ""
           }
+        },
+        "collection_YWFipW": {
+          "type": "collection",
+          "settings": {
+            "collection": "aadna-x-tharshana",
+            "title": "",
+            "image_position": "center center",
+            "image_fit": "cover",
+            "fallback_image": ""
+          }
         }
       },
       "block_order": [
-        "collection_DVtBdd",
         "collection_bHTm4H",
-        "collection_YWFipW",
-        "collection_VTiFim"
+        "collection_DVtBdd",
+        "collection_VTiFim",
+        "collection_YWFipW"
       ],
       "settings": {}
     },
