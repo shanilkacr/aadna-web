@@ -130,6 +130,15 @@
     "dyo-gallery": {
       "type": "dyo-gallery",
       "blocks": {
+        "gallery_image_kWmBrC": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/DSC00460_1080x1080_39bd77ac-7b5d-4c6f-948c-0cc3223c2360.jpg",
+            "fallback_image": "",
+            "caption": "Engagement Ring",
+            "featured": false
+          }
+        },
         "gallery-2": {
           "type": "gallery_image",
           "settings": {
@@ -357,6 +366,7 @@
         }
       },
       "block_order": [
+        "gallery_image_kWmBrC",
         "gallery-2",
         "gallery_image_QkknaQ",
         "gallery-3",
