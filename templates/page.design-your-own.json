@@ -363,6 +363,69 @@
             "caption": "Bridal Set",
             "featured": false
           }
+        },
+        "gallery_image_rwtAwD": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/IMG_5140_1080x1080_refined.jpg",
+            "fallback_image": "",
+            "caption": "Bridal Set",
+            "featured": false
+          }
+        },
+        "gallery_image_mqCRUW": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/IMG_7412_1080x1080_centered.jpg",
+            "fallback_image": "",
+            "caption": "Bridal Set",
+            "featured": false
+          }
+        },
+        "gallery_image_AxHxfP": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/IMG_5138_1080x1080_refined.png",
+            "fallback_image": "",
+            "caption": "Bridal Set",
+            "featured": false
+          }
+        },
+        "gallery_image_fLinYk": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Sep_9_2026_at_01_17_42_PM.png",
+            "fallback_image": "",
+            "caption": "Bridal Set",
+            "featured": false
+          }
+        },
+        "gallery_image_hbDMwq": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Sep_9_2026_at_01_08_00_PM.png",
+            "fallback_image": "",
+            "caption": "Bridal Set",
+            "featured": false
+          }
+        },
+        "gallery_image_g8YiU3": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Sep_9_2026_at_01_19_15_PM.png",
+            "fallback_image": "",
+            "caption": "Bridal Set",
+            "featured": false
+          }
+        },
+        "gallery_image_FnWfgk": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Sep_9_2026_at_01_35_02_PM.png",
+            "fallback_image": "",
+            "caption": "Bridal Set",
+            "featured": false
+          }
         }
       },
       "block_order": [
@@ -391,7 +454,14 @@
         "gallery-21",
         "gallery-22",
         "gallery-23",
-        "gallery-24"
+        "gallery-24",
+        "gallery_image_rwtAwD",
+        "gallery_image_mqCRUW",
+        "gallery_image_AxHxfP",
+        "gallery_image_fLinYk",
+        "gallery_image_hbDMwq",
+        "gallery_image_g8YiU3",
+        "gallery_image_FnWfgk"
       ],
       "settings": {
         "show_gallery": true,
