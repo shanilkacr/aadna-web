@@ -130,19 +130,19 @@
     "dyo-gallery": {
       "type": "dyo-gallery",
       "blocks": {
-        "gallery-1": {
-          "type": "gallery_image",
-          "settings": {
-            "image": "shopify://shop_images/Untitled_design-2.webp",
-            "fallback_image": "https://aadna.store/cdn/shop/files/slideshow2.jpg",
-            "caption": "Custom Emerald Pendant",
-            "featured": true
-          }
-        },
         "gallery-2": {
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/DYO10.webp",
+            "fallback_image": "",
+            "caption": "Engagement Ring",
+            "featured": false
+          }
+        },
+        "gallery_image_QkknaQ": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/resized_1080x1080_fixed.jpg",
             "fallback_image": "",
             "caption": "Engagement Ring",
             "featured": false
@@ -173,6 +173,15 @@
             "fallback_image": "",
             "caption": "Bridal Earrings",
             "featured": false
+          }
+        },
+        "gallery-1": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/Untitled_design-2.webp",
+            "fallback_image": "https://aadna.store/cdn/shop/files/slideshow2.jpg",
+            "caption": "Custom Emerald Pendant",
+            "featured": true
           }
         },
         "gallery-6": {
@@ -348,11 +357,12 @@
         }
       },
       "block_order": [
-        "gallery-1",
         "gallery-2",
+        "gallery_image_QkknaQ",
         "gallery-3",
         "gallery-4",
         "gallery-5",
+        "gallery-1",
         "gallery-6",
         "gallery-7",
         "gallery-8",
