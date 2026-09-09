@@ -7,7 +7,7 @@
           "type": "accordion",
           "settings": {
             "title": "Shipping",
-            "content": "<p>Every AADNA piece is individually crafted to order with care and attention to detail.<br>Please <a href=\"/pages/shipping-refunds\" style=\"text-decoration: underline;\">click here</a> for more information</p>"
+            "content": "<p>Every AADNA piece is individually crafted to order with care and attention to detail.<br>Please <a href=\"/pages/shipping-refunds\"><u>click here</u></a> for more information</p>"
           }
         }
       },
