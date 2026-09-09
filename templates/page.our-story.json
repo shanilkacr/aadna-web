@@ -15,7 +15,7 @@
         "intro": {
           "type": "row",
           "settings": {
-            "image": "shopify://shop_images/me.jpg",
+            "image": "shopify://shop_images/me.webp",
             "image_position": "center center",
             "image_fit": "cover",
             "fallback_image": "https://aadna.store/cdn/shop/files/me.jpg",
