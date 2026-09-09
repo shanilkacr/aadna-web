@@ -562,19 +562,19 @@
             "featured": false
           }
         },
-        "gallery_image_E4MgbV": {
+        "gallery_image_LeFEaC": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/aadna_1080_treeplant.jpg",
+            "image": "shopify://shop_images/IMG_2296_1080.jpg",
             "fallback_image": "",
             "caption": "Bridal Set",
             "featured": false
           }
         },
-        "gallery_image_LeFEaC": {
+        "gallery_image_E4MgbV": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/IMG_2296_1080.jpg",
+            "image": "shopify://shop_images/aadna_1080_treeplant.jpg",
             "fallback_image": "",
             "caption": "Bridal Set",
             "featured": false
@@ -801,8 +801,8 @@
         "gallery_image_4efUaY",
         "gallery_image_P6ajh3",
         "gallery_image_YJbitn",
-        "gallery_image_E4MgbV",
         "gallery_image_LeFEaC",
+        "gallery_image_E4MgbV",
         "gallery_image_Gp7mJd",
         "gallery_image_zxzBth",
         "gallery_image_FUHA8L",
