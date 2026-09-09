@@ -589,19 +589,19 @@
             "featured": false
           }
         },
-        "gallery_image_FUHA8L": {
+        "gallery_image_zxzBth": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/Sep_9_2026_at_08_52_53_PM.png",
+            "image": "shopify://shop_images/IMG_1885_1080.jpg",
             "fallback_image": "",
             "caption": "Bridal Set",
             "featured": false
           }
         },
-        "gallery_image_zxzBth": {
+        "gallery_image_FUHA8L": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/IMG_1885_1080.jpg",
+            "image": "shopify://shop_images/Sep_9_2026_at_08_52_53_PM.png",
             "fallback_image": "",
             "caption": "Bridal Set",
             "featured": false
@@ -804,8 +804,8 @@
         "gallery_image_E4MgbV",
         "gallery_image_LeFEaC",
         "gallery_image_Gp7mJd",
-        "gallery_image_FUHA8L",
         "gallery_image_zxzBth",
+        "gallery_image_FUHA8L",
         "gallery_image_Bmcnm4",
         "gallery_image_MTdBBq",
         "gallery_image_jrfh9G",
