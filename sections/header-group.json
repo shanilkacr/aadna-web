@@ -23,6 +23,15 @@
             "fallback_image": ""
           }
         },
+        "tile-collection-2": {
+          "type": "mega_tile",
+          "settings": {
+            "collection": "lumina",
+            "label": "",
+            "link": "",
+            "fallback_image": ""
+          }
+        },
         "tile-latest": {
           "type": "mega_tile",
           "settings": {
@@ -40,22 +49,13 @@
             "link": "",
             "fallback_image": ""
           }
-        },
-        "tile-collection-2": {
-          "type": "mega_tile",
-          "settings": {
-            "collection": "lumina",
-            "label": "",
-            "link": "",
-            "fallback_image": ""
-          }
         }
       },
       "block_order": [
         "tile-best-sellers",
+        "tile-collection-2",
         "tile-latest",
-        "tile-collection-1",
-        "tile-collection-2"
+        "tile-collection-1"
       ],
       "settings": {
         "menu": "main-menu",
