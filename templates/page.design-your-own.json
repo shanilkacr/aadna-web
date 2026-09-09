@@ -714,6 +714,15 @@
             "caption": "Bridal Set",
             "featured": false
           }
+        },
+        "gallery_image_eTccw3": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/aadna_1080_2.jpg",
+            "fallback_image": "",
+            "caption": "Bridal Set",
+            "featured": false
+          }
         }
       },
       "block_order": [
@@ -781,7 +790,8 @@
         "gallery_image_Rtr9Vr",
         "gallery_image_6HBjh6",
         "gallery_image_LTnrXL",
-        "gallery_image_b8JaEA"
+        "gallery_image_b8JaEA",
+        "gallery_image_eTccw3"
       ],
       "settings": {
         "show_gallery": true,
