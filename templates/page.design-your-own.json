@@ -462,6 +462,15 @@
             "caption": "Bridal Set",
             "featured": false
           }
+        },
+        "gallery_image_BHccYF": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/DYO8_79e59173-3c18-4f7a-9820-8a6e7fdfa801.png",
+            "fallback_image": "",
+            "caption": "Bridal Set",
+            "featured": false
+          }
         }
       },
       "block_order": [
@@ -501,7 +510,8 @@
         "gallery_image_QiwytJ",
         "gallery_image_9yLad3",
         "gallery_image_ffVdF6",
-        "gallery_image_gEGCrc"
+        "gallery_image_gEGCrc",
+        "gallery_image_BHccYF"
       ],
       "settings": {
         "show_gallery": true,
