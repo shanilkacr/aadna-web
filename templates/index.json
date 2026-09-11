@@ -45,7 +45,7 @@
           "type": "column",
           "settings": {
             "label": "Personalised",
-            "link": "shopify://collections/personalised-jewellery",
+            "link": "/collections/personalised-jewellery?sort_by=created-descending",
             "video": "",
             "image_position": "center center",
             "image_fit": "cover",
@@ -101,7 +101,7 @@
     "full-width-banner": {
       "type": "full-width-image",
       "settings": {
-        "image": "shopify://shop_images/New_Project_1.webp",
+        "image": "shopify://shop_images/Artboard_1-100_41326abc-fea1-4237-a6c3-8e3c090eab89.webp",
         "image_mobile": "shopify://shop_images/ML6A6177_5d1b7496-c087-4a56-8180-ce92204ad4ab.jpg",
         "image_position": "center center",
         "image_fit": "cover",
@@ -133,16 +133,6 @@
     "collection-list": {
       "type": "collection-list",
       "blocks": {
-        "collection_DVtBdd": {
-          "type": "collection",
-          "settings": {
-            "collection": "aura",
-            "title": "",
-            "image_position": "center center",
-            "image_fit": "cover",
-            "fallback_image": ""
-          }
-        },
         "collection_bHTm4H": {
           "type": "collection",
           "settings": {
@@ -153,10 +143,10 @@
             "fallback_image": ""
           }
         },
-        "collection_YWFipW": {
+        "collection_DVtBdd": {
           "type": "collection",
           "settings": {
-            "collection": "aadna-x-tharshana",
+            "collection": "aura",
             "title": "",
             "image_position": "center center",
             "image_fit": "cover",
@@ -172,13 +162,23 @@
             "image_fit": "cover",
             "fallback_image": ""
           }
+        },
+        "collection_YWFipW": {
+          "type": "collection",
+          "settings": {
+            "collection": "aadna-x-tharshana",
+            "title": "",
+            "image_position": "center center",
+            "image_fit": "cover",
+            "fallback_image": ""
+          }
         }
       },
       "block_order": [
-        "collection_DVtBdd",
         "collection_bHTm4H",
-        "collection_YWFipW",
-        "collection_VTiFim"
+        "collection_DVtBdd",
+        "collection_VTiFim",
+        "collection_YWFipW"
       ],
       "settings": {}
     },
