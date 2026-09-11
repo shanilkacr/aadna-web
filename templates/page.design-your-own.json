@@ -670,15 +670,6 @@
             "featured": false
           }
         },
-        "gallery_image_pbB7mQ": {
-          "type": "gallery_image",
-          "settings": {
-            "image": "shopify://shop_images/IMG_0464_1080.jpg",
-            "fallback_image": "",
-            "caption": "Bridal Set",
-            "featured": false
-          }
-        },
         "gallery_image_Rtr9Vr": {
           "type": "gallery_image",
           "settings": {
@@ -706,19 +697,19 @@
             "featured": false
           }
         },
-        "gallery_image_b8JaEA": {
+        "gallery_image_eTccw3": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/Sep_9_2026_at_08_46_22_PM.png",
+            "image": "shopify://shop_images/aadna_1080_2.jpg",
             "fallback_image": "",
             "caption": "Bridal Set",
             "featured": false
           }
         },
-        "gallery_image_eTccw3": {
+        "gallery_image_b8JaEA": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/aadna_1080_2.jpg",
+            "image": "shopify://shop_images/Sep_9_2026_at_08_46_22_PM.png",
             "fallback_image": "",
             "caption": "Bridal Set",
             "featured": false
@@ -733,10 +724,10 @@
             "featured": false
           }
         },
-        "gallery_image_XmDXEf": {
+        "gallery_image_pbB7mQ": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/FullSizeRender_11.jpg",
+            "image": "shopify://shop_images/IMG_0464_1080.jpg",
             "fallback_image": "",
             "caption": "Bridal Set",
             "featured": false
@@ -751,10 +742,10 @@
             "featured": false
           }
         },
-        "gallery_image_awCdMR": {
+        "gallery_image_XmDXEf": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/Sep_11_2026_at_08_32_05_PM.png",
+            "image": "shopify://shop_images/FullSizeRender_11.jpg",
             "fallback_image": "",
             "caption": "Bridal Set",
             "featured": false
@@ -764,6 +755,15 @@
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/Sep_11_2026_at_08_36_14_PM.png",
+            "fallback_image": "",
+            "caption": "Bridal Set",
+            "featured": false
+          }
+        },
+        "gallery_image_awCdMR": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/Sep_11_2026_at_08_32_05_PM.png",
             "fallback_image": "",
             "caption": "Bridal Set",
             "featured": false
@@ -788,6 +788,15 @@
           }
         },
         "gallery_image_Yk6wYC": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/Sep_11_2026_at_09_08_40_PM.png",
+            "fallback_image": "",
+            "caption": "Bridal Set",
+            "featured": false
+          }
+        },
+        "gallery_image_pRFRap": {
           "type": "gallery_image",
           "settings": {
             "image": "shopify://shop_images/Sep_11_2026_at_09_08_40_PM.png",
@@ -858,20 +867,21 @@
         "gallery_image_xtYMQx",
         "gallery_image_RxRBeA",
         "gallery_image_7FmQ3a",
-        "gallery_image_pbB7mQ",
         "gallery_image_Rtr9Vr",
         "gallery_image_6HBjh6",
         "gallery_image_LTnrXL",
-        "gallery_image_b8JaEA",
         "gallery_image_eTccw3",
+        "gallery_image_b8JaEA",
         "gallery_image_wP6hxM",
-        "gallery_image_XmDXEf",
+        "gallery_image_pbB7mQ",
         "gallery_image_kdziyj",
-        "gallery_image_awCdMR",
+        "gallery_image_XmDXEf",
         "gallery_image_JkGEYF",
+        "gallery_image_awCdMR",
         "gallery_image_X8zVGV",
         "gallery_image_HBJUpp",
-        "gallery_image_Yk6wYC"
+        "gallery_image_Yk6wYC",
+        "gallery_image_pRFRap"
       ],
       "settings": {
         "show_gallery": true,
