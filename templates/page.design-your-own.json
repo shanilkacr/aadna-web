@@ -849,6 +849,15 @@
             "caption": "Bridal Set",
             "featured": false
           }
+        },
+        "gallery_image_NhiN6E": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/earrings_1080.png",
+            "fallback_image": "",
+            "caption": "Bridal Set",
+            "featured": false
+          }
         }
       },
       "block_order": [
@@ -931,7 +940,8 @@
         "gallery_image_TWUqJp",
         "gallery_image_VqGHnY",
         "gallery_image_A79Mc9",
-        "gallery_image_J4ciyh"
+        "gallery_image_J4ciyh",
+        "gallery_image_NhiN6E"
       ],
       "settings": {
         "show_gallery": true,
