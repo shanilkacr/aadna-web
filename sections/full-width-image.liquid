@@ -8,7 +8,13 @@
     {%- endcapture -%}
     {{- video_markup | replace: '<img ', '<img alt="" ' -}}
   {%- elsif section.settings.fallback_video != blank -%}
-    <video class="full-width-image__media" src="{{ section.settings.fallback_video }}" autoplay muted loop playsinline aria-label="{{ section.settings.alt | escape }}" style="{{ media_style }}"></video>
+    {%- liquid
+      assign fallback_video_src = section.settings.fallback_video
+      unless fallback_video_src contains '://'
+        assign fallback_video_src = fallback_video_src | asset_url
+      endunless
+    -%}
+    <video class="full-width-image__media" src="{{ fallback_video_src }}" {% if section.settings.fallback_video_poster != blank %}poster="{{ section.settings.fallback_video_poster | asset_url }}"{% endif %} autoplay muted loop playsinline aria-label="{{ section.settings.alt | escape }}" style="{{ media_style }}"></video>
   {%- elsif section.settings.image != blank or section.settings.fallback_image != blank -%}
     {%- capture desktop_image -%}
       {%- if section.settings.image != blank -%}
@@ -89,6 +95,7 @@
     { "type": "text", "id": "fallback_image", "label": "Fallback image URL (used until an image is selected above)" },
     { "type": "video", "id": "video", "label": "Video (overrides image)" },
     { "type": "text", "id": "fallback_video", "label": "Fallback video URL (used until a video is selected above)" },
+    { "type": "text", "id": "fallback_video_poster", "label": "Fallback video poster image (asset filename, optional)", "info": "Shown instantly while the video loads." },
     { "type": "text", "id": "alt", "label": "Accessible label", "default": "AADNA campaign" },
     { "type": "text", "id": "eyebrow", "label": "Eyebrow text (optional)" },
     { "type": "text", "id": "heading", "label": "Heading (optional)" },

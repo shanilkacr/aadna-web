@@ -46,11 +46,12 @@
           "settings": {
             "label": "Personalised",
             "link": "shopify://collections/personalised-jewellery",
-            "video": "shopify://files/videos/custom-orders.webm",
+            "video": "",
             "image_position": "center center",
             "image_fit": "cover",
             "fallback_image": "",
-            "video_url": ""
+            "video_url": "two-col-personalised-bg.mp4",
+            "poster_image": "two-col-personalised-poster.jpg"
           }
         },
         "column_ypJjnd": {
@@ -58,11 +59,12 @@
           "settings": {
             "label": "Collections",
             "link": "shopify://collections",
-            "video": "shopify://files/videos/2.webm",
+            "video": "",
             "image_position": "center center",
             "image_fit": "cover",
             "fallback_image": "",
-            "video_url": ""
+            "video_url": "two-col-collections-bg.mp4",
+            "poster_image": "two-col-collections-poster.jpg"
           }
         }
       },
@@ -194,8 +196,9 @@
         "image_position": "center center",
         "image_fit": "cover",
         "fallback_image": "",
-        "video": "shopify://files/videos/Cubic signet ring_1080p.webm",
-        "fallback_video": "",
+        "video": "",
+        "fallback_video": "full-width-banner-bg.mp4",
+        "fallback_video_poster": "full-width-banner-poster.jpg",
         "alt": "AADNA campaign",
         "eyebrow": "",
         "heading": "",
