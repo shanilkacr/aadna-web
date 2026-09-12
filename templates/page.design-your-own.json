@@ -903,6 +903,15 @@
             "caption": "Bridal Set",
             "featured": false
           }
+        },
+        "gallery_image_yFzbiQ": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/edited_1080.png",
+            "fallback_image": "",
+            "caption": "Bridal Set",
+            "featured": false
+          }
         }
       },
       "block_order": [
@@ -991,7 +1000,8 @@
         "gallery_image_RxrkfF",
         "gallery_image_tHKMiN",
         "gallery_image_hdLERa",
-        "gallery_image_TqbtHL"
+        "gallery_image_TqbtHL",
+        "gallery_image_yFzbiQ"
       ],
       "settings": {
         "show_gallery": true,
