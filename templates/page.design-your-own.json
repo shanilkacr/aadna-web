@@ -916,7 +916,7 @@
         "gallery_image_FfhmiU": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/necklace_1080_fixed.png",
+            "image": "shopify://shop_images/necklace_red_1080.png",
             "fallback_image": "",
             "caption": "Bridal Set",
             "featured": false
