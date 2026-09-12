@@ -841,19 +841,19 @@
             "featured": false
           }
         },
-        "gallery_image_J4ciyh": {
+        "gallery_image_NhiN6E": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/IMG_2076_1080.jpg",
+            "image": "shopify://shop_images/earrings_1080.png",
             "fallback_image": "",
             "caption": "Bridal Set",
             "featured": false
           }
         },
-        "gallery_image_NhiN6E": {
+        "gallery_image_J4ciyh": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/earrings_1080.png",
+            "image": "shopify://shop_images/IMG_2076_1080.jpg",
             "fallback_image": "",
             "caption": "Bridal Set",
             "featured": false
@@ -868,19 +868,19 @@
             "featured": false
           }
         },
-        "gallery_image_tHKMiN": {
+        "gallery_image_RxrkfF": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/earrings_box_1080.jpg",
+            "image": "shopify://shop_images/Sep_12_2026_at_01_31_28_PM.png",
             "fallback_image": "",
             "caption": "Bridal Set",
             "featured": false
           }
         },
-        "gallery_image_RxrkfF": {
+        "gallery_image_tHKMiN": {
           "type": "gallery_image",
           "settings": {
-            "image": "shopify://shop_images/Sep_12_2026_at_01_31_28_PM.png",
+            "image": "shopify://shop_images/earrings_box_1080.jpg",
             "fallback_image": "",
             "caption": "Bridal Set",
             "featured": false
@@ -967,11 +967,11 @@
         "gallery_image_TWUqJp",
         "gallery_image_VqGHnY",
         "gallery_image_A79Mc9",
-        "gallery_image_J4ciyh",
         "gallery_image_NhiN6E",
+        "gallery_image_J4ciyh",
         "gallery_image_JUWFbe",
-        "gallery_image_tHKMiN",
-        "gallery_image_RxrkfF"
+        "gallery_image_RxrkfF",
+        "gallery_image_tHKMiN"
       ],
       "settings": {
         "show_gallery": true,
