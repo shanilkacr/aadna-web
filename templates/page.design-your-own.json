@@ -912,6 +912,15 @@
             "caption": "Bridal Set",
             "featured": false
           }
+        },
+        "gallery_image_FfhmiU": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify://shop_images/necklace_1080_fixed.png",
+            "fallback_image": "",
+            "caption": "Bridal Set",
+            "featured": false
+          }
         }
       },
       "block_order": [
@@ -1001,7 +1010,8 @@
         "gallery_image_tHKMiN",
         "gallery_image_hdLERa",
         "gallery_image_TqbtHL",
-        "gallery_image_yFzbiQ"
+        "gallery_image_yFzbiQ",
+        "gallery_image_FfhmiU"
       ],
       "settings": {
         "show_gallery": true,
