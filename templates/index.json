@@ -46,7 +46,6 @@
           "settings": {
             "label": "Personalised",
             "link": "/collections/personalised-jewellery?sort_by=created-descending",
-            "video": "",
             "image_position": "center center",
             "image_fit": "cover",
             "fallback_image": "",
@@ -59,7 +58,6 @@
           "settings": {
             "label": "Collections",
             "link": "shopify://collections",
-            "video": "",
             "image_position": "center center",
             "image_fit": "cover",
             "fallback_image": "",
@@ -107,10 +105,11 @@
         "image_fit": "cover",
         "fallback_image": "",
         "fallback_video": "",
+        "fallback_video_poster": "",
         "alt": "AADNA campaign",
         "eyebrow": "",
         "heading": "Water Lily Drop Earrings",
-        "button_label": "Shop now",
+        "button_label": "Buy now",
         "button_link": "/products/water-lily-drop-earrings",
         "pull_next_section": false
       }
@@ -196,7 +195,6 @@
         "image_position": "center center",
         "image_fit": "cover",
         "fallback_image": "",
-        "video": "",
         "fallback_video": "full-width-banner-bg.mp4",
         "fallback_video_poster": "full-width-banner-poster.jpg",
         "alt": "AADNA campaign",
