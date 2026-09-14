@@ -7,47 +7,47 @@
   assign swatch_hex = '#CCCCCC'
 
   case color_key
-    when 'black' assign swatch_hex = '#000000'
-    when 'white' assign swatch_hex = '#FFFFFF'
-    when 'red' assign swatch_hex = '#C0392B'
-    when 'blue' assign swatch_hex = '#1F4E79'
-    when 'navy' assign swatch_hex = '#1B2A41'
-    when 'green' assign swatch_hex = '#2D6A4F'
-    when 'yellow' assign swatch_hex = '#F4D03F'
-    when 'orange' assign swatch_hex = '#E67E22'
-    when 'pink' assign swatch_hex = '#F5B7B1'
-    when 'purple' assign swatch_hex = '#7D3C98'
-    when 'brown' assign swatch_hex = '#6E4B3A'
-    when 'beige' assign swatch_hex = '#D9CBB8'
-    when 'cream' assign swatch_hex = '#F5F0E6'
-    when 'grey', 'gray' assign swatch_hex = '#9E9E9E'
-    when 'silver' assign swatch_hex = '#C0C0C0'
-    when 'sterling silver' assign swatch_hex = '#C0C0C0'
-    when 'sterling silver gold plated' assign swatch_hex = '#AD8A54'
-    when 'gold' assign swatch_hex = '#AD8A54'
-    when 'rose gold' assign swatch_hex = '#B76E79'
-    when 'tan' assign swatch_hex = '#D2B48C'
-    when 'ivory' assign swatch_hex = '#FFFFF0'
-    when 'maroon' assign swatch_hex = '#800000'
-    when 'teal' assign swatch_hex = '#008080'
-    when 'olive' assign swatch_hex = '#808000'
-    when 'charcoal' assign swatch_hex = '#36454F'
-    when 'natural' assign swatch_hex = '#E8DCC8'
-    when 'sand' assign swatch_hex = '#C2B280'
-    when 'rust' assign swatch_hex = '#B7410E'
-    when 'burgundy' assign swatch_hex = '#800020'
-    when 'camel' assign swatch_hex = '#C19A6B'
-    when 'khaki' assign swatch_hex = '#C3B091'
-    when 'light blue' assign swatch_hex = '#ADD8E6'
-    when 'dark blue' assign swatch_hex = '#00008B'
-    when 'light grey', 'light gray' assign swatch_hex = '#D3D3D3'
-    when 'dark grey', 'dark gray' assign swatch_hex = '#4A4A4A'
-    when 'bronze' assign swatch_hex = '#8C6239'
-    when 'brass' assign swatch_hex = '#B5A642'
-    when 'copper' assign swatch_hex = '#B87333'
-    when 'platinum' assign swatch_hex = '#E5E4E2'
-    when 'gunmetal' assign swatch_hex = '#2A3439'
-    when 'matte black' assign swatch_hex = '#1A1A1A'
+    when 'black'
+    when 'white'
+    when 'red'
+    when 'blue'
+    when 'navy'
+    when 'green'
+    when 'yellow'
+    when 'orange'
+    when 'pink'
+    when 'purple'
+    when 'brown'
+    when 'beige'
+    when 'cream'
+    when 'grey', 'gray'
+    when 'silver'
+    when 'sterling silver'
+    when 'sterling silver gold plated'
+    when 'gold'
+    when 'rose gold'
+    when 'tan'
+    when 'ivory'
+    when 'maroon'
+    when 'teal'
+    when 'olive'
+    when 'charcoal'
+    when 'natural'
+    when 'sand'
+    when 'rust'
+    when 'burgundy'
+    when 'camel'
+    when 'khaki'
+    when 'light blue'
+    when 'dark blue'
+    when 'light grey', 'light gray'
+    when 'dark grey', 'dark gray'
+    when 'bronze'
+    when 'brass'
+    when 'copper'
+    when 'platinum'
+    when 'gunmetal'
+    when 'matte black'
   endcase
 
   if swatch_hex == '#CCCCCC'
@@ -71,3 +71,133 @@
   endif
 -%}
 {{- swatch_hex -}}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "    when 'black' assign swatch_hex = '#000000'"
+  to: "    when 'black'"
+  position: 220..236
+- from: "    when 'white' assign swatch_hex = '#FFFFFF'"
+  to: "    when 'white'"
+  position: 237..253
+- from: "    when 'red' assign swatch_hex = '#C0392B'"
+  to: "    when 'red'"
+  position: 254..268
+- from: "    when 'blue' assign swatch_hex = '#1F4E79'"
+  to: "    when 'blue'"
+  position: 269..284
+- from: "    when 'navy' assign swatch_hex = '#1B2A41'"
+  to: "    when 'navy'"
+  position: 285..300
+- from: "    when 'green' assign swatch_hex = '#2D6A4F'"
+  to: "    when 'green'"
+  position: 301..317
+- from: "    when 'yellow' assign swatch_hex = '#F4D03F'"
+  to: "    when 'yellow'"
+  position: 318..335
+- from: "    when 'orange' assign swatch_hex = '#E67E22'"
+  to: "    when 'orange'"
+  position: 336..353
+- from: "    when 'pink' assign swatch_hex = '#F5B7B1'"
+  to: "    when 'pink'"
+  position: 354..369
+- from: "    when 'purple' assign swatch_hex = '#7D3C98'"
+  to: "    when 'purple'"
+  position: 370..387
+- from: "    when 'brown' assign swatch_hex = '#6E4B3A'"
+  to: "    when 'brown'"
+  position: 388..404
+- from: "    when 'beige' assign swatch_hex = '#D9CBB8'"
+  to: "    when 'beige'"
+  position: 405..421
+- from: "    when 'cream' assign swatch_hex = '#F5F0E6'"
+  to: "    when 'cream'"
+  position: 422..438
+- from: "    when 'grey', 'gray' assign swatch_hex = '#9E9E9E'"
+  to: "    when 'grey', 'gray'"
+  position: 439..462
+- from: "    when 'silver' assign swatch_hex = '#C0C0C0'"
+  to: "    when 'silver'"
+  position: 463..480
+- from: "    when 'sterling silver' assign swatch_hex = '#C0C0C0'"
+  to: "    when 'sterling silver'"
+  position: 481..507
+- from: "    when 'sterling silver gold plated' assign swatch_hex = '#AD8A54'"
+  to: "    when 'sterling silver gold plated'"
+  position: 508..546
+- from: "    when 'gold' assign swatch_hex = '#AD8A54'"
+  to: "    when 'gold'"
+  position: 547..562
+- from: "    when 'rose gold' assign swatch_hex = '#B76E79'"
+  to: "    when 'rose gold'"
+  position: 563..583
+- from: "    when 'tan' assign swatch_hex = '#D2B48C'"
+  to: "    when 'tan'"
+  position: 584..598
+- from: "    when 'ivory' assign swatch_hex = '#FFFFF0'"
+  to: "    when 'ivory'"
+  position: 599..615
+- from: "    when 'maroon' assign swatch_hex = '#800000'"
+  to: "    when 'maroon'"
+  position: 616..633
+- from: "    when 'teal' assign swatch_hex = '#008080'"
+  to: "    when 'teal'"
+  position: 634..649
+- from: "    when 'olive' assign swatch_hex = '#808000'"
+  to: "    when 'olive'"
+  position: 650..666
+- from: "    when 'charcoal' assign swatch_hex = '#36454F'"
+  to: "    when 'charcoal'"
+  position: 667..686
+- from: "    when 'natural' assign swatch_hex = '#E8DCC8'"
+  to: "    when 'natural'"
+  position: 687..705
+- from: "    when 'sand' assign swatch_hex = '#C2B280'"
+  to: "    when 'sand'"
+  position: 706..721
+- from: "    when 'rust' assign swatch_hex = '#B7410E'"
+  to: "    when 'rust'"
+  position: 722..737
+- from: "    when 'burgundy' assign swatch_hex = '#800020'"
+  to: "    when 'burgundy'"
+  position: 738..757
+- from: "    when 'camel' assign swatch_hex = '#C19A6B'"
+  to: "    when 'camel'"
+  position: 758..774
+- from: "    when 'khaki' assign swatch_hex = '#C3B091'"
+  to: "    when 'khaki'"
+  position: 775..791
+- from: "    when 'light blue' assign swatch_hex = '#ADD8E6'"
+  to: "    when 'light blue'"
+  position: 792..813
+- from: "    when 'dark blue' assign swatch_hex = '#00008B'"
+  to: "    when 'dark blue'"
+  position: 814..834
+- from: "    when 'light grey', 'light gray' assign swatch_hex = '#D3D3D3'"
+  to: "    when 'light grey', 'light gray'"
+  position: 835..870
+- from: "    when 'dark grey', 'dark gray' assign swatch_hex = '#4A4A4A'"
+  to: "    when 'dark grey', 'dark gray'"
+  position: 871..904
+- from: "    when 'bronze' assign swatch_hex = '#8C6239'"
+  to: "    when 'bronze'"
+  position: 905..922
+- from: "    when 'brass' assign swatch_hex = '#B5A642'"
+  to: "    when 'brass'"
+  position: 923..939
+- from: "    when 'copper' assign swatch_hex = '#B87333'"
+  to: "    when 'copper'"
+  position: 940..957
+- from: "    when 'platinum' assign swatch_hex = '#E5E4E2'"
+  to: "    when 'platinum'"
+  position: 958..977
+- from: "    when 'gunmetal' assign swatch_hex = '#2A3439'"
+  to: "    when 'gunmetal'"
+  position: 978..997
+- from: "    when 'matte black' assign swatch_hex = '#1A1A1A'"
+  to: "    when 'matte black'"
+  position: 998..1020
+{% endcomment %}
