@@ -3077,6 +3077,15 @@ strong, b, th { font-weight: 400; }
 .customer input:focus { outline: none; border-bottom-color: var(--color-text); }
 .customer__forgot { text-align: right; margin-top: -8px; }
 .customer__forgot a { font-size: 11px; letter-spacing: 0.5px; color: var(--color-text-muted); text-decoration: underline; text-underline-offset: 3px; }
+
+/* Login / recover-password toggle: #recover shows only when linked to
+   directly (URL fragment) or forced open via JS after a recover form
+   submission, since the fragment doesn't survive the server round-trip. */
+.customer__section--recover { display: none; }
+#recover:target,
+.customer__section--recover.is-active { display: block; }
+.customer:has(#recover:target) #login,
+.customer:has(.customer__section--recover.is-active) #login { display: none; }
 .customer__submit { width: 100%; margin-top: 8px; }
 .customer__register { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 24px; font-size: 12px; color: var(--color-text-muted); letter-spacing: 0.3px; }
 .customer__register-link { font-size: 12px; font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase; text-decoration: underline; text-underline-offset: 3px; color: var(--color-text); }

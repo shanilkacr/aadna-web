@@ -783,4 +783,12 @@ document.addEventListener('DOMContentLoaded', function () {
       dyoFilename.textContent = dyoFile.files.length ? dyoFile.files[0].name : '';
     });
   }
+
+  // Login page: keep the "forgot password" section open after Shopify
+  // redirects back from submitting it — the #recover URL fragment that
+  // opens it via CSS :target doesn't survive that server round-trip.
+  var recoverSection = document.getElementById('recover');
+  if (recoverSection && recoverSection.querySelector('.customer__errors, .customer__success')) {
+    recoverSection.classList.add('is-active');
+  }
 });

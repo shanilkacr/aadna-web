@@ -1,32 +1,62 @@
 <section class="customer page-width">
-  <div class="customer__header">
-    <h1>{{ 'customer.login.title' | t }}</h1>
+  <div id="login" class="customer__section">
+    <div class="customer__header">
+      <h1>{{ 'customer.login.title' | t }}</h1>
+    </div>
+
+    {% form 'customer_login' %}
+      {%- if form.errors -%}
+        <div class="customer__errors">{{ form.errors | default_errors }}</div>
+      {%- endif -%}
+
+      <div class="customer__field">
+        <label for="CustomerEmail">{{ 'customer.login.email' | t }}</label>
+        <input type="email" name="customer[email]" id="CustomerEmail" autocomplete="email" required placeholder="your@email.com">
+      </div>
+
+      <div class="customer__field">
+        <label for="CustomerPassword">{{ 'customer.login.password' | t }}</label>
+        <input type="password" name="customer[password]" id="CustomerPassword" autocomplete="current-password" required placeholder="••••••••">
+      </div>
+
+      <div class="customer__forgot">
+        <a href="#recover">{{ 'customer.login.forgot_password' | t }}</a>
+      </div>
+
+      <button type="submit" class="button button--primary customer__submit">{{ 'customer.login.sign_in' | t }}</button>
+    {% endform %}
+
+    <div class="customer__register">
+      <span>New to AADNA?</span>
+      <a href="{{ routes.account_register_url }}" class="customer__register-link">{{ 'customer.login.create_account' | t }}</a>
+    </div>
   </div>
 
-  {% form 'customer_login' %}
-    {%- if form.errors -%}
-      <div class="customer__errors">{{ form.errors | default_errors }}</div>
-    {%- endif -%}
-
-    <div class="customer__field">
-      <label for="CustomerEmail">{{ 'customer.login.email' | t }}</label>
-      <input type="email" name="customer[email]" id="CustomerEmail" autocomplete="email" required placeholder="your@email.com">
+  <div id="recover" class="customer__section customer__section--recover">
+    <div class="customer__header">
+      <h1>{{ 'customer.recover_password.title' | t }}</h1>
+      <p>{{ 'customer.recover_password.subtext' | t }}</p>
     </div>
 
-    <div class="customer__field">
-      <label for="CustomerPassword">{{ 'customer.login.password' | t }}</label>
-      <input type="password" name="customer[password]" id="CustomerPassword" autocomplete="current-password" required placeholder="••••••••">
+    {% form 'recover_customer_password' %}
+      {%- if form.posted_successfully? -%}
+        <p class="customer__success">{{ 'customer.recover_password.success' | t }}</p>
+      {%- else -%}
+        {%- if form.errors -%}
+          <div class="customer__errors">{{ form.errors | default_errors }}</div>
+        {%- endif -%}
+
+        <div class="customer__field">
+          <label for="RecoverEmail">{{ 'customer.login.email' | t }}</label>
+          <input type="email" name="email" id="RecoverEmail" autocomplete="email" required placeholder="your@email.com">
+        </div>
+
+        <button type="submit" class="button button--primary customer__submit">{{ 'customer.recover_password.submit' | t }}</button>
+      {%- endif -%}
+    {% endform %}
+
+    <div class="customer__register">
+      <a href="#login">Back to login</a>
     </div>
-
-    <div class="customer__forgot">
-      <a href="{{ routes.account_recover_url }}">{{ 'customer.login.forgot_password' | t }}</a>
-    </div>
-
-    <button type="submit" class="button button--primary customer__submit">{{ 'customer.login.sign_in' | t }}</button>
-  {% endform %}
-
-  <div class="customer__register">
-    <span>New to AADNA?</span>
-    <a href="{{ routes.account_register_url }}" class="customer__register-link">{{ 'customer.login.create_account' | t }}</a>
   </div>
 </section>
