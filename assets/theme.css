@@ -3397,3 +3397,8 @@ strong, b, th { font-weight: 400; }
   border-color: var(--color-button-background) !important;
 }
 
+/* Design Your Own: fade the example digits in the phone field's placeholder */
+[id$="__17887683984013b0ad"] input[type="tel"]::placeholder {
+  opacity: 0.35 !important;
+}
+
