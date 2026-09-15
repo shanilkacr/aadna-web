@@ -34,7 +34,10 @@
         "link_list_H4BdKL"
       ],
       "settings": {
-        "tagline": "She is a force of nature, she is everything you need."
+        "tagline": "She is a force of nature, she is everything you need.",
+        "newsletter_heading": "Join AADNA Circle",
+        "newsletter_text": "An invitation to those who value to be considered over the ordinary, early access to new arrivals, private previews, and a 10% welcome gift, reserved for our circle.",
+        "copyright_text": "AADNA. All rights reserved."
       }
     }
   },
