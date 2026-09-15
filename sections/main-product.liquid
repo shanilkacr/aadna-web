@@ -131,8 +131,16 @@
           -%}
 
           {%- if show_personalization -%}
+            {%- liquid
+              assign personalization_label = 'products.product.personalization_label' | t
+              assign show_personalization_hint = true
+              if product.handle == 'custom-cufflink-pair'
+                assign personalization_label = 'Enter Initials'
+                assign show_personalization_hint = false
+              endif
+            -%}
             <div class="product__personalization">
-              <label for="PersonalizationName-{{ section.id }}">{{ 'products.product.personalization_label' | t }}</label>
+              <label for="PersonalizationName-{{ section.id }}">{{ personalization_label }}</label>
               <input
                 type="text"
                 id="PersonalizationName-{{ section.id }}"
@@ -144,7 +152,9 @@
                 autocomplete="off"
                 data-personalization-input
               >
-              <p class="product__personalization-hint">{{ 'products.product.personalization_hint' | t }}</p>
+              {%- if show_personalization_hint -%}
+                <p class="product__personalization-hint">{{ 'products.product.personalization_hint' | t }}</p>
+              {%- endif -%}
             </div>
           {%- endif -%}
 
