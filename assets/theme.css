@@ -3398,7 +3398,7 @@ strong, b, th { font-weight: 400; }
 }
 
 /* Design Your Own: fade the example digits in the phone field's placeholder */
-[id$="__17887683984013b0ad"] input[type="tel"]::placeholder {
+[id$="__17887683984013b0ad"] input[data-type="phone"]::placeholder {
   opacity: 0.35 !important;
 }
 
