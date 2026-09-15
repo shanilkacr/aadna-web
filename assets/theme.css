@@ -298,6 +298,7 @@ strong, b, th { font-weight: 400; }
   position: absolute; top: -6px; right: -8px; background: var(--color-accent); color: #fff;
   font-size: 10px; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
 }
+.site-header__cart-count[hidden] { display: none; }
 .site-header__menu-toggle { display: none; background: none; border: none; cursor: pointer; color: inherit; }
 
 /* Shared search overlay — fixed at the true top of the viewport (so it's always

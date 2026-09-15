@@ -40,9 +40,7 @@
     </a>
     <button type="button" class="site-header__icon site-header__cart" data-cart-toggle aria-label="{{ 'sections.header.cart' | t }}">
       {% render 'icon-cart' %}
-      {%- if cart.item_count > 0 -%}
-        <span class="site-header__cart-count">{{ cart.item_count }}</span>
-      {%- endif -%}
+      <span class="site-header__cart-count" data-cart-count {% if cart.item_count == 0 %}hidden{% endif %}>{{ cart.item_count }}</span>
     </button>
   </div>
 </div>
