@@ -521,7 +521,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     if (form) {
-      form.querySelectorAll('input[type="checkbox"]').forEach(function (input) {
+      // Product type checkboxes: let the shopper select several before
+      // submitting, via their own Apply button, instead of reloading on
+      // every click like the other filter groups do.
+      form.querySelectorAll('input[type="checkbox"]:not([data-deferred-filter])').forEach(function (input) {
         input.addEventListener('change', function () {
           submitFiltersForm(form);
         });

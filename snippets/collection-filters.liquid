@@ -214,6 +214,7 @@
                                   value="{{ value.value }}"
                                   {% if value.active %}checked{% endif %}
                                   {% if value.count == 0 and value.active == false %}disabled{% endif %}
+                                  {% if filter.param_name contains 'product_type' %}data-deferred-filter{% endif %}
                                 >
                                 <span class="collection-filters__label-text">{{ value.label | escape }}</span>
                                 <span class="collection-filters__value-count">({{ value.count }})</span>
@@ -221,6 +222,11 @@
                             </li>
                           {%- endfor -%}
                         </ul>
+                        {%- if filter.param_name contains 'product_type' -%}
+                          <button type="submit" class="text-link collection-filters__apply">
+                            {{ 'collections.filters.apply' | t }}
+                          </button>
+                        {%- endif -%}
 
                       {%- when 'price_range' -%}
                         <div class="collection-filters__price">
