@@ -791,4 +791,11 @@ document.addEventListener('DOMContentLoaded', function () {
   if (recoverSection && recoverSection.querySelector('.customer__errors, .customer__success')) {
     recoverSection.classList.add('is-active');
   }
+  // "Back to login" only changes the URL hash, which doesn't undo the
+  // is-active class above — remove it explicitly so the link works.
+  document.querySelectorAll('a[href="#login"]').forEach(function (link) {
+    link.addEventListener('click', function () {
+      if (recoverSection) recoverSection.classList.remove('is-active');
+    });
+  });
 });
