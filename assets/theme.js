@@ -728,31 +728,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Mobile tap-to-reveal quick-add button
-  // First tap shows the button; second tap (on the link) navigates; tapping the button adds to cart.
-  if ('ontouchstart' in window) {
-    document.addEventListener('click', function (e) {
-      var card = e.target.closest('.product-card');
-      var tappedCards = document.querySelectorAll('.product-card.is-tapped');
-
-      if (!card) {
-        // Tapped outside any card — dismiss all
-        tappedCards.forEach(function (c) { c.classList.remove('is-tapped'); });
-        return;
-      }
-
-      if (!card.classList.contains('is-tapped')) {
-        // First tap: reveal the button, don't navigate
-        if (!e.target.closest('[data-quick-add]')) {
-          e.preventDefault();
-          tappedCards.forEach(function (c) { c.classList.remove('is-tapped'); });
-          card.classList.add('is-tapped');
-        }
-      }
-      // If already tapped and not on the quick-add button, let the link navigate normally
-    });
-  }
-
   // Quick Add to Cart
   document.querySelectorAll('[data-quick-add]').forEach(function (btn) {
     btn.addEventListener('click', function (e) {

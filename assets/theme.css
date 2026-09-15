@@ -634,11 +634,10 @@ strong, b, th { font-weight: 400; }
     padding-bottom: var(--grid-gap);
   }
 
-  /* Quick-add: bottom-right on mobile, revealed on tap via .is-tapped class */
+  /* Quick-add only works via hover, which mobile/touch devices don't have —
+     hide it there so tapping anywhere on the card reliably opens the product. */
   .product-card__quick-add {
-    top: auto;
-    bottom: 10px;
-    right: 10px;
+    display: none;
   }
 }
 
