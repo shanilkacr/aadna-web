@@ -1,10 +1,23 @@
 {%- comment -%}
-  Renders the inner header markup. Accepts: variant ('default' | 'transparent' | 'solid')
+  Renders the inner header markup. Accepts:
+    variant          - 'default' | 'transparent' | 'solid'
+    hide_mega_menu   - boolean, default false/unset. The homepage renders this snippet
+      twice (transparent + solid, see sections/header.liquid); the mega menu panel
+      positions itself relative to whichever header it's inside, so it can only live
+      in one of them without extra JS to reposition it. Pass true to render "Shop" as
+      a plain link (already correct, since its href is the collection URL either way)
+      instead of duplicating the full dropdown panel a second time.
   - default: gold logo at 80% size, dark text — same styling/sizing/spacing as the
     on-scroll (solid) homepage header. Used on non-hero pages (always visible, not fixed).
   - transparent: gold logo, full size, white text, overlays the hero (scrolls away, not fixed)
   - solid: gold logo at 80% size, dark text, slides in fixed once scrolled
 {%- endcomment -%}
+{%- liquid
+  assign active_mega_trigger = section.settings.mega_menu_trigger
+  if hide_mega_menu
+    assign active_mega_trigger = blank
+  endif
+-%}
 <div class="page-width site-header__inner">
   <div class="site-header__start">
     <button type="button" class="site-header__menu-toggle" data-menu-toggle aria-label="{{ 'sections.header.menu' | t }}">
@@ -28,7 +41,7 @@
     <ul>
       {% render 'main-nav-items',
         menu: section.settings.menu,
-        mega_trigger: section.settings.mega_menu_trigger,
+        mega_trigger: active_mega_trigger,
         variant: 'header'
       %}
     </ul>
@@ -45,6 +58,6 @@
   </div>
 </div>
 
-{%- if section.settings.mega_menu_trigger != blank -%}
+{%- if active_mega_trigger != blank -%}
   {% render 'mega-menu', section: section %}
 {%- endif -%}
