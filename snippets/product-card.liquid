@@ -58,12 +58,13 @@
         <img src="{{ fallback_image }}" alt="{{ product.title | escape }}" loading="lazy" width="800" height="1000">
       {%- endif -%}
       {%- if product.images[1] -%}
+        {%- assign hover_image_alt = product.images[1].alt | default: product.title | append: ' — alternate view' -%}
         <img
           class="product-card__media--hover"
           src="{{ product.images[1] | image_url: width: 800 }}"
           srcset="{{ product.images[1] | image_url: width: 300 }} 300w, {{ product.images[1] | image_url: width: 500 }} 500w, {{ product.images[1] | image_url: width: 800 }} 800w"
           sizes="(max-width: 749px) 50vw, 25vw"
-          alt=""
+          alt="{{ hover_image_alt | escape }}"
           loading="lazy"
           width="800"
           height="{{ 800 | divided_by: product.images[1].aspect_ratio | default: 1000 }}"
