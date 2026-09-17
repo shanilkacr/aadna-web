@@ -1,0 +1,37 @@
+{%- comment -%}
+  Site-wide Organization structured data (JSON-LD). Helps classic SEO
+  and AI answer engines (AEO/GEO) understand who the business is.
+{%- endcomment -%}
+{%- liquid
+  assign schema_logo = settings.logo | default: settings.logo_alt
+  assign social_links = ''
+  if settings.social_instagram != blank
+    assign social_links = social_links | append: settings.social_instagram | append: ','
+  endif
+  if settings.social_facebook != blank
+    assign social_links = social_links | append: settings.social_facebook | append: ','
+  endif
+  if settings.social_tiktok != blank
+    assign social_links = social_links | append: settings.social_tiktok | append: ','
+  endif
+  assign social_links_array = social_links | split: ','
+-%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": {{ shop.name | json }},
+  "url": {{ shop.url | append: '/' | json }}
+  {%- if schema_logo != blank -%}
+  ,"logo": {{ schema_logo | image_url: width: 600 | prepend: 'https:' | json }}
+  {%- endif -%}
+  {%- if page_description != blank -%}
+  ,"description": {{ page_description | json }}
+  {%- elsif shop.description != blank -%}
+  ,"description": {{ shop.description | json }}
+  {%- endif -%}
+  {%- if social_links_array.size > 0 -%}
+  ,"sameAs": {{ social_links_array | json }}
+  {%- endif -%}
+}
+</script>

@@ -1,0 +1,39 @@
+{%- comment -%}
+  Product structured data (JSON-LD) for the current product page.
+  Accepts: product (object)
+{%- endcomment -%}
+{%- liquid
+  assign schema_images = ''
+  for image in product.images limit: 5
+    assign one_image_url = image | image_url: width: 1200 | prepend: 'https:'
+    assign schema_images = schema_images | append: one_image_url | append: ','
+  endfor
+  assign schema_images_array = schema_images | split: ','
+  assign schema_low_price = product.price_min | money_without_currency | remove: ','
+  assign schema_high_price = product.price_max | money_without_currency | remove: ','
+-%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": {{ product.title | json }},
+  "description": {{ product.description | strip_html | json }},
+  "sku": {{ product.selected_or_first_available_variant.sku | default: product.id | json }},
+  "brand": {
+    "@type": "Brand",
+    "name": {{ shop.name | json }}
+  }
+  {%- if schema_images_array.size > 0 -%}
+  ,"image": {{ schema_images_array | json }}
+  {%- endif -%}
+  ,"offers": {
+    "@type": "AggregateOffer",
+    "url": {{ shop.url | append: product.url | json }},
+    "priceCurrency": {{ cart.currency.iso_code | json }},
+    "lowPrice": {{ schema_low_price }},
+    "highPrice": {{ schema_high_price }},
+    "offerCount": {{ product.variants.size | json }},
+    "availability": "https://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}"
+  }
+}
+</script>
