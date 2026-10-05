@@ -221,20 +221,6 @@
                               </label>
                             </li>
                           {%- endfor -%}
-                          {%- if filter.param_name contains 'product_type' -%}
-                            <li class="collection-filters__item">
-                              <label for="{{ filter_id }}-name-necklaces" class="collection-filters__label">
-                                <input
-                                  type="checkbox"
-                                  id="{{ filter_id }}-name-necklaces"
-                                  data-deferred-filter
-                                  data-redirect-url="{{ all_products['name-necklace'].url | default: '/products/name-necklace' }}?_pos=1&amp;_psq=nam&amp;_psid=f6ede30f1&amp;_ss=e"
-                                >
-                                <span class="collection-filters__label-text">Name Necklaces</span>
-                                <span class="collection-filters__value-count">(1)</span>
-                              </label>
-                            </li>
-                          {%- endif -%}
                         </ul>
                         {%- if filter.param_name contains 'product_type' -%}
                           <button type="submit" class="text-link collection-filters__apply">
