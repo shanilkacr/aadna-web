@@ -5,9 +5,9 @@
 {%- endcomment -%}
 {%- liquid
   if variant == 'drawer'
-    assign fallback_types = 'Shop All|Earrings|Necklace|Rings|Cufflinks|Bangle' | split: '|'
+    assign fallback_types = 'Shop All|Earrings|Necklace|Rings|Bangle|Cufflinks' | split: '|'
   else
-    assign fallback_types = 'Shop All|Earrings|Necklace|Rings|Cufflinks|Bangle' | split: '|'
+    assign fallback_types = 'Shop All|Earrings|Necklace|Rings|Bangle|Cufflinks' | split: '|'
   endif
   assign shop_collection_url = collections.all.url | default: routes.all_products_collection_url
 
