@@ -1624,7 +1624,6 @@ strong, b, th { font-weight: 400; }
   accent-color: var(--color-text-muted);
 }
 
-.collection-filters__link-spacer { flex: none; width: 14px; height: 14px; }
 .collection-filters__label-text { flex: 1; text-transform: none; font-size: 11px; }
 .collection-filters__group--product-type .collection-filters__label-text { text-transform: uppercase; letter-spacing: 0.4px; }
 .collection-filters__value-count { font-size: 10px; opacity: 0.85; }

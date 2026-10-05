@@ -427,7 +427,17 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // Submit filter form, stripping empty price inputs so they don't pollute the URL
+  // A checked link-style option (e.g. "Name Necklaces") sends the shopper
+  // straight to its page instead of filtering the collection.
+  function redirectForCheckedLink(form) {
+    var linkInput = form.querySelector('input[data-redirect-url]:checked');
+    if (!linkInput) return false;
+    window.location.href = linkInput.getAttribute('data-redirect-url');
+    return true;
+  }
+
   function submitFiltersForm(form) {
+    if (redirectForCheckedLink(form)) return;
     form.querySelectorAll('input[type="number"]').forEach(function (input) {
       if (input.value === '' || input.value === null) {
         input.disabled = true;
@@ -521,6 +531,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     if (form) {
+      form.addEventListener('submit', function (event) {
+        if (redirectForCheckedLink(form)) event.preventDefault();
+      });
+
       // Product type checkboxes: let the shopper select several before
       // submitting, via their own Apply button, instead of reloading on
       // every click like the other filter groups do.
