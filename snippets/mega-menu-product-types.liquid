@@ -28,6 +28,8 @@
 
     if fallback_type == 'Shop All'
       assign type_url = shop_collection_url | append: '?sort_by=created-descending'
+    elsif fallback_type == 'Cufflinks'
+      assign type_url = all_products['custom-cufflink-pair'].url | default: '/products/custom-cufflink-pair'
     else
       assign encoded_type = fallback_type | url_param_escape
       assign type_url = shop_collection_url | append: '?filter.p.product_type=' | append: encoded_type | append: '&sort_by=created-descending'
