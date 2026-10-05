@@ -535,6 +535,14 @@ document.addEventListener('DOMContentLoaded', function () {
         if (redirectForCheckedLink(form)) event.preventDefault();
       });
 
+      // Link-style options (e.g. "Name Necklaces") go to their page as soon
+      // as they're ticked, without waiting for Apply.
+      form.querySelectorAll('input[data-redirect-url]').forEach(function (input) {
+        input.addEventListener('change', function () {
+          if (input.checked) redirectForCheckedLink(form);
+        });
+      });
+
       // Product type checkboxes: let the shopper select several before
       // submitting, via their own Apply button, instead of reloading on
       // every click like the other filter groups do.
