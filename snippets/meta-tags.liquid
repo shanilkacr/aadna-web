@@ -1,7 +1,27 @@
 <meta property="og:site_name" content="{{ shop.name }}">
 <meta property="og:url" content="{{ canonical_url }}">
 <meta property="og:title" content="{{ page_title | default: shop.name }}">
-{% if page_description %}<meta property="og:description" content="{{ page_description | escape }}">{% endif %}
+{%- if request.page_type == 'product' -%}
+  {%- if product.metafields.global.description_tag != blank -%}
+    {%- assign _og_desc = product.metafields.global.description_tag -%}
+  {%- else -%}
+    {%- assign _og_in_personalised = false -%}
+    {%- for col in product.collections -%}
+      {%- if col.handle == 'personalised-jewellery' -%}
+        {%- assign _og_in_personalised = true -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- if _og_in_personalised -%}
+      {%- assign _og_desc = product.title | append: ' – Personalised jewellery handcrafted in 925 sterling silver with 22k gold plated or rhodium finish. Made to order in Sri Lanka by AADNA.' -%}
+    {%- else -%}
+      {%- assign _og_desc = product.title | append: ' – Handcrafted in 925 sterling silver with 22k gold plated or rhodium finish. Made to order in Sri Lanka by AADNA.' -%}
+    {%- endif -%}
+  {%- endif -%}
+  <meta property="og:description" content="{{ _og_desc | escape }}">
+{%- elsif page_description -%}
+  <meta property="og:description" content="{{ page_description | escape }}">
+{%- endif -%}
 
 {%- if request.page_type == 'product' -%}
   <meta property="og:type" content="product">
