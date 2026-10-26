@@ -17,14 +17,42 @@
 
   <title>
     {{ page_title }}
+    {%- if request.page_type == 'product' and page_title == product.title -%}
+      {%- for col in product.collections -%}
+        {%- if col.handle == 'personalised-jewellery' -%}
+          {%- assign _title_in_personalised = true -%}
+          {%- break -%}
+        {%- endif -%}
+      {%- endfor -%}
+      {%- if _title_in_personalised %} | Personalised Jewellery Sri Lanka{%- endif -%}
+    {%- endif -%}
     {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
     {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
     {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
   </title>
 
-  {% if page_description %}
+  {%- if request.page_type == 'product' -%}
+    {%- comment -%} Use manually set SEO description if available, otherwise auto-generate a keyword-rich one {%- endcomment -%}
+    {%- if product.metafields.global.description_tag != blank -%}
+      <meta name="description" content="{{ product.metafields.global.description_tag | escape }}">
+    {%- else -%}
+      {%- assign _desc_in_personalised = false -%}
+      {%- for col in product.collections -%}
+        {%- if col.handle == 'personalised-jewellery' -%}
+          {%- assign _desc_in_personalised = true -%}
+          {%- break -%}
+        {%- endif -%}
+      {%- endfor -%}
+      {%- if _desc_in_personalised -%}
+        {%- assign _auto_desc = product.title | append: ' – Personalised jewellery handcrafted in 925 sterling silver with 22k gold plated or rhodium finish. Made to order in Sri Lanka by AADNA.' -%}
+      {%- else -%}
+        {%- assign _auto_desc = product.title | append: ' – Handcrafted in 925 sterling silver with 22k gold plated or rhodium finish. Made to order in Sri Lanka by AADNA.' -%}
+      {%- endif -%}
+      <meta name="description" content="{{ _auto_desc | escape }}">
+    {%- endif -%}
+  {%- elsif page_description -%}
     <meta name="description" content="{{ page_description | escape }}">
-  {% endif %}
+  {%- endif -%}
 
   {% render 'meta-tags' %}
   {% render 'schema-organization' %}

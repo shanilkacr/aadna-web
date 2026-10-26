@@ -6,9 +6,14 @@
       <div class="product__media-grid{% if product.images.size == 1 %} product__media-grid--single{% endif %}">
         {%- for image in product.images -%}
           <div class="product__media-item">
+            {%- if image.alt != blank -%}
+              {%- assign _prod_img_alt = image.alt -%}
+            {%- else -%}
+              {%- assign _prod_img_alt = product.title | append: ' | 925 Silver Jewellery Sri Lanka – AADNA' -%}
+            {%- endif -%}
             <img
               src="{{ image | image_url: width: 1200 }}"
-              alt="{{ image.alt | default: product.title | escape }}"
+              alt="{{ _prod_img_alt | escape }}"
               loading="{% if forloop.index0 < 2 %}eager{% else %}lazy{% endif %}"
               width="1200"
               height="{{ 1200 | divided_by: image.aspect_ratio | default: 1500 }}"
@@ -24,9 +29,14 @@
         <div class="product__media-mobile" data-product-slideshow>
           {%- for image in product.images -%}
             <div class="product__media-slide{% if forloop.first %} is-active{% endif %}">
+              {%- if image.alt != blank -%}
+                {%- assign _prod_mob_alt = image.alt -%}
+              {%- else -%}
+                {%- assign _prod_mob_alt = product.title | append: ' | 925 Silver Jewellery Sri Lanka – AADNA' -%}
+              {%- endif -%}
               <img
                 src="{{ image | image_url: width: 1000 }}"
-                alt="{{ image.alt | default: product.title | escape }}"
+                alt="{{ _prod_mob_alt | escape }}"
                 loading="{% if forloop.index0 == 0 %}eager{% else %}lazy{% endif %}"
                 width="1000"
                 height="{{ 1000 | divided_by: image.aspect_ratio | default: 1250 }}"
