@@ -8,7 +8,7 @@
 <section class="collection page-width{% unless collection.handle == 'all' %} collection--has-header{% endunless %}">
   {%- unless collection.handle == 'all' -%}
     <div class="collection__header">
-      <h1>{{ collection.title }}</h1>
+      <h1>{{ collection.title }}{%- if collection.handle == 'personalised-jewellery' %} Sri Lanka{%- endif -%}</h1>
       {%- if collection.description != blank -%}
         <div class="collection__description">{{ collection.description }}</div>
       {%- endif -%}
