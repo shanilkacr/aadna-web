@@ -264,6 +264,28 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('scroll', updateHeaderState, { passive: true });
   }
 
+  // Live preview: first slide of the mobile slideshow, back above the image grid on desktop
+  (function () {
+    var stage = document.querySelector('[data-nnp-stage]');
+    var slot = document.querySelector('[data-nnp-slot]');
+    if (!stage || !slot) return;
+    var caption = stage.nextElementSibling;
+    var home = stage.parentElement;
+    var mq = window.matchMedia('(max-width: 900px)');
+    function place() {
+      if (mq.matches) {
+        slot.appendChild(stage);
+        if (caption) slot.appendChild(caption);
+      } else {
+        home.insertBefore(stage, home.firstChild);
+        if (caption) home.insertBefore(caption, stage.nextSibling);
+      }
+      window.dispatchEvent(new Event('resize'));
+    }
+    place();
+    if (mq.addEventListener) mq.addEventListener('change', place);
+  })();
+
   // Product mobile slideshow: dot pagination + swipe (no horizontal scroll)
   document.querySelectorAll('[data-product-slideshow]').forEach(function (slideshow) {
     var slides = slideshow.querySelectorAll('.product__media-slide');

@@ -67,10 +67,14 @@
       </div>
 
       {%- comment -%} Mobile: single-image swipeable slideshow with dot pagination {%- endcomment -%}
-      {%- if product.images.size > 0 -%}
+      {%- if product.images.size > 0 or show_name_preview -%}
         <div class="product__media-mobile" data-product-slideshow>
+          {%- if show_name_preview -%}
+            {%- comment -%} Mobile: the live preview (moved here by theme.js) is the first slide {%- endcomment -%}
+            <div class="product__media-slide product__media-slide--preview is-active" data-nnp-slot></div>
+          {%- endif -%}
           {%- for image in product.images -%}
-            <div class="product__media-slide{% if forloop.first %} is-active{% endif %}">
+            <div class="product__media-slide{% if forloop.first and show_name_preview != true %} is-active{% endif %}">
               {%- if image.alt != blank -%}
                 {%- assign _prod_mob_alt = image.alt -%}
               {%- else -%}
@@ -86,10 +90,11 @@
             </div>
           {%- endfor -%}
         </div>
-        {%- if product.images.size > 1 -%}
+        {%- if product.images.size > 1 or show_name_preview -%}
           <div class="product__media-dots" data-product-slideshow-dots>
+            {%- if show_name_preview -%}<span class="product__media-dot is-active"></span>{%- endif -%}
             {%- for image in product.images -%}
-              <span class="product__media-dot{% if forloop.first %} is-active{% endif %}"></span>
+              <span class="product__media-dot{% if forloop.first and show_name_preview != true %} is-active{% endif %}"></span>
             {%- endfor -%}
           </div>
         {%- endif -%}
