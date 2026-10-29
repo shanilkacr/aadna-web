@@ -35,5 +35,12 @@
     "offerCount": {{ product.variants.size | json }},
     "availability": "https://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}"
   }
+  {%- if product.metafields.reviews.rating.value != blank and product.metafields.reviews.rating_count.value != blank -%}
+  ,"aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": {{ product.metafields.reviews.rating.value | round: 1 }},
+    "reviewCount": {{ product.metafields.reviews.rating_count.value }}
+  }
+  {%- endif -%}
 }
 </script>
