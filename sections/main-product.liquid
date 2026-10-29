@@ -1,7 +1,49 @@
 {% render 'schema-product', product: product %}
+{%- liquid
+  assign show_name_preview = false
+  assign nnp_mode = 'name'
+  assign nnp_coin_style = 'rope'
+  assign nnp_ring_style = ''
+  if product.handle == 'name-necklace' or product.tags contains 'name-preview'
+    assign show_name_preview = true
+  elsif product.handle == 'coin-iii-engravable-necklace'
+    assign show_name_preview = true
+    assign nnp_mode = 'coin'
+    assign nnp_coin_style = 'rope'
+  elsif product.handle == 'coin-engravable-necklace'
+    assign show_name_preview = true
+    assign nnp_mode = 'coin'
+    assign nnp_coin_style = 'pave'
+  elsif product.handle == 'me-to-you-bracelet'
+    assign show_name_preview = true
+    assign nnp_mode = 'bracelet'
+  elsif product.handle == 'custom-cufflink-pair'
+    assign show_name_preview = true
+    assign nnp_mode = 'cufflinks'
+  elsif product.handle == 'signet-ring'
+    assign show_name_preview = true
+    assign nnp_mode = 'ring'
+    assign nnp_ring_style = 'studded-oval'
+  elsif product.handle == 'cubic-signet-ring'
+    assign show_name_preview = true
+    assign nnp_mode = 'ring'
+    assign nnp_ring_style = 'cushion'
+  elsif product.handle == 'signet-engravables-ring'
+    assign show_name_preview = true
+    assign nnp_mode = 'ring'
+    assign nnp_ring_style = 'plain-oval'
+  elsif product.handle == 'studded-letter-ring'
+    assign show_name_preview = true
+    assign nnp_mode = 'ring'
+    assign nnp_ring_style = 'letter'
+  endif
+-%}
 <section class="product page-width">
   <div class="product__grid">
     <div class="product__media">
+      {%- if show_name_preview -%}
+        {% render 'name-necklace-preview', part: 'stage', section: section, mode: nnp_mode, coin_style: nnp_coin_style, ring_style: nnp_ring_style %}
+      {%- endif -%}
       {%- comment -%} Desktop: 2-column image grid, all product images {%- endcomment -%}
       <div class="product__media-grid{% if product.images.size == 1 %} product__media-grid--single{% endif %}">
         {%- for image in product.images -%}
@@ -166,6 +208,9 @@
               {%- if show_personalization_hint -%}
                 <p class="product__personalization-hint">{{ 'products.product.personalization_hint' | t }}</p>
               {%- endif -%}
+              {%- if show_name_preview and nnp_ring_style != 'letter' -%}
+                {% render 'name-necklace-preview', part: 'fonts' %}
+              {%- endif -%}
             </div>
           {%- endif -%}
 
@@ -251,7 +296,14 @@
   "enabled_on": {
     "templates": ["product"]
   },
-  "settings": [],
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "name_preview_background",
+      "label": "Name necklace preview background",
+      "info": "Optional neck/collarbone photo (no necklace) shown behind the live 3D preview. Leave empty for the soft studio backdrop."
+    }
+  ],
   "blocks": [
     {
       "type": "accordion",
