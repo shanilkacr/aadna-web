@@ -548,7 +548,12 @@ class NamePreview {
   async loadFont(id) {
     if (this.fontCache.has(id)) return this.fontCache.get(id);
     const def = this.fonts.find((f) => f.id === id);
-    const p = fetch(def.url).then((r) => r.arrayBuffer()).then((buf) => opentype.parse(buf));
+    // The store's CDN re-encodes .woff assets as WOFF2, which opentype.js can't read, so the 3D text reads the original
+    // font from a base64 copy (assets/nnp-*-data.js); the .woff stays for the CSS @font-face of the picker.
+    const bytes = def.data
+      ? fetch(def.data).then((r) => r.text()).then((t) => Uint8Array.from(atob(t.trim().replace(/^"|"$/g, '')), (c) => c.charCodeAt(0)).buffer)
+      : fetch(def.url).then((r) => r.arrayBuffer());
+    const p = bytes.then((buf) => opentype.parse(buf));
     this.fontCache.set(id, p);
     return p;
   }

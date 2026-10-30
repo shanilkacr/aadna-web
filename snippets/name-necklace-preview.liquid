@@ -22,7 +22,8 @@
     {%- for id in nnp_ids -%}
       {%- assign label = nnp_labels[forloop.index0] -%}
       {%- assign file = 'nnp-' | append: id | append: '.woff' -%}
-      {"id":"{{ id }}","label":"{{ label }}","url":"{{ file | asset_url }}"
+      {%- assign data_file = 'nnp-' | append: id | append: '-data.js' -%}
+      {"id":"{{ id }}","label":"{{ label }}","url":"{{ file | asset_url }}","data":"{{ data_file | asset_url }}"
       {%- if id == 'armelie' -%},"tracking":-0.02,"depth":0.05{%- endif -%}
       {%- if id == 'runethia' -%},"tracking":-0.02,"depth":0.05,"photoScale":1.5{%- endif -%}
       {%- if id == 'hugh-is-life' -%},"tracking":-0.01,"depth":0.06,"scale":1.55,"photoScale":1.55{%- endif -%}
