@@ -627,7 +627,7 @@ class NamePreview {
     };
     const lift = bevelT * s;                      // so the back face sits on the surface
     const letters = new Group();
-    const ends = { l: { x: Infinity, y: 0 }, r: { x: -Infinity, y: 0 } };
+    const ends = { l: { x: Infinity, y: 0 }, r: { x: -Infinity, y: 0 }, topY: -Infinity };
     geos.forEach((g) => {
       const pos = g.attributes.position; const nor = g.attributes.normal;
       for (let i = 0; i < pos.count; i++) {
@@ -635,6 +635,7 @@ class NamePreview {
         const z = pos.getZ(i) * s + lift + 0.012;
         if (x < ends.l.x) { ends.l.x = x; ends.l.y = y; }
         if (x > ends.r.x) { ends.r.x = x; ends.r.y = y; }
+        if (y > ends.topY) ends.topY = y;
         if (this.photo) {                     // gentle curve across the chest so highlights roll over the letters
           const k = 0.05; const sl = 2 * k * x; const il = 1 / Math.hypot(sl, 1);
           pos.setXYZ(i, PH.x + x, PH.y + y, z - k * x * x);
@@ -651,10 +652,10 @@ class NamePreview {
           lx * fr.t.z + ly * fr.v.z + lz * fr.n.z);
       }
       pos.needsUpdate = true; nor.needsUpdate = true; g.computeBoundingSphere();
-      const m = new Mesh(g, this.material); m.castShadow = true; m.receiveShadow = true; letters.add(m);
+      const m = new Mesh(g, this.material); m.castShadow = true; m.receiveShadow = true; m.renderOrder = 1; letters.add(m);
     });
     this.necklace.add(letters);
-    if (this.photo) this.buildPhotoChain(new Vector3(PH.x + ends.l.x - 0.12, PH.y + ends.l.y, 0), new Vector3(PH.x + ends.r.x + 0.12, PH.y + ends.r.y, 0), false);
+    if (this.photo) this.buildPhotoChain(new Vector3(PH.x + ends.l.x - 0.03, PH.y + ends.topY, 0), new Vector3(PH.x + ends.r.x + 0.03, PH.y + ends.topY, 0), false);
     else this.buildChain(ends, thetaAt);
     this.hasModel = true;
     this.stage.classList.add('is-rendered');
@@ -665,7 +666,7 @@ class NamePreview {
     const w = (q) => new Vector3((q[0] - PHOTO.w / 2) / PHOTO.ppc, (PHOTO.h / 2 - q[1]) / PHOTO.ppc, 0);
     const paths = [
       [leftStart, [[576, 689], [552, 652], [529, 614], [507, 576], [486, 537], [465, 498], [446, 459], [428, 418], [410, 378], [394, 337], [378, 296], [363, 254], [350, 211], [337, 168], [325, 125], [318, 98]]],
-      [rightStart, [[960, 689], [989, 654], [1018, 619], [1045, 583], [1072, 546], [1098, 509], [1123, 472], [1147, 434], [1171, 395], [1193, 356], [1215, 316], [1236, 275], [1256, 234], [1275, 193], [1293, 151], [1304, 124]]],
+      [rightStart, [[960, 689], [984, 652], [1007, 614], [1029, 576], [1050, 537], [1071, 498], [1090, 459], [1108, 418], [1126, 378], [1142, 337], [1158, 296], [1173, 254], [1186, 211], [1199, 168], [1211, 125], [1218, 98]]],
     ];
     const linkLen = 0.26;
     const linkGeo = new TorusGeometry(linkLen * 0.5, 0.044, 8, 20); linkGeo.scale(1, 0.62, 1);
@@ -675,7 +676,7 @@ class NamePreview {
       const pts = base.map((q, i) => q.clone().addScaledVector(d, Math.pow(1 - i / (base.length - 1), 1.6)));
       const curve = new CatmullRomCurve3(pts, false, 'centripetal');
       const count = Math.floor(curve.getLength() / (linkLen * 0.74));
-      const inst = new InstancedMesh(linkGeo, this.material, count); inst.castShadow = true;
+      const inst = new InstancedMesh(linkGeo, this.material, count); inst.castShadow = true; inst.renderOrder = -1;
       for (let i = 0; i < count; i++) {
         const u = (i + 0.5) / count;
         const q = curve.getPointAt(u); curve.getTangentAt(u, tng).normalize();
