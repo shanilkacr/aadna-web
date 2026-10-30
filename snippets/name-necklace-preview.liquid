@@ -45,12 +45,15 @@
     {% if mode == 'name' or mode == 'coin' %}
       data-nnp-photo="true"
       style="background-image: url('{{ 'nnp-neck.webp' | asset_url }}');"
+    {% elsif mode == 'bracelet' %}
+      data-nnp-photo="true"
+      style="background-image: url('{{ 'nnp-wrist.webp' | asset_url }}');"
     {% elsif section.settings.name_preview_background != blank %}
       style="background-image: url('{{ section.settings.name_preview_background | image_url: width: 1400 }}');"
     {% endif %}
   >
     <canvas data-nnp-canvas aria-label="Live 3D preview of your necklace" role="img"></canvas>
-    {%- if mode == 'bracelet' or mode == 'cufflinks' or mode == 'ring' -%}
+    {%- if mode == 'cufflinks' or mode == 'ring' -%}
       <button type="button" class="nnp-view-toggle" data-nnp-view-toggle aria-pressed="false">Close-up</button>
     {%- endif -%}
   </div>
@@ -64,7 +67,7 @@
     {%- elsif mode == 'cufflinks' -%}
       Live preview &mdash; your initials appear on the cufflinks as you type (the pair is identical; use Close-up for detail). Finish and lettering of the final piece may vary slightly.
     {%- elsif mode == 'bracelet' -%}
-      Live preview &mdash; your engraving appears on the bar as you type (use Close-up for detail). Finish and lettering of the final piece may vary slightly.
+      Live preview &mdash; your engraving appears on the bar as you type. Finish and lettering of the final piece may vary slightly.
     {%- else -%}
       Live preview &mdash; updates as you type. Finish and lettering of the final piece may vary slightly.
     {%- endif -%}

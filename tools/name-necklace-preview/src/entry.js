@@ -34,6 +34,9 @@ const BODY_EDGE = {
   l: [[296, 0], [296, 120], [292, 230], [282, 300], [262, 345], [200, 372], [100, 398], [0, 422]],
   r: [[704, 0], [708, 100], [730, 240], [760, 330], [800, 385], [900, 420], [1030, 470]],
 };
+// hands photo (bracelet): the bracelet wraps the forearm at (x,y) in photo px; `rot` turns its tangent (the bar's length) across the arm
+const WRIST = { ppc: 27, x: 817, y: 288, rot: -40.4, scale: 0.84 };
+const WRIST_CLIP = [[898, 0], [875, 40], [856, 80], [839, 120], [821, 161], [799, 201], [770, 241], [736, 281], [700, 321], [662, 361], [843, 361], [855, 341], [884, 301], [916, 261], [951, 221], [986, 181], [1050, 134], [1050, 0]];
 const PH = { x: (516 - PHOTO.w / 2) / PHOTO.ppc, y: (PHOTO.h / 2 - 650) / PHOTO.ppc };   // where the pendant hangs on the photo      // centre of a coin pendant on the chest
 
 const METALS = {
@@ -379,7 +382,8 @@ class NamePreview {
     this.coinStyle = ds.coinStyle === 'pave' ? 'pave' : 'rope';
     this.placeholder = ds.placeholder || (this.mode === 'name' ? 'Name' : this.mode === 'cufflinks' ? 'BR'
       : this.mode === 'ring' && this.ringStyle !== 'plain-oval' ? 'A' : 'Engrave here');
-    this.photo = !!ds.nnpPhoto && (this.mode === 'name' || this.mode === 'coin');
+    this.photo = !!ds.nnpPhoto && (this.mode === 'name' || this.mode === 'coin' || this.mode === 'bracelet');
+    if (this.photo && this.mode === 'bracelet') PHOTO.ppc = WRIST.ppc;
     this.viewT = 0; this.viewTarget = 0;
     this.state = { text: this.placeholder, fontId: opts.fonts[0].id, metal: 'gold' };
     this.pointer = { x: 0, y: 0 };
@@ -405,7 +409,7 @@ class NamePreview {
     pmrem.dispose();
 
     if (this.photo) {
-      const pts = [...BODY_EDGE.l.map(([x, y]) => [x + 2, y]), [0, PHOTO.h], [PHOTO.w, PHOTO.h], ...BODY_EDGE.r.slice().reverse().map(([x, y]) => [x - 2, y])];
+      const pts = this.mode === 'bracelet' ? WRIST_CLIP : [...BODY_EDGE.l.map(([x, y]) => [x + 2, y]), [0, PHOTO.h], [PHOTO.w, PHOTO.h], ...BODY_EDGE.r.slice().reverse().map(([x, y]) => [x - 2, y])];
       this.canvas.style.clipPath = `polygon(${pts.map(([x, y]) => `${((x / PHOTO.w) * 100).toFixed(2)}% ${((y / PHOTO.h) * 100).toFixed(2)}%`).join(',')})`;
     }
     this.camera = this.photo ? new OrthographicCamera(-13.2, 13.2, PHOTO.h / 2 / PHOTO.ppc, -PHOTO.h / 2 / PHOTO.ppc, 0.1, 200) : new PerspectiveCamera(24, 1, 0.1, 200);
@@ -416,11 +420,16 @@ class NamePreview {
     this.necklace = new Group();                  // the jewellery (rebuilt on every change)
     if (this.mode === 'cufflinks') { this.rig.add(buildPad()); this.necklace.rotation.x = PAD_TILT; }
     else if (this.mode === 'ring') this.rig.add(buildFinger());
-    else if (this.mode === 'bracelet') this.rig.add(buildStand());
+    else if (this.mode === 'bracelet' && !this.photo) this.rig.add(buildStand());
     else if (!this.photo) this.rig.add(buildBust());
     else {                                        // photo backdrop: the necklace is drawn over a real neck, with its shadow on the skin
       const sh = new Mesh(new PlaneGeometry(60, 60), new ShadowMaterial({ opacity: 0.38 }));
-      sh.position.z = -0.12; sh.receiveShadow = true; this.rig.add(sh);
+      sh.position.z = this.mode === 'bracelet' ? 2.2 : -0.12; sh.receiveShadow = true; this.rig.add(sh);
+      if (this.mode === 'bracelet') {           // the bracelet is built round a vertical stand: lay its axis along the forearm
+        this.necklace.rotation.z = MathUtils.degToRad(WRIST.rot);
+        this.necklace.scale.setScalar(WRIST.scale);
+        this.necklace.position.set((WRIST.x - PHOTO.w / 2) / PHOTO.ppc, (PHOTO.h / 2 - WRIST.y) / PHOTO.ppc, 0);
+      }
     }
     this.rig.add(this.necklace);
 
@@ -850,9 +859,9 @@ class NamePreview {
   barEngraving(text, family) {
     const W = 2048; const H = 430;
     const probe = document.createElement('canvas').getContext('2d');
-    let px = 340;
+    let px = this.photo ? 520 : 340;
     const wid = (p) => { probe.font = `${p}px ${family}`; return probe.measureText(text).width; };
-    while (px > 30 && (wid(px) > W * 0.86 || px > H * 0.8)) px -= 6;
+    while (px > 30 && (wid(px) > W * 0.86 || px > H * (this.photo ? 1.25 : 0.8))) px -= 6;
     const make = (bg, fg) => {
       const c = document.createElement('canvas'); c.width = W; c.height = H;
       const g = c.getContext('2d');
@@ -862,7 +871,7 @@ class NamePreview {
       const t = new CanvasTexture(c); t.anisotropy = 8; return t;
     };
     const base = Math.round(this.metalRough * 255);
-    return { bump: make('#ffffff', '#000000'), rough: make(`rgb(${base},${base},${base})`, 'rgb(170,170,170)') };
+    return { bump: make('#ffffff', '#000000'), rough: make(`rgb(${base},${base},${base})`, 'rgb(170,170,170)'), map: this.photo ? make('#ffffff', '#5e5a52') : null };
   }
 
   async rebuildBracelet() {
@@ -877,14 +886,14 @@ class NamePreview {
     this.engrave = this.barEngraving(text, family);
     this.faceMaterial = new MeshPhysicalMaterial({
       metalness: 1, roughness: 1, roughnessMap: this.engrave.rough, bumpMap: this.engrave.bump, bumpScale: 2.2,
-      clearcoat: 0.2, clearcoatRoughness: 0.2,
+      clearcoat: 0.2, clearcoatRoughness: 0.2, map: this.engrave.map || null,
     });
     this.applyMetal(this.state.metal);
 
     const y = BR_Y;
     const a0 = standRadius(y); const b0 = a0 * ST_SQUASH;
     const arc = ellipseArcTheta(a0 + 0.1, b0 + 0.1);
-    const L = 3.3; const H = 0.7; const T = 0.085;
+    const L = this.photo ? 6.0 : 3.3; const H = this.photo ? 1.35 : 0.7; const T = 0.085;
 
     const bar = new BoxGeometry(L, H, T, 90, 5, 1);               // ID bar, bent round the stand
     const pos = bar.attributes.position; const nor = bar.attributes.normal;
@@ -914,40 +923,46 @@ class NamePreview {
     const linkGeo = new TorusGeometry(0.29, 0.058, 10, 28); linkGeo.scale(1, 0.8, 1);
     const thL = ends[0] - 0.06; const thR = ends[1] + 0.06;
     const aC = a0 + 0.17; const bC = b0 + 0.17;
-    const pts = []; const N = 120;
-    for (let i = 0; i <= N; i++) {
-      const th = thR + ((Math.PI * 2 + thL) - thR) * (i / N);
-      pts.push(ellipseFrame(aC, bC, th, y, 0).P);
-    }
-    const curve = new CatmullRomCurve3(pts, false, 'centripetal');
-    const count = Math.floor(curve.getLength() / 0.34);
-    const inst = new InstancedMesh(linkGeo, this.material, count);
-    inst.castShadow = true;
     const dummy = new Object3D(); const t = new Vector3(); const up = new Vector3(0, 1, 0);
     const n = new Vector3(); const v = new Vector3(); const nrm = new Vector3();
-    for (let i = 0; i < count; i++) {
-      const u = (i + 0.5) / count;
-      const p = curve.getPointAt(u); curve.getTangentAt(u, t).normalize();
-      n.set(p.x / (aC * aC), 0, p.z / (bC * bC)).normalize();
-      const roll = (i % 2 ? 1 : -1) * 0.3;                         // +-17 deg: links lie almost flat, overlapping
-      v.copy(up).multiplyScalar(Math.cos(roll)).addScaledVector(n, Math.sin(roll)).normalize();
-      nrm.crossVectors(t, v).normalize();
-      v.crossVectors(nrm, t).normalize();
-      dummy.matrix.copy(new Matrix4().makeBasis(t, v, nrm)).setPosition(p);
-      dummy.matrix.decompose(dummy.position, dummy.quaternion, dummy.scale);
-      dummy.updateMatrix(); inst.setMatrixAt(i, dummy.matrix);
-    }
-    inst.instanceMatrix.needsUpdate = true;
-    this.necklace.add(inst);
+    // on a photo only the half of the chain facing the camera is drawn (the rest is behind the wrist)
+    const segs = this.photo ? [[thR, Math.PI / 2 + 0.1], [-Math.PI / 2 - 0.1, thL]] : [[thR, Math.PI * 2 + thL]];
+    segs.forEach(([t0, t1]) => {
+      const pts = []; const N = 120;
+      for (let i = 0; i <= N; i++) {
+        const th = t0 + (t1 - t0) * (i / N);
+        pts.push(ellipseFrame(aC, bC, th, y, 0).P);
+      }
+      const curve = new CatmullRomCurve3(pts, false, 'centripetal');
+      const count = Math.floor(curve.getLength() / 0.34);
+      const inst = new InstancedMesh(linkGeo, this.material, count);
+      inst.castShadow = true;
+          for (let i = 0; i < count; i++) {
+        const u = (i + 0.5) / count;
+        const p = curve.getPointAt(u); curve.getTangentAt(u, t).normalize();
+        n.set(p.x / (aC * aC), 0, p.z / (bC * bC)).normalize();
+        const roll = (i % 2 ? 1 : -1) * 0.3;                         // +-17 deg: links lie almost flat, overlapping
+        v.copy(up).multiplyScalar(Math.cos(roll)).addScaledVector(n, Math.sin(roll)).normalize();
+        nrm.crossVectors(t, v).normalize();
+        v.crossVectors(nrm, t).normalize();
+        dummy.matrix.copy(new Matrix4().makeBasis(t, v, nrm)).setPosition(p);
+        dummy.matrix.decompose(dummy.position, dummy.quaternion, dummy.scale);
+        dummy.updateMatrix(); inst.setMatrixAt(i, dummy.matrix);
+      }
+      inst.instanceMatrix.needsUpdate = true;
+      this.necklace.add(inst);
+    });
 
-    const cf = ellipseFrame(aC, bC, Math.PI, y, 0);                // lobster clasp at the back
-    const clasp = new Mesh(new CapsuleGeometry(0.11, 0.42, 6, 14), this.material);
-    clasp.position.copy(cf.P);
-    clasp.quaternion.setFromRotationMatrix(new Matrix4().makeBasis(cf.t, up.clone(), cf.n));
-    clasp.rotation.z += Math.PI / 2; clasp.castShadow = true;
-    this.necklace.add(clasp);
-    const cring = new Mesh(new TorusGeometry(0.15, 0.04, 8, 22), this.material);
-    cring.position.copy(cf.P).addScaledVector(cf.t, -0.42); cring.rotation.y = Math.PI; this.necklace.add(cring);
+    if (!this.photo) {
+      const cf = ellipseFrame(aC, bC, Math.PI, y, 0);                // lobster clasp at the back
+      const clasp = new Mesh(new CapsuleGeometry(0.11, 0.42, 6, 14), this.material);
+      clasp.position.copy(cf.P);
+      clasp.quaternion.setFromRotationMatrix(new Matrix4().makeBasis(cf.t, up.clone(), cf.n));
+      clasp.rotation.z += Math.PI / 2; clasp.castShadow = true;
+      this.necklace.add(clasp);
+      const cring = new Mesh(new TorusGeometry(0.15, 0.04, 8, 22), this.material);
+      cring.position.copy(cf.P).addScaledVector(cf.t, -0.42); cring.rotation.y = Math.PI; this.necklace.add(cring);
+    }
 
     this.hasModel = true;
     this.stage.classList.add('is-rendered');
