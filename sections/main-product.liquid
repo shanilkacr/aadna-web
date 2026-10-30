@@ -6,14 +6,6 @@
   assign nnp_ring_style = ''
   if product.handle == 'name-necklace' or product.tags contains 'name-preview'
     assign show_name_preview = true
-  elsif product.handle == 'coin-iii-engravable-necklace'
-    assign show_name_preview = true
-    assign nnp_mode = 'coin'
-    assign nnp_coin_style = 'rope'
-  elsif product.handle == 'coin-engravable-necklace'
-    assign show_name_preview = true
-    assign nnp_mode = 'coin'
-    assign nnp_coin_style = 'pave'
   elsif product.handle == 'me-to-you-bracelet'
     assign show_name_preview = true
     assign nnp_mode = 'bracelet'
