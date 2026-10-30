@@ -214,7 +214,7 @@
                 <p class="product__personalization-hint">{{ 'products.product.personalization_hint' | t }}</p>
               {%- endif -%}
               {%- if show_name_preview and nnp_ring_style != 'letter' -%}
-                {% render 'name-necklace-preview', part: 'fonts' %}
+                {% render 'name-necklace-preview', part: 'fonts', mode: nnp_mode %}
               {%- endif -%}
             </div>
           {%- endif -%}

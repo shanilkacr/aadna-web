@@ -270,6 +270,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var slot = document.querySelector('[data-nnp-slot]');
     if (!stage || !slot) return;
     var caption = stage.nextElementSibling;
+    if (caption && !caption.classList.contains('nnp-caption')) caption = null;
     var home = stage.parentElement;
     var mq = window.matchMedia('(max-width: 900px)');
     function place() {

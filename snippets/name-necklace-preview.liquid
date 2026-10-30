@@ -7,8 +7,13 @@
   in assets and adding a line to the list below.
 {%- endcomment -%}
 {%- liquid
-  assign nnp_ids = 'shelley-allegro|scriptina-pro|aguafina-script|playball|snell-roundhand|birds-of-paradise|monotype-corsiva' | split: '|'
-  assign nnp_labels = 'Shelley|Scriptina|Aguafina|Playball|Snell|Birds of Paradise|Corsiva' | split: '|'
+  if mode == blank or mode == 'name'
+    assign nnp_ids = 'shelley-allegro|scriptina-pro|aguafina-script|playball|snell-roundhand|birds-of-paradise|monotype-corsiva' | split: '|'
+    assign nnp_labels = 'Shelley|Scriptina|Aguafina|Playball|Snell|Birds of Paradise|Corsiva' | split: '|'
+  else
+    assign nnp_ids = 'armelie|runethia|hugh-is-life|blenda-script|libre-baskerville|jost' | split: '|'
+    assign nnp_labels = 'Armelie|Runethia|Hugh is Life|Blenda Script|Libre Baskerville|Jost' | split: '|'
+  endif
 -%}
 
 {%- if part == 'stage' -%}
@@ -18,6 +23,11 @@
       {%- assign label = nnp_labels[forloop.index0] -%}
       {%- assign file = 'nnp-' | append: id | append: '.woff' -%}
       {"id":"{{ id }}","label":"{{ label }}","url":"{{ file | asset_url }}"
+      {%- if id == 'armelie' -%},"tracking":-0.02,"depth":0.05{%- endif -%}
+      {%- if id == 'runethia' -%},"tracking":-0.02,"depth":0.05,"photoScale":1.5{%- endif -%}
+      {%- if id == 'hugh-is-life' -%},"tracking":-0.01,"depth":0.06,"scale":1.55,"photoScale":1.55{%- endif -%}
+      {%- if id == 'blenda-script' -%},"tracking":-0.01,"depth":0.06,"photoScale":1.65{%- endif -%}
+      {%- if id == 'libre-baskerville' -%},"tracking":0.02,"depth":0.075,"photoScale":1.3{%- endif -%}
       {%- if id == 'playball' -%},"tracking":0.01,"depth":0.075{%- endif -%}
       {%- if id == 'monotype-corsiva' -%},"tracking":0.02,"depth":0.07{%- endif -%}
       }{% unless forloop.last %},{% endunless %}
@@ -59,6 +69,7 @@
     <span class="nnp-fonts-label" id="NnpFontsLabel">Select font</span>
     <div class="nnp-fonts" role="radiogroup" aria-labelledby="NnpFontsLabel" data-nnp-fonts>
       {%- for id in nnp_ids -%}
+        {%- if id == 'jost' -%}{%- continue -%}{%- endif -%}
         <button
           type="button"
           role="radio"

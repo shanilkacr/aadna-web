@@ -3478,4 +3478,4 @@ strong, b, th { font-weight: 400; }
 .nnp-view-toggle:hover { background: var(--color-text); color: var(--color-background); }
 
 /* Neck-photo preview: stage matches the photo's 3:2 so the 3D necklace lines up with it */
-.nnp-stage[data-nnp-photo] { aspect-ratio: 1536 / 1024 !important; background-size: cover; background-position: center; }
+.nnp-stage[data-nnp-photo] { aspect-ratio: var(--nnp-ar, 1536 / 1024) !important; background-size: cover; background-position: center; }
