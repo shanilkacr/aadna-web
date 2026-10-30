@@ -1,7 +1,41 @@
 {% render 'schema-product', product: product %}
+{%- liquid
+  assign show_name_preview = false
+  assign nnp_mode = 'name'
+  assign nnp_coin_style = 'rope'
+  assign nnp_ring_style = ''
+  if product.handle == 'name-necklace' or product.tags contains 'name-preview'
+    assign show_name_preview = true
+  elsif product.handle == 'me-to-you-bracelet'
+    assign show_name_preview = true
+    assign nnp_mode = 'bracelet'
+  elsif product.handle == 'custom-cufflink-pair'
+    assign show_name_preview = true
+    assign nnp_mode = 'cufflinks'
+  elsif product.handle == 'signet-ring'
+    assign show_name_preview = true
+    assign nnp_mode = 'ring'
+    assign nnp_ring_style = 'studded-oval'
+  elsif product.handle == 'cubic-signet-ring'
+    assign show_name_preview = true
+    assign nnp_mode = 'ring'
+    assign nnp_ring_style = 'cushion'
+  elsif product.handle == 'signet-engravables-ring'
+    assign show_name_preview = true
+    assign nnp_mode = 'ring'
+    assign nnp_ring_style = 'plain-oval'
+  elsif product.handle == 'studded-letter-ring'
+    assign show_name_preview = true
+    assign nnp_mode = 'ring'
+    assign nnp_ring_style = 'letter'
+  endif
+-%}
 <section class="product page-width">
   <div class="product__grid">
     <div class="product__media">
+      {%- if show_name_preview -%}
+        {% render 'name-necklace-preview', part: 'stage', section: section, mode: nnp_mode, coin_style: nnp_coin_style, ring_style: nnp_ring_style %}
+      {%- endif -%}
       {%- comment -%} Desktop: 2-column image grid, all product images {%- endcomment -%}
       <div class="product__media-grid{% if product.images.size == 1 %} product__media-grid--single{% endif %}">
         {%- for image in product.images -%}
@@ -25,10 +59,14 @@
       </div>
 
       {%- comment -%} Mobile: single-image swipeable slideshow with dot pagination {%- endcomment -%}
-      {%- if product.images.size > 0 -%}
+      {%- if product.images.size > 0 or show_name_preview -%}
         <div class="product__media-mobile" data-product-slideshow>
+          {%- if show_name_preview -%}
+            {%- comment -%} Mobile: the live preview (moved here by theme.js) is the first slide {%- endcomment -%}
+            <div class="product__media-slide product__media-slide--preview is-active" data-nnp-slot></div>
+          {%- endif -%}
           {%- for image in product.images -%}
-            <div class="product__media-slide{% if forloop.first %} is-active{% endif %}">
+            <div class="product__media-slide{% if forloop.first and show_name_preview != true %} is-active{% endif %}">
               {%- if image.alt != blank -%}
                 {%- assign _prod_mob_alt = image.alt -%}
               {%- else -%}
@@ -44,10 +82,11 @@
             </div>
           {%- endfor -%}
         </div>
-        {%- if product.images.size > 1 -%}
+        {%- if product.images.size > 1 or show_name_preview -%}
           <div class="product__media-dots" data-product-slideshow-dots>
+            {%- if show_name_preview -%}<span class="product__media-dot is-active"></span>{%- endif -%}
             {%- for image in product.images -%}
-              <span class="product__media-dot{% if forloop.first %} is-active{% endif %}"></span>
+              <span class="product__media-dot{% if forloop.first and show_name_preview != true %} is-active{% endif %}"></span>
             {%- endfor -%}
           </div>
         {%- endif -%}
@@ -166,6 +205,9 @@
               {%- if show_personalization_hint -%}
                 <p class="product__personalization-hint">{{ 'products.product.personalization_hint' | t }}</p>
               {%- endif -%}
+              {%- if show_name_preview and nnp_ring_style != 'letter' -%}
+                {% render 'name-necklace-preview', part: 'fonts', mode: nnp_mode %}
+              {%- endif -%}
             </div>
           {%- endif -%}
 
@@ -203,10 +245,29 @@
 
         {%- if product.description != blank or section.blocks.size > 0 -%}
           <div class="product__accordions" data-product-accordions>
-            {%- if product.description != blank -%}
+            {%- if product.description != blank or show_name_preview -%}
               <details class="product__accordion" data-product-accordion open>
                 <summary>{{ 'products.product.product_info' | t }}</summary>
-                <div class="product__accordion-content">{{ product.description }}</div>
+                <div class="product__accordion-content">
+                  {%- if show_name_preview -%}
+                    <p class="nnp-caption-inline">
+                      {%- if nnp_mode == 'coin' -%}
+                        Live preview &mdash; your engraving appears on the coin as you type (the coin is 1.8&ndash;2cm across). Finish and lettering of the final piece may vary slightly.
+                      {%- elsif nnp_mode == 'ring' and nnp_ring_style == 'letter' -%}
+                        Live preview &mdash; shows the first letter you type on the ring (use Close-up for detail). Finish and lettering of the final piece may vary slightly.
+                      {%- elsif nnp_mode == 'ring' -%}
+                        Live preview &mdash; your engraving appears on the ring as you type (use Close-up for detail). Finish and lettering of the final piece may vary slightly.
+                      {%- elsif nnp_mode == 'cufflinks' -%}
+                        Live preview &mdash; your initials appear on the cufflinks as you type (the pair is identical; use Close-up for detail). Finish and lettering of the final piece may vary slightly.
+                      {%- elsif nnp_mode == 'bracelet' -%}
+                        Live preview &mdash; your engraving appears on the bar as you type (use Close-up for detail). Finish and lettering of the final piece may vary slightly.
+                      {%- else -%}
+                        Live preview &mdash; updates as you type. Finish and lettering of the final piece may vary slightly.
+                      {%- endif -%}
+                    </p>
+                  {%- endif -%}
+                  {{ product.description }}
+                </div>
               </details>
             {%- endif -%}
 
@@ -251,7 +312,14 @@
   "enabled_on": {
     "templates": ["product"]
   },
-  "settings": [],
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "name_preview_background",
+      "label": "Name necklace preview background",
+      "info": "Optional neck/collarbone photo (no necklace) shown behind the live 3D preview. Leave empty for the soft studio backdrop."
+    }
+  ],
   "blocks": [
     {
       "type": "accordion",
