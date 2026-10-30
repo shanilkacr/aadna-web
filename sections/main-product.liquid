@@ -253,10 +253,29 @@
 
         {%- if product.description != blank or section.blocks.size > 0 -%}
           <div class="product__accordions" data-product-accordions>
-            {%- if product.description != blank -%}
+            {%- if product.description != blank or show_name_preview -%}
               <details class="product__accordion" data-product-accordion open>
                 <summary>{{ 'products.product.product_info' | t }}</summary>
-                <div class="product__accordion-content">{{ product.description }}</div>
+                <div class="product__accordion-content">
+                  {%- if show_name_preview -%}
+                    <p class="nnp-caption-inline">
+                      {%- if nnp_mode == 'coin' -%}
+                        Live preview &mdash; your engraving appears on the coin as you type (the coin is 1.8&ndash;2cm across). Finish and lettering of the final piece may vary slightly.
+                      {%- elsif nnp_mode == 'ring' and nnp_ring_style == 'letter' -%}
+                        Live preview &mdash; shows the first letter you type on the ring (use Close-up for detail). Finish and lettering of the final piece may vary slightly.
+                      {%- elsif nnp_mode == 'ring' -%}
+                        Live preview &mdash; your engraving appears on the ring as you type (use Close-up for detail). Finish and lettering of the final piece may vary slightly.
+                      {%- elsif nnp_mode == 'cufflinks' -%}
+                        Live preview &mdash; your initials appear on the cufflinks as you type (the pair is identical; use Close-up for detail). Finish and lettering of the final piece may vary slightly.
+                      {%- elsif nnp_mode == 'bracelet' -%}
+                        Live preview &mdash; your engraving appears on the bar as you type (use Close-up for detail). Finish and lettering of the final piece may vary slightly.
+                      {%- else -%}
+                        Live preview &mdash; updates as you type. Finish and lettering of the final piece may vary slightly.
+                      {%- endif -%}
+                    </p>
+                  {%- endif -%}
+                  {{ product.description }}
+                </div>
               </details>
             {%- endif -%}
 

@@ -1105,7 +1105,7 @@ strong, b, th { font-weight: 400; }
 .product__grid { display: grid; grid-template-columns: 3fr 2fr; gap: 48px; align-items: start; padding: 0; }
 
 /* Desktop: 2-column masonry-style image grid */
-.product__media-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--grid-gap); }
+.product__media-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; }
 .product__media-item { aspect-ratio: 4/5; overflow: hidden; background: var(--color-background-alt); }
 .product__media-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
@@ -3418,6 +3418,7 @@ strong, b, th { font-weight: 400; }
 .nnp-stage[hidden] { display: none; }
 .nnp-stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .nnp-caption { margin: 0 0 24px; font-size: 10px; letter-spacing: 0.5px; color: var(--color-text-muted); }
+.nnp-caption-inline { margin: 0 0 12px; font-size: 10px; letter-spacing: 0.5px; color: var(--color-text-muted); display: block; }
 .nnp-fonts-wrap { margin-top: 20px; }
 .nnp-fonts-label { display: block; margin-bottom: 10px; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; }
 .nnp-fonts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
@@ -3452,10 +3453,21 @@ strong, b, th { font-weight: 400; }
   .nnp-fonts { grid-template-columns: repeat(3, 1fr); }
   .nnp-font { font-size: 17px; }
 }
+.nnp-stage:not(.is-rendered)::before {
+  content: '';
+  position: absolute; bottom: 0; left: 0; height: 1px; width: 0;
+  background: var(--color-text);
+  animation: nnp-load 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  z-index: 3;
+}
+@keyframes nnp-load {
+  0%   { left: 0; width: 0; opacity: 1; }
+  60%  { left: 0; width: 100%; opacity: 1; }
+  100% { left: 100%; width: 0; opacity: 0; }
+}
 .nnp-stage:not(.is-rendered)::after {
-  content: 'Loading preview…';
-  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-  font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--color-text-muted);
+  content: '';
+  position: absolute; inset: 0;
 }
 
 .nnp-view-toggle {
@@ -3465,5 +3477,5 @@ strong, b, th { font-weight: 400; }
 }
 .nnp-view-toggle:hover { background: var(--color-text); color: var(--color-background); }
 
-/* Neck-photo preview: stage matches the photo's 4:5 so the 3D necklace lines up with it */
-.nnp-stage[data-nnp-photo] { aspect-ratio: 1030 / 820 !important; background-size: cover; background-position: center; }
+/* Neck-photo preview: stage matches the photo's 3:2 so the 3D necklace lines up with it */
+.nnp-stage[data-nnp-photo] { aspect-ratio: 1536 / 1024 !important; background-size: cover; background-position: center; }
