@@ -1223,19 +1223,27 @@ strong, b, th { font-weight: 400; }
   .product__grid { grid-template-columns: 1fr; gap: 24px; }
 
   .product__media-grid { display: none; }
-  .product__media-mobile {
-    display: block;
+  .product__media-mobile {             /* swipeable strip that follows the finger and snaps to each slide */
+    display: flex;
     position: relative;
     width: 100%;
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
   }
+  .product__media-mobile::-webkit-scrollbar { display: none; }
   .product__media-slide {
-    display: none;
+    flex: 0 0 100%;
     aspect-ratio: 4/5;
     overflow: hidden;
     background: var(--color-background-alt);
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
   }
-  .product__media-slide.is-active { display: block; }
   .product__media-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .product__media-dots { display: flex; justify-content: center; gap: 6px; margin-top: 12px; }
   .product__media-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--color-border); transition: background .2s ease; }
@@ -3447,8 +3455,9 @@ strong, b, th { font-weight: 400; }
 @media (max-width: 900px) {
   .nnp-stage { aspect-ratio: 1 / 1; }
   /* mobile: the preview is the first slide of the image slider (moved there by theme.js) */
-  .product__media-slide--preview { aspect-ratio: auto; background: none; overflow: visible; }
-  .product__media-slide--preview .nnp-stage { margin-bottom: 0; }
+  .product__media-slide--preview { background: none; }
+  .product__media-slide--preview .nnp-stage { margin-bottom: 0; height: 100%; }
+  .product__media-slide--preview .nnp-stage[data-nnp-photo] { aspect-ratio: 4 / 5 !important; }   /* same shape as the photos; the preview crops to the centre of its photo */
   .product__media-slide--preview .nnp-caption { margin: 8px 0 0; }
   .nnp-fonts { grid-template-columns: repeat(3, 1fr); }
   .nnp-font { font-size: 17px; }

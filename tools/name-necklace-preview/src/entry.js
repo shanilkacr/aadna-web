@@ -412,8 +412,7 @@ class NamePreview {
     pmrem.dispose();
 
     if (this.photo && this.mode !== 'ring') {
-      const pts = this.mode === 'bracelet' ? WRIST_CLIP : [...BODY_EDGE.l.map(([x, y]) => [x + 2, y]), [0, PHOTO.h], [PHOTO.w, PHOTO.h], ...BODY_EDGE.r.slice().reverse().map(([x, y]) => [x - 2, y])];
-      this.canvas.style.clipPath = `polygon(${pts.map(([x, y]) => `${((x / PHOTO.w) * 100).toFixed(2)}% ${((y / PHOTO.h) * 100).toFixed(2)}%`).join(',')})`;
+      this.clipPts = this.mode === 'bracelet' ? WRIST_CLIP : [...BODY_EDGE.l.map(([x, y]) => [x + 2, y]), [0, PHOTO.h], [PHOTO.w, PHOTO.h], ...BODY_EDGE.r.slice().reverse().map(([x, y]) => [x - 2, y])];
     }
     this.camera = this.photo ? new OrthographicCamera(-13.2, 13.2, PHOTO.h / 2 / PHOTO.ppc, -PHOTO.h / 2 / PHOTO.ppc, 0.1, 200) : new PerspectiveCamera(24, 1, 0.1, 200);
     this.camLook = new Vector3(0, -7.4, 0);
@@ -496,9 +495,16 @@ class NamePreview {
   updateCamera() {
     if (this.photo) {                             // the stage is locked to the photo's aspect ratio so the 3D necklace lines up with it
       this.camera.position.set(0, 0, 50); this.camera.lookAt(0, 0, 0);
-      const hh = PHOTO.h / 2 / PHOTO.ppc;
-      this.camera.top = hh; this.camera.bottom = -hh; this.camera.left = -hh * this.camera.aspect; this.camera.right = hh * this.camera.aspect;
+      // the photo is a CSS cover background, so a stage of another shape (the 4:5 mobile slide) shows its centre: match that crop
+      const a = this.camera.aspect;
+      let hh = PHOTO.h / 2 / PHOTO.ppc; let hw = hh * a;
+      if (a > PHOTO.w / PHOTO.h) { hw = PHOTO.w / 2 / PHOTO.ppc; hh = hw / a; }
+      this.camera.top = hh; this.camera.bottom = -hh; this.camera.left = -hw; this.camera.right = hw;
       this.camera.updateProjectionMatrix();
+      if (this.clipPts) {
+        const vw = 2 * hw * PHOTO.ppc; const vh = 2 * hh * PHOTO.ppc; const ox = (PHOTO.w - vw) / 2; const oy = (PHOTO.h - vh) / 2;
+        this.canvas.style.clipPath = `polygon(${this.clipPts.map(([x, y]) => `${(((x - ox) / vw) * 100).toFixed(2)}% ${(((y - oy) / vh) * 100).toFixed(2)}%`).join(',')})`;
+      }
       return;
     }
     const halfFov = Math.tan(MathUtils.degToRad(this.camera.fov / 2));

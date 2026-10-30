@@ -287,43 +287,38 @@ document.addEventListener('DOMContentLoaded', function () {
     if (mq.addEventListener) mq.addEventListener('change', place);
   })();
 
-  // Product mobile slideshow: dot pagination + swipe (no horizontal scroll)
+  // Product mobile slideshow: native swipe with scroll snap; the dots follow the scroll and jump to a slide
   document.querySelectorAll('[data-product-slideshow]').forEach(function (slideshow) {
     var slides = slideshow.querySelectorAll('.product__media-slide');
     var dotsWrap = slideshow.parentElement.querySelector('[data-product-slideshow-dots]');
     var dots = dotsWrap ? dotsWrap.querySelectorAll('.product__media-dot') : [];
-    var current = 0;
-    var touchStartX = 0;
+    var current = -1;
+    var ticking = false;
 
-    function goTo(index) {
-      if (!slides.length) return;
-      current = Math.max(0, Math.min(index, slides.length - 1));
-      slides.forEach(function (slide, i) {
-        slide.classList.toggle('is-active', i === current);
-      });
-      dots.forEach(function (dot, i) {
-        dot.classList.toggle('is-active', i === current);
-      });
+    function setActive(index) {
+      if (index === current) return;
+      current = index;
+      slides.forEach(function (slide, i) { slide.classList.toggle('is-active', i === current); });
+      dots.forEach(function (dot, i) { dot.classList.toggle('is-active', i === current); });
     }
 
-    goTo(0);
+    function onScroll() {
+      ticking = false;
+      var w = slideshow.clientWidth || 1;
+      setActive(Math.max(0, Math.min(slides.length - 1, Math.round(slideshow.scrollLeft / w))));
+    }
+
+    setActive(0);
+    slideshow.addEventListener('scroll', function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
+    }, { passive: true });
 
     dots.forEach(function (dot, i) {
       dot.style.cursor = 'pointer';
       dot.addEventListener('click', function () {
-        goTo(i);
+        slideshow.scrollTo({ left: i * slideshow.clientWidth, behavior: 'smooth' });
       });
     });
-
-    slideshow.addEventListener('touchstart', function (e) {
-      touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
-
-    slideshow.addEventListener('touchend', function (e) {
-      var diff = e.changedTouches[0].screenX - touchStartX;
-      if (Math.abs(diff) < 40) return;
-      goTo(diff < 0 ? current + 1 : current - 1);
-    }, { passive: true });
   });
 
   // Product accordions: only one open at a time
