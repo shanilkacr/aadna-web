@@ -6,28 +6,6 @@
   assign nnp_ring_style = ''
   if product.handle == 'name-necklace' or product.tags contains 'name-preview'
     assign show_name_preview = true
-  elsif product.handle == 'me-to-you-bracelet'
-    assign show_name_preview = true
-    assign nnp_mode = 'bracelet'
-  elsif product.handle == 'custom-cufflink-pair'
-    assign show_name_preview = true
-    assign nnp_mode = 'cufflinks'
-  elsif product.handle == 'signet-ring'
-    assign show_name_preview = true
-    assign nnp_mode = 'ring'
-    assign nnp_ring_style = 'studded-oval'
-  elsif product.handle == 'cubic-signet-ring'
-    assign show_name_preview = true
-    assign nnp_mode = 'ring'
-    assign nnp_ring_style = 'cushion'
-  elsif product.handle == 'signet-engravables-ring'
-    assign show_name_preview = true
-    assign nnp_mode = 'ring'
-    assign nnp_ring_style = 'plain-oval'
-  elsif product.handle == 'studded-letter-ring'
-    assign show_name_preview = true
-    assign nnp_mode = 'ring'
-    assign nnp_ring_style = 'letter'
   endif
 -%}
 <section class="product page-width">
