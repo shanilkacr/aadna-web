@@ -57,11 +57,17 @@
       style="background-image: url('{{ section.settings.name_preview_background | image_url: width: 1400 }}');"
     {% endif %}
   >
+    {%- if mode == 'name' -%}
+      {%- comment -%} A still of the default necklace, shown with the photo until the 3D preview is ready {%- endcomment -%}
+      <div class="nnp-poster" aria-hidden="true" style="background-image: url('{{ 'nnp-neck-poster.webp' | asset_url }}');"></div>
+    {%- endif -%}
     <canvas data-nnp-canvas aria-label="Live 3D preview of your necklace" role="img"></canvas>
     {%- if mode == 'bracelet' or mode == 'cufflinks' or mode == 'ring' -%}
       <button type="button" class="nnp-view-toggle" data-nnp-view-toggle aria-pressed="false">Close-up</button>
     {%- endif -%}
   </div>
+  {%- assign nnp_first_data = 'nnp-' | append: nnp_ids[0] | append: '-data.js' -%}
+  <link rel="preload" href="{{ nnp_first_data | asset_url }}" as="fetch" crossorigin>
   <script src="{{ 'name-necklace-preview.js' | asset_url }}" defer></script>
 {%- endif -%}
 
