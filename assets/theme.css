@@ -3452,11 +3452,6 @@ strong, b, th { font-weight: 400; }
   .product__media-slide--preview .nnp-caption { margin: 8px 0 0; }
   .nnp-fonts { grid-template-columns: repeat(3, 1fr); }
   .nnp-font { font-size: 17px; }
-  /* these faces are heavier than Shelley (the first): a touch smaller so the picker looks even */
-  .nnp-font[data-nnp-font="playball"] { font-size: 14px; }
-  .nnp-font[data-nnp-font="snell-roundhand"] { font-size: 14px; }
-  .nnp-font[data-nnp-font="birds-of-paradise"] { font-size: 14.5px; }
-  .nnp-font[data-nnp-font="monotype-corsiva"] { font-size: 15px; }
 }
 /* still of the default necklace over the photo until the 3D preview has rendered, then it fades out */
 .nnp-poster { position: absolute; inset: 0; background-size: cover; background-position: center; pointer-events: none; transition: opacity .35s ease; }
