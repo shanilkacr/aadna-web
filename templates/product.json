@@ -9,10 +9,63 @@
             "title": "Shipping",
             "content": "<p>Every AADNA piece is individually crafted to order with care and attention to detail.<br>Please <a href=\"/pages/shipping-refunds\"><u>click here</u></a> for more information</p>"
           }
+        },
+        "video_0265": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/name-necklace-IMG_0265.mp4"
+          }
+        },
+        "video_1501": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/name-necklace-IMG_1501.mp4"
+          }
+        },
+        "video_4748": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/name-necklace-IMG_4748.mp4"
+          }
+        },
+        "video_5005": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/name-necklace-IMG_5005.mp4"
+          }
+        },
+        "video_8197": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/name-necklace-IMG_8197.mp4"
+          }
+        },
+        "video_9055": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/name-necklace-IMG_9055.mp4"
+          }
+        },
+        "video_9350": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/name-necklace-IMG_9350.mp4"
+          }
         }
       },
-      "block_order": ["shipping"]
+      "block_order": [
+        "shipping",
+        "video_0265",
+        "video_1501",
+        "video_4748",
+        "video_5005",
+        "video_8197",
+        "video_9055",
+        "video_9350"
+      ]
     }
   },
-  "order": ["main"]
+  "order": [
+    "main"
+  ]
 }

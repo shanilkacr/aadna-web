@@ -77,6 +77,15 @@
         <div class="product__price">
           {% render 'price', product: product %}
         </div>
+        {%- if section.settings.show_mintpay -%}
+          {%- assign mintpay_price = product.selected_or_first_available_variant.price | default: product.price -%}
+          <p class="product__mintpay" data-mintpay>
+            3 x <span data-mintpay-amount>{{ mintpay_price | divided_by: 3 | money }}</span> with
+            <a href="https://mintpay.lk/pay-later" target="_blank" rel="noopener" class="product__mintpay-brand" aria-label="Mintpay: 3 interest-free instalments">
+              <img src="{{ 'mintpay-logo.webp' | asset_url }}" alt="Mintpay" width="245" height="64" loading="lazy">
+            </a>
+          </p>
+        {%- endif -%}
 
         {%- form 'product', product, class: 'product__form' -%}
           <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" data-variant-id>
@@ -268,6 +277,11 @@
   </script>
 </section>
 
+{%- if show_name_preview and nnp_mode == 'name' -%}
+  {% render 'product-video-slider', blocks: section.blocks, heading: section.settings.videos_heading %}
+  {% render 'name-necklace-faq' %}
+{%- endif -%}
+
 {%- assign related_collection = product.collections.first -%}
 {%- if related_collection -%}
   {%- assign related_count = 0 -%}
@@ -292,6 +306,19 @@
   },
   "settings": [
     {
+      "type": "text",
+      "id": "videos_heading",
+      "label": "Name necklace video slider heading",
+      "default": "See It Come to Life"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_mintpay",
+      "label": "Show Mintpay instalments under the price",
+      "info": "Only turn on when Mintpay is enabled at checkout.",
+      "default": true
+    },
+    {
       "type": "image_picker",
       "id": "name_preview_background",
       "label": "Name necklace preview background",
@@ -299,6 +326,13 @@
     }
   ],
   "blocks": [
+    {
+      "type": "video",
+      "name": "Name necklace video",
+      "settings": [
+        { "type": "video", "id": "video", "label": "Video", "info": "Shown in the video slider on the Name Necklace page. Short portrait clips work best." }
+      ]
+    },
     {
       "type": "accordion",
       "name": "Accordion",
