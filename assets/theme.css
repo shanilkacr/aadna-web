@@ -1140,7 +1140,7 @@ strong, b, th { font-weight: 400; }
 .product__mintpay { margin: -12px 0 20px; font-size: 12px; letter-spacing: 0.3px; color: var(--color-text-muted); }
 .product__mintpay { display: flex; align-items: center; gap: 6px; }
 .product__mintpay-brand { display: inline-flex; line-height: 0; }
-.product__mintpay-brand img { height: 22px; width: auto; }
+.product__mintpay-brand img { height: 18px; width: auto; }
 .product__option { margin: 16px 0; }
 .product__option label { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
 .product__option-select {
