@@ -268,6 +268,10 @@
   </script>
 </section>
 
+{%- if show_name_preview and nnp_mode == 'name' -%}
+  {% render 'name-necklace-faq' %}
+{%- endif -%}
+
 {%- assign related_collection = product.collections.first -%}
 {%- if related_collection -%}
   {%- assign related_count = 0 -%}
