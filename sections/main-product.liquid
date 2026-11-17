@@ -270,6 +270,7 @@
 
 {%- if show_name_preview and nnp_mode == 'name' -%}
   {% render 'product-video-slider', blocks: section.blocks, heading: section.settings.videos_heading %}
+  {% render 'name-necklace-faq' %}
 {%- endif -%}
 
 {%- assign related_collection = product.collections.first -%}
