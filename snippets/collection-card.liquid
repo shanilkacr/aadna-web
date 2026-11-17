@@ -21,7 +21,7 @@
 <div class="collection-list__item">
   <div class="collection-list__media">
     {%- if video != blank -%}
-      {{ video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, controls: false }}
+      {% render 'lazy-video', video: video, label: display_title %}
     {%- elsif image != blank -%}
       <img
         src="{{ image | image_url: width: 1200 }}"

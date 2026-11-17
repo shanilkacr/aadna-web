@@ -3,12 +3,7 @@
     <a href="{{ block.settings.link }}" class="two-col-links__item" {{ block.shopify_attributes }}>
       <div class="two-col-links__media">
         {%- if block.settings.video != blank -%}
-          {%- capture video_markup -%}
-            {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, controls: false }}
-          {%- endcapture -%}
-          {%- assign video_alt = block.settings.label | escape -%}
-          {%- assign img_replacement = '<img alt="' | append: video_alt | append: '" ' -%}
-          {{- video_markup | replace: '<img ', img_replacement -}}
+          {% render 'lazy-video', video: block.settings.video, label: block.settings.label %}
         {%- elsif block.settings.image != blank -%}
           {%- assign media_style = 'object-fit: ' | append: block.settings.image_fit | append: '; object-position: ' | append: block.settings.image_position | append: ';' -%}
           <img
@@ -20,9 +15,12 @@
             style="{{ media_style }}"
           >
         {%- elsif block.settings.video_url != blank and block.settings.video_url contains '://' -%}
-          <video src="{{ block.settings.video_url }}" {% if block.settings.poster_image != blank %}poster="{{ block.settings.poster_image | asset_url }}"{% endif %} autoplay muted loop playsinline></video>
+          {%- if block.settings.poster_image != blank -%}{%- assign poster_url = block.settings.poster_image | asset_url -%}{%- else -%}{%- assign poster_url = '' -%}{%- endif -%}
+          {% render 'lazy-video', src: block.settings.video_url, poster: poster_url, label: block.settings.label %}
         {%- elsif block.settings.video_url != blank -%}
-          <video src="{{ block.settings.video_url | asset_url }}" {% if block.settings.poster_image != blank %}poster="{{ block.settings.poster_image | asset_url }}"{% endif %} autoplay muted loop playsinline></video>
+          {%- if block.settings.poster_image != blank -%}{%- assign poster_url = block.settings.poster_image | asset_url -%}{%- else -%}{%- assign poster_url = '' -%}{%- endif -%}
+          {%- assign video_asset_url = block.settings.video_url | asset_url -%}
+          {% render 'lazy-video', src: video_asset_url, poster: poster_url, label: block.settings.label %}
         {%- elsif block.settings.fallback_image != blank -%}
           <img src="{{ block.settings.fallback_image }}" alt="{{ block.settings.label | escape }}" width="1200" height="1200" loading="lazy">
         {%- endif -%}

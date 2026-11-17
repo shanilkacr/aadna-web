@@ -1,6 +1,6 @@
 {%- comment -%}
   Full-width swipeable strip of short vertical videos (4 across on desktop, no gaps) (main-product "video" blocks), shown on the Name Necklace page.
-  Videos play muted and looping while they're on screen.
+  Videos load and play only when they reach the screen (lazy-video).
   Accepts: blocks (section.blocks), heading (string)
 {%- endcomment -%}
 {%- liquid
@@ -19,33 +19,10 @@
       <div class="product-videos__track" data-product-videos-track>
         {%- for block in blocks -%}
           {%- if block.type == 'video' and block.settings.video != blank -%}
-            {%- liquid
-              assign video = block.settings.video
-              assign video_src = ''
-              for source in video.sources
-                if source.mime_type == 'video/mp4' and source.height == 720
-                  assign video_src = source.url
-                endif
-              endfor
-              if video_src == ''
-                for source in video.sources
-                  if source.mime_type == 'video/mp4'
-                    assign video_src = source.url
-                    break
-                  endif
-                endfor
-              endif
-            -%}
+            {%- assign video = block.settings.video -%}
+            {%- assign video_label = video.alt | default: 'Name necklace video' -%}
             <div class="product-videos__item" {{ block.shopify_attributes }}>
-              <video
-                src="{{ video_src }}"
-                {% if video.preview_image %}poster="{{ video.preview_image | image_url: width: 480 }}"{% endif %}
-                muted
-                loop
-                playsinline
-                preload="none"
-                aria-label="{{ video.alt | default: 'Name necklace video' | escape }}"
-              ></video>
+              {% render 'lazy-video', video: video, label: video_label %}
             </div>
           {%- endif -%}
         {%- endfor -%}
