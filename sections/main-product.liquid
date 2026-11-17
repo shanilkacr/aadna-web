@@ -80,8 +80,10 @@
         {%- if section.settings.show_mintpay -%}
           {%- assign mintpay_price = product.selected_or_first_available_variant.price | default: product.price -%}
           <p class="product__mintpay" data-mintpay>
-            or 3 interest-free payments of <span data-mintpay-amount>{{ mintpay_price | divided_by: 3 | money }}</span> with
-            <a href="https://mintpay.lk/pay-later" target="_blank" rel="noopener" class="product__mintpay-brand">mintpay</a>
+            3 x <span data-mintpay-amount>{{ mintpay_price | divided_by: 3 | money }}</span> with
+            <a href="https://mintpay.lk/pay-later" target="_blank" rel="noopener" class="product__mintpay-brand" aria-label="Mintpay: 3 interest-free instalments">
+              <img src="{{ 'mintpay-logo.webp' | asset_url }}" alt="Mintpay" width="245" height="64" loading="lazy">
+            </a>
           </p>
         {%- endif -%}
 
