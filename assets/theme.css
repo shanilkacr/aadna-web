@@ -1137,6 +1137,9 @@ strong, b, th { font-weight: 400; }
 
 .product__title { font-size: 24px; margin: 0 0 6px; }
 .product__price { margin: 0 0 20px; }
+.product__mintpay { margin: -12px 0 20px; font-size: 12px; letter-spacing: 0.3px; color: var(--color-text-muted); }
+.product__mintpay-brand { color: var(--color-text); font-weight: 600; text-decoration: none; letter-spacing: 0; }
+.product__mintpay-brand:hover { text-decoration: underline; }
 .product__option { margin: 16px 0; }
 .product__option label { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
 .product__option-select {

@@ -77,6 +77,13 @@
         <div class="product__price">
           {% render 'price', product: product %}
         </div>
+        {%- if section.settings.show_mintpay -%}
+          {%- assign mintpay_price = product.selected_or_first_available_variant.price | default: product.price -%}
+          <p class="product__mintpay" data-mintpay>
+            or 3 interest-free payments of <span data-mintpay-amount>{{ mintpay_price | divided_by: 3 | money }}</span> with
+            <a href="https://mintpay.lk/pay-later" target="_blank" rel="noopener" class="product__mintpay-brand">mintpay</a>
+          </p>
+        {%- endif -%}
 
         {%- form 'product', product, class: 'product__form' -%}
           <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" data-variant-id>
@@ -291,6 +298,13 @@
     "templates": ["product"]
   },
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_mintpay",
+      "label": "Show Mintpay instalments under the price",
+      "info": "Only turn on when Mintpay is enabled at checkout.",
+      "default": true
+    },
     {
       "type": "image_picker",
       "id": "name_preview_background",
