@@ -458,6 +458,9 @@ document.addEventListener('DOMContentLoaded', function () {
           priceContainer.innerHTML = '<div class="price"><span class="price__regular">' + formatMoney(price) + '</span></div>';
         }
       }
+
+      var mintpayAmount = form.closest('.product__info-inner') && form.closest('.product__info-inner').querySelector('[data-mintpay-amount]');
+      if (mintpayAmount) mintpayAmount.textContent = formatMoney(Math.floor(variant.price / 3));
     }
 
     optionSelects.forEach(function (select) {
