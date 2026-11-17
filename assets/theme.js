@@ -326,6 +326,38 @@ document.addEventListener('DOMContentLoaded', function () {
     }, { passive: true });
   });
 
+  // Product video slider: play videos only while they're on screen; arrows scroll one page
+  document.querySelectorAll('[data-product-videos]').forEach(function (wrap) {
+    var track = wrap.querySelector('[data-product-videos-track]');
+    var prev = wrap.querySelector('[data-product-videos-prev]');
+    var next = wrap.querySelector('[data-product-videos-next]');
+    var videos = wrap.querySelectorAll('video');
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          var v = entry.target;
+          if (entry.isIntersecting) {
+            var p = v.play();
+            if (p && p.catch) p.catch(function () {});
+          } else {
+            v.pause();
+          }
+        });
+      }, { threshold: 0.5 });
+      videos.forEach(function (v) { io.observe(v); });
+    }
+    function updateArrows() {
+      if (!prev || !next) return;
+      prev.disabled = track.scrollLeft <= 4;
+      next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+    }
+    if (prev) prev.addEventListener('click', function () { track.scrollBy({ left: -track.clientWidth, behavior: 'smooth' }); });
+    if (next) next.addEventListener('click', function () { track.scrollBy({ left: track.clientWidth, behavior: 'smooth' }); });
+    track.addEventListener('scroll', updateArrows, { passive: true });
+    window.addEventListener('resize', updateArrows);
+    updateArrows();
+  });
+
   // Product accordions: only one open at a time
   document.querySelectorAll('[data-product-accordions]').forEach(function (wrap) {
     var accordions = wrap.querySelectorAll('[data-product-accordion]');

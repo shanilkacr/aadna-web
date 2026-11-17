@@ -268,6 +268,10 @@
   </script>
 </section>
 
+{%- if show_name_preview and nnp_mode == 'name' -%}
+  {% render 'product-video-slider', blocks: section.blocks, heading: section.settings.videos_heading %}
+{%- endif -%}
+
 {%- assign related_collection = product.collections.first -%}
 {%- if related_collection -%}
   {%- assign related_count = 0 -%}
@@ -292,6 +296,12 @@
   },
   "settings": [
     {
+      "type": "text",
+      "id": "videos_heading",
+      "label": "Name necklace video slider heading",
+      "default": "Our Name Necklaces"
+    },
+    {
       "type": "image_picker",
       "id": "name_preview_background",
       "label": "Name necklace preview background",
@@ -299,6 +309,13 @@
     }
   ],
   "blocks": [
+    {
+      "type": "video",
+      "name": "Name necklace video",
+      "settings": [
+        { "type": "video", "id": "video", "label": "Video", "info": "Shown in the video slider on the Name Necklace page. Short portrait clips work best." }
+      ]
+    },
     {
       "type": "accordion",
       "name": "Accordion",
