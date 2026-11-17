@@ -326,26 +326,30 @@ document.addEventListener('DOMContentLoaded', function () {
     }, { passive: true });
   });
 
-  // Product video slider: play videos only while they're on screen; arrows scroll one page
+  // Lazy videos: download only when a video nears the screen, play while it's in view, pause when it leaves
+  (function () {
+    var lazyVideos = document.querySelectorAll('video[data-lazy-video]');
+    if (!lazyVideos.length) return;
+    function start(v) {
+      if (!v.getAttribute('src') && v.dataset.src) v.src = v.dataset.src;
+      var p = v.play();
+      if (p && p.catch) p.catch(function () {});
+    }
+    if (!('IntersectionObserver' in window)) { lazyVideos.forEach(start); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) start(entry.target);
+        else entry.target.pause();
+      });
+    }, { rootMargin: '200px 0px' });
+    lazyVideos.forEach(function (v) { io.observe(v); });
+  })();
+
+  // Product video slider: arrows scroll one page (the videos themselves are lazy videos, below)
   document.querySelectorAll('[data-product-videos]').forEach(function (wrap) {
     var track = wrap.querySelector('[data-product-videos-track]');
     var prev = wrap.querySelector('[data-product-videos-prev]');
     var next = wrap.querySelector('[data-product-videos-next]');
-    var videos = wrap.querySelectorAll('video');
-    if ('IntersectionObserver' in window) {
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          var v = entry.target;
-          if (entry.isIntersecting) {
-            var p = v.play();
-            if (p && p.catch) p.catch(function () {});
-          } else {
-            v.pause();
-          }
-        });
-      }, { threshold: 0.5 });
-      videos.forEach(function (v) { io.observe(v); });
-    }
     function updateArrows() {
       if (!prev || !next) return;
       prev.disabled = track.scrollLeft <= 4;
