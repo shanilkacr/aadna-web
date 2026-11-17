@@ -3408,7 +3408,7 @@ strong, b, th { font-weight: 400; }
   position: relative;
   width: 100%;
   aspect-ratio: 5 / 4;
-  margin-bottom: 8px;
+  margin-bottom: 0;
   overflow: hidden;
   background-color: #ece4d9;
   background-image: radial-gradient(120% 90% at 50% 30%, #f8f4ee 0%, #ece3d7 70%, #ddd0c0 100%);
