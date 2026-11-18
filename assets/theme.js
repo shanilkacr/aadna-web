@@ -344,7 +344,7 @@ document.addEventListener('DOMContentLoaded', function () {
       var list = sources(v);
       if (!list.length) return v.dataset.src;
       if (slow) return list[0].u;
-      var need = (v.getBoundingClientRect().height || 400) * Math.min(window.devicePixelRatio || 1, 2);
+      var need = (v.getBoundingClientRect().height || 400) * Math.min(window.devicePixelRatio || 1, 1.5);   // 1.5x is sharp enough for a moving clip
       for (var i = 0; i < list.length; i++) if ((list[i].h || 0) >= need) return list[i].u;
       return list[list.length - 1].u;
     }
