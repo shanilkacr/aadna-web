@@ -330,8 +330,39 @@ document.addEventListener('DOMContentLoaded', function () {
   (function () {
     var lazyVideos = document.querySelectorAll('video[data-lazy-video]');
     if (!lazyVideos.length) return;
+    var conn = navigator.connection || {};
+    var slow = conn.saveData || /(^|-)2g$|^3g$/.test(conn.effectiveType || '');
+
+    // Shopify videos list every MP4 size: lightest on slow connections, otherwise the smallest that fills the tile.
+    function sources(v) {
+      try {
+        return JSON.parse(v.dataset.sources || '[]').filter(function (s) { return s.u; })
+          .sort(function (a, b) { return (a.h || 0) - (b.h || 0); });
+      } catch (e) { return []; }
+    }
+    function pick(v) {
+      var list = sources(v);
+      if (!list.length) return v.dataset.src;
+      if (slow) return list[0].u;
+      var need = (v.getBoundingClientRect().height || 400) * Math.min(window.devicePixelRatio || 1, 1.5);   // 1.5x is sharp enough for a moving clip
+      for (var i = 0; i < list.length; i++) if ((list[i].h || 0) >= need) return list[i].u;
+      return list[list.length - 1].u;
+    }
+    function fallback(v) {                       // the chosen file failed: try the lightest one once
+      var list = sources(v);
+      if (v.dataset.fellBack || !list.length || v.currentSrc === list[0].u) return;
+      v.dataset.fellBack = '1';
+      v.src = list[0].u;
+      var p = v.play();
+      if (p && p.catch) p.catch(function () {});
+    }
     function start(v) {
-      if (!v.getAttribute('src') && v.dataset.src) v.src = v.dataset.src;
+      if (!v.getAttribute('src')) {
+        var url = pick(v);
+        if (!url) return;
+        v.addEventListener('error', function () { fallback(v); });
+        v.src = url;
+      }
       var p = v.play();
       if (p && p.catch) p.catch(function () {});
     }
