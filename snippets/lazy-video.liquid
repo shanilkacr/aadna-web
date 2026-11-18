@@ -25,6 +25,15 @@
         assign lazy_sources = lazy_sources | append: lazy_entry
       endif
     endfor
+    comment
+      Themes only get the 1080p file, but Shopify also serves 720p and 480p copies at the same address with a different
+      rendition name: list them too so the light ones can be used (theme.js falls back to data-src if one is missing).
+    endcomment
+    if lazy_src contains 'HD-1080p-2.5Mbps'
+      assign lazy_720 = lazy_src | replace: 'HD-1080p-2.5Mbps', 'HD-720p-1.6Mbps' | json
+      assign lazy_480 = lazy_src | replace: 'HD-1080p-2.5Mbps', 'SD-480p-0.9Mbps' | json
+      assign lazy_sources = lazy_sources | append: ',{"u":' | append: lazy_720 | append: ',"h":720},{"u":' | append: lazy_480 | append: ',"h":480}'
+    endif
     if lazy_poster == blank and video.preview_image
       assign lazy_poster = video.preview_image | image_url: width: 900
     endif
