@@ -1,26 +1,30 @@
 {%- comment -%}
   Muted looping video that only downloads when it nears the screen and only plays while visible (see theme.js).
+  For Shopify videos every MP4 size is listed in data-sources: theme.js picks the smallest one that fills the tile,
+  uses the lightest one on slow or data-saver connections, and falls back to the lightest one if a file fails to load.
   Accepts: video (Shopify video object) or src (URL), poster (URL, optional), class, style, label
 {%- endcomment -%}
 {%- liquid
   assign lazy_src = src
   assign lazy_poster = poster
+  assign lazy_sources = ''
   if video != blank
     assign lazy_src = ''
     for source in video.sources
-      if source.mime_type == 'video/mp4' and source.url contains 'HD-720p'
-        assign lazy_src = source.url
-        break
+      if source.mime_type == 'video/mp4'
+        if lazy_src == ''
+          assign lazy_src = source.url
+        endif
+        assign lazy_url = source.url | json
+        assign lazy_h = source.height | default: 0
+        assign lazy_w = source.width | default: 0
+        assign lazy_entry = '{"u":' | append: lazy_url | append: ',"h":' | append: lazy_h | append: ',"w":' | append: lazy_w | append: '}'
+        if lazy_sources != ''
+          assign lazy_sources = lazy_sources | append: ','
+        endif
+        assign lazy_sources = lazy_sources | append: lazy_entry
       endif
     endfor
-    if lazy_src == ''
-      for source in video.sources
-        if source.mime_type == 'video/mp4'
-          assign lazy_src = source.url
-          break
-        endif
-      endfor
-    endif
     if lazy_poster == blank and video.preview_image
       assign lazy_poster = video.preview_image | image_url: width: 900
     endif
@@ -31,6 +35,7 @@
   {% if style != blank %}style="{{ style }}"{% endif %}
   data-lazy-video
   data-src="{{ lazy_src }}"
+  {% if lazy_sources != '' %}data-sources='[{{ lazy_sources | escape }}]'{% endif %}
   {% if lazy_poster != blank %}poster="{{ lazy_poster }}"{% endif %}
   muted
   loop
