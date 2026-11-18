@@ -348,11 +348,16 @@ document.addEventListener('DOMContentLoaded', function () {
       for (var i = 0; i < list.length; i++) if ((list[i].h || 0) >= need) return list[i].u;
       return list[list.length - 1].u;
     }
-    function fallback(v) {                       // the chosen file failed: try the lightest one once
+    function fallback(v) {                       // the chosen file failed: try the lightest one, then the theme's own file
       var list = sources(v);
-      if (v.dataset.fellBack || !list.length || v.currentSrc === list[0].u) return;
-      v.dataset.fellBack = '1';
-      v.src = list[0].u;
+      var tries = [list.length ? list[0].u : null, v.dataset.src];
+      var next = null;
+      for (var i = 0; i < tries.length; i++) {
+        if (tries[i] && tries[i] !== v.getAttribute('src') && (v.dataset.tried || '').indexOf('|' + tries[i]) === -1) { next = tries[i]; break; }
+      }
+      if (!next) return;
+      v.dataset.tried = (v.dataset.tried || '') + '|' + v.getAttribute('src');
+      v.src = next;
       var p = v.play();
       if (p && p.catch) p.catch(function () {});
     }
