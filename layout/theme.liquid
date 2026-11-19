@@ -240,11 +240,21 @@
     }
   }
 
-  @media(prefers-reduced-motion: reduce) {
-    #aadna-whatsapp .wa-panel {
-      transition: none;
-    }
+  
+/* Keep popup message in normal sentence case */
+#aadna-whatsapp .wa-message {
+  text-transform: none !important;
+  text-align: left;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+@media(prefers-reduced-motion: reduce) {
+  #aadna-whatsapp .wa-panel {
+    transition: none;
   }
+}
+
 </style>
 
 <div id="aadna-whatsapp">
