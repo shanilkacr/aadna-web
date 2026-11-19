@@ -299,17 +299,13 @@
 </div>
 
 <script>
+
 (function() {
   const root = document.getElementById('aadna-whatsapp');
   if (!root || root.dataset.ready) return;
   root.dataset.ready = 'true';
 
-  // Add your WhatsApp number later.
-  // Example: 94771234567
   const whatsappNumber = '94778809890';
-
-  const message =
-    'Hello AADNA! I would like to know more about your jewellery.';
 
   const panel = root.querySelector('#aadna-wa-panel');
   const toggle = root.querySelector('#aadna-wa-toggle');
@@ -332,20 +328,45 @@
   });
 
   link.addEventListener('click', function(event) {
+    event.preventDefault();
+
     if (!/^\d{8,15}$/.test(whatsappNumber)) {
-      event.preventDefault();
-      alert('WhatsApp number has not been configured yet.');
+      alert('Please configure your WhatsApp number.');
       return;
     }
 
-    link.href = 'https://wa.me/' + whatsappNumber +
+    const productTitle = {{ product.title | default: '' | json }};
+    const productUrl = {{ product.url | default: '' | json }};
+
+    let message;
+
+    if (productTitle && productUrl) {
+      const fullProductUrl =
+        window.location.origin + productUrl;
+
+      message =
+        'Hi AADNA! Just checking on your website. ' +
+        'Can you share more details about this product?\n\n' +
+        'Product: ' + productTitle + '\n\n' +
+        'Product URL: ' + fullProductUrl;
+    } else {
+      message =
+        'Hi AADNA! I am browsing your website. ' +
+        'Can you share more details about your jewellery?';
+    }
+
+    const whatsappUrl =
+      'https://wa.me/' + whatsappNumber +
       '?text=' + encodeURIComponent(message);
+
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
   });
 
   document.addEventListener('keydown', function(event) {
     if (event.key === 'Escape') openPanel(false);
   });
 })();
+
 </script>
 
   {% if settings.cart_type == 'drawer' %}
