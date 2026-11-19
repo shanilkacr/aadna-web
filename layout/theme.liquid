@@ -99,6 +99,255 @@
 
   {% sections 'footer-group' %}
 
+<style>
+  #aadna-whatsapp {
+    font-family: Arial, sans-serif;
+  }
+
+  #aadna-whatsapp .wa-button {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 999999;
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 50%;
+    background: #25D366;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 15px #0003;
+  }
+
+  #aadna-whatsapp .wa-button svg {
+    width: 34px;
+    height: 34px;
+  }
+
+  #aadna-whatsapp .wa-panel {
+    position: fixed;
+    right: 24px;
+    bottom: 96px;
+    width: min(340px, calc(100vw - 32px));
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    z-index: 999999;
+    box-shadow: 0 8px 30px #0003;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px);
+    transition: .25s ease;
+  }
+
+  #aadna-whatsapp .wa-panel.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  #aadna-whatsapp .wa-header {
+    background: #075E54;
+    color: white;
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  #aadna-whatsapp .wa-avatar {
+    width: 42px;
+    height: 42px;
+    background: #25D366;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 23px;
+  }
+
+  #aadna-whatsapp .wa-heading {
+    flex: 1;
+  }
+
+  #aadna-whatsapp .wa-heading strong {
+    display: block;
+    font-size: 15px;
+  }
+
+  #aadna-whatsapp .wa-heading small {
+    font-size: 12px;
+    opacity: .85;
+  }
+
+  #aadna-whatsapp .wa-close {
+    background: transparent;
+    color: white;
+    border: 0;
+    font-size: 25px;
+    cursor: pointer;
+  }
+
+  #aadna-whatsapp .wa-content {
+    background: #f5f7f6;
+    padding: 20px;
+  }
+
+  #aadna-whatsapp .wa-message {
+    background: white;
+    padding: 14px;
+    border-radius: 4px 14px 14px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333;
+  }
+
+  #aadna-whatsapp .wa-chat {
+    display: block;
+    margin-top: 18px;
+    padding: 14px;
+    background: #25D366;
+    color: #064b29;
+    border-radius: 30px;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  #aadna-whatsapp .wa-chat:hover {
+    background: #1ebe5d;
+  }
+
+  #aadna-whatsapp .wa-note {
+    margin-top: 12px;
+    text-align: center;
+    font-size: 11px;
+    color: #777;
+  }
+
+  @media(max-width: 480px) {
+    #aadna-whatsapp .wa-button {
+      right: 16px;
+      bottom: 18px;
+    }
+
+    #aadna-whatsapp .wa-panel {
+      right: 16px;
+      bottom: 90px;
+    }
+  }
+
+  @media(prefers-reduced-motion: reduce) {
+    #aadna-whatsapp .wa-panel {
+      transition: none;
+    }
+  }
+</style>
+
+<div id="aadna-whatsapp">
+
+  <div class="wa-panel" id="aadna-wa-panel"
+       role="dialog" aria-label="WhatsApp chat"
+       aria-hidden="true">
+
+    <div class="wa-header">
+      <div class="wa-avatar">☏</div>
+
+      <div class="wa-heading">
+        <strong>AADNA Customer Support</strong>
+        <small>We're here to help!</small>
+      </div>
+
+      <button class="wa-close" id="aadna-wa-close"
+              aria-label="Close chat">&times;</button>
+    </div>
+
+    <div class="wa-content">
+      <div class="wa-message">
+        Hello! 👋 Welcome to AADNA.
+
+        Looking for beautiful jewellery or need help
+        with an order? We'd love to assist you!
+      </div>
+
+      <a href="#" class="wa-chat" id="aadna-wa-link"
+         target="_blank" rel="noopener noreferrer">
+        Chat with us on WhatsApp →
+      </a>
+
+      <div class="wa-note">
+        AADNA Jewellery | Customer Support
+      </div>
+    </div>
+
+  </div>
+
+  <button class="wa-button" id="aadna-wa-toggle"
+          aria-label="Open WhatsApp chat"
+          aria-expanded="false"
+          aria-controls="aadna-wa-panel">
+
+    <svg viewBox="0 0 32 32" fill="currentColor"
+         aria-hidden="true">
+      <path d="M16 .8A15 15 0 0 0 3.1 23.5L1 31l7.7-2A15.1 15.1 0 1 0 16 .8Zm0 27.4c-2.4 0-4.7-.7-6.7-1.9l-.5-.3-4.6 1.2 1.2-4.5-.3-.5A12.3 12.3 0 1 1 16 28.2Zm6.8-9.2c-.4-.2-2.1-1-2.5-1.1-.3-.1-.6-.2-.8.2-.3.4-.9 1.1-1.1 1.3-.2.2-.4.3-.8.1-2.2-1.1-3.7-2-5.2-4.5-.4-.6.4-.6 1-1.9.1-.3 0-.5-.1-.7l-1.1-2.6c-.3-.7-.6-.6-.9-.6h-.7c-.3 0-.7.1-1 .5-.4.4-1.3 1.3-1.3 3.1s1.3 3.5 1.5 3.8c.2.2 2.6 4 6.3 5.5 2.3.9 3.2 1 4.3.8.7-.1 2.1-.9 2.4-1.8.3-.9.3-1.6.2-1.8-.1-.2-.4-.3-.8-.5Z"/>
+    </svg>
+
+  </button>
+</div>
+
+<script>
+(function() {
+  const root = document.getElementById('aadna-whatsapp');
+  if (!root || root.dataset.ready) return;
+  root.dataset.ready = 'true';
+
+  // Add your WhatsApp number later.
+  // Example: 94771234567
+  const whatsappNumber = '';
+
+  const message =
+    'Hello AADNA! I would like to know more about your jewellery.';
+
+  const panel = root.querySelector('#aadna-wa-panel');
+  const toggle = root.querySelector('#aadna-wa-toggle');
+  const close = root.querySelector('#aadna-wa-close');
+  const link = root.querySelector('#aadna-wa-link');
+
+  function openPanel(open) {
+    panel.classList.toggle('open', open);
+    panel.setAttribute('aria-hidden', String(!open));
+    toggle.setAttribute('aria-expanded', String(open));
+  }
+
+  toggle.addEventListener('click', function() {
+    openPanel(!panel.classList.contains('open'));
+  });
+
+  close.addEventListener('click', function() {
+    openPanel(false);
+    toggle.focus();
+  });
+
+  link.addEventListener('click', function(event) {
+    if (!/^\d{8,15}$/.test(whatsappNumber)) {
+      event.preventDefault();
+      alert('WhatsApp number has not been configured yet.');
+      return;
+    }
+
+    link.href = 'https://wa.me/' + whatsappNumber +
+      '?text=' + encodeURIComponent(message);
+  });
+
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') openPanel(false);
+  });
+})();
+</script>
+
   {% if settings.cart_type == 'drawer' %}
     {% section 'cart-drawer' %}
   {% endif %}
