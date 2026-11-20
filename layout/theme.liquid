@@ -345,43 +345,43 @@
   });
 
   link.addEventListener('click', function(event) {
-    event.preventDefault();
+  event.preventDefault();
 
-    const productTitle = {{ product.title | default: '' | json }};
-    const productUrl = {{ product.url | default: '' | json }};
-    const pageType = {{ request.page_type | json }};
+  const productTitle = {{ product.title | default: '' | json }};
+  const productUrl = {{ product.url | default: '' | json }};
+  const pageType = {{ request.page_type | json }};
 
-    let message;
+  let message;
 
-    if (pageType === 'product' && productTitle && productUrl) {
-      message =
-        'Hey there! Just checking this on the website. ' +
-        'Would like to know more.\n\n' +
-        'Product: ' + productTitle + '\n\n' +
-        'Product URL: ' + window.location.origin + productUrl;
+  if (pageType === 'product' && productTitle && productUrl) {
+    message =
+      'Hey there! Just checking this on the website. ' +
+      'Would like to know more.\n\n' +
+      'Product: ' + productTitle + '\n\n' +
+      'URL: ' + window.location.origin + productUrl;
 
-    } else if (
-      pageType === 'collection' &&
-      window.location.pathname === '/collections/all'
-    ) {
-      message =
-        'Hi AADNA! I am browsing your All Products collection. ' +
-        'I would like to know more!\n\n' +
-        'https://aadna.store/collections/all?sort_by=created-descending';
+  } else if (
+    pageType === 'collection' &&
+    window.location.pathname === '/collections/all'
+  ) {
+    message =
+      'Hi AADNA! I am browsing your All Products collection. ' +
+      'I would like to know more!\n\n' +
+      'URL: ' + window.location.href;
 
-    } else {
-      message =
-        'Hi AADNA! I am browsing your website. ' +
-        'Can you share more details about your jewellery?\n\n' +
-        'Website URL: ' + window.location.href;
-    }
+  } else {
+    message =
+      'Hi AADNA! I am browsing your website. ' +
+      'Can you share more details about your jewellery?\n\n' +
+      'URL: ' + window.location.href;
+  }
 
-    const whatsappUrl =
-      'https://wa.me/' + whatsappNumber +
-      '?text=' + encodeURIComponent(message);
+  const whatsappUrl =
+    'https://wa.me/' + whatsappNumber +
+    '?text=' + encodeURIComponent(message);
 
-    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
-  });
+  window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+});
 
   document.addEventListener('keydown', function(event) {
     if (event.key === 'Escape') openPanel(false);
